@@ -1,0 +1,22 @@
+<div class = "col-6 col-md-4">
+  <%= link_to product_path(product) do %>
+    <% if product.product_images.present? %>
+      <%= image_tag product.product_images.first.photo, class: "image-fluid d-block mx-auto", height: "200" %>
+    <% else %>
+      <%= image_tag "booze_placeholder.jpg", class: "image-fluid d-block mx-auto", height: "200" %>
+    <% end %>
+    <div class = "text-center">
+      <h1><%= product.name %></h1>
+      <p>"<%= product.description_short %>"</p>
+      <div class = "row">
+        <div class = "col">
+          <p><%= "#{product.alcohol_percentage}%" %></p>
+        </div>
+        <div class = "col">
+          <p>750ml</p>
+        </div>
+      </div>
+      <h3><%= product.average_review %></h3>
+    </div>
+  <% end %>
+</div>

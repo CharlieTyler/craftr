@@ -1,0 +1,11 @@
+<div class = "container-fluid">
+  <div class = "row">
+    <div class = "col">
+      <h1><%= @category.name %></h1>
+      <div class = "row">
+        <%= render partial: 'products/lister_item', collection: @category.products, as: :product %>
+      </div>
+    </div>
+  </div>
+</div>
+

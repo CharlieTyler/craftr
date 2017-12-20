@@ -56,22 +56,22 @@
   <div class = "row">
     <ul class="nav nav-pills nav-fill col-12">
       <li class="nav-item mid-nav">
-        <a class="nav-link no-click" href="distillery">The distillery</a>
+        <a class="nav-link no-click" href="#distillery">The distillery</a>
       </li>
       <li class="nav-item mid-nav">
-        <a class="nav-link no-click" href="details">Product details</a>
+        <a class="nav-link no-click" href="#details">Product details</a>
       </li>
       <li class="nav-item mid-nav">
-        <a class="nav-link no-click" href="recipes">Recipes</a>
+        <a class="nav-link no-click" href="#recipes">Recipes</a>
       </li>
       <li class="nav-item mid-nav">
-        <a class="nav-link no-click" href="reviews">Reviews</a>
+        <a class="nav-link no-click" href="#reviews">Reviews</a>
       </li>
     </ul>
   </div>
 
   <!-- Distillery -->
-  <div class = "row distillery">
+  <div class = "row" id = "distillery">
     <div class = "col-10 offset-1 col-md-6 my-5 background-blue">
       <h1 class = "text-white"><%= @distillery.name %></h1>
       <p class = "text-white"><%= @distillery.description_short %></p>
@@ -79,7 +79,7 @@
   </div>
 
   <!-- Product details -->
-  <div class = "row details">
+  <div class = "row" id = "details">
     <div class = "col-md-6">
       <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
     </div>
@@ -97,7 +97,7 @@
   <!-- Recipes -->
 
   <!-- Reviews -->
-  <div class = "row reviews">
+  <div class = "row" id = "reviews">
     <div class = "col-12">
       <h1>Reviews</h1>
       <%= render partial: "review", collection: @product.reviews %>
@@ -123,14 +123,40 @@
 </div>
 
 <script>
-$(function () {
-  //Make mid-point nav scroll to dedicated section on page
-  $("mid-nav").find("a").click(function(e) {
-      e.preventDefault();
-      var section = $(this).attr("href");
-      $("html, body").animate({
-          scrollTop: $(section).offset().top
-      });
+// Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
   });
-});
 </script>
