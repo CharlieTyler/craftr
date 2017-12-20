@@ -1,0 +1,15 @@
+<div class = "container-fluid">
+  <div class = "row">
+    <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <%= simple_form_for @distillery, url: admin_distilleries_path do |f| %>
+        <%= f.input :name %>
+        <%= f.input :location %>
+        <%= f.input :description_short %>
+        <%= f.input :description_first %>
+        <%= f.input :description_second %>
+        <br />
+        <%= f.submit "Create", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div> 

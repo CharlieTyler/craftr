@@ -1,0 +1,15 @@
+@import "bootstrap";
+
+$blue:#1565c0;
+
+.clear{
+  clear: both;
+}
+
+.text-white{
+  color: white;
+}
+
+.background-blue {
+  background-color: $blue;
+}
