@@ -14,7 +14,7 @@
 <!-- Categories -->
 <div class = "container text-center">
   <h1>Our categories</h1>
-  <div class = "row">
+  <div class = "row py-3">
     <% @featured_categories.each do |category| %>
       <div class = "col">
         <%= link_to category_path(category) do %>
@@ -35,12 +35,27 @@
 
 <!-- Recipes -->
 <div class = "recipes-background">
-  <div class = "container">
-    <h1>Latest recipes</h1>
+  <div class = "container py-3">
+    <span class = "text-center">
+      <h1>Latest recipes</h1>
+    </span>
     <div class = "row">
       <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
     </div>
   </div>
 </div>
+
+<!-- Products -->
+<div class = "products-background">
+  <div class = "container py-3">
+    <span class = "text-center">
+      <h1>Featured products</h1>
+    </span>
+    <div class = "row">
+      <%= render partial: "products/lister_item", collection: @featured_products, as: :product %>
+    </div>
+  </div>
+</div>
+
 
 
