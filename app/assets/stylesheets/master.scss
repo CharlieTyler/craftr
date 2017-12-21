@@ -13,3 +13,13 @@ $blue:#1565c0;
 .background-blue {
   background-color: $blue;
 }
+
+.home-hero-background {
+  background: image_url('home_hero.jpg') no-repeat center center fixed;
+  min-height: 500px;
+  max-height: 800px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
