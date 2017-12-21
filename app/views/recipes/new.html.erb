@@ -1,0 +1,140 @@
+<div class = "container-fluid">
+  <div class = "row">
+    <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <%= simple_form_for @recipe do |f| %>
+          <%= f.input :name %>
+          <%= f.input :description %>
+          <%= f.input :image %>
+          <div class = "all_ingredient_fields">
+            <%= f.simple_fields_for :recipe_ingredients do |i| %>
+              <div class = "row ingredient_field">
+                <div class = "col-6">
+                  <%= i.input :quantity %>
+                </div>
+                <div class = "col-6">
+                  <%= i.input :ingredient_id, collection: @ingredients, value_method: :id  %>
+                </div>
+                <hr />
+              </div>
+            <% end %>
+          </div>
+          <p><a href="#" class="add_ingredient_field">+ add another</a></p>
+          <%= f.input :method %>
+          <div class = "all_product_fields">
+            <%= f.simple_fields_for :recipe_products do |i| %>
+              <div class = "row product_field">
+                <div class = "col-6">
+                  <%= i.input :product_id, collection: @products, value_method: :id  %>
+                </div>
+                <hr />
+              </div>
+            <% end %>
+          </div>
+          <p><a href="#" class="add_product_field">+ add another</a></p>
+          <%= f.submit "Create recipe", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newIngredientModal">
+  Add an ingredient
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newIngredientModal" tabindex="-1" role="dialog" aria-labelledby="newIngredientModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newIngredientModalLabel">New ingredient</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for @ingredient do |f| %>
+        <div class="modal-body">
+          <%= f.input :name %>
+          <%= f.input :category, collection: Ingredient::CATEGORIES %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Add ingredient", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    //Ingredients nested attributes
+    var ingredientIndex = $('.ingredient_field').length - 1;
+
+    $(".add_ingredient_field").click(function(evt) {
+      evt.preventDefault();
+      ingredientIndex++;
+
+      // clone the labels and select fields
+      var newFields = $('.ingredient_field').first().clone().appendTo( ".all_ingredient_fields" );
+      // change the select field names and ids
+      newFields.find("select").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, ingredientIndex);
+        newName = $(this).attr("name").replace(/0/g, ingredientIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
+      //Add a remove button for all apart from the first recipe_ingredient
+      newFields.find("hr").before('<div class = "btn btn-danger col-6 offset-3 remove-field">Remove</div>');
+      $('.remove-field').click(removeIngredientFields);
+
+      // change the label fors
+      newFields.find("label").each(function(index) {
+        newFor = $(this).attr("for").replace(/0/g, ingredientIndex);
+        $(this).attr("for", newFor);
+      });
+    });
+
+    var productIndex = $('.product_field').length - 1;
+
+    $(".add_product_field").click(function(evt) {
+      evt.preventDefault();
+      productIndex++;
+
+      // clone the labels and select fields
+      var newFields = $('.product_field').first().clone().appendTo( ".all_product_fields" );
+      // change the select field names and ids
+      newFields.find("select").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, productIndex);
+        newName = $(this).attr("name").replace(/0/g, productIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
+      //Add a remove button for all apart from the first user_instrument
+      newFields.find("hr").before('<div class = "btn btn-danger col-6 offset-3 remove-field">Remove</div>');
+      $('.remove-field').click(removeProductFields);
+
+      // change the label fors
+      newFields.find("label").each(function(index) {
+        newFor = $(this).attr("for").replace(/0/g, productIndex);
+        $(this).attr("for", newFor);
+      });
+    });
+
+    function removeProductFields(evt) {
+      evt.preventDefault();
+      $(this).parent('div').remove();
+      productIndex--;
+    }
+
+    function removeIngredientFields(evt) {
+      evt.preventDefault();
+      $(this).parent('div').remove();
+      ingredientIndex--;
+    }
+  });
+
+</script>

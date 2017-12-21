@@ -1,0 +1,27 @@
+<div class = "container-fluid">
+  <div class = "row">
+    <div class = "col-md-6">
+      <%= image_tag @recipe.image, class: "img-fluid recipe-header-image" %>
+    </div>
+    <div class = "col-md-6">
+      <h1><%= @recipe.name %></h1>
+      <p><%= "by #{@recipe.user.email}" %></p>
+    </div>
+    <div class = "col-md-6">
+      <h3>Ingredients</h3>
+      <ul>
+        <% @recipe.recipe_ingredients.each do |ri| %>
+          <li><%= ri.quantity %> of <%= ri.ingredient.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class = "col-md-6">
+      <h3>Method</h3>
+      <p><%= @recipe.method %></p>
+    </div>
+  </div>
+  <h3>Best with</h3>
+  <div class = "row">  
+    <%= render partial: 'products/lister_item', collection: @recipe.products, as: :product %>
+  </div>
+</div>

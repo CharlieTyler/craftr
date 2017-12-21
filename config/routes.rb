@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
   resources :distilleries, only: [:show, :index]
   resources :categories, only: [:show]
+  resources :recipes
+  resources :ingredients, only: [:create]
 
   # All routes to form part of admin portal
   namespace :admin do
