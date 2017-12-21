@@ -1,0 +1,16 @@
+<div class = "col-md-6 col-lg-4">
+  <%= link_to recipe_path(recipe) do %>
+    <div class = "booyah-box">
+      <div class = "row">
+        <div class = "col">
+          <%= image_tag recipe.image, height: "200" %>
+        </div>
+        <div class = "col">
+          <h3><%= recipe.name %></h3>
+          <p><%= recipe.description[0..100] %></p>
+          <p><%= recipe.ingredient_list %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div> 

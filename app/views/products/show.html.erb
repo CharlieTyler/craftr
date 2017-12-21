@@ -95,12 +95,25 @@
   </div>
 
   <!-- Recipes -->
+  <div class = "row" id = "recipes">
+    <div class = "col-12">
+      <h1>Recipes</h1>
+      <div class = "row">
+        <% if @product.category.recipes.length > 0 %>
+          <%= render partial: "recipes/lister_recipe", collection: @product.recipes, as: :recipe %>
+          <%= render partial: "recipes/lister_recipe", collection: @product.category.recipes, as: :recipe %>
+        <% else %>
+          <p>No recipes for this product or category</p>
+        <% end %>
+  </div>
 
   <!-- Reviews -->
   <div class = "row" id = "reviews">
     <div class = "col-12">
       <h1>Reviews</h1>
-      <%= render partial: "review", collection: @product.reviews %>
+      <div class = "row">
+        <%= render partial: "review", collection: @product.reviews %>
+      </div>
       <div class = "clear"></div>
       <h1>Add a review</h1>
       <% if user_signed_in? %>
