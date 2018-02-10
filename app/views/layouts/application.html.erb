@@ -5,11 +5,13 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <!-- <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -46,7 +48,56 @@
           <% end %>
         </ul>
       </div>
-    </nav>
+    </nav> -->
+
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <%= link_to "Craftr", root_path, class: "navbar-brand" %>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown has-mega-menu" style="position:static;">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Spirits</a>
+
+            <div class="dropdown-menu" style="width:100%">
+              <div class="px-0 container-fluid">
+                <div class="row">
+                  <% navbar_categories.each do |category| %>
+                    <div class="col-6 col-md-3 d-flex align-items-center">
+                      <%= link_to category_path(category), class: "dropdown-item" do %>
+                        <%= image_tag category.icon, height: "100px" %>
+                        <br />
+                        <%= category.name %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Recipes", recipes_path, class: "nav-link" %>
+          </li>
+        </ul>
+        <ul class="navbar-nav float-right">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
+            </li>
+                    <% end %>
+                  </ul>
+                </ul>
+            </div>
+        </nav>
+
 
     <% if notice.present? %>
       <p class="alert alert-info"><%= notice %></p>

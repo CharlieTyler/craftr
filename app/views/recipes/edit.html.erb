@@ -55,7 +55,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= simple_form_for @ingredient, url: ingredients_path do |f| %>
+      <%= simple_form_for @ingredient do |f| %>
         <div class="modal-body">
           <%= f.input :name %>
           <%= f.input :classification, collection: Ingredient::CATEGORIES %>

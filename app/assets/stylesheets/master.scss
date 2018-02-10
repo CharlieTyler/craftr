@@ -1,17 +1,48 @@
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Roboto:400,700');
+@import 'owlcarousel2/owl.carousel';
 
 $blue:#1565c0;
+$grey:#f0f0f0;
+
+/* Text formatting */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.text-white {
+  color: white;
+}
+
+.recipe-underline {
+  text-decoration: underline orange;
+}
 
 .clear{
   clear: both;
 }
 
-.text-white{
-  color: white;
-}
+/* background colours */
 
 .background-blue {
   background-color: $blue;
+}
+
+.background-grey {
+  background-color: $grey;
+}
+
+.background-translucent-black {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .home-hero-background {
@@ -38,11 +69,16 @@ $blue:#1565c0;
   background: #fff;
   border: 0px solid #ccc;
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  padding: 20px 5px 5px 20px;
 }
 
 .booyah-box:hover {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.recipe-ingredients-list {
+  list-style: lower-roman inside;
 }
 
 /* Always stop links going blue*/

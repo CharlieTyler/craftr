@@ -1,6 +1,7 @@
 class Category < ApplicationRecord
   has_many :products
   has_many :recipes, through: :products
+  has_many :ingredients
   mount_uploader :icon, CategoryIconUploader
 
   validates :name, presence: true, uniqueness: true

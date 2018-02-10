@@ -1,26 +1,40 @@
+<!-- To do --><!-- 
+1. If background image, use that, otherwise use default
+2. Style bullets and method (javascript to add class to method bullets?)
+3. Add mobile toggle
+4. Add to favourites
+5. Relevant products carousel
+ -->
+
 <div class = "container-fluid">
-  <div class = "row">
-    <div class = "col-md-6">
-      <%= image_tag @recipe.image, class: "img-fluid recipe-header-image" %>
-    </div>
-    <div class = "col-md-6">
-      <h1><%= @recipe.name %></h1>
-      <p><%= "by #{@recipe.user.email}" %></p>
-    </div>
-    <div class = "col-md-6">
-      <h3>Ingredients</h3>
-      <ul>
-        <% @recipe.recipe_ingredients.each do |ri| %>
-          <li><%= ri.quantity %> of <%= ri.ingredient.name %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class = "col-md-6">
-      <h3>Method</h3>
-      <p><%= @recipe.method %></p>
+  <div class="row py-5" style="background:transparent url('<%= @recipe.image.url %>') no-repeat center center /cover">
+    <div class = "col-md-4 offset-md-4 text-center">
+      <h1 class = "py-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @recipe.name %></span></h1>
+      <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @recipe.description %></span></h6>
+      <div class = "favourite-unfavourite py-2"> <!-- This partial is replaced each time it's clicked -->
+        <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
+      </div>
     </div>
   </div>
-  <h3>Best with</h3>
+  <div class = "row pt-3">
+    <div class = "col-md-4 offset-md-2">
+      <div class = "booyah-box">
+        <h1 class = "recipe-header text-center recipe-underline" id="ingredients">Ingredients</h3>
+        <ol class = "recipe-ingredients-list">
+          <% @recipe.recipe_ingredients.each do |ri| %>
+            <li class = "ingredient-bullet"><%= "#{ri.quantity} #{ri.ingredient.name}" %></li>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+    <div class = "col-md-4">
+      <div class = "booyah-box">
+        <h1 class = "recipe-header text-center recipe-underline" id="method">Method</h3>
+        <%= simple_format(@recipe.method, class: 'method-text') %>
+      </div>
+    </div>
+    <div class = "col-auto"></div>
+  </div>
   <div class = "row">  
     <%= render partial: 'products/lister_item', collection: @recipe.products, as: :product %>
   </div>

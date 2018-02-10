@@ -8,11 +8,13 @@ Rails.application.routes.draw do
 
   # Standard pages
   resources :products, only: [:show, :index] do
-    resources :reviews, only: [:create, :update, :delete]
+    resources :reviews, only: [:create, :update, :destroy]
   end
   resources :distilleries, only: [:show, :index]
   resources :categories, only: [:show]
-  resources :recipes
+  resources :recipes do
+    resources :favourite_recipes, only: [:create, :destroy]
+  end
   resources :ingredients, only: [:create]
 
   # All routes to form part of admin portal

@@ -14,10 +14,12 @@ class RecipesController < ApplicationController
     @recipe.recipe_products.build
     @ingredients = Ingredient.all
     @products = Product.all
+    @categories = Category.all
     @ingredient = Ingredient.new
   end
 
   def create
+    # Note: currently has to have recipe_ingredients and recipe_products
     @recipe = current_user.recipes.create(recipe_params)
     if @recipe.valid?
       redirect_to recipe_path(@recipe)
@@ -30,11 +32,29 @@ class RecipesController < ApplicationController
   end
 
   def edit
-
+    @recipe = Recipe.find(params[:id])
+    unless @recipe.user == current_user
+      return render text: 'Not Allowed', status: :forbidden
+    end
+    @recipe.recipe_ingredients.build
+    @recipe.recipe_products.build
+    @ingredients = Ingredient.all
+    @products = Product.all
+    @categories = Category.all
+    @ingredient = Ingredient.new
   end
 
   def update
-
+    @recipe = Recipe.find(params[:id])
+    @recipe.update_attributes(recipe_params)
+    if @recipe.valid?
+      redirect_to recipe_path(@recipe)
+    else
+      # Have to tell the template what the other model on the page is as well
+      # Note: currently renders nested attributes as ids rather than names
+      @ingredient = Ingredient.new
+      return render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -45,11 +65,13 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, 
+                                   :category,
                                    :image, 
+                                   :banner_image,
                                    :description, 
                                    :method, 
                                    :user_id, 
-                                   recipe_ingredients_attributes: [:id, :quantity, :ingredient_id],
-                                   recipe_products_attributes: [:id, :product_id])
+                                   recipe_ingredients_attributes: [:id, :quantity, :ingredient_id, :recipe_id],
+                                   recipe_products_attributes: [:id, :product_id, :recipe_id])
   end
 end

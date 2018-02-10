@@ -68,4 +68,10 @@ gem 'simple_form'
 
 gem 'carrierwave', '~> 1.0'
 
-gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.0.6'
+
+gem 'rails_bootstrap_navbar'
+
+gem 'quilljs-rails'
+
+gem 'owlcarousel2'

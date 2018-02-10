@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+  <% if current_user.favourited?(recipe) %>
+    <%= link_to recipe_favourite_recipe_path(recipe_id: recipe.id), class: "btn btn-primary", method: :delete, remote: true do %>
+      <i class="fas fa-heart"></i> Unfavourite
+    <% end %>
+  <% else %>
+    <%= link_to recipe_favourite_recipes_path(recipe_id: recipe.id), class: "btn btn-primary", method: :post, remote: true do %>
+      <i class="far fa-heart"></i> Favourite
+    <% end %>
+  <% end %>
+<% else %>
+  <%= link_to "Sign in to favourite", new_user_session_path, class: "btn btn-primary" %>
+<% end %>
