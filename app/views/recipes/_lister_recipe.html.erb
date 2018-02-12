@@ -1,16 +1,18 @@
 <div class = "col-md-6 col-lg-4">
-  <%= link_to recipe_path(recipe), class: "nv-link" do%>
+  <%= link_to recipe_path(recipe) do%>
     <div class = "booyah-box">
       <div class = "row">
         <div class = "col-12">
-          <%= image_tag recipe.image, height: "200" %>
+          <%= image_tag recipe.image, class: "img-fluid zoom-image" %>
         </div>
       </div>
       <div class = "row">
         <div class = "col-12">
-          <h3><%= recipe.name %></h3>
-          <p><%= recipe.description[0..100] %></p>
-          <p><%= recipe.ingredient_list %></p>
+          <div class = "nice-padding">
+            <h2><%= recipe.name %></h2>
+            <p><%= recipe.description[0..100] %></p>
+            <p><%= recipe.ingredient_list %></p>
+          </div>
         </div>
       </div>
     </div>

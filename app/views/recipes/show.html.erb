@@ -5,36 +5,40 @@
 4. Add to favourites
 5. Relevant products carousel
  -->
-
+<div class = "background-grey pb-2">
+  <div class = "container-fluid">
+    <div class="row py-5" style="background:transparent url('<%= @recipe.image.url %>') no-repeat center center /cover">
+      <div class = "col-md-8 offset-md-2 text-center">
+        <h1 class = "py-5 text-white display-4"><span class = "background-translucent-black px-3 py-2"><%= @recipe.name %></span></h1>
+        <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @recipe.description %></span></h6>
+        <div class = "favourite-unfavourite py-2"> <!-- This partial is replaced each time it's clicked -->
+          <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
+        </div>
+      </div>
+    </div>
+    <div class = "row pt-3">
+      <div class = "col-md-4 offset-md-2">
+        <div class = "booyah-box my-1 nice-padding">
+          <h1 class = "recipe-header" id="ingredients">Ingredients</h1>
+          <ul class = "recipe-ingredients-list">
+            <% @recipe.recipe_ingredients.each do |ri| %>
+              <li class = "ingredient-bullet"><%= "#{ri.quantity} #{ri.ingredient.name}" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class = "col-md-4">
+        <div class = "booyah-box my-1 nice-padding">
+          <h1 class = "recipe-header" id="method">Method</h1>
+          <%= simple_format(@recipe.method, class: 'method-text') %>
+        </div>
+      </div>
+      <div class = "col-auto"></div>
+    </div>
+  </div>
+</div>
 <div class = "container-fluid">
-  <div class="row py-5" style="background:transparent url('<%= @recipe.image.url %>') no-repeat center center /cover">
-    <div class = "col-md-4 offset-md-4 text-center">
-      <h1 class = "py-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @recipe.name %></span></h1>
-      <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @recipe.description %></span></h6>
-      <div class = "favourite-unfavourite py-2"> <!-- This partial is replaced each time it's clicked -->
-        <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
-      </div>
-    </div>
-  </div>
-  <div class = "row pt-3">
-    <div class = "col-md-4 offset-md-2">
-      <div class = "booyah-box">
-        <h1 class = "recipe-header text-center recipe-underline" id="ingredients">Ingredients</h3>
-        <ol class = "recipe-ingredients-list">
-          <% @recipe.recipe_ingredients.each do |ri| %>
-            <li class = "ingredient-bullet"><%= "#{ri.quantity} #{ri.ingredient.name}" %></li>
-          <% end %>
-        </ol>
-      </div>
-    </div>
-    <div class = "col-md-4">
-      <div class = "booyah-box">
-        <h1 class = "recipe-header text-center recipe-underline" id="method">Method</h3>
-        <%= simple_format(@recipe.method, class: 'method-text') %>
-      </div>
-    </div>
-    <div class = "col-auto"></div>
-  </div>
+  <h1>Recommended products</h1>
   <div class = "row">  
     <%= render partial: 'products/lister_item', collection: @recipe.products, as: :product %>
   </div>

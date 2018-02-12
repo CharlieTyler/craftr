@@ -10,13 +10,19 @@
           <% end %>
         </ol>
         <div class="carousel-inner" role="listbox">
-          <div class="item active">
-            <%= image_tag @product.product_images.first.photo, class: "d-block img-fluid product_image_large" %>
-          </div>
-          <% @product.product_images.drop(1).each do |product_image| %>
-             <div class="item">
-               <%= image_tag product_image.photo, class: "d-block img-fluid product_image_large" %>
-             </div>
+          <% if @product.product_images.present? %>
+            <div class="item active">
+              <%= image_tag @product.product_images.first.photo, class: "d-block img-fluid product_image_large" %>
+            </div>
+            <% @product.product_images.drop(1).each do |product_image| %>
+               <div class="item">
+                 <%= image_tag product_image.photo, class: "d-block img-fluid product_image_large" %>
+               </div>
+            <% end %>
+          <% else %>
+            <div class="item active">
+              <%= image_tag "booze_placeholder.jpg", class: "image-fluid d-block mx-auto" %>product_image_large" %>
+            </div>
           <% end %>
         </div>
         <a class="carousel-control-prev" href="#productImagesCarousel" role="button" data-slide="prev">

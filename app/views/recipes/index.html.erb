@@ -1,9 +1,9 @@
 <div class = "recipes-background">
   <div class = "container">
     <div class = "row pt-5">
-      <div class = "col-md-6 offset-md-3">
-        <h1 class = "text-white mt-5 display-3">Craftr recipes</h1>
-        <h3 class = "text-white">Your home for cocktail recipes</h6>
+      <div class = "col-md-8 offset-md-2">
+        <h1 class = "text-white mt-4 py-5 display-3"><span class = "background-translucent-black px-3 py-2">Craftr recipes</span></h1>
+        <h3 class = "text-white"><span class = "background-translucent-black px-3 py-2">Your home for cocktail recipes</span></h6>
         <%= link_to "Add a recipe", new_recipe_path, class: "btn btn-primary" %>
       </div>
     </div>
@@ -11,9 +11,9 @@
 </div>
 
 <div class = "container-fluid">
-  <div class = "row">
+  <div class = "row background-grey">
     <div class = "col-12">
-      <h1>Craftr's cocktail recipes</h1>
+      <h1 class = "display-4">Latest recipes</h1>
       <div class = "row">
         <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
       </div>

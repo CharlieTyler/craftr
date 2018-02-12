@@ -4,7 +4,7 @@ class Ingredient < ApplicationRecord
   belongs_to :category, required: false
 
   validates :name, presence: true, uniqueness: true
-  validates :category, presence: true
+  validates :classification, presence: true
 
   CATEGORIES = {
     'Spirit': 'Spirit',
