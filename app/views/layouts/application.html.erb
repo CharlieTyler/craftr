@@ -49,7 +49,23 @@
         </ul>
       </div>
     </nav> -->
-
+    <% if controller_name == "static_pages" %>
+      <div class = "container-fluid">
+        <div class = "row background-charcoal">
+          <div class = "owl-carousel">
+            <div class = "text-center">
+              <p class = "text-white my-1">Straight from the distillery</p>
+            </div>
+            <div class = "text-center">
+              <p class = "text-white my-1">Always potato</p>
+            </div>
+            <div class = "text-center">
+              <p class = "text-white my-1">Never anything else</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -60,7 +76,7 @@
           <li class="nav-item dropdown has-mega-menu" style="position:static;">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Spirits</a>
 
-            <div class="dropdown-menu" style="width:100%">
+            <div class="dropdown-menu" style="width:50%">
               <div class="px-0 container-fluid">
                 <div class="row">
                   <% navbar_categories.each do |category| %>
@@ -112,5 +128,19 @@
 <script>
 $(function() {
   $('.carousel').carousel();
+  $('.owl-carousel').owlCarousel({
+    loop:true,
+    responsiveClass:true,
+    responsive:{
+      0:{
+          items:1,
+          nav:true
+      },
+      600:{
+          items:3,
+          nav:false
+      },
+    }
+  })
 });
 </script>

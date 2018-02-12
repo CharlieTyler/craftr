@@ -6,6 +6,7 @@
 
 $blue:#1565c0;
 $grey:#fafafa;
+$charcoal: #2E2E2E;
 
 /* Text formatting */
 
@@ -29,6 +30,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .background-blue {
   background-color: $blue;
+}
+
+.background-charcoal {
+  background-color: $charcoal
 }
 
 .background-grey {
@@ -100,3 +105,15 @@ a, a:hover {
   color: inherit; 
 }
 
+/*
+.btn-slide {
+  box-shadow: inset 0 0 0 0 #D80286;
+  -webkit-transition: ease 0.4s;
+  -moz-transition: ease 0.4s;
+  transition: ease 0.4s;
+}
+
+.btn-slide:hover {
+  box-shadow: inset 400px 0 0 0 #D80286;
+}
+*/

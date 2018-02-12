@@ -3,7 +3,7 @@
     <div class = "booyah-box">
       <div class = "row">
         <div class = "col-12">
-          <%= image_tag recipe.image, class: "img-fluid zoom-image" %>
+          <%= image_tag recipe.image, class: "img-fluid recipe-lister-image" %>
         </div>
       </div>
       <div class = "row">
@@ -12,6 +12,7 @@
             <h2><%= recipe.name %></h2>
             <p><%= recipe.description[0..100] %></p>
             <p><%= recipe.ingredient_list %></p>
+            <div class = "btn btn-primary col-12 btn-slide">See more</div>
           </div>
         </div>
       </div>

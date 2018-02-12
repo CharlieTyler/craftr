@@ -75,3 +75,5 @@ gem 'rails_bootstrap_navbar'
 gem 'quilljs-rails'
 
 gem 'owlcarousel2'
+
+gem 'instagram'
