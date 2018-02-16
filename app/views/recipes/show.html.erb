@@ -43,3 +43,21 @@
     <%= render partial: 'products/lister_item', collection: @recipe.products, as: :product %>
   </div>
 </div>
+<div class = "container-fluid background-grey">
+  <h1>Comments <span class = "badge badge-primary"><%= @comments.count %></span></h1>
+  <div class = "row">
+    <%= render partial: 'recipe_comment', collection: @comments, as: :comment %>
+  </div>
+  <div class = "row">
+    <div class = "col-md-6">
+      <% if user_signed_in? %>
+        <%= simple_form_for @comment, url: recipe_recipe_comments_path(@recipe) do |f| %>
+          <%= f.input :message %>
+          <%= f.submit "Add comment", class: "btn btn-primary" %>
+        <% end %>
+      <% else %>
+        <p>Please <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %> to comment
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :user_favourite_recipes
   has_many :favourite_recipes, through: :user_favourite_recipes, source: :recipe
 
+  #recipe comments
+  has_many :recipe_comments
+
   #product reviews
   has_many :reviews
 

@@ -8,6 +8,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_products
   has_many :user_favourite_recipes
   has_many :favourited_by, through: :user_favourite_recipes, source: :user
+  has_many :recipe_comments
   mount_uploader :image, RecipeImageUploader
   mount_uploader :banner_image, RecipeBannerImageUploader
 
@@ -36,4 +37,7 @@ class Recipe < ApplicationRecord
     tags array
   end
 
+  def primary_ingredient
+    ingredients.where.not(category_id: '').first  
+  end
 end

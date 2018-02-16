@@ -2,6 +2,8 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def show
     @recipe = Recipe.find(params[:id])
+    @comment = RecipeComment.new
+    @comments = @recipe.recipe_comments.all
   end
 
   def index

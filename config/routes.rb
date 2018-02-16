@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
   resources :recipes do
     resources :favourite_recipes, only: [:create, :destroy]
+    resources :recipe_comments, only: [:create, :destroy]
   end
   resources :ingredients, only: [:create]
 
