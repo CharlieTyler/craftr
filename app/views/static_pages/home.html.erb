@@ -2,57 +2,73 @@
   <div class = "container">
     <div class = "row pt-5">
       <div class = "col-md-6 offset-md-3">
-        <h1 class = "text-white mt-5 pt-5 display-3"><span class = "background-translucent-black px-3 py-2">Craftr</span></h1>
-        <h3 class = "text-white py-3"><span class = "background-translucent-black px-3 py-2">The marketplace for craft spirits</span></h6>
-        <h6 class = "text-white"><span class = "background-translucent-black px-3 py-2">Shipped straight from the distillery to your home<span class = "background-translucent-black px-3 py-2"></h6>
-        <%= link_to "Find out more", about_path, class: "btn btn-primary" %>
+        <div class = "background-translucent-black mt-5 py-2 px-2">
+          <h1 class = "text-white display-3">Craftr</h1>
+          <h3 class = "text-white py-3">The marketplace for craft spirits</h6>
+          <h6 class = "text-white">Shipped straight from the distillery to your home</h6>
+          <%= link_to "Find out more", about_path, class: "btn btn-primary" %>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Categories -->
-<div class = "container text-center">
-  <h1>Our categories</h1>
-  <div class = "row py-3">
-    <% @featured_categories.each do |category| %>
-      <div class = "col">
-        <%= link_to category_path(category) do %>
-          <%= image_tag category.icon, height: "100px" %>
-          <br />
-          <%= category.name %>
-        <% end %>
+<div class = "background-grey">
+  <div class = "container text-center py-3">
+    <div class = "row">
+      <div class = "col-md-10 offset-md-1">
+        <h1>Our categories</h1>
+        <div class = "row py-3">
+          <% @featured_categories.each do |category| %>
+            <div class = "col-4 col-md-3">
+              <%= link_to category_path(category) do %>
+                <%= image_tag category.icon, height: "100px" %>
+                <br />
+                <h6><%= category.name %></h6>
+              <% end %>
+            </div>
+          <% end %>
+          <div class = "col-4 col-md-3">
+            <%= link_to products_path do %>
+              <%= image_tag "all_spirits.png", height: "100px" %>
+              <h6>All spirits</h6>
+            <% end %>
+          </div>
+        </div>
       </div>
-    <% end %>
-    <div class = "col-6 col-md-3">
-      <%= link_to products_path do %>
-        <%= image_tag "all_spirits.png", height: "100px" %>
-        All spirits
-      <% end %>
     </div>
   </div>
 </div>
 
 <!-- Recipes -->
-<div class = "recipes-background">
+<div class = "">
   <div class = "container py-3">
     <span class = "text-center">
       <h1>Latest recipes</h1>
     </span>
     <div class = "row">
-      <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+      <div class = "col-md-10 offset-md-1">
+        <div class = "row">
+          <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Products -->
-<div class = "products-background">
+<div class = "products-background background-grey">
   <div class = "container py-3">
     <span class = "text-center">
       <h1>Featured products</h1>
     </span>
     <div class = "row">
-      <%= render partial: "products/lister_item", collection: @featured_products, as: :product %>
+      <div class = "col-md-10 offset-md-1">
+        <div class = "row">
+          <%= render partial: "products/lister_item", collection: @featured_products, as: :product %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

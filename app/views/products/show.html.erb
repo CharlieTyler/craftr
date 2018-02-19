@@ -1,147 +1,129 @@
 <div class = "container-fluid">
   <div class = "row">
-    <div class = "col-md-6">
-
-      <!-- Product images carousel -->
-      <div id="productImageCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <% @product.product_images.each_with_index do |photo, n| %>
-            <li data-target='#productImageCarousel' data-slide-to="#{n}" class="#{'active' if n == 0}"></li>
-          <% end %>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-          <% if @product.product_images.present? %>
-            <div class="item active">
-              <%= image_tag @product.product_images.first.photo, class: "d-block img-fluid product_image_large" %>
-            </div>
-            <% @product.product_images.drop(1).each do |product_image| %>
-               <div class="item">
-                 <%= image_tag product_image.photo, class: "d-block img-fluid product_image_large" %>
-               </div>
+    <div class = "col-md-10 offset-md-1">
+      <div class = "row">
+        <div class = "col-md-7">
+          <div class = "owl-carousel product-image-carousel h-100">
+            <% @product.product_images.each do |image| %>
+              <%= image_tag image.photo, class: "d-block img-fluid product-image-large" %>
             <% end %>
-          <% else %>
-            <div class="item active">
-              <%= image_tag "booze_placeholder.jpg", class: "image-fluid d-block mx-auto" %>product_image_large" %>
+          </div>
+        </div>
+
+        <!-- Product descriptions -->
+        <div class = "col-md-5 pt-3">
+          <h1><%= @product.name %></h1>
+          <h6>by <%= link_to @product.distillery.name, distillery_path(@product.distillery) %></h6>
+
+          <h6 class = "my-3 text-muted"><%= "#{@product.alcohol_percentage}%"%></h6>
+          <h6 class = "my-4"><%= @product.average_review %></h6>
+          <h3>We think</h3>
+          <blockquote class="blockquote">
+            <p class="mb-0"><%= @product.description_short %></p>
+          </blockquote>
+          <h3><%= "£#{@product.price}" %></h3>
+          <div class = "row my-4">
+            <div class="col-2">
+              <input type = "number" name = "quantity" min = "1" max = "5" value = "1">
             </div>
-          <% end %>
+            <div class = "col-10 btn btn-primary">Add to basket</div>
+          </div>
         </div>
-        <a class="carousel-control-prev" href="#productImagesCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#productImagesCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Product descriptions -->
-    <div class = "col-md-6 pt-3">
-      <h1 class = "display-4"><%= @product.name %></h1>
-      <h6>by <%= link_to @product.distillery.name, distillery_path(@product.distillery) %></h6>
-
-      <h6 class = "my-3 text-muted"><%= "#{@product.alcohol_percentage}%"%></h6>
-      <h6 class = "my-4"><%= @product.average_review %></h6>
-      <h3>We think</h3>
-      <blockquote class="blockquote">
-        <p class="mb-0"><%= @product.description_short %></p>
-      </blockquote>
-      <h3><%= "£#{@product.price}" %></h3>
-      <div class = "row my-4">
-        <div class="col-2">
-          <input type = "number" name = "quantity" min = "1" max = "5" value = "1">
-        </div>
-        <div class = "col-10 btn btn-primary">Add to basket</div>
       </div>
     </div>
   </div>
+</div>
+<div class = "row">
+  <div class = "col-12">
+    <hr class = "booyah-line">
+  </div>
+</div>
 
+<div class = "background-grey">
+  <div class = "container">
 
   <!-- Mid product nav -->
-  <div class = "row">
-    <ul class="nav nav-pills nav-fill col-12">
-      <li class="nav-item mid-nav">
-        <a class="nav-link no-click" href="#distillery">The distillery</a>
-      </li>
-      <li class="nav-item mid-nav">
-        <a class="nav-link no-click" href="#details">Product details</a>
-      </li>
-      <li class="nav-item mid-nav">
-        <a class="nav-link no-click" href="#recipes">Recipes</a>
-      </li>
-      <li class="nav-item mid-nav">
-        <a class="nav-link no-click" href="#reviews">Reviews</a>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Distillery -->
-  <div class = "row" id = "distillery">
-    <div class = "col-10 offset-1 col-md-6 my-5 background-blue">
-      <h1 class = "text-white"><%= @distillery.name %></h1>
-      <p class = "text-white"><%= @distillery.description_short %></p>
+    <div class = "row pt-2">
+      <ul class="nav nav-pills nav-fill col-12">
+        <li class="nav-item mid-nav">
+          <a class="nav-link no-click" href="#details"><h6>Product details</h6></a>
+        </li>
+        <li class="nav-item mid-nav">
+          <a class="nav-link no-click" href="#distillery"><h6>The distillery</h6></a>
+        </li>
+        <li class="nav-item mid-nav">
+          <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
+        </li>
+        <li class="nav-item mid-nav">
+          <a class="nav-link no-click" href="#reviews"><h6>Reviews</h6></a>
+        </li>
+      </ul>
     </div>
-  </div>
-
-  <!-- Product details -->
-  <div class = "row" id = "details">
-    <div class = "col-md-6">
-      <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
-    </div>
-    <div class = "col-md-6">
-      <p class = "px-md-5 py-md-5"><%= @product.description_first %></p>
-    </div>
-    <div class = "col-md-6">
-      <p class = "px-md-5 py-md-5"><%= @product.description_second %></p>
-    </div>
-    <div class = "col-md-6">
-      <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
-    </div>
-  </div>
-
-  <!-- Recipes -->
-  <div class = "row" id = "recipes">
-    <div class = "col-12">
-      <h1>Recipes</h1>
-      <div class = "row">
-        <% if @product.category.recipes.length > 0 %>
-          <%= render partial: "recipes/lister_recipe", collection: @product.recipes, as: :recipe %>
-          <%= render partial: "recipes/lister_recipe", collection: @product.category.recipes, as: :recipe %>
-        <% else %>
-          <p>No recipes for this product or category</p>
-        <% end %>
-  </div>
-
-  <!-- Reviews -->
-  <div class = "row" id = "reviews">
-    <div class = "col-12">
-      <h1>Reviews</h1>
-      <div class = "row">
-        <%= render partial: "review", collection: @product.reviews %>
+    <div class = "row">
+      <div class = "col-md-6 offset-md-3">
+        <hr class = "booyah-line">
       </div>
-      <div class = "clear"></div>
-      <h1>Add a review</h1>
-      <% if user_signed_in? %>
-        <%= simple_form_for @review, url: product_reviews_path(@product) do |f| %>
-          <%= f.input :rating, collection: 1..5 %>
-          <%= f.input :message %>
-          <%= f.submit "Submit", class: "btn btn-primary" %>
-        <% end %>
-      <% else %>
-        <p>Please login or sign up to add a review</p>
-      <% end %>
     </div>
-  </div>
 
+    <!-- Product details -->
+    <div class = "row" id = "details">
+      <div class = "col-md-6">
+        <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
+      </div>
+      <div class = "col-md-6">
+        <p class = "px-md-5 py-md-5"><%= @product.description_first %></p>
+      </div>
+      <div class = "col-md-6">
+        <p class = "px-md-5 py-md-5"><%= @product.description_second %></p>
+      </div>
+      <div class = "col-md-6">
+        <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
+      </div>
+    </div>
 
+    <!-- Distillery -->
+    <div class = "row" id = "distillery">
+      <%= render partial: "distilleries/distillery_slider", locals: {distillery: @product.distillery} %>
+    </div>
 
+    <!-- Recipes -->
+    <div class = "row" id = "recipes">
+      <div class = "col-12">
+        <h1>Recipes</h1>
+        <div class = "row">
+          <% if @product.category.recipes.length > 0 %>
+            <%= render partial: "recipes/lister_recipe", collection: @product.recipes, as: :recipe %>
+            <%= render partial: "recipes/lister_recipe", collection: @product.category.recipes, as: :recipe %>
+          <% else %>
+            <p>No recipes for this product or category</p>
+          <% end %>
+    </div>
 
+    <!-- Reviews -->
+    <div class = "row" id = "reviews">
+      <div class = "col-12">
+        <h1>Reviews</h1>
+        <div class = "row">
+          <%= render partial: "review", collection: @product.reviews %>
+        </div>
+        <div class = "clear"></div>
+        <h1>Add a review</h1>
+        <% if user_signed_in? %>
+          <%= simple_form_for @review, url: product_reviews_path(@product) do |f| %>
+            <%= f.input :rating, collection: 1..5 %>
+            <%= f.input :message %>
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+          <% end %>
+        <% else %>
+          <p>Please login or sign up to add a review</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
+// Scrolling to appropriate area on page
 // Select all links with hashes
 $('a[href*="#"]')
   // Remove links that don't actually link to anything
@@ -178,4 +160,20 @@ $('a[href*="#"]')
       }
     }
   });
+</script>
+<script>
+  $('.owl-carousel.product-image-carousel').owlCarousel({
+    loop:true,
+    responsiveClass:true,
+    responsive:{
+      0:{
+          items:1,
+          nav:true
+      },
+      600:{
+          items:1,
+          nav:true
+      },
+    }
+  })
 </script>

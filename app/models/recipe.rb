@@ -37,7 +37,6 @@ class Recipe < ApplicationRecord
     tags array
   end
 
-  def primary_ingredient
-    ingredients.where.not(category_id: '').first  
-  end
+  #https://stackoverflow.com/questions/2611338/using-ruby-to-find-similar-recipes-based-on-ingredients-they-contain
+  
 end

@@ -1,14 +1,16 @@
 <div class = "container-fluid">
   <div class = "row">
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-      <%= simple_form_for @category, url: admin_category_path do |f| %>
+      <%= simple_form_for @distillery, url: admin_distillery_path(@distillery) do |f| %>
         <%= f.input :name %>
-        <%= f.input :icon %>
+        <%= f.input :location %>
         <%= f.input :banner_image %>
-        <%= f.input :featured %>
+        <%= f.input :description_short %>
+        <%= f.input :description_first %>
+        <%= f.input :description_second %>
         <br />
         <%= f.submit "Update", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
-</div>
+</div> 

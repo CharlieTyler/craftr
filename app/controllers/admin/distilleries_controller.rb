@@ -13,11 +13,17 @@ class Admin::DistilleriesController < ApplicationController
   end
 
   def edit
-
+    @distillery = Distillery.find(params[:id])
   end
 
   def update
-
+    @distillery = Distillery.find(params[:id])
+    @distillery.update_attributes(distillery_params)
+    if @distillery.valid?
+      redirect_to distillery_path(@distillery)
+    else
+      return render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -27,6 +33,11 @@ class Admin::DistilleriesController < ApplicationController
   private
 
   def distillery_params
-    params.require(:distillery).permit(:name, :location, :description_short, :description_first, :description_second)
+    params.require(:distillery).permit(:name, 
+                                       :location, 
+                                       :description_short, 
+                                       :description_first, 
+                                       :description_second,
+                                       :banner_image)
   end
 end

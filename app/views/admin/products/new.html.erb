@@ -11,12 +11,58 @@
         <%= f.input :description_first %>
         <%= f.input :description_second %>
         <%= f.input :alcohol_percentage %>
-        <%= f.simple_fields_for :product_images do |p| %>
-          <%= p.input :photo %>
-        <% end %>
+        <div class = "all_image_fields">
+          <%= f.simple_fields_for :product_images do |i| %>
+            <div class = "row image_field">
+              <div class = "col-12">
+                <%= i.input :photo %>
+              </div>
+              <hr />
+            </div>
+          <% end %>
+        </div>
+        <p><a href="#" class="add_image_field">+ add another</a></p>
         <br />
         <%= f.submit "Create", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  $(function() {
+    //Ingredients nested attributes
+    var imageIndex = $('.image_field').length - 1;
+
+    $(".add_image_field").click(function(evt) {
+      evt.preventDefault();
+      imageIndex++;
+
+      // clone the labels and select fields
+      var newFields = $('.image_field').first().clone().appendTo( ".all_image_fields" );
+      // change the select field names and ids
+      newFields.find("select").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, imageIndex);
+        newName = $(this).attr("name").replace(/0/g, imageIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
+      //Add a remove button for all apart from the first recipe_ingredient
+      newFields.find("hr").before('<div class = "btn btn-danger col-6 offset-3 remove-field">Remove</div>');
+      $('.remove-field').click(removeImageFields);
+
+      // change the label fors
+      newFields.find("label").each(function(index) {
+        newFor = $(this).attr("for").replace(/0/g, imageIndex);
+        $(this).attr("for", newFor);
+      });
+    });
+
+    function removeImageFields(evt) {
+      evt.preventDefault();
+      $(this).parent('div').remove();
+      imageIndex--;
+    }
+  });
+</script>

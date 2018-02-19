@@ -52,21 +52,21 @@
     <% if controller_name == "static_pages" %>
       <div class = "container-fluid">
         <div class = "row background-charcoal">
-          <div class = "owl-carousel">
+          <div class = "owl-carousel top-nav-carousel">
             <div class = "text-center">
-              <p class = "text-white my-1">Straight from the distillery</p>
+              <p class = "text-white my-1"><i class="fas fa-glass-martini"></i> &nbsp The finest craft spirits</p>
             </div>
             <div class = "text-center">
-              <p class = "text-white my-1">Always potato</p>
+              <p class = "text-white my-1"><i class="fas fa-exchange-alt"></i> &nbsp Straight from the distillery</p>
             </div>
             <div class = "text-center">
-              <p class = "text-white my-1">Never anything else</p>
+              <p class = "text-white my-1"><i class="fas fa-truck"></i> &nbsp £2 delivery</p>
             </div>
           </div>
         </div>
       </div>
     <% end %>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-toggleable-md navbar-light background-white nav-shadow">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -108,13 +108,10 @@
             <li class="nav-item">
               <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
             </li>
-                    <% end %>
-                  </ul>
-                </ul>
-            </div>
-        </nav>
-
-
+          <% end %>
+        </ul>
+      </div>
+    </nav>
     <% if notice.present? %>
       <p class="alert alert-info"><%= notice %></p>
     <% end %>
@@ -128,7 +125,7 @@
 <script>
 $(function() {
   $('.carousel').carousel();
-  $('.owl-carousel').owlCarousel({
+  $('.owl-carousel.top-nav-carousel').owlCarousel({
     loop:true,
     responsiveClass:true,
     responsive:{
@@ -142,5 +139,13 @@ $(function() {
       },
     }
   })
+
+  //Dropdowns for navbar
+  $('body').on('mouseenter mouseleave','.dropdown',function(e){
+    var _d=$(e.target).closest('.dropdown');_d.addClass('show');
+    setTimeout(function(){
+      _d[_d.is(':hover')?'addClass':'removeClass']('show');
+    },300);
+  });
 });
 </script>

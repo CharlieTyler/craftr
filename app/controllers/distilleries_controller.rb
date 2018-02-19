@@ -4,6 +4,6 @@ class DistilleriesController < ApplicationController
   end
 
   def show
-
+    @distillery = Distillery.find(params[:id])
   end
 end

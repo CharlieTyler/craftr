@@ -1,12 +1,19 @@
 <div class = "col-6 col-md-3">
   <%= link_to product_path(product) do %>
     <div class = "booyah-box">
-      <div class = "background-grey mt-3">
-        <% if product.product_images.present? %>
-          <%= image_tag product.product_images.first.photo, class: "image-fluid d-block mx-auto", height: "200" %>
-        <% else %>
-          <%= image_tag "booze_placeholder.jpg", class: "image-fluid d-block mx-auto", height: "200" %>
-        <% end %>
+      <div class = "background-grey">
+        <div class = "my-1 mx-1">
+          <% if product.product_images.present? %>
+            <%= image_tag product.product_images.first.photo, class: "image-fluid d-block mx-auto", height: "200" %>
+          <% else %>
+            <%= image_tag "booze_placeholder.jpg", class: "image-fluid d-block mx-auto", height: "200" %>
+          <% end %>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-12">
+          <hr class = "booyah-line">
+        </div>
       </div>
       <div class = "product-text nice-padding">
         <h4><%= product.name %></h4>

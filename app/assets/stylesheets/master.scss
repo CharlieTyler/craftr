@@ -28,6 +28,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* background colours */
 
+.background-white {
+  background-color: white;
+}
+
 .background-blue {
   background-color: $blue;
 }
@@ -64,20 +68,42 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
 }
 
-.booyah-box {
-  background: #fff;
-  border: 0px solid #ccc;
-  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
-  padding: none;
+.nav-shadow {
+  box-shadow: 0 1px 1px rgba(0,0,0,.2)
 }
 
-.nice-padding {
-  padding: 10px 5px 5px 10px;
+.category-background {
+  min-height: 400px;
+}
+
+.booyah-box {
+  background: #fff;
+  border: 0.5px solid #e4e4e4;
+  padding: none;
 }
 
 .booyah-box:hover {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.booyah-line {
+  color: #e4e4e4;
+  margin: 0px;
+  padding: 0px;
+}
+
+.product-image-large {
+  max-height: 600px;
+  max-width: 100%;
+}
+
+.nice-padding {
+  padding: 5px 5px 5px 5px;
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
 }
 
 .recipe-lister-image {

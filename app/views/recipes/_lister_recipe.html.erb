@@ -1,4 +1,4 @@
-<div class = "col-md-6 col-lg-4">
+<div class = "col-6 col-lg-4 py-1">
   <%= link_to recipe_path(recipe) do%>
     <div class = "booyah-box">
       <div class = "row">
@@ -8,10 +8,15 @@
       </div>
       <div class = "row">
         <div class = "col-12">
+          <hr class = "booyah-line">
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-12">
           <div class = "nice-padding">
             <h2><%= recipe.name %></h2>
             <p><%= recipe.description[0..100] %></p>
-            <p><%= recipe.ingredient_list %></p>
+            <p class = "text-muted"><em><%= recipe.ingredient_list %></em></p>
             <div class = "btn btn-primary col-12 btn-slide">See more</div>
           </div>
         </div>
