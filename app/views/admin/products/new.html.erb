@@ -41,9 +41,9 @@
       // clone the labels and select fields
       var newFields = $('.image_field').first().clone().appendTo( ".all_image_fields" );
       // change the select field names and ids
-      newFields.find("select").each(function(index) {
-        newId   = $(this).attr("id").replace(/0/g, imageIndex);
-        newName = $(this).attr("name").replace(/0/g, imageIndex);
+      newFields.find("input").each(function(index) {
+        var newId   = $(this).attr("id").replace(/0/g, imageIndex);
+        var newName = $(this).attr("name").replace(/0/g, imageIndex);
         $(this).attr("id", newId);
         $(this).attr("name", newName);
       });

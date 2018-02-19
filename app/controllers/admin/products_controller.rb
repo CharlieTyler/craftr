@@ -39,6 +39,6 @@ class Admin::ProductsController < ApplicationController
                                     :alcohol_percentage,
                                     :distillery_id,
                                     :category_id, 
-                                    product_images_attributes: [:id, :photo])
+                                    product_images_attributes: [:id, :product_id, :photo])
   end
 end
