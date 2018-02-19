@@ -16,7 +16,9 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
-
+    @product = Product.find(params[:id])
+    @distilleries = Distillery.all
+    @categories = Category.all
   end
 
   def update

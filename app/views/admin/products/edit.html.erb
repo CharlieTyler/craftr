@@ -1,7 +1,7 @@
 <div class = "container-fluid">
   <div class = "row">
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-      <%= simple_form_for @product, url: admin_products_path do |f| %>
+      <%= simple_form_for @product, url: admin_product_path(@product) do |f| %>
         <%= f.input :name %>
         <%= f.input :SKU %>
         <%= f.input :distillery_id, collection: @distilleries %>
@@ -23,7 +23,7 @@
         </div>
         <p><a href="#" class="add_image_field">+ add another</a></p>
         <br />
-        <%= f.submit "Create", class: "btn btn-primary" %>
+        <%= f.submit "Update", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>

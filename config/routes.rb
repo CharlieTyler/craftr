@@ -23,5 +23,6 @@ Rails.application.routes.draw do
     resources :products, only: [:new, :create, :edit, :update, :destroy]
     resources :distilleries, only: [:new, :create, :edit, :update, :destroy]
     resources :categories, only: [:new, :create, :edit, :update, :destroy]
+    get "/dashboard", :controller => "static_pages", :action => "dashboard"
   end
 end

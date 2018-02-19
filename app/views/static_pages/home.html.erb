@@ -73,5 +73,20 @@
   </div>
 </div>
 
-
-
+<!-- Recently viewed -->
+<% if user_signed_in? && current_user.recently_viewed_products.present? %>
+  <div class = "products-background background-grey">
+    <div class = "container py-3">
+      <span class = "text-center">
+        <h1>Recently viewed</h1>
+      </span>
+      <div class = "row">
+        <div class = "col-md-10 offset-md-1">
+          <div class = "row">
+            <%= render partial: "products/lister_item", collection: current_user.recently_viewed_products, as: :product %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
