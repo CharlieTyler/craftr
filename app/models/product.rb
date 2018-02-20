@@ -6,6 +6,10 @@ class Product < ApplicationRecord
   has_many :recipe_products
   has_many :recipes, through: :recipe_products
 
+  #articles
+  has_many :article_products
+  has_many :articles, through: :article_products
+
   accepts_nested_attributes_for :product_images
 
   validates :name, presence: true

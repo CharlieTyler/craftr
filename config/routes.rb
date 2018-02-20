@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :update, :destroy]
   end
   resources :distilleries, only: [:show, :index]
+  resources :articles, only: [:show, :index]
   resources :categories, only: [:show]
   resources :recipes do
     resources :favourite_recipes, only: [:create, :destroy]
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   # All routes to form part of admin portal
   namespace :admin do
     resources :products, only: [:new, :create, :edit, :update, :destroy]
+    resources :articles, only: [:new, :create, :edit, :update, :destroy]
     resources :distilleries, only: [:new, :create, :edit, :update, :destroy]
     resources :categories, only: [:new, :create, :edit, :update, :destroy]
     get "/dashboard", :controller => "static_pages", :action => "dashboard"

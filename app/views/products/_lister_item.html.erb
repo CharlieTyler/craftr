@@ -1,6 +1,6 @@
 <div class = "col-6 col-md-3">
   <%= link_to product_path(product) do %>
-    <div class = "booyah-box">
+    <div class = "booyah-box product-lister-box">
       <div class = "background-grey">
         <div class = "my-1 mx-1">
           <% if product.product_images.present? %>
@@ -19,6 +19,7 @@
         <h4><%= product.name %></h4>
         <p><em>"<%= product.description_short %>"</em></p>
         <p><%= product.average_review %></p>
+        <div class = "btn btn-primary col-12">See more</div>
       </div>
     </div>
   <% end %>

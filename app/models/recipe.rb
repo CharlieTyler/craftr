@@ -5,10 +5,15 @@ class Recipe < ApplicationRecord
   has_many :recipe_products
   has_many :products, through: :recipe_products
   accepts_nested_attributes_for :recipe_ingredients
-  accepts_nested_attributes_for :recipe_products
+  accepts_nested_attributes_for :recipe_products, reject_if: proc { |attributes| attributes['product_id'].blank? }
   has_many :user_favourite_recipes
   has_many :favourited_by, through: :user_favourite_recipes, source: :user
   has_many :recipe_comments
+
+  #articles
+  has_many :article_recipes
+  has_many :articles, through: :article_recipes
+
   mount_uploader :image, RecipeImageUploader
   mount_uploader :banner_image, RecipeBannerImageUploader
 
