@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220185057) do
+ActiveRecord::Schema.define(version: 20180221010828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(version: 20180220185057) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "banner_image"
+    t.string "image_first"
+    t.string "image_second"
+    t.string "image_third"
+    t.text "description_first"
+    t.text "description_second"
+    t.text "description_third"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -135,6 +142,8 @@ ActiveRecord::Schema.define(version: 20180220185057) do
     t.boolean "featured", default: false
     t.string "category"
     t.string "banner_image"
+    t.text "blurb"
+    t.text "variants"
   end
 
   create_table "reviews", force: :cascade do |t|

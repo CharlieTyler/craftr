@@ -13,4 +13,15 @@ class Article < ApplicationRecord
   has_many :distilleries, through: :article_distilleries
   has_many :products, through: :article_products
   has_many :recipes, through: :article_recipes
+
+  mount_uploader :banner_image, DistilleryBannerImageUploader
+  mount_uploader :image_first, ArticleImageUploader
+  mount_uploader :image_second, ArticleImageUploader
+  mount_uploader :image_third, ArticleImageUploader
+
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :banner_image, presence: true
+  validates :description_first, presence: true
+  validates :image_first, presence: true
 end

@@ -5,6 +5,7 @@
           <%= f.input :name %>
           <%= f.input :category %>
           <%= f.input :description %>
+          <%= f.input :blurb %>
           <%= f.input :image %>
           <%= f.input :banner_image %>
           <div class = "all_ingredient_fields">
@@ -33,6 +34,7 @@
             <% end %>
           </div>
           <p><a href="#" class="add_product_field">+ add another</a></p>
+          <%= f.input :variants, input_html: { class: 'quill_container' } %>
           <%= f.submit "Create recipe", class: "btn btn-primary" %>
         <% end %>
       </div>

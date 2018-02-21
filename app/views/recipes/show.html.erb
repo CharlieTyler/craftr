@@ -16,6 +16,13 @@
         </div>
       </div>
     </div>
+    <% if @recipe.blurb.present? %>
+      <div class = "row">
+        <div class = "col-md-8 offset-md-2">
+          <%= simple_format(@recipe.blurb, class: 'method-text') %>
+        </div>
+      </div>
+    <% end %>
     <div class = "row py-3">
       <div class = "col-md-4 offset-md-2">
         <div class = "booyah-box my-1 nice-padding h-100">
@@ -35,11 +42,22 @@
       </div>
       <div class = "col-auto"></div>
     </div>
+    <% if @recipe.variants.present? %>
+      <div class = "row py-2">
+        <div class = "col-md-8 offset-md-2">
+          <div class = "booyah-box my-1 nice-padding">
+            <%= simple_format(@recipe.variants, class: 'method-text') %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+
   </div>
 </div>
 <div class = "container">
   <h1>Recommended products</h1>
-  <div class = "row py-2"> 
+  <div class = "row py-2">
     <%= render partial: 'products/lister_item', collection: @recipe.products, as: :product %>
   </div>
 </div>

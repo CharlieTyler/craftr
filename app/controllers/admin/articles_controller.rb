@@ -41,6 +41,13 @@ class Admin::ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title,
                                     :description,
+                                    :banner_image,
+                                    :image_first,
+                                    :image_second,
+                                    :image_third,
+                                    :description_first,
+                                    :description_second,
+                                    :description_third,
                                     article_categories_attributes: [:id, :category_id, :article_id],
                                     article_distilleries_attributes: [:id, :distillery_id, :article_id],
                                     article_products_attributes: [:id, :product_id, :article_id],

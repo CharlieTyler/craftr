@@ -4,7 +4,13 @@
       <%= simple_form_for @article, url: admin_articles_path do |f| %>
         <%= f.input :title %>
         <%= f.input :description %>
-
+        <%= f.input :banner_image %>
+        <%= f.input :description_first, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_first %>
+        <%= f.input :description_second, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_second %>
+        <%= f.input :description_third, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_third %>
         <h1>Joins</h1>
         <div class = "all_category_fields">
           <%= f.simple_fields_for :article_categories do |ac| %>
@@ -201,5 +207,15 @@
       $(this).parent('div').remove();
       recipeIndex--;
     }
+
+    var toolbarOptions = ['bold', 'italic', 'underline', 'strike'];
+
+    var quill = new Quill('#editor', {
+      modules: {
+        toolbar: toolbarOptions
+      }
+    });
   });
+
+  
 </script>
