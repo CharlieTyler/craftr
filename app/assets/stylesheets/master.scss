@@ -119,22 +119,6 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%;
 }
 
-.product-lister-box:hover .overlay {
-  height: 50%;
-}
-
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: $blue;
-  overflow: hidden;
-  height: 0;
-  opacity: 0.78;
-  transition: .5s ease;
-}
-
 .nice-padding {
   padding: 5px 5px 5px 5px;
 }
@@ -180,3 +164,8 @@ a, a:hover {
   box-shadow: inset 400px 0 0 0 #D80286;
 }
 */
+
+.article-text {
+  line-height: 32px;
+  font-size: 21px;
+}

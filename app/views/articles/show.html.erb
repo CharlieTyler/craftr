@@ -6,47 +6,51 @@
     </div>
   </div>
 </div>
-<div class = "background-grey">
+<div class = ""> <!-- For background colour -->
   <div class = "container">
     <div class = "row">
-      <div class = "col-md-10 offset-md-1">
+      <div class = "col-md-6 offset-md-3">
         <div class = "row">
-          <div class = "col-6">
+          <div class = "col-12">
             <p class = "article-text">
               <%= simple_format(@article.description_first) %>
             </p>
           </div>
-          <div class = "col-6">
+        </div>
+        <div class = "row">
+          <div class = "col-12">
             <%= image_tag @article.image_first, class: "d-block img-fluid" %>
           </div>
         </div>
         <div class = "row">
-          <% if @article.description_second.present? %>
-            <div class = "col-6">
+          <div class = "col-12">
+            <% if @article.description_second.present? %>
               <p class = "article-text">
                 <%= simple_format(@article.description_second) %>
               </p>
-            </div>
-          <% end %>
-          <% if @article.image_second.present? %>
-            <div class = "col-6">
-              <%= image_tag @article.image_second, class: "d-block img-fluid" %>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
         <div class = "row">
-          <% if @article.description_third.present? %>
-            <div class = "col-6">
+          <div class = "col-12">
+            <% if @article.image_second.present? %>
+              <%= image_tag @article.image_second, class: "d-block img-fluid" %>
+            <% end %>
+          </div>
+        </div>
+        <div class = "row">
+          <div class = "col-12">
+            <% if @article.description_third.present? %>
               <p class = "article-text">
                 <%= simple_format(@article.description_third) %>
               </p>
-            </div>
-          <% end %>
-          <% if @article.image_third.present? %>
-            <div class = "col-6">
+            <% end %>
+          </div>
+        <div class = "row">
+          <div class = "col-12">
+            <% if @article.image_third.present? %>
               <%= image_tag @article.image_third, class: "d-block img-fluid" %>
-            </div>
-          <% end %>
+            <% end %>
         </div>
       </div>
     </div>
