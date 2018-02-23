@@ -13,12 +13,14 @@ class User < ApplicationRecord
   has_many :user_product_views
   has_many :viewed_products, through: :user_product_views, source: :product
 
-  #actual recipes
-  has_many :recipes
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def is_author?
+    type == "Author"
+  end
 
   def favourited?(recipe)
     favourite_recipes.include? recipe

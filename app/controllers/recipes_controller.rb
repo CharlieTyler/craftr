@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_is_author, only: [:new, :create, :edit, :update, :destroy]
   def show
     @recipe = Recipe.find(params[:id])
     @comment = RecipeComment.new

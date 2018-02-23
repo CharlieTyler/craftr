@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  belongs_to :author
+
   has_many :article_categories
   has_many :article_distilleries
   has_many :article_products

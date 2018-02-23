@@ -1,4 +1,5 @@
 class Admin::ArticlesController < ApplicationController
+  before_action :authenticate_is_author, only: [:new, :create, :edit, :update, :destroy]
   def new
     @article = Article.new
 
@@ -51,7 +52,8 @@ class Admin::ArticlesController < ApplicationController
                                     article_categories_attributes: [:id, :category_id, :article_id],
                                     article_distilleries_attributes: [:id, :distillery_id, :article_id],
                                     article_products_attributes: [:id, :product_id, :article_id],
-                                    article_recipes_attributes: [:id, :recipe_id, :article_id]
+                                    article_recipes_attributes: [:id, :recipe_id, :article_id],
+                                    :author_id
                                     )
   end
 end
