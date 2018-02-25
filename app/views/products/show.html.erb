@@ -39,12 +39,10 @@
   </div>
 </div>
 
-<div class = "container-fluid background-grey">
-  <div class = "container">
-
-  <!-- Mid product nav -->
-    <div class = "row pt-2">
-      <ul class="nav nav-pills nav-fill col-12">
+<nav class = "secondary-nav" id = "secondary-nav">
+  <div class = "container-fluid background-grey">
+    <div class = "row background-grey">
+      <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
         <li class="nav-item mid-nav">
           <a class="nav-link no-click" href="#details"><h6>Product details</h6></a>
         </li>
@@ -60,64 +58,66 @@
       </ul>
     </div>
     <div class = "row">
-      <div class = "col-md-6 offset-md-3">
+      <div class = "col-12">
         <hr class = "booyah-line">
       </div>
     </div>
+  </div>
+</nav>
+<div class = "container">
 
-    <!-- Product details -->
-    <div class = "row" id = "details">
-      <div class = "col-md-6">
-        <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
-      </div>
-      <div class = "col-md-6">
-        <p class = "px-md-5 py-md-5"><%= @product.description_first %></p>
-      </div>
-      <div class = "col-md-6">
-        <p class = "px-md-5 py-md-5"><%= @product.description_second %></p>
-      </div>
-      <div class = "col-md-6">
-        <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
-      </div>
+  <!-- Product details -->
+  <div class = "row" id = "details">
+    <div class = "col-md-6">
+      <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
     </div>
-
-    <!-- Distillery -->
-    <div class = "row" id = "distillery">
-      <%= render partial: "distilleries/distillery_slider", locals: {distillery: @product.distillery} %>
+    <div class = "col-md-6">
+      <p class = "px-md-5 py-md-5"><%= @product.description_first %></p>
     </div>
-
-    <!-- Recipes -->
-    <div class = "row" id = "recipes">
-      <div class = "col-12">
-        <h1>Recipes</h1>
-        <div class = "row">
-          <% if @product.category.recipes.length > 0 %>
-            <%= render partial: "recipes/lister_recipe", collection: @product.recipes, as: :recipe %>
-            <%= render partial: "recipes/lister_recipe", collection: @product.category.recipes, as: :recipe %>
-          <% else %>
-            <p>No recipes for this product or category</p>
-          <% end %>
+    <div class = "col-md-6">
+      <p class = "px-md-5 py-md-5"><%= @product.description_second %></p>
     </div>
+    <div class = "col-md-6">
+      <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
+    </div>
+  </div>
 
-    <!-- Reviews -->
-    <div class = "row" id = "reviews">
-      <div class = "col-12">
-        <h1>Reviews</h1>
-        <div class = "row">
-          <%= render partial: "review", collection: @product.reviews %>
-        </div>
-        <div class = "clear"></div>
-        <h1>Add a review</h1>
-        <% if user_signed_in? %>
-          <%= simple_form_for @review, url: product_reviews_path(@product) do |f| %>
-            <%= f.input :rating, collection: 1..5 %>
-            <%= f.input :message %>
-            <%= f.submit "Submit", class: "btn btn-primary" %>
-          <% end %>
+  <!-- Distillery -->
+  <div class = "row" id = "distillery">
+    <%= render partial: "distilleries/distillery_slider", locals: {distillery: @product.distillery} %>
+  </div>
+
+  <!-- Recipes -->
+  <div class = "row" id = "recipes">
+    <div class = "col-12">
+      <h1>Recipes</h1>
+      <div class = "row">
+        <% if @product.category.recipes.length > 0 %>
+          <%= render partial: "recipes/lister_recipe", collection: @product.recipes, as: :recipe %>
+          <%= render partial: "recipes/lister_recipe", collection: @product.category.recipes, as: :recipe %>
         <% else %>
-          <p>Please login or sign up to add a review</p>
+          <p>No recipes for this product or category</p>
         <% end %>
+  </div>
+
+  <!-- Reviews -->
+  <div class = "row" id = "reviews">
+    <div class = "col-12">
+      <h1>Reviews</h1>
+      <div class = "row">
+        <%= render partial: "review", collection: @product.reviews %>
       </div>
+      <div class = "clear"></div>
+      <h1>Add a review</h1>
+      <% if user_signed_in? %>
+        <%= simple_form_for @review, url: product_reviews_path(@product) do |f| %>
+          <%= f.input :rating, collection: 1..5 %>
+          <%= f.input :message %>
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        <% end %>
+      <% else %>
+        <p>Please login or sign up to add a review</p>
+      <% end %>
     </div>
   </div>
 </div>
@@ -162,6 +162,7 @@ $('a[href*="#"]')
   });
 </script>
 <script>
+  //Owl carousel
   $('.owl-carousel.product-image-carousel').owlCarousel({
     loop:true,
     responsiveClass:true,
@@ -176,4 +177,32 @@ $('a[href*="#"]')
       },
     }
   })
+</script>
+
+<script>
+  //Sticky secondary nav
+  $(document).ready(function() {
+    // grab the initial top offset of the navigation 
+    var stickyNavTop = $('.secondary-nav').offset().top;
+      
+      // our function that decides weather the navigation bar should have "fixed" css position or not.
+      var stickyNav = function(){
+        var scrollTop = $(window).scrollTop(); // our current vertical position from the top
+             
+        // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+        // otherwise change it back to relative
+        if (scrollTop > stickyNavTop) { 
+            $('.secondary-nav').addClass('sticky');
+        } else {
+            $('.secondary-nav').removeClass('sticky'); 
+        }
+    };
+
+    stickyNav();
+    // and run it again every time you scroll
+    $(window).scroll(function() {
+      stickyNav();
+    });
+  });
+</script>
 </script>

@@ -35,9 +35,22 @@ class Admin::DistilleriesController < ApplicationController
   def distillery_params
     params.require(:distillery).permit(:name, 
                                        :location, 
-                                       :description_short, 
-                                       :description_first, 
-                                       :description_second,
-                                       :banner_image)
+                                       :sumamry_text, 
+                                       :people_text, 
+                                       :range_text,
+                                       :summary_image,
+                                       :people_image,
+                                       :range_image,
+                                       :blurb_1,
+                                       :blurb_2,
+                                       :blurb_3,
+                                       :image_1,
+                                       :image_2,
+                                       :image_3,
+                                       :website,
+                                       :facebook,
+                                       :longitude,
+                                       :latitude
+                                       )
   end
 end

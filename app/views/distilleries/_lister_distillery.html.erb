@@ -1,0 +1,22 @@
+<div class = "col-6 col-md-4">
+  <%= link_to distillery_path(distillery) do%>
+    <div class = "booyah-box px-1 py-1">
+      <div class = "row">
+        <div class = "col-12">
+          <%= image_tag distillery.summary_image, class: "d-block img-fluid" %>
+        </div>
+      </div>
+      <div class = "row py-1">
+        <div class = "col-12">
+          <hr class = "booyah-line">
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-12">
+          <h3><%= distillery.name %></h3>
+          <p class = "article-text"><%= distillery.summary_text %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

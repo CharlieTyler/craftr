@@ -5,6 +5,7 @@
         <%= f.input :title %>
         <%= f.input :description %>
         <%= f.input :banner_image %>
+        <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
         <%= f.input :description_first, input_html: { class: 'quill_container' } %>
         <%= f.input :image_first %>
         <%= f.input :description_second, input_html: { class: 'quill_container' } %>

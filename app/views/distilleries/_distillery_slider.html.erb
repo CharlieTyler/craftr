@@ -1,12 +1,42 @@
-<div class="row py-5" style="background:transparent url('<%= distillery.banner_image.url %>') no-repeat center center /cover">
-  <div class = "col-12 px-0">
-    <div class = "background-translucent-black py-3 px-2 mt-5">
-      <h1 class = "text-white"><%= distillery.name %></h1>
+<div class = "owl-carousel distillery-carousel">
+  <div class = "row distillery-carousel-image" style="background:transparent url('<%= distillery.summary_image.url %>') no-repeat center center /cover">
+    <div class = "col-md-6 offset-md-3">
+      <div class = "background-translucent-black mt-5 py-2 px-2 text-center">
+        <h3 class = "text-white">The distillery</h3>
+        <p class = "text-white"><%= distillery.summary_text %></p>
+      </div>
     </div>
-    <div class = "row">
-      <div class = "col-8 col-md-6 background-translucent-black py-3 px-2 my-5">
-        <p class = "text-white"><%= distillery.description_first %></p>
+  </div>
+  <div class = "row distillery-carousel-image" style="background:transparent url('<%= distillery.people_image.url %>') no-repeat center center /cover">
+    <div class = "col-md-6 offset-md-3">
+      <div class = "background-translucent-black mt-5 py-2 px-2 text-center">
+        <h3 class = "text-white">The people</h3>
+        <p class = "text-white"><%= distillery.people_text %></p>
+      </div>
+    </div>
+  </div>
+  <div class = "row distillery-carousel-image" style="background:transparent url('<%= distillery.range_image.url %>') no-repeat center center /cover">
+    <div class = "col-md-6 offset-md-3">
+      <div class = "background-translucent-black mt-5 py-2 px-2 text-center">
+        <h3 class = "text-white">The products</h3>
+        <p class = "text-white"><%= distillery.range_text %></p>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+    //Owl carousel
+  $('.owl-carousel.distillery-carousel').owlCarousel({
+    loop:true,
+    responsiveClass:true,
+    responsive:{
+      0:{
+          items:1
+      },
+      600:{
+          items:1
+      },
+    }
+  })
+</script>

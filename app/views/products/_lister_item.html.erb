@@ -1,7 +1,7 @@
 <div class = "col-6 col-md-3">
   <%= link_to product_path(product) do %>
-    <div class = "booyah-box product-lister-box">
-      <div class = "background-grey">
+    <div class = "booyah-box product-lister-box py-1 px-1">
+      <div class = "">
         <div class = "my-1 mx-1">
           <% if product.product_images.present? %>
             <%= image_tag product.product_images.first.photo, class: "image-fluid d-block mx-auto", height: "200" %>
@@ -10,7 +10,7 @@
           <% end %>
         </div>
       </div>
-      <div class = "row">
+      <div class = "row py-1">
         <div class = "col-12">
           <hr class = "booyah-line">
         </div>

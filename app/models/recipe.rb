@@ -4,7 +4,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :recipe_products
   has_many :products, through: :recipe_products
-  accepts_nested_attributes_for :recipe_ingredients
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: proc { |attributes| attributes['ingredient_id'].blank? }
   accepts_nested_attributes_for :recipe_products, reject_if: proc { |attributes| attributes['product_id'].blank? }
   has_many :user_favourite_recipes
   has_many :favourited_by, through: :user_favourite_recipes, source: :user

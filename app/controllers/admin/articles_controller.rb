@@ -10,6 +10,7 @@ class Admin::ArticlesController < ApplicationController
     @article.article_recipes.build
     
     #options for joins
+    @authors = Author.all
     @categories = Category.all
     @distilleries = Distillery.all
     @products = Product.all
@@ -49,11 +50,11 @@ class Admin::ArticlesController < ApplicationController
                                     :description_first,
                                     :description_second,
                                     :description_third,
+                                    :author_id,
                                     article_categories_attributes: [:id, :category_id, :article_id],
                                     article_distilleries_attributes: [:id, :distillery_id, :article_id],
                                     article_products_attributes: [:id, :product_id, :article_id],
-                                    article_recipes_attributes: [:id, :recipe_id, :article_id],
-                                    :author_id
+                                    article_recipes_attributes: [:id, :recipe_id, :article_id]
                                     )
   end
 end

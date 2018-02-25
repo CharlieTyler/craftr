@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_is_author
-    unless current_user.is_author?
+    unless user_signed_in? && current_user.is_author?
       render plain: 'Unauthorized', status: :unauthorized
     end
   end

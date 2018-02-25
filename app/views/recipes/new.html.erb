@@ -7,6 +7,7 @@
           <%= f.input :description %>
           <%= f.input :blurb %>
           <%= f.input :image %>
+          <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
           <%= f.input :banner_image %>
           <div class = "all_ingredient_fields">
             <%= f.simple_fields_for :recipe_ingredients do |i| %>

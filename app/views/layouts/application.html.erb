@@ -33,7 +33,9 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <%= link_to "Craftr", root_path, class: "navbar-brand" %>
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%= image_tag "CraftrLogoPNG.png", height: '35', class: "d-inline-block align-top", alt: "Craftr logo" %>
+        <% end %>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown has-mega-menu" style="position:static;">
@@ -52,11 +54,19 @@
                       </div>
                     <% end %>
                   </div>
+                  <div class = "row">
+                    <div class = "col-8 offset-2">
+                      <%= link_to "Browse by distillery", distilleries_path, class: "btn btn-primary col-12" %>
+                    </div>
+                  </div>
                 </div>
               </div>
             </li>
             <li class="nav-item">
               <%= link_to "Recipes", recipes_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Articles", articles_path, class: "nav-link" %>
             </li>
           </ul>
           <ul class="navbar-nav float-right">

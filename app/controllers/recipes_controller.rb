@@ -14,6 +14,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     @recipe.recipe_ingredients.build
     @recipe.recipe_products.build
+
+    @authors = Author.all
     @ingredients = Ingredient.all
     @products = Product.all
     @categories = Category.all
@@ -35,7 +37,7 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    unless @recipe.user == current_user
+    unless @recipe.author == current_user
       return render text: 'Not Allowed', status: :forbidden
     end
     @recipe.recipe_ingredients.build
@@ -74,7 +76,7 @@ class RecipesController < ApplicationController
                                    :banner_image,
                                    :description, 
                                    :method, 
-                                   :user_id, 
+                                   :author_id, 
                                    recipe_ingredients_attributes: [:id, :quantity, :ingredient_id, :recipe_id],
                                    recipe_products_attributes: [:id, :product_id, :recipe_id])
   end

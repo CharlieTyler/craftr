@@ -1,1 +1,23 @@
-index.html
+<div class = "articles-background">
+  <div class = "container">
+    <div class = "row pt-5">
+      <div class = "col-md-8 offset-md-2">
+        <div class = "background-translucent-black mt-5 py-2 px-2">
+          <h1 class = "text-white display-4">Craftr articles</h1>
+          <h3 class = "text-white">Thoughtful discussion on all things craft spirit</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "container-fluid">
+  <div class = "row background-grey">
+    <div class = "col-md-10 offset-md-1">
+      <h1 class = "display-4">Latest articles</h1>
+      <div class = "row">
+        <%= render partial: "articles/lister_article", collection: @articles, as: :article %>
+      </div>
+    </div>
+  </div>
+</div> 

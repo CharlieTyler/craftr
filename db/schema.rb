@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223210709) do
+ActiveRecord::Schema.define(version: 20180224132216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,12 +78,24 @@ ActiveRecord::Schema.define(version: 20180223210709) do
   create_table "distilleries", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.text "description_short"
-    t.text "description_first"
-    t.text "description_second"
+    t.text "summary_text"
+    t.text "people_text"
+    t.text "range_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "banner_image"
+    t.string "summary_image"
+    t.string "people_image"
+    t.string "range_image"
+    t.text "blurb_1"
+    t.string "image_1"
+    t.text "blurb_2"
+    t.string "image_2"
+    t.text "blurb_3"
+    t.string "image_3"
+    t.string "website"
+    t.string "facebook"
+    t.float "longitude"
+    t.float "latitude"
   end
 
   create_table "ingredients", force: :cascade do |t|

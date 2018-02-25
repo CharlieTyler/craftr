@@ -1,6 +1,6 @@
 class DistilleriesController < ApplicationController
   def index
-
+    @distilleries = Distillery.all
   end
 
   def show

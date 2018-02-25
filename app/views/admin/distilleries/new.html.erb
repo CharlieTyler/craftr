@@ -4,10 +4,22 @@
       <%= simple_form_for @distillery, url: admin_distilleries_path do |f| %>
         <%= f.input :name %>
         <%= f.input :location %>
-        <%= f.input :banner_image %>
-        <%= f.input :description_short %>
-        <%= f.input :description_first %>
-        <%= f.input :description_second %>
+        <%= f.input :summary_text %>
+        <%= f.input :summary_image %>
+        <%= f.input :people_text %>
+        <%= f.input :people_image %>
+        <%= f.input :range_text %>
+        <%= f.input :range_image %>
+        <%= f.input :blurb_1, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_1 %>
+        <%= f.input :blurb_2, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_2 %>
+        <%= f.input :blurb_3, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_3 %>
+        <%= f.input :website %>
+        <%= f.input :facebook %>
+        <%= f.input :longitude %>
+        <%= f.input :latitude %>
         <br />
         <%= f.submit "Create", class: "btn btn-primary" %>
       <% end %>

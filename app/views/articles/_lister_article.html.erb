@@ -1,1 +1,22 @@
-_lister_article.html.erb
+<div class = "col-6 col-md-4">
+  <%= link_to article_path(article) do%>
+    <div class = "booyah-box px-1 py-1">
+      <div class = "row">
+        <div class = "col-12">
+          <%= image_tag article.banner_image, class: "d-block img-fluid" %>
+        </div>
+      </div>
+      <div class = "row py-1">
+        <div class = "col-12">
+          <hr class = "booyah-line">
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-12">
+          <h3><%= article.title %></h3>
+          <p class = "article-text"><%= article.description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
