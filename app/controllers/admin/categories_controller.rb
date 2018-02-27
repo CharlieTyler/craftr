@@ -33,6 +33,9 @@ class Admin::CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :icon, :banner_image)
+    params.require(:category).permit(:name, 
+                                     :icon,
+                                     :banner_image,
+                                     :instagram_hashtag)
   end
 end

@@ -5,5 +5,6 @@ class DistilleriesController < ApplicationController
 
   def show
     @distillery = Distillery.find(params[:id])
+    # @instas     = InstagramApi.user(@distillery.instagram_username).recent_media
   end
 end

@@ -49,6 +49,7 @@ class Admin::DistilleriesController < ApplicationController
                                        :image_3,
                                        :website,
                                        :facebook,
+                                       :instagram_username,
                                        :longitude,
                                        :latitude
                                        )

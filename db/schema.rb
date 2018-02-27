@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224132216) do
+ActiveRecord::Schema.define(version: 20180227213602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20180224132216) do
 
   create_table "authors", force: :cascade do |t|
     t.string "website"
-    t.string "instagram"
+    t.string "instagram_username"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20180224132216) do
     t.datetime "updated_at", null: false
     t.boolean "featured", default: false
     t.string "banner_image"
+    t.string "instagram_hashtag"
   end
 
   create_table "distilleries", force: :cascade do |t|
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(version: 20180224132216) do
     t.string "facebook"
     t.float "longitude"
     t.float "latitude"
+    t.string "instagram_username"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -165,6 +167,7 @@ ActiveRecord::Schema.define(version: 20180224132216) do
     t.string "banner_image"
     t.text "blurb"
     t.text "variants"
+    t.string "instagram_hashtag"
   end
 
   create_table "reviews", force: :cascade do |t|

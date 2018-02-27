@@ -16,6 +16,12 @@
         </div>
       </div>
     </div>
+    <% if @instas.data.present? %>
+      <h3>Recent instagrams</h3>
+      <div class = "row">
+        <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
+      </div>
+    <% end %>
     <% if @recipe.blurb.present? %>
       <div class = "row mt-2">
         <div class = "col-md-8 offset-md-2">

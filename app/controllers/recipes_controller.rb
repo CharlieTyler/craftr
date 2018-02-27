@@ -1,9 +1,10 @@
 class RecipesController < ApplicationController
   before_action :authenticate_is_author, only: [:new, :create, :edit, :update, :destroy]
   def show
-    @recipe = Recipe.find(params[:id])
-    @comment = RecipeComment.new
+    @recipe   = Recipe.find(params[:id])
+    @comment  = RecipeComment.new
     @comments = @recipe.recipe_comments.all
+    @instas   = InstagramApi.tag(@recipe.instagram_hashtag).recent_media  
   end
 
   def index
@@ -77,6 +78,7 @@ class RecipesController < ApplicationController
                                    :description, 
                                    :method, 
                                    :author_id, 
+                                   :instagram_hashtag,
                                    recipe_ingredients_attributes: [:id, :quantity, :ingredient_id, :recipe_id],
                                    recipe_products_attributes: [:id, :product_id, :recipe_id])
   end
