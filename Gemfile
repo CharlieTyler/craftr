@@ -74,4 +74,6 @@ gem 'quilljs-rails'
 
 gem 'owlcarousel2'
 
-gem 'instagram'
+gem 'instagram_api_client'
+
+gem "figaro"

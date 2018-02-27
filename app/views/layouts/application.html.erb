@@ -10,7 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#secondary-nav">
     <div id="flex-content-container">
       <% if controller_name == "static_pages" %>
         <div class = "container-fluid">

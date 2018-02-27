@@ -55,6 +55,9 @@
         <li class="nav-item mid-nav">
           <a class="nav-link no-click" href="#reviews"><h6>Reviews</h6></a>
         </li>
+        <li class = "nav-item mid-nav">
+          <a class = "nav-link"><h6>Add to basket</h6></a>
+        </li>
       </ul>
     </div>
     <div class = "row">
@@ -64,21 +67,29 @@
     </div>
   </div>
 </nav>
-<div class = "container">
 
+<div class = "container">
   <!-- Product details -->
   <div class = "row" id = "details">
-    <div class = "col-md-6">
-      <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
-    </div>
-    <div class = "col-md-6">
-      <p class = "px-md-5 py-md-5"><%= @product.description_first %></p>
-    </div>
-    <div class = "col-md-6">
-      <p class = "px-md-5 py-md-5"><%= @product.description_second %></p>
-    </div>
-    <div class = "col-md-6">
-      <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
+    <div class = "col-md-8 offset-md-2">
+      <div class = "row">
+        <div class = "col-12">
+          <p class = "article-text">
+            <%= simple_format(@product.description_first) %>
+          </p>
+        </div>
+        <div class = "col-12 justify-content-center">
+          <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
+        </div>
+        <div class = "col-12">
+          <p class = "article-text">
+            <%= simple_format(@product.description_second) %>
+          </p>
+        </div>
+        <div class = "col-12">
+          <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -98,6 +109,8 @@
         <% else %>
           <p>No recipes for this product or category</p>
         <% end %>
+      </div>
+    </div>
   </div>
 
   <!-- Reviews -->
@@ -121,6 +134,7 @@
     </div>
   </div>
 </div>
+
 
 <script>
 // Scrolling to appropriate area on page

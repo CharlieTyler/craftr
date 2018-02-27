@@ -2,8 +2,8 @@
   <%= render partial: "distillery_slider", locals: {distillery: @distillery} %>
 </div>
 
-<!-- Secondary nav -->
-<div class = "secondary-nav">
+  <!-- Secondary nav -->
+<div class = "secondary-nav" id = "secondary-nav">
   <div class = "container-fluid background-grey">
     <div class = "row">
       <ul class="nav nav-pills nav-fill background-grey col-md-8 offset-md-2">
@@ -31,96 +31,98 @@
   </div>
 </div>
 
-<div class = ""> <!-- For background colour -->
-  <div class = "container" id = "blurb">
-    <div class = "row">
-      <div class = "col-md-6 offset-md-3">
-        <div class = "row">
-          <div class = "col-12">
-            <p class = "article-text">
-              <%= simple_format(@distillery.blurb_1) %>
-            </p>
-          </div>
-        </div>
-        <div class = "row">
-          <div class = "col-12">
-            <%= image_tag @distillery.image_1, class: "d-block img-fluid" %>
-          </div>
-        </div>
-        <div class = "row">
-          <div class = "col-12">
-            <% if @distillery.blurb_2.present? %>
+<div class = "secondary-nav-content">
+  <div class = ""> <!-- For background colour -->
+    <div class = "container" id = "blurb">
+      <div class = "row">
+        <div class = "col-md-6 offset-md-3">
+          <div class = "row">
+            <div class = "col-12">
               <p class = "article-text">
-                <%= simple_format(@distillery.blurb_2) %>
+                <%= simple_format(@distillery.blurb_1) %>
               </p>
-            <% end %>
-          </div>
-        </div>
-        <div class = "row">
-          <div class = "col-12">
-            <% if @distillery.image_2.present? %>
-              <%= image_tag @distillery.image_2, class: "d-block img-fluid" %>
-            <% end %>
-          </div>
-        </div>
-        <div class = "row">
-          <div class = "col-12">
-            <% if @distillery.blurb_3.present? %>
-              <p class = "article-text">
-                <%= simple_format(@distillery.blurb_3) %>
-              </p>
-            <% end %>
+            </div>
           </div>
           <div class = "row">
             <div class = "col-12">
-              <% if @distillery.image_3.present? %>
-                <%= image_tag @distillery.image_3, class: "d-block img-fluid" %>
+              <%= image_tag @distillery.image_1, class: "d-block img-fluid" %>
+            </div>
+          </div>
+          <div class = "row">
+            <div class = "col-12">
+              <% if @distillery.blurb_2.present? %>
+                <p class = "article-text">
+                  <%= simple_format(@distillery.blurb_2) %>
+                </p>
               <% end %>
+            </div>
+          </div>
+          <div class = "row">
+            <div class = "col-12">
+              <% if @distillery.image_2.present? %>
+                <%= image_tag @distillery.image_2, class: "d-block img-fluid" %>
+              <% end %>
+            </div>
+          </div>
+          <div class = "row">
+            <div class = "col-12">
+              <% if @distillery.blurb_3.present? %>
+                <p class = "article-text">
+                  <%= simple_format(@distillery.blurb_3) %>
+                </p>
+              <% end %>
+            </div>
+            <div class = "row">
+              <div class = "col-12">
+                <% if @distillery.image_3.present? %>
+                  <%= image_tag @distillery.image_3, class: "d-block img-fluid" %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class = "container mt-3" id = "products">
-  <h3><%= "#{@distillery.name}'s products" %></h3>
-  <div class = "row">
-    <%= render partial: 'products/lister_item', collection: @distillery.products, as: :product %>
+  <div class = "container mt-3" id = "products">
+    <h3><%= "#{@distillery.name}'s products" %></h3>
+    <div class = "row">
+      <%= render partial: 'products/lister_item', collection: @distillery.products, as: :product %>
+    </div>
   </div>
-</div>
 
-<div class = "container mt-3" id = "social">
-  <h3>Get social</h3>
-  <div class = "row">
-    <div class = "col-md-8 offset-md-2">
-      <div class = "row">
-        <div class = "col-6">
-          <%= link_to @distillery.website, :target => "_blank" do %>
-            <i class="fas fa-globe"></i>Visit the website
-          <% end %>
-        </div>
-        <% if @distillery.facebook.present? %>
+  <div class = "container mt-3" id = "social">
+    <h3>Get social</h3>
+    <div class = "row">
+      <div class = "col-md-8 offset-md-2">
+        <div class = "row">
           <div class = "col-6">
-            <%= link_to @distillery.facebook, :target => "_blank" do %>
-              <i class="fab fa-facebook-square"></i>Visit facebook
+            <%= link_to @distillery.website, :target => "_blank" do %>
+              <i class="fas fa-globe"></i>Visit the website
             <% end %>
           </div>
-        <% end %>
+          <% if @distillery.facebook.present? %>
+            <div class = "col-6">
+              <%= link_to @distillery.facebook, :target => "_blank" do %>
+                <i class="fab fa-facebook-square"></i>Visit facebook
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class = "container mt-3" id = "map">
-  <h3 class = "my-3">Map</h3>
-  <div class = "row">
-    <div class = "col-12">
-      <div id="distillery-map"></div>
+  <div class = "container mt-3" id = "map">
+    <h3 class = "my-3">Map</h3>
+    <div class = "row">
+      <div class = "col-12">
+        <div id="distillery-map"></div>
+      </div>
     </div>
   </div>
-</div>
+</div> <!-- End of secondary nav content -->
 
 
 <% if @distillery.latitude.present? && @distillery.longitude.present? %>
