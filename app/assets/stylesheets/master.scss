@@ -5,12 +5,18 @@
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black|Roboto');
 
 $blue:#1565c0;
-$grey:#fafafa;
 $charcoal: #2E2E2E;
+
+/* Colour scheme */
+$primary: #FF6860;
+$secondary: #1B9AAA;
+$black: #050505;
+$grey:#f5f1e3;
 
 /* Text formatting */
 html {
   font-size: 14px;
+  color: $black;
 }
 
 @include media-breakpoint-up(sm) {
@@ -51,6 +57,45 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   height: 100%;
 }
+
+
+/* Buttons */
+
+.btn {
+  border-radius: 5px;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus
+.btn-primary.active {
+    background-color: $primary !important;
+    border: 2px solid $primary !important;
+}
+
+.btn-primary:hover {
+  background-color: darken($primary, 5%) !important;
+  border-color: darken($primary, 5%) !important;
+}
+
+.btn-secondary,
+.btn-secondary:active,
+.btn-secondary:visited,
+.btn-secondary:focus
+.btn-secondary.active {
+    background-color: white !important;
+    border: 2px solid $primary !important;
+    color: $primary !important;
+}
+
+.btn-secondary:hover {
+  background-color: darken($primary, 5%) !important;
+  border-color: darken($primary, 5%) !important;
+  color: white !important;
+}
+
+
 
 /* background colours */
 
@@ -202,4 +247,25 @@ a, a:hover {
   top: 0;
   width: 100%;
   z-index: 1070;
+}
+
+.insta-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  overflow: hidden;
+}
+
+.insta-area:hover .insta-overlay {
+  opacity: 1;
+}
+
+.insta-area:hover .insta-image {
+  opacity: 0.5;
 }

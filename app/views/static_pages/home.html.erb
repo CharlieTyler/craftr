@@ -91,7 +91,28 @@
   </div>
 <% end %>
 
-<h1>Instagram Lookup</h1>
-<div class = "row">
-  <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
+<div class = "py-3">
+  <h1>Recent instagrams</h1>
+  <h6 class = "text-muted"><%= link_to "@craftrspirits", "http://instagram.com/craftrspirits" %></h6>
+  <div class = "row owl-carousel insta-carousel">
+    <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
+  </div>
 </div>
+
+<script>
+  //Owl carousel
+  $('.insta-carousel').owlCarousel({
+    loop:true,
+    responsiveClass:true,
+    responsive:{
+      0:{
+          items:3,
+          nav:true
+      },
+      900:{
+          items:7,
+          nav:true
+      },
+    }
+  })
+</script>

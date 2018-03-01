@@ -110,13 +110,14 @@
             </div>
           <% end %>
         </div>
-        <!-- Instagram -->
-        <!-- <div class = "row">
-          <div class = "col-12">
-            <%= link_to @distillery.instagram_username, "http://www.instagram.com/#{@distillery.instagram_username}" %>
+        <% if @instas.present? %>
+          <div class = "row">
+            <div class = "col-12">
+              <h3>Instagram</h3>
+            </div>
+            <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
           </div>
-          <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
-        </div> -->
+        <% end%>
       </div>
     </div>
   </div>

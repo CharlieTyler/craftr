@@ -1,5 +1,27 @@
-<div class="col-sm-12 col-md-4">
-  <div class="thumbnail">
-    <%= image_tag insta.images.low_resolution.url, class: "img-fluid my-2" %>
+<div class="col-12 pt-2">
+  <div class="thumbnail insta-area align-content-center">
+    <div class = "row">
+      <div class = "col-12">
+        <%= image_tag insta.images.low_resolution.url, class: "insta-image" %>
+      </div>
+    </div>
+    <div class = "insta-overlay pt-2">
+      <div class = "row">
+        <div class = "col-10 offset-1 text-center pt-2">
+          <h6><%= insta.user.full_name %></h6>
+          <p class = ""><%= insta.caption.text.first(100) %></p>
+        </div>
+        <div class = "col-8 offset-2">
+          <div class = "row">
+            <div class = "col-6 text-center">
+              <i class="far fa-heart"></i><%= insta.likes.first.second %>
+            </div>
+            <div class = "col-6 text-center">
+              <i class="far fa-comment"></i><%= insta.comments.first.second %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

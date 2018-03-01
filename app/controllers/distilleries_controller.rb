@@ -5,6 +5,8 @@ class DistilleriesController < ApplicationController
 
   def show
     @distillery = Distillery.find(params[:id])
-    # @instas     = InstagramApi.user(@distillery.instagram_username).recent_media
+    unless @distillery.instagram_user_id.blank?
+      @instas     = InstagramApi.user(@distillery.instagram_user_id).recent_media
+    end
   end
 end

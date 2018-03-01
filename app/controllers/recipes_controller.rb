@@ -4,7 +4,9 @@ class RecipesController < ApplicationController
     @recipe   = Recipe.find(params[:id])
     @comment  = RecipeComment.new
     @comments = @recipe.recipe_comments.all
-    @instas   = InstagramApi.tag(@recipe.instagram_hashtag).recent_media  
+    unless @recipe.instagram_hashtag.blank?
+      @instas   = InstagramApi.tag(@recipe.instagram_hashtag).recent_media
+    end
   end
 
   def index
@@ -15,6 +17,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     @recipe.recipe_ingredients.build
     @recipe.recipe_products.build
+    @recipe.recipe_categories.build
 
     @authors = Author.all
     @ingredients = Ingredient.all
@@ -43,6 +46,8 @@ class RecipesController < ApplicationController
     end
     @recipe.recipe_ingredients.build
     @recipe.recipe_products.build
+    @recipe.recipe_categories.build
+
     @ingredients = Ingredient.all
     @products = Product.all
     @categories = Category.all
@@ -70,7 +75,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, 
-                                   :category,
+                                   :tag,
                                    :blurb,
                                    :variants,
                                    :image, 
@@ -80,6 +85,7 @@ class RecipesController < ApplicationController
                                    :author_id, 
                                    :instagram_hashtag,
                                    recipe_ingredients_attributes: [:id, :quantity, :ingredient_id, :recipe_id],
+                                   recipe_categories_attributes: [:id, :category_id, :recipe_id],
                                    recipe_products_attributes: [:id, :product_id, :recipe_id])
   end
 end

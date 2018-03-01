@@ -3,7 +3,7 @@
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
         <%= simple_form_for @recipe do |f| %>
           <%= f.input :name %>
-          <%= f.input :category %>
+          <%= f.input :tag %>
           <%= f.input :description %>
           <%= f.input :instagram_hashtag %>
           <%= f.input :blurb %>
@@ -35,6 +35,17 @@
             <% end %>
           </div>
           <p><a href="#" class="add_product_field">+ add another</a></p>
+          <div class = "all_category_fields">
+            <%= f.simple_fields_for :recipe_categories do |rc| %>
+              <div class = "row category_field">
+                <div class = "col-6">
+                  <%= rc.input :category_id, collection: @categories, value_method: :id  %>
+                </div>
+                <hr />
+              </div>
+            <% end %>
+          </div>
+          <p><a href="#" class="add_category_field">+ add another</a></p>
           <%= f.input :variants, input_html: { class: 'quill_container' } %>
           <%= f.submit "Create recipe", class: "btn btn-primary" %>
         <% end %>
@@ -140,6 +151,40 @@
       evt.preventDefault();
       $(this).parent('div').remove();
       ingredientIndex--;
+    }
+
+    var categoryIndex = $('.category_field').length - 1;
+
+    $(".add_category_field").click(function(evt) {
+      evt.preventDefault();
+      categoryIndex++;
+
+      // clone the labels and select fields
+      var newFields = $('.category_field').first().clone().appendTo( ".all_category_fields" );
+      console.log(newFields);
+      // change the select field names and ids
+      newFields.find("select").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, categoryIndex);
+        newName = $(this).attr("name").replace(/0/g, categoryIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
+      //Add a remove button for all apart from the first recipe_category
+      newFields.find("hr").before('<div class = "btn btn-danger col-6 offset-3 remove-field">Remove</div>');
+      $('.remove-field').click(removeCategoryFields);
+
+      // change the label fors
+      newFields.find("label").each(function(index) {
+        newFor = $(this).attr("for").replace(/0/g, categoryIndex);
+        $(this).attr("for", newFor);
+      });
+    });
+
+    function removeCategoryFields(evt) {
+      evt.preventDefault();
+      $(this).parent('div').remove();
+      categoryIndex--;
     }
   });
 

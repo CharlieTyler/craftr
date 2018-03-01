@@ -5,5 +5,11 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @products = @category.products
+    @recipes  = @category.recipes
+    @articles = @category.articles
+    unless @category.instagram_hashtag.blank?
+      @instas   = InstagramApi.tag(@category.instagram_hashtag).recent_media
+    end
   end
 end
