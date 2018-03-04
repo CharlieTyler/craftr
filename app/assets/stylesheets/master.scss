@@ -249,6 +249,15 @@ a, a:hover {
   z-index: 1070;
 }
 
+.insta-area {
+  height: 400px;
+}
+
+.insta-image {
+  width: auto;
+  height: 100%;
+}
+
 .insta-overlay {
   position: absolute;
   top: 0;
@@ -267,5 +276,5 @@ a, a:hover {
 }
 
 .insta-area:hover .insta-image {
-  opacity: 0.5;
+  opacity: 0.3;
 }

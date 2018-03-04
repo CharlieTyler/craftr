@@ -1,0 +1,15 @@
+<hr/>
+<h3>Products</h3>
+<div class = "row">
+  <%= render partial: 'products/lister_item', collection: @results[:products], as: :product %>
+</div>
+
+<h3>Recipes</h3>
+<div class = "row">
+  <%= render partial: 'recipes/lister_recipe', collection: @results[:recipes], as: :recipe %>
+</div>
+
+<h3>Articles</h3>
+<div class = "row">
+  <%= render partial: 'articles/lister_article', collection: @results[:articles], as: :article %>
+</div>

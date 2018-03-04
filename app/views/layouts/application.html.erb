@@ -29,6 +29,10 @@
           </div>
         </div>
       <% end %>
+      <%= form_tag search_path, method: :get do %>
+        <%= text_field_tag :keyword %>
+
+      <% end %>
       <nav class="navbar navbar-toggleable-md navbar-light background-white nav-shadow">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

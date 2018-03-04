@@ -1,5 +1,5 @@
-class Product < ApplicationRecord
-  belongs_to :distillery
+class Product < ApplicationRecord 
+  belongs_to :distillery, counter_cache: true
   belongs_to :category
   has_many :reviews
   has_many :product_images
@@ -22,6 +22,21 @@ class Product < ApplicationRecord
   validates :distillery, presence: true
   validates :category, presence: true
   validates :product_images, presence: true
+
+
+  def self.search(params)
+    search_scope = Product
+
+    if params[:keyword].present?
+      search_scope = search_scope.where("lower(CONCAT(name,' ', description_short)) LIKE lower(?)", "%#{params[:keyword]}%")
+    end
+
+    if params[:category_ids].present?
+      search_scope = search_scope.where(category_id: params[:category_ids])
+    end
+
+    search_scope
+  end
 
   def average_review
     if reviews.blank?

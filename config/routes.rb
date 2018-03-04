@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get "/about", :controller => "static_pages", :action => "about"
 
+
+  get "/search" => "search#search" 
+
   # Standard pages
   resources :products, only: [:show, :index] do
     resources :reviews, only: [:create, :update, :destroy]
@@ -13,7 +16,7 @@ Rails.application.routes.draw do
   resources :distilleries, only: [:show, :index]
   resources :articles, only: [:show, :index]
   resources :categories, only: [:show]
-  resources :recipes do
+  resources :recipes do 
     resources :favourite_recipes, only: [:create, :destroy]
     resources :recipe_comments, only: [:create, :destroy]
   end

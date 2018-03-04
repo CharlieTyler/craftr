@@ -31,6 +31,16 @@ class Recipe < ApplicationRecord
     'Other': 'Other'
   }
 
+  def self.search(params)
+    search_scope = Recipe.joins(:recipe_ingredients)
+
+    if params[:keyword].present?
+      search_scope = search_scope.where("lower(CONCAT(name,' ', method)) LIKE lower(?)", "%#{params[:keyword]}%")
+    end
+
+    search_scope
+  end
+
   def ingredient_list
     count      = ingredients.count
     name_array = []

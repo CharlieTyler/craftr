@@ -26,4 +26,14 @@ class Article < ApplicationRecord
   validates :banner_image, presence: true
   validates :description_first, presence: true
   validates :image_first, presence: true
+
+  def self.search(params)
+    search_scope = Article
+
+    if params[:keyword].present?
+      search_scope = search_scope.where("lower(CONCAT(title,' ', description)) LIKE lower(?)", "%#{params[:keyword]}%")
+    end
+
+    search_scope
+  end
 end
