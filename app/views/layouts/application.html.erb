@@ -29,10 +29,8 @@
           </div>
         </div>
       <% end %>
-      <%= form_tag search_path, method: :get do %>
-        <%= text_field_tag :keyword %>
 
-      <% end %>
+      
       <nav class="navbar navbar-toggleable-md navbar-light background-white nav-shadow">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -73,6 +71,10 @@
               <%= link_to "Articles", articles_path, class: "nav-link" %>
             </li>
           </ul>
+          <%= form_tag search_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+            <%= text_field_tag :keyword, nil, :placeholder => "Search for products, recipes and articles...", class: "form-control mr-sm-2", type: "search" %>
+            <%= submit_tag "Search", class: "btn btn-secondary my-2 my-sm-0" %>
+          <% end %>
           <ul class="navbar-nav float-right">
             <% if user_signed_in? %>
               <li class="nav-item">
@@ -87,6 +89,10 @@
               </li>
             <% end %>
           </ul>
+          <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form> -->
         </div>
       </nav>
       <% if notice.present? %>
@@ -132,4 +138,71 @@ $(function() {
     },300);
   });
 });
+</script>
+
+<script>
+// Scrolling to appropriate area on page
+// Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+</script>
+
+<script>
+  //Sticky secondary nav
+  $(document).ready(function() {
+    // grab the initial top offset of the navigation 
+    var stickyNavTop = $('.secondary-nav').offset().top;
+      
+      // our function that decides weather the navigation bar should have "fixed" css position or not.
+      var stickyNav = function(){
+        var scrollTop = $(window).scrollTop(); // our current vertical position from the top
+             
+        // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+        // otherwise change it back to relative
+        if (scrollTop > stickyNavTop) { 
+            $('.secondary-nav').addClass('sticky');
+        } else {
+            $('.secondary-nav').removeClass('sticky'); 
+        }
+    };
+
+    stickyNav();
+    // and run it again every time you scroll
+    $(window).scroll(function() {
+      stickyNav();
+    });
+  });
 </script>

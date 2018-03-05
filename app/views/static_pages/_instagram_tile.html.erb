@@ -1,8 +1,10 @@
-<div class="col-12 pt-2">
+<div class="col-6 col-md-4 col-lg-3 pt-2">
   <div class="thumbnail insta-area align-content-center">
     <div class = "row">
       <div class = "col-12">
-        <%= image_tag insta.images.low_resolution.url, class: "insta-image" %>
+        <div class = "insta-image-holder">
+          <%= image_tag insta.images.low_resolution.url, class: "insta-image" %>
+        </div>
       </div>
     </div>
     <div class = "insta-overlay pt-2">

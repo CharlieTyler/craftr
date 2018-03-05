@@ -13,6 +13,7 @@ class Search
       recipes: Recipe.search(@params).all,
       articles: Article.search(@params).all,
     }
+
   end
 
   # def results_combined

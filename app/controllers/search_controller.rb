@@ -2,6 +2,7 @@ class SearchController < ApplicationController
 
    def search
      @results = Search.new(params).results
+     @keyword = params[:keyword]
    # FOR PAGINATION
    # @results = {}
    # Search.new(params).results_combined.each do |result|

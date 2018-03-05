@@ -16,14 +16,6 @@
         </div>
       </div>
     </div>
-    <% if @instas.present? %>
-      <h3>Recent instagrams</h3>
-      <h6 class = "text-muted">#<%= @recipe.instagram_hashtag %></h6>
-      <div class = "clear"></div>
-      <div class = "row owl-carousel insta-carousel">
-        <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
-      </div>
-    <% end %>
     <% if @recipe.blurb.present? %>
       <div class = "row mt-2">
         <div class = "col-md-8 offset-md-2">
@@ -65,6 +57,16 @@
     <% end %>
   </div>
 </div>
+<% if @instas.present? %>
+  <div class = "container">
+    <h3>Recent instagrams</h3>
+    <h6 class = "text-muted"><%= link_to "##{@recipe.instagram_hashtag}", "http://instagram.com/tags/#{@recipe.instagram_hashtag}", :target => "_blank" %></h6>
+    <div class = "clear"></div>
+    <div class = "row">
+      <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
+    </div>
+  </div>
+<% end %>
 <div class = "container">
   <h1>Recommended products</h1>
   <div class = "row py-2">
@@ -91,21 +93,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  //Owl carousel
-  $('.owl-carousel.insta-carousel').owlCarousel({
-    loop:true,
-    responsiveClass:true,
-    responsive:{
-      0:{
-          items:3,
-          nav:true
-      },
-      900:{
-          items:7,
-          nav:true
-      },
-    }
-  })
-</script>

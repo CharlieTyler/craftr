@@ -11,7 +11,7 @@ $charcoal: #2E2E2E;
 $primary: #FF6860;
 $secondary: #1B9AAA;
 $black: #050505;
-$grey:#f5f1e3;
+$grey:#eeeeee;
 
 /* Text formatting */
 html {
@@ -49,6 +49,10 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
+.text-primary {
+  color: $primary;
+}
+
 .clear{
   clear: both;
 }
@@ -56,6 +60,14 @@ h1, h2, h3, h4, h5, h6 {
 .secondary-nav-content {
   position: relative;
   height: 100%;
+}
+
+.nav-link.active {
+  border-radius: 0px !important;
+  color: $primary !important;
+  background-color: transparent !important;
+  border-bottom: 3px solid $primary;
+
 }
 
 
@@ -249,13 +261,20 @@ a, a:hover {
   z-index: 1070;
 }
 
+.insta-image-holder{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+.insta-image-holder img{
+    position:absolute;
+}
 .insta-area {
-  height: 400px;
+
 }
 
 .insta-image {
-  width: auto;
-  height: 100%;
+
 }
 
 .insta-overlay {
@@ -278,3 +297,5 @@ a, a:hover {
 .insta-area:hover .insta-image {
   opacity: 0.3;
 }
+
+/* Search bar */
