@@ -1,4 +1,7 @@
 class Category < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
   has_many :products
   has_many :recipes_for_products, through: :products, source: :recipe
   has_many :ingredients

@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :authenticate_is_author, only: [:new, :create, :edit, :update, :destroy]
   def show
-    @recipe   = Recipe.find(params[:id])
+    @recipe   = Recipe.friendly.find(params[:id])
     @comment  = RecipeComment.new
     @comments = @recipe.recipe_comments.all
     unless @recipe.instagram_hashtag.blank?
@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.friendly.find(params[:id])
     unless @recipe.author == current_user
       return render text: 'Not Allowed', status: :forbidden
     end

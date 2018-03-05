@@ -77,3 +77,6 @@ gem 'owlcarousel2'
 gem 'instagram_api_client'
 
 gem "figaro"
+
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+

@@ -1,4 +1,7 @@
-class Product < ApplicationRecord 
+class Product < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   belongs_to :distillery, counter_cache: true
   belongs_to :category
   has_many :reviews

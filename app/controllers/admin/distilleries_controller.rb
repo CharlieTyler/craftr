@@ -13,11 +13,11 @@ class Admin::DistilleriesController < ApplicationController
   end
 
   def edit
-    @distillery = Distillery.find(params[:id])
+    @distillery = Distillery.friendly.find(params[:id])
   end
 
   def update
-    @distillery = Distillery.find(params[:id])
+    @distillery = Distillery.friendly.find(params[:id])
     @distillery.update_attributes(distillery_params)
     if @distillery.valid?
       redirect_to distillery_path(@distillery)

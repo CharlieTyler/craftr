@@ -1,4 +1,7 @@
 class Distillery < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
   has_many :products
 
   #articles

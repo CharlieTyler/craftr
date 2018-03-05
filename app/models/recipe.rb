@@ -1,4 +1,7 @@
 class Recipe < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
   belongs_to :author
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients

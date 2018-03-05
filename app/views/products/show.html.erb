@@ -49,9 +49,11 @@
         <li class="nav-item mid-nav">
           <a class="nav-link no-click" href="#distillery"><h6>The distillery</h6></a>
         </li>
-        <li class="nav-item mid-nav">
-          <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
-        </li>
+        <% unless @recipes.blank? %>
+          <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
+          </li>
+        <% end %>
         <li class="nav-item mid-nav">
           <a class="nav-link no-click" href="#reviews"><h6>Reviews</h6></a>
         </li>
@@ -99,19 +101,16 @@
   </div>
 
   <!-- Recipes -->
-  <div class = "row" id = "recipes">
-    <div class = "col-12">
-      <h1>Recipes</h1>
-      <div class = "row">
-        <% if @product.category.recipes.length > 0 %>
-          <%= render partial: "recipes/lister_recipe", collection: @product.recipes, as: :recipe %>
-          <%= render partial: "recipes/lister_recipe", collection: @product.category.recipes, as: :recipe %>
-        <% else %>
-          <p>No recipes for this product or category</p>
-        <% end %>
+  <% unless @recipes.blank? %>
+    <div class = "row" id = "recipes">
+      <div class = "col-12">
+        <h1>Recipes</h1>
+        <div class = "row">
+          <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <!-- Reviews -->
   <div class = "row" id = "reviews">
