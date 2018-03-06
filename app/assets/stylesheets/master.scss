@@ -300,4 +300,12 @@ a, a:hover {
   opacity: 0.3;
 }
 
-/* Search bar */
+/* Taste sliders */
+.taste-slider-wrapper {
+  position: relative;
+  display: block;
+}
+
+.taste-slider {
+  position: absolute;
+}
