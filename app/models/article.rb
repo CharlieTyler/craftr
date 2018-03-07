@@ -39,4 +39,11 @@ class Article < ApplicationRecord
 
     search_scope
   end
+
+  def read_time
+    all_text = description_first + description_second + description_third
+    word_count = all_text.split.size
+    word_count
+    # (word_count / 250).to_f.round(0)
+  end
 end

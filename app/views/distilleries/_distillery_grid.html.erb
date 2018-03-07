@@ -1,16 +1,12 @@
-<% if include_summary %>
-  <div class = "row my-2">
-    <div class = "col-md-6 border-secondary">
-      <%= image_tag distillery.summary_image, class: "d-block img-fluid distillery-image align-self-center" %>
-    </div>
-    <div class = "col-md-6 background-secondary">
-      <div class = "text-center">
-        <h1 class = "text-white mt-2 underline-primary">The distillery</h1>
-      </div>
-      <p class = "article-text text-white"><%= distillery.summary_text %></p>
+<div class = "col-12">
+  <div class="row py-5" style="background:transparent url('<%= distillery.summary_image.url %>') no-repeat center center /cover">
+    <div class = "col-md-10 offset-md-1 text-center">
+      <h1 class = "py-5 text-white display-4"><span class = "background-translucent-black px-3 py-2"><%= distillery.name %></span></h1>
+      <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= distillery.location %></span></h6>
+      <p class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= distillery.summary_text %></span></p>
     </div>
   </div>
-<% end %>
+</div>
 
 <% if include_people %>
   <div class = "row my-2">
@@ -31,11 +27,11 @@
     <div class = "col-md-6 border-primary">
       <%= image_tag distillery.range_image, class: "d-block img-fluid distillery-image align-self-center" %>
     </div>
-    <div class = "col-md-6 background-primary">
+    <div class = "col-md-6 background-white">
       <div class = "text-center">
-        <h1 class = "mt-2 underline-secondary text-white">The products</h1>
+        <h1 class = "mt-2 underline-primary">The products</h1>
       </div>
-      <p class = "article-text text-white"><%= distillery.range_text %></p>
+      <p class = "article-text"><%= distillery.range_text %></p>
     </div>
   </div>
 <% end %>

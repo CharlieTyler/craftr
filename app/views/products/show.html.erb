@@ -109,7 +109,8 @@
 
   <!-- Distillery -->
   <div class = "row" id = "distillery">
-    <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_summary: true, include_people: true, include_range: true}%>
+    <h1>The distillery</h1>
+    <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true}%>
   </div>
 
   <!-- Recipes -->
