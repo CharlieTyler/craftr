@@ -41,14 +41,36 @@ class Product < ApplicationRecord
     search_scope
   end
 
-  def average_review
-    if reviews.blank?
-      return "No reviews yet, be the first to add one!"
+
+  # Rating calculations
+  def average_rating
+    reviews.average('rating').to_f
+  end
+
+  def half_stars
+    n = (average_rating * 2).round(0)
+    n % 2
+  end
+
+  def whole_stars
+    n = (average_rating * 2).round(0)
+    (n - half_stars) / 2
+  end
+
+  def blank_half_stars
+    if half_stars == 1
+      return 1
     else
-      average = reviews.average('rating')
-      score   = average.round(1)
-      count   = reviews.count
-      "#{score}/5.0 (#{count})"
+      return 0
+    end
+  end
+
+  def blank_whole_stars
+    bs = 5 - whole_stars
+    if half_stars == 1
+      bs - 1
+    else
+      bs
     end
   end
 end

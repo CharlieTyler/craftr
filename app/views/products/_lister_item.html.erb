@@ -18,7 +18,7 @@
       <div class = "product-text nice-padding">
         <h4><%= product.name %></h4>
         <p><em>"<%= product.description_short %>"</em></p>
-        <p><%= product.average_review %></p>
+        <%= render partial: "products/star_rating", locals: {product: product} %>
         <div class = "btn btn-secondary col-12">See more</div>
       </div>
     </div>

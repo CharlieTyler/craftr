@@ -1,14 +1,21 @@
+<div class="row py-5" style="background:transparent url('<%= @distillery.summary_image.url %>') no-repeat center center /cover">
+  <div class = "col-md-8 offset-md-2 text-center">
+    <h1 class = "py-5 text-white display-4"><span class = "background-translucent-black px-3 py-2"><%= @distillery.name %></span></h1>
+    <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @distillery.location %></span></h6>
+  </div>
+</div>
+
 <div class = "container-fluid">
-  <%= render partial: "distillery_slider", locals: {distillery: @distillery} %>
+  <%= render partial: "distillery_grid", locals: {distillery: @distillery, include_summary: false, include_people: true, include_range: true} %>
 </div>
 
   <!-- Secondary nav -->
 <div class = "secondary-nav" id = "secondary-nav">
-  <div class = "container-fluid background-white">
+  <div class = "container-fluid background-grey">
     <div class = "row">
-      <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
+      <ul class="nav nav-pills nav-fill background-grey col-md-8 offset-md-2">
         <li class="nav-item mid-nav">
-          <a class="nav-link no-click" href="#blurb"><h6>Blurb</h6></a>
+          <a class="nav-link no-click" href="#blurb"><h6>The story</h6></a>
         </li>
         <li class="nav-item mid-nav">
           <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
@@ -156,3 +163,43 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOgMzuZzpcbkMy3Y1sZYOrW4kZ0lDoKxc&callback=initMap">
   </script>
 <% end %>
+
+<script>
+// Scrolling to appropriate area on page
+// Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+</script>

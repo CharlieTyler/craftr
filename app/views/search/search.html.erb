@@ -12,21 +12,15 @@
     <div class = "container-fluid">
       <div class = "row">
         <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
-          <% unless @results[:products].blank? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#products"><h6>Products (<%= @results[:products].length %>)</h6></a>
-            </li>
-          <% end %>
-          <% unless @results[:recipes].blank? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#recipes"><h6>Recipes (<%= @results[:recipes].length %>)</h6></a>
-            </li>
-          <% end %>
-          <% unless @results[:articles].blank? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#articles"><h6>Articles (<%= @results[:articles].length %>)</h6></a>
-            </li>
-          <% end %>
+          <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#products"><h6>Products (<%= @results[:products].length %>)</h6></a>
+          </li>
+          <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#recipes"><h6>Recipes (<%= @results[:recipes].length %>)</h6></a>
+          </li>
+          <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#articles"><h6>Articles (<%= @results[:articles].length %>)</h6></a>
+          </li>
         </ul>
       </div>
       <div class = "row">
@@ -38,18 +32,24 @@
   </nav>
 <% end %>
 <div class = "container">
-  <h3>Products</h3>
-  <div class = "row mb-5" id = "products">
-    <%= render partial: 'products/lister_item', collection: @results[:products], as: :product %>
-  </div>
+  <% unless @results[:products].blank? %>
+    <h3 class = "mt-3">Products</h3>
+    <div class = "row mb-5" id = "products">
+      <%= render partial: 'products/lister_item', collection: @results[:products], as: :product %>
+    </div>
+  <% end %>
 
-  <h3>Recipes</h3>
-  <div class = "row mb-5" id = "recipes">
-    <%= render partial: 'recipes/lister_recipe', collection: @results[:recipes], as: :recipe %>
-  </div>
+  <% unless @results[:recipes].blank? %>
+    <h3 class = "mt-3">Recipes</h3>
+    <div class = "row mb-5" id = "recipes">
+      <%= render partial: 'recipes/lister_recipe', collection: @results[:recipes], as: :recipe %>
+    </div>
+  <% end %>
 
-  <h3>Articles</h3>
-  <div class = "row mb-5" id = "articles">
-    <%= render partial: 'articles/lister_article', collection: @results[:articles], as: :article %>
-  </div>
+  <% unless @results[:articles].blank? %>
+    <h3 class = "mt-3">Articles</h3>
+    <div class = "row mb-5" id = "articles">
+      <%= render partial: 'articles/lister_article', collection: @results[:articles], as: :article %>
+    </div>
+  <% end %>
 </div>

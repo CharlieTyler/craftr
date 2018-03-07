@@ -7,6 +7,7 @@
 $blue:#1565c0;
 $charcoal: #2E2E2E;
 
+/*Note translucents do not update automatically */
 /* Colour scheme */
 $primary: #FF6860;
 $secondary: #1B9AAA;
@@ -50,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-primary {
-  color: $primary;
+  color: $primary !important;
 }
 
 .clear{
@@ -115,6 +116,14 @@ h1, h2, h3, h4, h5, h6 {
   background-color: white;
 }
 
+.background-primary {
+  background-color: $primary;
+}
+
+.background-secondary {
+  background-color: $secondary;
+}
+
 .background-blue {
   background-color: $blue;
 }
@@ -129,6 +138,30 @@ h1, h2, h3, h4, h5, h6 {
 
 .background-translucent-black {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.background-translucent-primary {
+  background-color: rgba(255, 104, 96, 0.8);
+}
+
+.background-translucent-secondary {
+  background-color: rgba(27, 154, 170, 1);
+}
+
+.outline-primary {
+  border: 5px solid $primary;
+}
+
+.outline-secondary {
+  border: 5px solid $secondary;
+}
+
+.underline-primary {
+  text-decoration: underline solid $primary;
+}
+
+.underline-secondary {
+  text-decoration: underline solid $secondary;
 }
 
 .home-hero-background {
@@ -199,10 +232,8 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
 }
 
-.distillery-carousel-image {
-  height: 400px;
-  background-position: center;
-  background-size: cover;
+.distillery-image {
+  margin-top: auto;
 }
 
 #distillery-map {

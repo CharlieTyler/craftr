@@ -71,6 +71,7 @@
               <%= link_to "Articles", articles_path, class: "nav-link" %>
             </li>
           </ul>
+
           <%= form_tag search_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
             <%= text_field_tag :keyword, nil, :placeholder => "Search for products, recipes and articles...", class: "form-control mr-sm-2", type: "search" %>
             <%= submit_tag "Search", class: "btn btn-secondary my-2 my-sm-0" %>
@@ -182,7 +183,7 @@ $('a[href*="#"]')
 
 <script>
   //Sticky secondary nav
-  $(document).ready(function() {
+  $(function() {
     // grab the initial top offset of the navigation 
     var stickyNavTop = $('.secondary-nav').offset().top;
       

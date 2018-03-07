@@ -1,0 +1,82 @@
+<% if include_summary %>
+  <div class = "row my-2">
+    <div class = "col-md-6 border-secondary">
+      <%= image_tag distillery.summary_image, class: "d-block img-fluid distillery-image align-self-center" %>
+    </div>
+    <div class = "col-md-6 background-secondary">
+      <div class = "text-center">
+        <h1 class = "text-white mt-2 underline-primary">The distillery</h1>
+      </div>
+      <p class = "article-text text-white"><%= distillery.summary_text %></p>
+    </div>
+  </div>
+<% end %>
+
+<% if include_people %>
+  <div class = "row my-2">
+    <div class = "col-md-6 background-white">
+      <div class = "text-center">
+        <h1 class = "mt-2 underline-secondary">The people</h1>
+      </div>
+      <p class = "article-text"><%= distillery.people_text %></p>
+    </div>
+    <div class = "col-md-6">
+      <%= image_tag distillery.people_image, class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
+    </div>
+  </div>
+<% end %>
+
+<% if include_range %>
+  <div class = "row my-2">
+    <div class = "col-md-6 border-primary">
+      <%= image_tag distillery.range_image, class: "d-block img-fluid distillery-image align-self-center" %>
+    </div>
+    <div class = "col-md-6 background-primary">
+      <div class = "text-center">
+        <h1 class = "mt-2 underline-secondary text-white">The products</h1>
+      </div>
+      <p class = "article-text text-white"><%= distillery.range_text %></p>
+    </div>
+  </div>
+<% end %>
+<script>
+    //Owl carousel
+  $('.owl-carousel.distillery-carousel').owlCarousel({
+    loop:true,
+    responsiveClass:true,
+    responsive:{
+      0:{
+          items:1
+      },
+      600:{
+          items:1
+      },
+    }
+  })
+</script>
+<!-- <div class = "owl-carousel distillery-carousel">
+  <div class = "row distillery-carousel-image" style="background:transparent url('<%= distillery.summary_image.url %>') no-repeat center center /cover">
+    <div class = "col-md-6 offset-md-3">
+      <div class = "background-translucent-black mt-5 py-2 px-2 text-center">
+        <h3 class = "text-white">The distillery</h3>
+        <p class = "text-white"><%= distillery.summary_text %></p>
+      </div>
+    </div>
+  </div>
+  <div class = "row distillery-carousel-image" style="background:transparent url('<%= distillery.people_image.url %>') no-repeat center center /cover">
+    <div class = "col-md-6 offset-md-3">
+      <div class = "background-translucent-black mt-5 py-2 px-2 text-center">
+        <h3 class = "text-white">The people</h3>
+        <p class = "text-white"><%= distillery.people_text %></p>
+      </div>
+    </div>
+  </div>
+  <div class = "row distillery-carousel-image" style="background:transparent url('<%= distillery.range_image.url %>') no-repeat center center /cover">
+    <div class = "col-md-6 offset-md-3">
+      <div class = "background-translucent-black mt-5 py-2 px-2 text-center">
+        <h3 class = "text-white">The products</h3>
+        <p class = "text-white"><%= distillery.range_text %></p>
+      </div>
+    </div>
+  </div>
+</div> -->

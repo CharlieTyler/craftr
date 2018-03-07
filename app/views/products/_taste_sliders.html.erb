@@ -1,18 +1,18 @@
 <% unless product.dry_to_sweet.blank? %>
   <div class = "row">
-    <div class = "col-2 text-center">
-      <h3>Dry</h3>
+    <div class = "col-3 col-md-2 text-right">
+      <h5>Dry</h5>
     </div>
-    <div class = "col-8">
+    <div class = "col-6 col-md-8">
       <div class = "row">
         <div class = "col-12 taste-slider-wrapper">
-          <div class = "taste-slider" style = "left: <%= ((product.dry_to_sweet.to_f / 10) * 100).to_i.to_s + "%;" %>"><h3>o</h3></div>
+          <div class = "taste-slider text-primary" style = "left: <%= ((product.dry_to_sweet.to_f / 10) * 100).to_i.to_s + "%;" %>"><h3>o</h3></div>
           <hr class = "slider-line mt-3"/>
         </div>
       </div>
     </div>
-    <div class = "col-2 text-center">
-      <h3>Sweet</h3>
+    <div class = "col-3 col-md-2 text-left">
+      <h5>Sweet</h5>
     </div>
   </div>
 <% end %>
@@ -21,37 +21,39 @@
 
 <% unless product.subtle_to_intense.blank? %>
   <div class = "row">
-    <div class = "col-2 text-center">
-      <h3>Subtle</h3>
+    <div class = "col-3 col-md-2 text-right">
+      <h5>Subtle</h5>
     </div>
-    <div class = "col-8">
+    <div class = "col-6 col-md-8">
       <div class = "row">
         <div class = "col-12 taste-slider-wrapper">
-          <div class = "taste-slider" style = "left: <%= ((product.subtle_to_intense.to_f / 10) * 100).to_i.to_s + "%;" %>"><h3>o</h3></div>
+          <div class = "taste-slider text-primary" style = "left: <%= ((product.subtle_to_intense.to_f / 10) * 100).to_i.to_s + "%;" %>"><h3>o</h3></div>
           <hr class = "slider-line mt-3"/>
         </div>
       </div>
     </div>
-    <div class = "col-2 text-center">
-      <h3>Intense</h3>
+    <div class = "col-3 col-md-2 text-left">
+      <h5>Intense</h5>
     </div>
   </div>
 <% end %>
+
+
 <% unless product.fresh_to_complex.blank? %>
   <div class = "row">
-    <div class = "col-2 text-center">
-      <h3>Fresh</h3>
+    <div class = "col-3 col-md-2 text-right">
+      <h5>Fresh</h5>
     </div>
-    <div class = "col-8">
+    <div class = "col-6 col-md-8">
       <div class = "row">
         <div class = "col-12 taste-slider-wrapper">
-          <div class = "taste-slider" style = "left: <%= ((product.fresh_to_complex.to_f / 10) * 100).to_i.to_s + "%;" %>"><h3>o</h3></div>
+          <div class = "taste-slider text-primary" style = "left: <%= ((product.fresh_to_complex.to_f / 10) * 100).to_i.to_s + "%;" %>"><h3>o</h3></div>
           <hr class = "slider-line mt-3"/>
         </div>
       </div>
     </div>
-    <div class = "col-2 text-center">
-      <h3>Complex</h3>
+    <div class = "col-3 col-md-2 text-left">
+      <h5>Complex</h5>
     </div>
   </div>
 <% end %>
