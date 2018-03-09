@@ -11,11 +11,14 @@
         <%= f.input :description_first %>
         <%= f.input :description_second %>
         <%= f.input :alcohol_percentage %>
+        <%= f.input :dry_to_sweet %>
+        <%= f.input :subtle_to_intense %>
+        <%= f.input :fresh_to_complex %>
         <div class = "all_image_fields">
           <%= f.simple_fields_for :product_images do |i| %>
             <div class = "row image_field">
               <div class = "col-12">
-                <%= i.input :photo %>
+                <%= i.input :photo, as: :file %>
               <hr />
               </div>
             </div>

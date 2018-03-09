@@ -55,7 +55,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.friendly.find(params[:id])
     @recipe.update_attributes(recipe_params)
     if @recipe.valid?
       redirect_to recipe_path(@recipe)

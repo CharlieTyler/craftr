@@ -17,12 +17,19 @@ class Admin::ProductsController < ApplicationController
 
   def edit
     @product = Product.friendly.find(params[:id])
+    @product_images  = @product.product_images.build
     @distilleries = Distillery.all
     @categories = Category.all
   end
 
   def update
-
+    @product = Product.friendly.find(params[:id])
+    @product.update_attributes(product_params)
+    if @product.valid?
+      redirect_to product_path(@product)
+    else
+      return render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -40,7 +47,10 @@ class Admin::ProductsController < ApplicationController
                                     :description_second, 
                                     :alcohol_percentage,
                                     :distillery_id,
-                                    :category_id, 
+                                    :category_id,
+                                    :dry_to_sweet,
+                                    :subtle_to_intense,
+                                    :fresh_to_complex,
                                     product_images_attributes: [:id, :product_id, :photo])
   end
 end

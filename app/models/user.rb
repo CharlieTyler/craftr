@@ -1,16 +1,16 @@
 class User < ApplicationRecord
   #favourite recipes
-  has_many :user_favourite_recipes
+  has_many :user_favourite_recipes, dependent: :destroy
   has_many :favourite_recipes, through: :user_favourite_recipes, source: :recipe
 
   #recipe comments
-  has_many :recipe_comments
+  has_many :recipe_comments, dependent: :destroy
 
   #product reviews
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   #recently viewed
-  has_many :user_product_views
+  has_many :user_product_views, dependent: :destroy
   has_many :viewed_products, through: :user_product_views, source: :product
 
   # Include default devise modules. Others available are:

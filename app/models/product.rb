@@ -4,13 +4,13 @@ class Product < ApplicationRecord
 
   belongs_to :distillery, counter_cache: true
   belongs_to :category
-  has_many :reviews
-  has_many :product_images
-  has_many :recipe_products
+  has_many :reviews, dependent: :destroy
+  has_many :product_images, dependent: :destroy
+  has_many :recipe_products, dependent: :destroy
   has_many :recipes, through: :recipe_products
 
   #articles
-  has_many :article_products
+  has_many :article_products, dependent: :destroy
   has_many :articles, through: :article_products
 
   accepts_nested_attributes_for :product_images

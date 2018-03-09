@@ -4,10 +4,10 @@ class Article < ApplicationRecord
 
   belongs_to :author
 
-  has_many :article_categories
-  has_many :article_distilleries
-  has_many :article_products
-  has_many :article_recipes
+  has_many :article_categories, dependent: :destroy
+  has_many :article_distilleries, dependent: :destroy
+  has_many :article_products, dependent: :destroy
+  has_many :article_recipes, dependent: :destroy
 
   accepts_nested_attributes_for :article_categories, reject_if: proc { |attributes| attributes['category_id'].blank? }
   accepts_nested_attributes_for :article_distilleries, reject_if: proc { |attributes| attributes['distillery_id'].blank? }

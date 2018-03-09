@@ -3,21 +3,21 @@ class Recipe < ApplicationRecord
   friendly_id :name, use: :slugged
   
   belongs_to :author
-  has_many :recipe_ingredients
+  has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
-  has_many :recipe_products
+  has_many :recipe_products, dependent: :destroy
   has_many :products, through: :recipe_products
-  has_many :recipe_categories
+  has_many :recipe_categories, dependent: :destroy
   has_many :categories, through: :recipe_categories
   accepts_nested_attributes_for :recipe_ingredients, reject_if: proc { |attributes| attributes['ingredient_id'].blank? }
   accepts_nested_attributes_for :recipe_products, reject_if: proc { |attributes| attributes['product_id'].blank? }
   accepts_nested_attributes_for :recipe_categories, reject_if: proc { |attributes| attributes['category_id'].blank? }
-  has_many :user_favourite_recipes
+  has_many :user_favourite_recipes, dependent: :destroy
   has_many :favourited_by, through: :user_favourite_recipes, source: :user
-  has_many :recipe_comments
+  has_many :recipe_comments, dependent: :destroy
 
   #articles
-  has_many :article_recipes
+  has_many :article_recipes, dependent: :destroy
   has_many :articles, through: :article_recipes
 
   mount_uploader :image, RecipeImageUploader

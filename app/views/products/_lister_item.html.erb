@@ -4,9 +4,9 @@
       <div class = "">
         <div class = "my-1 mx-1">
           <% if product.product_images.present? %>
-            <%= image_tag product.product_images.first.photo, class: "image-fluid d-block mx-auto", height: "200" %>
+            <%= image_tag product.product_images.first.photo, class: "img-fluid d-block mx-auto", height: "200" %>
           <% else %>
-            <%= image_tag "booze_placeholder.jpg", class: "image-fluid d-block mx-auto", height: "200" %>
+            <%= image_tag "booze_placeholder.jpg", class: "img-fluid d-block mx-auto", height: "200" %>
           <% end %>
         </div>
       </div>
