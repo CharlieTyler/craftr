@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # Standard pages
   resources :products, only: [:show, :index] do
     resources :reviews, only: [:create, :update, :destroy]
+    resources :favourite_products, only: [:create, :destroy]
   end
   resources :distilleries, only: [:show, :index]
   resources :articles, only: [:show, :index]

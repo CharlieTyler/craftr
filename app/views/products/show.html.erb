@@ -23,10 +23,9 @@
           </blockquote>
           <h3><%= "£#{@product.price}" %></h3>
           <div class = "row my-4">
-            <div class="col-2">
-              <input type = "number" name = "quantity" min = "1" max = "5" value = "1">
+            <div class = "col-12 favourite-unfavourite py-2"> <!-- This partial is replaced each time it's clicked -->
+              <%= render partial: 'favourite_button', locals: {product: @product} %>
             </div>
-            <div class = "col-10 btn btn-primary">Add to basket</div>
           </div>
         </div>
       </div>

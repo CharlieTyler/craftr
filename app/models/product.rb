@@ -13,6 +13,9 @@ class Product < ApplicationRecord
   has_many :article_products, dependent: :destroy
   has_many :articles, through: :article_products
 
+  has_many :user_favourite_products, dependent: :destroy
+  has_many :favourited_by, through: :user_favourite_products, source: :user
+
   accepts_nested_attributes_for :product_images
 
   validates :name, presence: true

@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  #favourite products
+  has_many :user_favourite_products, dependent: :destroy
+  has_many :favourite_products, through: :user_favourite_products, source: :product
+
   #favourite recipes
   has_many :user_favourite_recipes, dependent: :destroy
   has_many :favourite_recipes, through: :user_favourite_recipes, source: :recipe
@@ -22,8 +26,12 @@ class User < ApplicationRecord
     type == "Author"
   end
 
-  def favourited?(recipe)
+  def favourited_recipe?(recipe)
     favourite_recipes.include? recipe
+  end
+
+  def favourited_product?(product)
+    favourite_products.include? product
   end
 
   def recently_viewed_products
