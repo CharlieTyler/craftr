@@ -1,3 +1,4 @@
+$( document ).on('turbolinks:load', function() { 
   $(function() {
     $('.search-toggle').click(function() {
       $('.search-show-hide').toggle();
@@ -95,3 +96,4 @@ $('a[href*="#"]')
       stickyNav();
     });
   });
+});

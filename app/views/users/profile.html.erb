@@ -1,0 +1,22 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <h1><%= @user.email %></h1>
+    </div>
+    <div class = "col-12">
+      <h4>Favourite recipes</h4>
+      <div class = "row">
+        <%= render partial: "recipes/lister_recipe", collection: @user.favourite_recipes, as: :recipe %>
+      </div>
+
+      <div class = "col-12">
+        <hr class = "booyah-line my-3"/>
+      </div>
+
+      <h4>Favourite products</h4>
+      <div class = "row">
+        <%= render partial: "products/lister_item", collection: @user.favourite_products, as: :product %>
+      </div>
+    </div>
+  </div>
+</div>

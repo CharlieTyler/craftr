@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :update, :destroy]
     resources :favourite_products, only: [:create, :destroy]
   end
+  get "/me" => "users#profile" 
   resources :distilleries, only: [:show, :index]
   resources :articles, only: [:show, :index]
   resources :categories, only: [:show]
