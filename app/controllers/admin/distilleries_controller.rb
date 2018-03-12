@@ -1,4 +1,4 @@
-class Admin::DistilleriesController < ApplicationController
+class Admin::DistilleriesController < AdminController
   def new
     @distillery = Distillery.new
   end

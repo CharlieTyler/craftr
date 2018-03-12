@@ -1,4 +1,4 @@
-class Admin::ProductsController < ApplicationController
+class Admin::ProductsController < AdminController
   def new
     @product      = Product.new
     @product_images = @product.product_images.build

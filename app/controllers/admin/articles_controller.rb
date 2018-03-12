@@ -1,4 +1,4 @@
-class Admin::ArticlesController < ApplicationController
+class Admin::ArticlesController < AdminController
   before_action :authenticate_is_author, only: [:new, :create, :edit, :update, :destroy]
   def new
     @article = Article.new
