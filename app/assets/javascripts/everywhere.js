@@ -8,23 +8,28 @@ $( document ).on('turbolinks:load', function() {
 
     });
   });
+});
 
-$(function() {
-  $('.top-nav-carousel').owlCarousel({
-    loop:true,
-    responsiveClass:true,
-    responsive:{
-      0:{
-          items:1,
-          nav:true
-      },
-      600:{
-          items:3,
-          nav:false
-      },
-    }
-  })
+$( document ).on('turbolinks:load', function() { 
+  $(function() {
+    $('.top-nav-carousel').owlCarousel({
+      loop:true,
+      responsiveClass:true,
+      responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+      }
+    })
+  });
+});
 
+$( document ).on('turbolinks:load', function() { 
   //Dropdowns for navbar
   $('body').on('mouseenter mouseleave','.dropdown',function(e){
     var _d=$(e.target).closest('.dropdown');_d.addClass('show');
@@ -34,10 +39,11 @@ $(function() {
   });
 });
 
-// Scrolling to appropriate area on page
-// Select all links with hashes
-$('a[href*="#"]')
-  // Remove links that don't actually link to anything
+$( document ).on('turbolinks:load', function() { 
+  // Scrolling to appropriate area on page
+  // Select all links with hashes
+  $('a[href*="#"]')
+    // Remove links that don't actually link to anything
   .not('[href="#"]')
   .not('[href="#0"]')
   .click(function(event) {
@@ -71,7 +77,10 @@ $('a[href*="#"]')
       }
     }
   });
+});
 
+
+$( document ).on('turbolinks:load', function() { 
   //Sticky secondary nav
   $(function() {
     // grab the initial top offset of the navigation 
