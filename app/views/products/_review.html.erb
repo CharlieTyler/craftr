@@ -1,9 +1,9 @@
 <div class = "col-12 py-2">
   <% review.rating.times do %>
-    <i class="fas fa-star text-primary"></i>
+    <i class="fa fa-star text-primary" aria-hidden="true"></i>
   <% end %>
   <% (5 - review.rating).times do %>
-    <i class="far fa-star text-primary"></i>
+    <i class="fa fa-star-o text-priamry" aria-hidden="true"></i>
   <% end %>
   <p class = "my-1"><%= review.message %></p>
   <p class = "mb-0 text-muted"> - <%= review.user.email %></p>

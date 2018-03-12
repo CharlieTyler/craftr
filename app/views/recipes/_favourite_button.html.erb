@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <% if current_user.favourited_recipe?(recipe) %>
     <%= link_to recipe_favourite_recipe_path(current_user.user_favourite_recipes.find_by(recipe: recipe), recipe_id: recipe.id), class: "btn btn-primary", method: :delete, remote: true do %>
-      <i class="fas fa-heart"></i> Unfavourite
+      <i class="fa fa-heart" aria-hidden="true"></i> Unfavourite
     <% end %>
   <% else %>
     <%= link_to recipe_favourite_recipes_path(recipe_id: recipe.id), class: "btn btn-primary", method: :post, remote: true do %>
-      <i class="far fa-heart"></i> Favourite
+      <i class="fa fa-heart-o" aria-hidden="true"></i> Favourite
     <% end %>
   <% end %>
 <% else %>

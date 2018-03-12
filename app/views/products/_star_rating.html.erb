@@ -1,12 +1,12 @@
 <% if product.reviews.length > 0 %>
   <% product.whole_stars.times do %>
-      <i class="fas fa-star text-primary"></i>
+    <i class="fa fa-star text-primary" aria-hidden="true"></i>
   <% end %>
   <% product.half_stars.times do %>
-      <i class="fas fa-star-half text-primary mr-0"></i>
+    <i class="fa fa-star-half-o text-primary" aria-hidden="true"></i>
   <% end %>
   <% product.blank_whole_stars.times do %>
-      <i class="far fa-star text-primary"></i>
+    <i class="fa fa-star-o text-primary" aria-hidden="true"></i>
   <% end %>
   <%= "#{product.average_rating} (#{product.reviews.length})" %>
 <% else %>

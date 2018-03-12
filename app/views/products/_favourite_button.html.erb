@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <% if current_user.favourited_product?(product) %>
     <%= link_to product_favourite_product_path(current_user.user_favourite_products.find_by(product: product), product_id: product.id), class: "btn btn-primary", method: :delete, remote: true do %>
-      <i class="fas fa-heart"></i> Unfavourite
+      <i class="fa fa-heart" aria-hidden="true"></i> Favourited
     <% end %>
   <% else %>
     <%= link_to product_favourite_products_path(product_id: product.id), class: "btn btn-primary", method: :post, remote: true do %>
-      <i class="far fa-heart"></i> Favourite
+      <i class="fa fa-heart-o" aria-hidden="true"></i> Favourite
     <% end %>
   <% end %>
 <% else %>

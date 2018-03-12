@@ -68,7 +68,7 @@ gem 'simple_form'
 
 gem 'carrierwave', '~> 1.0'
 
-gem 'font-awesome-sass', '~> 5.0.6'
+gem 'font-awesome-rails'
 
 gem 'quilljs-rails'
 
