@@ -58,16 +58,27 @@ h1, h2, h3, h4, h5, h6 {
   background-color: white;
 }
 
-.owl-next {
-  font-family: 'bebas_neueregular', sans-serif;
-  border: 5px solid black !important;
-  background-color: white;
+.owl-prev {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    margin-left: 25px;
+    display: block!IMPORTANT;
+    border:0px solid black;
 }
 
-.owl-prev {
-  font-family: 'bebas_neueregular', sans-serif;
-  border: 5px solid black !important;
-  background-color: white;
+.owl-next {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    right: 25px;
+    display: block!IMPORTANT;
+    border:0px solid black;
+}
+.owl-prev i, .owl-next i {
+  color: $primary;
 }
 
 .clear{
