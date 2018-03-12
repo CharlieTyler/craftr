@@ -1,6 +1,6 @@
 <div class = "col-6 col-md-4 col-lg-3">
   <%= link_to category_path(category) do %>
-    <div class="col-12 px-1" style="background:transparent url('<%= category.banner_image.url %>') no-repeat center center /cover">
+    <div class="col-12 px-1 outline-primary" style="background:transparent url('<%= category.banner_image.url %>') no-repeat center center /cover">
       <div class = "col-10 offset-1">
         <div class = "py-5">
           <h1><strong class = "px-1 logo-text"><%= category.name.upcase %></strong></h1>

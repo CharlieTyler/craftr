@@ -1,6 +1,7 @@
 @import "bootstrap";
 @import "font-awesome";
 @import 'owlcarousel2/owl.carousel';
+@import 'owlcarousel2/owl.theme.default';
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black|Roboto');
 
 $blue:#1565c0;
@@ -169,14 +170,8 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline solid $secondary;
 }
 
-.home-hero-background {
-  background: image_url('home_hero.jpg') no-repeat center center fixed;
+.hero-row {
   min-height: 500px;
-  max-height: 800px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 
 .recipes-background {

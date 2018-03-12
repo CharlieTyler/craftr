@@ -1,13 +1,39 @@
-<div class = "home-hero-background">
-  <div class = "container">
-    <div class = "row pt-5">
-      <div class = "col-md-6 offset-md-3">
-        <div class = "background-translucent-black mt-5 py-2 px-2">
-          <h1 class = "text-white display-3">Craftr</h1>
-          <h3 class = "text-white py-3">The marketplace for craft spirits</h6>
-          <h6 class = "text-white">Shipped straight from the distillery to your home</h6>
-          <%= link_to "Find out more", about_path, class: "btn btn-primary" %>
-        </div>
+<div class = "container-fluid">
+  <div class = "owl-carousel owl-theme hero-carousel">
+    <div class = "row hero-row">
+      <div class = "col-6" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
+
+      </div>
+      <div class = "col-6 text-center">
+        <h1>Craft spirits straight from our partner distilleries</h1>
+        <%= link_to 'Our products', products_path, class: "btn btn-primary my-3" %>
+      </div>
+    </div>
+    <div class = "row hero-row">
+      <div class = "col-6" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
+
+      </div>
+      <div class = "col-6 text-center">
+        <h1>Craft spirits straight from our partner distilleries</h1>
+        <%= link_to 'Our products', products_path, class: "btn btn-primary my-3" %>
+      </div>
+    </div>
+    <div class = "row hero-row">
+      <div class = "col-6" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
+
+      </div>
+      <div class = "col-6 text-center">
+        <h1>Craft spirits straight from our partner distilleries</h1>
+        <%= link_to 'Our products', products_path, class: "btn btn-primary my-3" %>
+      </div>
+    </div>
+    <div class = "row hero-row">
+      <div class = "col-6" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
+
+      </div>
+      <div class = "col-6 text-center">
+        <h1>Craft spirits straight from our partner distilleries</h1>
+        <%= link_to 'Our products', products_path, class: "btn btn-primary my-3" %>
       </div>
     </div>
   </div>
@@ -86,3 +112,23 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+  //Owl carousel
+    $('.owl-carousel.hero-carousel').owlCarousel({
+      loop:true,
+      responsiveClass:true,
+      responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:1,
+            nav:true
+        },
+      }
+    });
+  });
+</script>
