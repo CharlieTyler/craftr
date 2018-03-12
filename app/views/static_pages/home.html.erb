@@ -107,23 +107,11 @@
 </div>
 
 <script>
-  $(document).ready(function(){
-  //Owl carousel
-    $('.owl-carousel.hero-carousel').owlCarousel({
-      loop:true,
-      responsiveClass:true,
-      dots: true,
-      nav: false,
-      responsive:{
-        0:{
-            items:1,
-            nav:true
-        },
-        600:{
-            items:1,
-            nav:true
-        },
-      }
-    });
+  $('.owl-carousel.hero-carousel').owlCarousel({
+    stagePadding: 0,
+    loop:true,
+    dots: true,
+    items: 1,
+    nav: true
   });
 </script>
