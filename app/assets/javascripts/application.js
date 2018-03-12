@@ -18,5 +18,5 @@
 //= require tether
 //= require bootstrap-sprockets
 //= require quill.global
-//= require owlcarousel2/owl.carousel
+//= require owl.carousel2
 //= require_tree .

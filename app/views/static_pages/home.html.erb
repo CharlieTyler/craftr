@@ -4,38 +4,31 @@
       <div class = "col-6" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
 
       </div>
-      <div class = "col-6 text-center">
+      <div class = "col-6 text-center py-md-5 px-2 px-md-5">
         <h1>Craft spirits straight from our partner distilleries</h1>
         <%= link_to 'Our products', products_path, class: "btn btn-primary my-3" %>
       </div>
     </div>
     <div class = "row hero-row">
-      <div class = "col-6" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
+      <div class = "col-6" style="background: transparent url(<%= image_url('recipe_hero.jpg') %>) no-repeat center center /cover">
 
       </div>
-      <div class = "col-6 text-center">
-        <h1>Craft spirits straight from our partner distilleries</h1>
-        <%= link_to 'Our products', products_path, class: "btn btn-primary my-3" %>
+      <div class = "col-6 text-center py-md-5 px-2 px-md-5">
+        <h1>Cocktail recipes from our brilliant mixologists</h1>
+        <%= link_to 'Recipes', recipes_path, class: "btn btn-primary my-3" %>
       </div>
     </div>
     <div class = "row hero-row">
-      <div class = "col-6" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
+      <div class = "col-6" style="background: transparent url(<%= image_url(@featured_product.product_images.first.photo) %>) no-repeat center center /cover">
 
       </div>
-      <div class = "col-6 text-center">
-        <h1>Craft spirits straight from our partner distilleries</h1>
-        <%= link_to 'Our products', products_path, class: "btn btn-primary my-3" %>
+      <div class = "col-6 text-center py-md-5 px-2 px-md-5">
+        <h1>Featured product</h1>
+        <h3>Hills and harbour gin</h3>
+        <%= link_to 'Learn more', product_path(@featured_product), class: "btn btn-primary my-3" %>
       </div>
     </div>
-    <div class = "row hero-row">
-      <div class = "col-6" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
 
-      </div>
-      <div class = "col-6 text-center">
-        <h1>Craft spirits straight from our partner distilleries</h1>
-        <%= link_to 'Our products', products_path, class: "btn btn-primary my-3" %>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -119,6 +112,8 @@
     $('.owl-carousel.hero-carousel').owlCarousel({
       loop:true,
       responsiveClass:true,
+      dots: true,
+      nav: false,
       responsive:{
         0:{
             items:1,

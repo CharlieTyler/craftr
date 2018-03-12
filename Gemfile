@@ -72,7 +72,7 @@ gem 'font-awesome-rails'
 
 gem 'quilljs-rails'
 
-gem 'owlcarousel2'
+gem 'owlcarousel2-rails'
 
 gem 'instagram_api_client'
 

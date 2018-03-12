@@ -1,7 +1,5 @@
 @import "bootstrap";
 @import "font-awesome";
-@import 'owlcarousel2/owl.carousel';
-@import 'owlcarousel2/owl.theme.default';
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black|Roboto');
 
 $blue:#1565c0;
@@ -55,6 +53,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo-text {
+  font-family: 'bebas_neueregular', sans-serif;
+  border: 5px solid black !important;
+  background-color: white;
+}
+
+.owl-next {
+  font-family: 'bebas_neueregular', sans-serif;
+  border: 5px solid black !important;
+  background-color: white;
+}
+
+.owl-prev {
   font-family: 'bebas_neueregular', sans-serif;
   border: 5px solid black !important;
   background-color: white;
