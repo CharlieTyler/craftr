@@ -125,14 +125,16 @@
     <% end%>
   </div>
 
-  <div class = "container mt-3" id = "map">
-    <h3 class = "my-3">Map</h3>
-    <div class = "row">
-      <div class = "col-12">
-        <div id="distillery-map"></div>
+  <% if @distillery.latitude.present? && @distillery.longitude.present? %>
+    <div class = "container mt-3" id = "map">
+      <h3 class = "my-3">Map</h3>
+      <div class = "row">
+        <div class = "col-12">
+          <div id="distillery-map"></div>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div> <!-- End of secondary nav content -->
 
 

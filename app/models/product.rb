@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  belongs_to :distillery, counter_cache: true
+  belongs_to :distillery
   belongs_to :category
   has_many :reviews, dependent: :destroy
   has_many :product_images, dependent: :destroy
