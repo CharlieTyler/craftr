@@ -1,31 +1,22 @@
 <div class = "container-fluid">
   <div class = "owl-carousel owl-theme hero-carousel">
     <div class = "row hero-row" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
-      <div class = "col-0 col-md-6">
-
-      </div>
-      <div class = "col-10 offset-1 col-md-6 offset-md-0 text-center py-md-5 px-2 px-md-5">
-        <h1 class = "logo-text">Craft spirits straight from our partner distilleries</h1>
-        <%= link_to 'Our products', products_path, class: "btn btn-primary my-3" %>
+      <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5 px-2 px-md-5">
+        <h1 class = "logo-text display-4">Craft spirits straight from our partner distilleries</h1>
+        <%= link_to 'Our products', products_path, class: "btn btn-lg btn-primary my-3" %>
       </div>
     </div>
     <div class = "row hero-row" style="background: transparent url(<%= image_url('recipe_hero.jpg') %>) no-repeat center center /cover">
-      <div class = "col-0 col-md-6">
-
-      </div>
-      <div class = "col-10 offset-1 col-md-6 offset-md-0 text-center py-md-5 px-2 px-md-5">
-        <h1 class = "logo-text">Cocktail recipes from our brilliant mixologists</h1>
-        <%= link_to 'Recipes', recipes_path, class: "btn btn-primary my-3" %>
+      <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5 px-2 px-md-5">
+        <h1 class = "logo-text display-4">Cocktail recipes from our brilliant mixologists</h1>
+        <%= link_to 'Recipes', recipes_path, class: "btn btn-lg btn-primary my-3" %>
       </div>
     </div>
     <div class = "row hero-row" style="background: transparent url(<%= image_url(@featured_product.product_images.first.photo) %>) no-repeat center center /cover">
-      <div class = "col-0 col-md-6">
-
-      </div>
-      <div class = "col-10 offset-1 col-md-6 offset-md-0 text-center py-md-5 px-2 px-md-5">
-        <h1 class = "logo-text">Featured product</h1>
+      <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5 px-2 px-md-5">
+        <h1 class = "logo-text display-4">Featured product</h1>
         <h3>Hills and harbour gin</h3>
-        <%= link_to 'Learn more', product_path(@featured_product), class: "btn btn-primary my-3" %>
+        <%= link_to 'Learn more', product_path(@featured_product), class: "btn btn-lg btn-primary my-3" %>
       </div>
     </div>
   </div> <!-- Owl carousel -->
