@@ -1,10 +1,12 @@
 <div class = "recipes-background">
   <div class = "container">
     <div class = "row pt-5">
-      <div class = "col-md-8 offset-md-2">
-        <h1 class = "text-white mt-4 py-5 display-3"><span class = "background-translucent-black px-3 py-2">Craftr recipes</span></h1>
+      <div class = "col-md-8 offset-md-2 text-center">
+        <h1 class = "mt-4 py-5 display-3"><span class = "logo-text px-1">Craftr recipes</span></h1>
         <h3 class = "text-white"><span class = "background-translucent-black px-3 py-2">Your home for cocktail recipes</span></h6>
-        <%= link_to "Add a recipe", new_recipe_path, class: "btn btn-primary" %>
+        <% if user_signed_in? && current_user.is_author? %>
+          <%= link_to "Add a recipe", new_recipe_path, class: "btn btn-primary my-3" %>
+        <% end %>
       </div>
     </div>
   </div>

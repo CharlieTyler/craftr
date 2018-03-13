@@ -10,8 +10,8 @@
 </div>
 
 <!-- Secondary nav -->
-<% unless @recipes.blank? && @articles.blank? %>
-  <nav class = "secondary-nav" id = "secondary-nav">
+<div class="nav-wrapper" style="height:50px;">
+  <nav class = "secondary-nav" id = "secondary-nav" style = "height:50px;">
     <div class = "container-fluid background-white">
       <div class = "row">
         <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
@@ -44,7 +44,7 @@
       </div>
     </div>
   </nav>
-<% end %>
+</div>
 
 <% unless @products.blank? %>
   <div class = "background-grey">

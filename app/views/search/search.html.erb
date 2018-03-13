@@ -8,28 +8,30 @@
 </div>
 
 <% unless @results[:products].blank? && @results[:recipes].blank? && @results[:articles].blank? %>
-  <nav class = "secondary-nav background-white" id = "secondary-nav">
-    <div class = "container-fluid">
-      <div class = "row">
-        <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#products"><h6>Products (<%= @results[:products].length %>)</h6></a>
-          </li>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#recipes"><h6>Recipes (<%= @results[:recipes].length %>)</h6></a>
-          </li>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#articles"><h6>Articles (<%= @results[:articles].length %>)</h6></a>
-          </li>
-        </ul>
-      </div>
-      <div class = "row">
-        <div class = "col-12">
-          <hr class = "booyah-line">
+  <div class="nav-wrapper" style="height:50px;">
+    <nav class = "secondary-nav background-white" id = "secondary-nav" style = "height:50px;">
+      <div class = "container-fluid">
+        <div class = "row">
+          <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
+            <li class="nav-item mid-nav">
+              <a class="nav-link no-click" href="#products"><h6>Products (<%= @results[:products].length %>)</h6></a>
+            </li>
+            <li class="nav-item mid-nav">
+              <a class="nav-link no-click" href="#recipes"><h6>Recipes (<%= @results[:recipes].length %>)</h6></a>
+            </li>
+            <li class="nav-item mid-nav">
+              <a class="nav-link no-click" href="#articles"><h6>Articles (<%= @results[:articles].length %>)</h6></a>
+            </li>
+          </ul>
+        </div>
+        <div class = "row">
+          <div class = "col-12">
+            <hr class = "booyah-line">
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 <% end %>
 <div class = "container">
   <% unless @results[:products].blank? %>

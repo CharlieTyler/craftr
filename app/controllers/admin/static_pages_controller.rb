@@ -1,4 +1,4 @@
-class Admin::StaticPagesController < Admin_Controller
+class Admin::StaticPagesController < AdminController
   def dashboard
 
   end

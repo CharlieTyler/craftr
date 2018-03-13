@@ -2,33 +2,36 @@
   <%= render partial: "distillery_grid", locals: {distillery: @distillery, include_people: true, include_range: true} %>
 </div>
 
-  <!-- Secondary nav -->
-<div class = "secondary-nav" id = "secondary-nav">
-  <div class = "container-fluid background-grey">
-    <div class = "row">
-      <ul class="nav nav-pills nav-fill background-grey col-md-8 offset-md-2">
-        <li class="nav-item mid-nav">
-          <a class="nav-link no-click" href="#blurb"><h6>The story</h6></a>
-        </li>
-        <li class="nav-item mid-nav">
-          <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
-        </li>
-        <li class="nav-item mid-nav">
-          <a class="nav-link no-click" href="#social"><h6>Social</h6></a>
-        </li>
-        <% if @distillery.longitude.present? && @distillery.latitude.present? %>
+<!-- Secondary nav -->
+<hr class = "booyah-line"/>
+<div class="nav-wrapper" style="height:50px;">
+  <nav class = "secondary-nav" id = "secondary-nav" style = "height:50px;">
+    <div class = "container-fluid background-white">
+      <div class = "row">
+        <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
           <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#map"><h6>Map</h6></a>
+            <a class="nav-link no-click" href="#blurb"><h6>The story</h6></a>
           </li>
-        <% end %>
-      </ul>
-    </div>
-    <div class = "row">
-      <div class = "col-12">
-        <hr class = "booyah-line">
+          <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
+          </li>
+          <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#social"><h6>Social</h6></a>
+          </li>
+          <% if @distillery.longitude.present? && @distillery.latitude.present? %>
+            <li class="nav-item mid-nav">
+              <a class="nav-link no-click" href="#map"><h6>Map</h6></a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class = "row">
+        <div class = "col-12">
+          <hr class = "booyah-line">
+        </div>
       </div>
     </div>
-  </div>
+  </nav>
 </div>
 
 <div class = "secondary-nav-content">
@@ -112,7 +115,7 @@
         </div>
       </div>
     </div>
-    <% if @instas.present? %>
+    <% unless @instas.blank? %>
       <div class = "row">
         <div class = "col-12">
           <h3>Instagram</h3>

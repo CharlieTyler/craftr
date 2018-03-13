@@ -50,36 +50,38 @@
 <% end %>
 
 <hr class = "booyah-line"/>
-<nav class = "secondary-nav" id = "secondary-nav">
-  <div class = "container-fluid background-white">
-    <div class = "row">
-      <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
-        <li class="nav-item mid-nav">
-          <a class="nav-link no-click" href="#details"><h6>Product details</h6></a>
-        </li>
-        <li class="nav-item mid-nav">
-          <a class="nav-link no-click" href="#distillery"><h6>The distillery</h6></a>
-        </li>
-        <% unless @recipes.blank? %>
+<div class="nav-wrapper" style="height:50px;">
+  <nav class = "secondary-nav" id = "secondary-nav" style = "height:50px;">
+    <div class = "container-fluid background-white">
+      <div class = "row">
+        <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
           <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
+            <a class="nav-link no-click" href="#details"><h6>Product details</h6></a>
           </li>
-        <% end %>
-        <li class="nav-item mid-nav">
-          <a class="nav-link no-click" href="#reviews"><h6>Reviews</h6></a>
-        </li>
-        <li class = "nav-item mid-nav">
-          <a class = "nav-link"><h6>Add to basket</h6></a>
-        </li>
-      </ul>
-    </div>
-    <div class = "row">
-      <div class = "col-12">
-        <hr class = "booyah-line">
+          <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#distillery"><h6>The distillery</h6></a>
+          </li>
+          <% unless @recipes.blank? %>
+            <li class="nav-item mid-nav">
+              <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
+            </li>
+          <% end %>
+          <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#reviews"><h6>Reviews</h6></a>
+          </li>
+          <li class = "nav-item mid-nav">
+            <a class = "nav-link"><h6>Add to basket</h6></a>
+          </li>
+        </ul>
+      </div>
+      <div class = "row">
+        <div class = "col-12">
+          <hr class = "booyah-line">
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>
 
 <div class = "container">
   <!-- Product details -->

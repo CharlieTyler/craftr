@@ -57,7 +57,7 @@
     <% end %>
   </div>
 </div>
-<% if @instas.present? %>
+<% unless @instas.blank? %>
   <div class = "container">
     <h3>Recent instagrams</h3>
     <h6 class = "text-muted"><%= link_to "##{@recipe.instagram_hashtag}", "http://instagram.com/tags/#{@recipe.instagram_hashtag}", :target => "_blank" %></h6>
