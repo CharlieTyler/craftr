@@ -19,7 +19,7 @@
           <h6 class = "my-3 text-muted"><%= "#{@product.alcohol_percentage}%"%></h6>
           <h3>We think</h3>
           <blockquote class="blockquote">
-            <p class="mb-0"><%= @product.description_short %></p>
+            <p class="mb-0"><%= simple_format(@product.description_short) %></p>
           </blockquote>
           <h3><%= "£#{@product.price}" %></h3>
           <div class = "row my-4">
