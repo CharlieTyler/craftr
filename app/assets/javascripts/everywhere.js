@@ -79,6 +79,17 @@ $( document ).on('turbolinks:load', function() {
   });
 });
 
+$( document ).on('turbolinks:load', function() { 
+  $('body').toggleClass('loaded')
+});
+
+$(document).on('turbolinks:load', function() { 
+
+  /*! Fades in page on load */
+  $('body').css('display', 'none');
+  $('body').fadeIn(500);
+
+});
 
 $( document ).on('turbolinks:load', function() { 
   //Sticky secondary nav
