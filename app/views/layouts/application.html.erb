@@ -110,6 +110,10 @@
         <b>Footer Here</b>
         <br />
         <%= link_to 'About', about_path %>
+        <br />
+        <% if user_signed_in? && current_user.admin %>
+          <%= link_to 'Admin dashboard', admin_dashboard_path %>
+        <% end %>
       </div>
     </div>
   </body>
