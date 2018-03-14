@@ -5,8 +5,8 @@ class CategoryIconUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -28,6 +28,17 @@ class CategoryIconUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  version :thumb do
+    process :resize_to_fit => [32, 32]
+  end
+
+  version :preview do
+    process :resize_to_fit => [128, 128]
+  end
+  
+  version :full do
+    process :resize_to_fit => [800, 800]
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do

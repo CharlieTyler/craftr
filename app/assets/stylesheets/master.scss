@@ -253,6 +253,12 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
 }
 
+.lister-product-image {
+  min-height: 200px;
+  width: auto;
+  overflow: hidden;
+}
+
 .distillery-image {
   margin-top: auto;
 }

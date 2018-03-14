@@ -28,6 +28,17 @@ class CategoryBannerUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  version :thumb do
+    process :resize_to_fit => [32, 32]
+  end
+
+  version :navbar do
+    process :resize_to_fit => [256, 256]
+  end
+  
+  version :full do
+    process :resize_to_fit => [800, 800]
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do

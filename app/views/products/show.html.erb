@@ -5,7 +5,7 @@
         <div class = "col-md-7">
           <div class = "owl-carousel product-image-carousel h-100">
             <% @product.product_images.each do |image| %>
-              <%= image_tag image.photo, class: "d-block img-fluid product-image-large" %>
+              <%= image_tag image.photo_url(:full).to_s, class: "d-block img-fluid product-image-large" %>
             <% end %>
           </div>
         </div>

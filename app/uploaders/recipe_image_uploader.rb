@@ -28,6 +28,10 @@ class RecipeImageUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  
+  version :full do
+    process :resize_to_fit => [800, 800]
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do

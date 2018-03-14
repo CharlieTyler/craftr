@@ -29,6 +29,10 @@ class ArticleImageUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process resize_to_fit: [100, 100]
   # end
+  
+  version :full do
+    process :resize_to_fill => [1000, 500, gravity = 'Center']
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
