@@ -4,8 +4,8 @@
       <%= simple_form_for @distillery, url: admin_distilleries_path do |f| %>
         <%= f.input :name %>
         <%= f.input :location %>
-        <%= f.input :summary_text %>
-        <%= f.input :summary_image %>
+        <%= f.input :summary_text, hint: 'Short description appears on lister page and in banner image' %>
+        <%= f.input :summary_image, hint: 'Will be banner image' %>
         <%= f.input :people_text %>
         <%= f.input :people_image %>
         <%= f.input :range_text %>
@@ -16,10 +16,10 @@
         <%= f.input :image_2 %>
         <%= f.input :blurb_3, input_html: { class: 'quill_container' } %>
         <%= f.input :image_3 %>
-        <%= f.input :website %>
-        <%= f.input :facebook %>
-        <%= f.input :instagram_user_id %>
-        <%= f.input :longitude %>
+        <%= f.input :website, hint: 'Please include http://' %>
+        <%= f.input :facebook, hint: 'Please include http://' %>
+        <%= f.input :instagram_user_id, hint: 'Use https://smashballoon.com/instagram-feed/find-instagram-user-id/ to get id from username' %>
+        <%= f.input :longitude, hint: 'type into google maps and get from url' %>
         <%= f.input :latitude %>
         <br />
         <%= f.submit "Create", class: "btn btn-primary" %>
