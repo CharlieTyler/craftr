@@ -29,6 +29,10 @@ class DistilleryBannerImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
   
+  version :preview do
+    process :resize_to_fill => [400, 200, gravity = 'Center']
+  end
+
   version :full do
     process :resize_to_fill => [1000, 500, gravity = 'Center']
   end

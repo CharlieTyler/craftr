@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-  <div class="row py-5" style="background:transparent url('<%= @article.banner_image.url %>') no-repeat center center /cover">
+  <div class="row py-5" style="background:transparent url('<%= @article.banner_image.url(:full).to_s %>') no-repeat center center /cover">
     <div class = "col-md-8 offset-md-2 text-center">
       <h1 class = "py-5 text-white display-4"><span class = "background-translucent-black px-3 py-2"><%= @article.title %></span></h1>
       <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @article.description %></span></h6>
@@ -19,7 +19,7 @@
         </div>
         <div class = "row">
           <div class = "col-12">
-            <%= image_tag @article.image_first, class: "d-block img-fluid" %>
+            <%= image_tag @article.image_first_url(:full).to_s), class: "d-block img-fluid" %>
           </div>
         </div>
         <div class = "row">
@@ -34,7 +34,7 @@
         <div class = "row">
           <div class = "col-12">
             <% if @article.image_second.present? %>
-              <%= image_tag @article.image_second, class: "d-block img-fluid" %>
+              <%= image_tag @article.image_second_url(:full).to_s), class: "d-block img-fluid" %>
             <% end %>
           </div>
         </div>
@@ -49,7 +49,7 @@
         <div class = "row">
           <div class = "col-12">
             <% if @article.image_third.present? %>
-              <%= image_tag @article.image_third, class: "d-block img-fluid" %>
+              <%= image_tag @article.image_third_url(:full).to_s), class: "d-block img-fluid" %>
             <% end %>
         </div>
       </div>
