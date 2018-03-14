@@ -7,13 +7,14 @@
         <%= f.input :distillery_id, collection: @distilleries %>
         <%= f.input :category_id, collection: @categories %>
         <%= f.input :price %>
-        <%= f.input :description_short %>
-        <%= f.input :description_first %>
-        <%= f.input :description_second %>
+        <%= f.input :description_short, input_html: { class: 'quill_container' }, hint: 'Surfaces as "What we say"' %>
+        <%= f.input :description_first, input_html: { class: 'quill_container' } %>
+        <%= f.input :description_second, input_html: { class: 'quill_container' } %>
         <%= f.input :alcohol_percentage %>
         <%= f.input :dry_to_sweet %>
         <%= f.input :subtle_to_intense %>
         <%= f.input :fresh_to_complex %>
+        <p>Existing images will still exist - overwrite by selecting an image where one already exists. Add by using just the last one</p>
         <div class = "all_image_fields">
           <%= f.simple_fields_for :product_images do |i| %>
             <div class = "row image_field">

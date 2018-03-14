@@ -3,7 +3,7 @@
     <div class="card h-100">
       <div class = "card-img-top">
         <% if product.product_images.present? %>
-          <%= image_tag product.product_images.last.photo_url(:preview).to_s, class: "img-fluid lister-product-image" %>
+          <%= image_tag product.product_images.first.photo_url(:preview).to_s, class: "img-fluid lister-product-image" %>
         <% else %>
           <%= image_tag "booze_placeholder.jpg", class: "img-fluid" %>
         <% end %>
