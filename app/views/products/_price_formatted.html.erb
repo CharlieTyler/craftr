@@ -1,0 +1,6 @@
+<% if product.price % 100 == 0 %>
+  <% precision = 0 %>
+<% else %>
+  <% precision = 2 %>
+<% end %>
+<%= number_to_currency(product.price.to_f / 100, unit: "£", precision: precision) %>

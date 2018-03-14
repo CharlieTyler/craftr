@@ -13,15 +13,15 @@
         <!-- Product descriptions -->
         <div class = "col-md-5 pt-3">
           <h1><%= @product.name %></h1>
-          <h6>by <%= link_to @product.distillery.name, distillery_path(@product.distillery) %></h6>
+          <h6 class = "text-muted">by <%= link_to @product.distillery.name, distillery_path(@product.distillery) %></h6>
           <h4><%= render partial: "products/star_rating", locals: {product: @product} %></h4>
 
           <h6 class = "my-3 text-muted"><%= "#{@product.alcohol_percentage}%"%></h6>
-          <h3>We think</h3>
+          <p><strong>We think</strong></p>
           <blockquote class="blockquote">
-            <p class="mb-0"><%= simple_format(@product.description_short) %></p>
+            <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
           </blockquote>
-          <h3><%= "£#{@product.price}" %></h3>
+          <h3 class = "text-primary"><%= render partial: 'price_formatted', locals: {product: @product} %></h3>
           <div class = "row my-4">
             <div class = "col-12 favourite-unfavourite py-2"> <!-- This partial is replaced each time it's clicked -->
               <%= render partial: 'favourite_button', locals: {product: @product} %>

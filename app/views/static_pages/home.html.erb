@@ -58,7 +58,7 @@
   <div class = "container py-3">
     <div class = "row">
       <div class = "col">
-        <h1>Our categories</h1>
+        <h3>Our categories</h3>
         <div class = "row py-3 text-center">
           <%= render partial: "categories/lister_category", collection: @featured_categories, as: :category %>
         </div>
@@ -79,7 +79,7 @@
 <div class = "" id = "recipes">
   <div class = "container py-3">
     <span class = "">
-      <h1>Latest recipes</h1>
+      <h3>Latest recipes</h3>
     </span>
     <div class = "row text-center">
       <div class = "col-md-10 offset-md-1">
@@ -95,7 +95,7 @@
 <div class = "products-background" id = "products">
   <div class = "container py-3">
     <span class = "">
-      <h1>Featured products</h1>
+      <h3>Featured products</h3>
     </span>
     <div class = "row text-center">
       <div class = "col-md-10 offset-md-1">
@@ -112,7 +112,7 @@
   <div class = "products-background background-grey">
     <div class = "container py-3">
       <span class = "">
-        <h1>Recently viewed</h1>
+        <h3>Recently viewed</h3>
       </span>
       <div class = "row text-center">
         <div class = "col-md-10 offset-md-1">
@@ -128,7 +128,7 @@
 <% unless @instas.blank? %>
   <div class = "py-3" id = "social">
     <div class = "container">
-      <h1>Recent instagrams</h1>
+      <h3>Recent instagrams</h3>
       <h6 class = "text-muted"><%= link_to "@craftrspirits", "http://instagram.com/craftrspirits" %></h6>
       <div class = "row">
         <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
