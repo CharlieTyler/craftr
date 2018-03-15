@@ -16,7 +16,7 @@
           <h6 class = "text-muted">by <%= link_to @product.distillery.name, distillery_path(@product.distillery) %></h6>
           <h4><%= render partial: "products/star_rating", locals: {product: @product} %></h4>
 
-          <h6 class = "my-3 text-muted"><%= "#{@product.alcohol_percentage}%"%></h6>
+          <h6 class = "my-3 text-muted"><%= @product.size_ml || @product.alcohol_percentage %></h6>
           <p><strong>We think</strong></p>
           <blockquote class="blockquote">
             <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
