@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314164953) do
+ActiveRecord::Schema.define(version: 20180315121457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20180314164953) do
     t.float "latitude"
     t.integer "instagram_user_id"
     t.string "slug"
+    t.string "logo"
     t.index ["slug"], name: "index_distilleries_on_slug", unique: true
   end
 

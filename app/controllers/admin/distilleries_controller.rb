@@ -35,6 +35,7 @@ class Admin::DistilleriesController < AdminController
   def distillery_params
     params.require(:distillery).permit(:name, 
                                        :location, 
+                                       :logo,
                                        :summary_text, 
                                        :people_text, 
                                        :range_text,

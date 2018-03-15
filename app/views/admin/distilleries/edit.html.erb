@@ -4,6 +4,7 @@
       <%= simple_form_for @distillery, url: admin_distillery_path(@distillery) do |f| %>
         <%= f.input :name %>
         <%= f.input :location %>
+        <%= f.input :logo %>
         <%= f.input :summary_text %>
         <%= f.input :summary_image %>
         <%= f.input :people_text %>

@@ -22,6 +22,7 @@ class Distillery < ApplicationRecord
   validates :image_1, presence: true
   validates :website, presence: true
 
+  mount_uploader :logo, DistilleryLogoUploader
   mount_uploader :summary_image, DistilleryBannerImageUploader
   mount_uploader :people_image, DistilleryBannerImageUploader
   mount_uploader :range_image, DistilleryBannerImageUploader
