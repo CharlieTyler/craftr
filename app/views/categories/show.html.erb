@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-  <div class="row py-5 category-background" style="background:transparent url('<%= @category.banner_image.url %>') no-repeat center center /cover">
+  <div class="row py-5 category-background" style="background-image: url('<%= @category.banner_image.url(:full).to_s %>'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
     <div class = "col-10 offset-1 text-center">
       <div class = "py-2 px-2">
         <h1 class = "display-4"><span class = "logo-text px-1"><%= @category.name %></span></h1>

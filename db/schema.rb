@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315121457) do
+ActiveRecord::Schema.define(version: 20180315142446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20180315121457) do
     t.integer "dry_to_sweet"
     t.integer "subtle_to_intense"
     t.integer "fresh_to_complex"
+    t.integer "size_ml"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 

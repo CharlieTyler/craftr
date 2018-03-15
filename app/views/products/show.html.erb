@@ -3,9 +3,9 @@
     <div class = "col-md-10 offset-md-1">
       <div class = "row">
         <div class = "col-md-7">
-          <div class = "owl-carousel product-image-carousel h-100">
+          <div class = "owl-carousel product-image-carousel">
             <% @product.product_images.each do |image| %>
-              <%= image_tag image.photo_url(:full).to_s, class: "d-block img-fluid product-image-large" %>
+              <%= image_tag image.photo_url(:full).to_s, class: "product-image-large" %>
             <% end %>
           </div>
         </div>
