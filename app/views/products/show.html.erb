@@ -17,7 +17,9 @@
           <h4><%= render partial: "products/star_rating", locals: {product: @product} %></h4>
             <h6 class = "my-3 text-muted">
               <% if @product.size_ml.present? %>
+                <!-- Allow for products not to have size -->
                 <%= "#{@product.size_ml}ml - #{@product.alcohol_percentage}%" %>
+                <!-- Must still have alcohol percentage -->
               <% else %>
                 <%= "#{@product.alcohol_percentage}%" %>
               <% end %>
@@ -118,6 +120,16 @@
     <h1>The distillery</h1>
     <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true}%>
   </div>
+
+  <% if @other_distillery_products.present? %>
+  <!-- Other products from same distillery -->
+    <div class = "row">
+      <div class = "col-12">
+        <h3>Other products by <%= link_to @product.distillery.name, distillery_path(@product.distillery) %></h3>
+      </div>
+      <%= render partial: "products/lister_item", collection: @other_distillery_products, as: :product %>
+    </div>
+  <% end %>
 
   <!-- Recipes -->
   <% unless @recipes.blank? %>
