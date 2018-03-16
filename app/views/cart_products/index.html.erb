@@ -1,3 +1,5 @@
+<!-- Look into using a table instead: https://v4-alpha.getbootstrap.com/content/tables/ -->
+
 <div class = "container">
   <div class = "row">
     <div class = "col-12">
@@ -14,7 +16,8 @@
 
       <% @cart_products.each do |cp| %>
         <div class = "row">
-          <div class = "col-5"><%= cp.product.name %></div>
+          <div class = "col-1"><%= image_tag cp.product.product_images.first.photo_url(:thumb).to_s, class: "img-fluid" %></div>
+          <div class = "col-4"><%= cp.product.name %></div>
           <div class = "col-2"><%= render partial: 'products/price_formatted', locals: {product: cp.product} %></div>
           <div class = "col-2"><%= cp.quantity %></div>
           <div class = "col-2">£<%= cp.subtotal %></div>
