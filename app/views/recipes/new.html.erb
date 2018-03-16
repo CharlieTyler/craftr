@@ -1,65 +1,66 @@
 <div class = "container-fluid">
   <div class = "row">
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-        <%= simple_form_for @recipe do |f| %>
-          <%= f.input :name %>
-          <%= f.input :tag %>
-          <%= f.input :description %>
-          <%= f.input :instagram_hashtag %>
-          <%= f.input :blurb %>
-          <%= f.input :image %>
-          <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
-          <%= f.input :banner_image %>
-          <div class = "all_ingredient_fields">
-            <%= f.simple_fields_for :recipe_ingredients do |i| %>
-              <div class = "row ingredient_field">
-                <div class = "col-6">
-                  <%= i.input :quantity %>
-                </div>
-                <div class = "col-6">
-                  <%= i.input :ingredient_id, collection: @ingredients, value_method: :id  %>
-                </div>
-                <hr />
+      <h6>Strongly advise to check all the ingredients that you want to include exist before starting with the rest of the content</h6>
+      <p>Add an ingredient at the bottom of this page</p>
+      <%= simple_form_for @recipe do |f| %>
+        <%= f.input :name %>
+        <%= f.input :tag %>
+        <%= f.input :description %>
+        <%= f.input :instagram_hashtag %>
+        <%= f.input :blurb %>
+        <%= f.input :image %>
+        <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
+        <%= f.input :banner_image %>
+        <div class = "all_ingredient_fields">
+          <%= f.simple_fields_for :recipe_ingredients do |i| %>
+            <div class = "row ingredient_field">
+              <div class = "col-6">
+                <%= i.input :quantity %>
               </div>
-            <% end %>
-          </div>
-          <p><a href="#" class="add_ingredient_field">+ add another</a></p>
-          <%= f.input :method, input_html: { class: 'quill_container' } %>
-          <div class = "all_product_fields">
-            <%= f.simple_fields_for :recipe_products do |i| %>
-              <div class = "row product_field">
-                <div class = "col-6">
-                  <%= i.input :product_id, collection: @products, value_method: :id  %>
-                </div>
-                <hr />
+              <div class = "col-6">
+                <%= i.input :ingredient_id, collection: @ingredients, value_method: :id  %>
               </div>
-            <% end %>
-          </div>
-          <p><a href="#" class="add_product_field">+ add another</a></p>
-          <div class = "all_category_fields">
-            <%= f.simple_fields_for :recipe_categories do |rc| %>
-              <div class = "row category_field">
-                <div class = "col-6">
-                  <%= rc.input :category_id, collection: @categories, value_method: :id  %>
-                </div>
-                <hr />
+              <hr />
+            </div>
+          <% end %>
+        </div>
+        <p><a href="#" class="add_ingredient_field">+ add another</a></p>
+        <%= f.input :method, input_html: { class: 'quill_container' } %>
+        <div class = "all_product_fields">
+          <%= f.simple_fields_for :recipe_products do |i| %>
+            <div class = "row product_field">
+              <div class = "col-6">
+                <%= i.input :product_id, collection: @products, value_method: :id  %>
               </div>
-            <% end %>
-          </div>
-          <p><a href="#" class="add_category_field">+ add another</a></p>
-          <br />
-          <%= f.input :variants, input_html: { class: 'quill_container' } %>
-          <%= f.submit "Create recipe", class: "btn btn-primary" %>
-        <% end %>
-      </div>
+              <hr />
+            </div>
+          <% end %>
+        </div>
+        <p><a href="#" class="add_product_field">+ add another</a></p>
+        <div class = "all_category_fields">
+          <%= f.simple_fields_for :recipe_categories do |rc| %>
+            <div class = "row category_field">
+              <div class = "col-6">
+                <%= rc.input :category_id, collection: @categories, value_method: :id  %>
+              </div>
+              <hr />
+            </div>
+          <% end %>
+        </div>
+        <p><a href="#" class="add_category_field">+ add another</a></p>
+        <br />
+        <%= f.input :variants, input_html: { class: 'quill_container' } %>
+        <%= f.submit "Create recipe", class: "btn btn-primary col-12" %>
+      <% end %>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-secondary my-2" data-toggle="modal" data-target="#newIngredientModal">
+        Add an ingredient
+      </button>
     </div>
   </div>
 </div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newIngredientModal">
-  Add an ingredient
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="newIngredientModal" tabindex="-1" role="dialog" aria-labelledby="newIngredientModalLabel" aria-hidden="true">
@@ -75,7 +76,7 @@
         <div class="modal-body">
           <%= f.input :name %>
           <%= f.input :classification, collection: Ingredient::CATEGORIES %>
-          <%= f.input :product_id, collection: @products %>
+          <%= f.input :category_id, collection: @categories %>
           <%= f.input :product_id, collection: @products %>
         </div>
         <div class="modal-footer">
