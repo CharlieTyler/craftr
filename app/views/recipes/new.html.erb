@@ -8,7 +8,7 @@
         <%= f.input :tag %>
         <%= f.input :description %>
         <%= f.input :instagram_hashtag %>
-        <%= f.input :blurb %>
+        <%= f.input :blurb, input_html: { class: 'quill_container' } %>
         <%= f.input :image %>
         <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
         <%= f.input :banner_image %>
