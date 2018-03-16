@@ -30,9 +30,15 @@
       <div class = "col-md-4 offset-md-2">
         <div class = "booyah-box my-1 nice-padding h-100">
           <h1 class = "recipe-header" id="ingredients">Ingredients</h1>
-          <ul class = "recipe-ingredients-list">
+          <ul class = "">
             <% @recipe.recipe_ingredients.each do |ri| %>
-              <li class = "ingredient-bullet"><%= "#{ri.quantity} #{ri.ingredient.name}" %></li>
+              <li class = "ingredient-bullet"><%= "#{ri.quantity} " %> 
+                <% if ri.ingredient.product.present? %>
+                  <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
+                <% else %>
+                  <%= ri.ingredient.name %>
+                <% end %>
+              </li>
             <% end %>
           </ul>
         </div>

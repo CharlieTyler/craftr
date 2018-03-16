@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black|Roboto');
 
 $blue:#1565c0;
-$charcoal: #2E2E2E;
+$charcoal: rgba(36, 32, 33, 0.9);
 
 /*Note translucents do not update automatically */
 /* Colour scheme */
@@ -84,6 +84,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .owl-prev i, .owl-next i {
   color: $primary;
+}
+
+.owl-carousel .owl-stage {
+  display: flex;
+  align-items: center;
 }
 
 .clear{
@@ -288,7 +293,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* lists */
-ul .recipe-ingredients-list {
+.no-bullet-list li {
   list-style-type: none;
 }
 

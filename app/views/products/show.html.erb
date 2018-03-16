@@ -118,7 +118,7 @@
   <!-- Distillery -->
   <div class = "row" id = "distillery">
     <h1>The distillery</h1>
-    <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true}%>
+    <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true, include_button: true}%>
   </div>
 
   <% if @other_distillery_products.present? %>
@@ -159,7 +159,7 @@
           <%= f.submit "Submit", class: "btn btn-primary" %>
         <% end %>
       <% else %>
-        <p>Please login or sign up to add a review</p>
+        <p>Please <%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to add a review</p>
       <% end %>
     </div>
   </div>

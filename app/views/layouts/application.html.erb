@@ -18,13 +18,13 @@
           <div class = "row background-charcoal">
             <div class = "owl-carousel owl-theme top-nav-carousel">
               <div class = "text-center">
-                <p class = "text-white my-1"><i class="fa fa-glass" aria-hidden="true"></i> &nbsp The finest craft spirits</p>
+                <p class = "text-white my-1"><i class="fa fa-glass text-primary" aria-hidden="true"></i> &nbsp The finest craft spirits</p>
               </div>
               <div class = "text-center">
-                <p class = "text-white my-1"><i class="fa fa-arrows-h" aria-hidden="true"></i> &nbsp Straight from the distillery</p>
+                <p class = "text-white my-1"><i class="fa fa-arrows-h text-primary" aria-hidden="true"></i> &nbsp Straight from the distillery</p>
               </div>
               <div class = "text-center">
-                <p class = "text-white my-1"><i class="fa fa-truck" aria-hidden="true"></i> &nbsp £2 delivery</p>
+                <p class = "text-white my-1"><i class="fa fa-truck text-primary" aria-hidden="true"></i> &nbsp £2 delivery</p>
               </div>
             </div>
           </div>
@@ -107,13 +107,13 @@
     </div>
     <div id="footer">
       <div class="container">
-        <b>Footer Here</b>
-        <br />
-        <%= link_to 'About', about_path %>
-        <br />
-        <% if user_signed_in? && current_user.admin %>
-          <%= link_to 'Admin dashboard', admin_dashboard_path %>
-        <% end %>
+        <ul class = "no-bullet-list">
+          <li><%= link_to 'About', about_path %></li>
+          <% if user_signed_in? && current_user.admin %>
+            <li><%= link_to 'Admin dashboard', admin_dashboard_path %></li>
+          <% end %>
+          <li><%= link_to 'Contact us', contact_path %></li>
+        </ul>
       </div>
     </div>
   </body>

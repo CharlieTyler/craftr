@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   # Largely non-database driven pages
   root 'static_pages#home'
-  get "/about", :controller => "static_pages", :action => "about"
-
+  get "/about" => "static_pages#about"
+  get "/contact" => "static_pages#contact"
 
   get "/search" => "search#search" 
 
