@@ -4,11 +4,12 @@
       <%= simple_form_for @distillery, url: admin_distilleries_path do |f| %>
         <%= f.input :name %>
         <%= f.input :location %>
+        <%= f.input :logo %>
         <%= f.input :summary_text, hint: 'Short description appears on lister page and in banner image' %>
         <%= f.input :summary_image, hint: 'Will be banner image' %>
-        <%= f.input :people_text %>
+        <%= f.input :people_text, input_html: { class: 'quill_container' } %>
         <%= f.input :people_image %>
-        <%= f.input :range_text %>
+        <%= f.input :range_text, input_html: { class: 'quill_container' } %>
         <%= f.input :range_image %>
         <%= f.input :blurb_1, input_html: { class: 'quill_container' } %>
         <%= f.input :image_1 %>
