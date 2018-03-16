@@ -1,14 +1,25 @@
 class CartProductsController < ApplicationController
 # Cart set in application controller, giving us use of the @cart variable
   def create
-    @cart_product = @cart.cart_products.create(cart_product_params)
-    if @cart_product.valid?
-      flash[:notice] = 'Item successfully added to cart'
+    @product = Product.find(params[:cart_product][:product_id])
+
+    # Check if this product is already in the cart
+    current_cart_product = @cart.cart_products.find_by(product_id: @product.id)
+    if current_cart_product.present?
+      # Change the quantity
+      current_cart_product.quantity += params[:cart_product][:quantity].to_i
+      # Save the change quantity
+      current_cart_product.save
+      flash[:notice] = "You now have #{current_cart_product.quantity} of these in your cart"
     else
-      @product = Product.find(params[:product_id])
-      flash[:alert] = 'There was an error adding your item to the cart'
-      redirect_to product_path(@product)
+      @cart_product = @cart.cart_products.create(cart_product_params)
+      if @cart_product.valid?
+        flash[:notice] = 'Item successfully added to cart'
+      else
+        flash[:alert] = 'There was an error adding your item to the cart'
+      end
     end
+    redirect_to product_path(@product)
   end
 
   def destroy
@@ -17,7 +28,7 @@ class CartProductsController < ApplicationController
   end
 
   def index
-
+    @cart_products = @cart.cart_products
   end
 
   private
