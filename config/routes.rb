@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get "/about" => "static_pages#about"
   get "/contact" => "static_pages#contact"
 
-  get "/search" => "search#search" 
+  get "/search" => "search#search"
+
+  #cart
+  get "/cart" => "cart_products#index"
+  resources :cart_products, only: [:create, :destroy]
 
   # Standard pages
   resources :products, only: [:show, :index] do

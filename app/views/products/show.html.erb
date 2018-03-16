@@ -30,9 +30,14 @@
           </blockquote>
           <h3 class = "text-primary"><%= render partial: 'price_formatted', locals: {product: @product} %></h3>
           <div class = "row my-4">
-            <div class = "col-12 favourite-unfavourite py-2"> <!-- This partial is replaced each time it's clicked -->
+           <!--  <div class = "col-12 favourite-unfavourite py-2">
               <%= render partial: 'favourite_button', locals: {product: @product} %>
-            </div>
+            </div> -->
+            <%= simple_form_for @cart_product do |f| %>
+              <%= f.input :quantity, :input_html => { :value => 1 } %>
+              <%= f.input :product_id, :as => :hidden, :input_html => { :value => @product.id } %>
+              <%= f.submit "Add to basket", class: "btn btn-primary col-12" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -58,7 +63,7 @@
 
 <hr class = "booyah-line"/>
 <div class="nav-wrapper" style="height:50px;">
-  <nav class = "secondary-nav background-white mb-0" id = "secondary-nav" style = "height:50px;">
+  <nav class = "secondary-nav background-white mb-0 pb-0" id = "secondary-nav" style = "height:50px;">
     <div class = "container-fluid">
       <div class = "row">
         <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">

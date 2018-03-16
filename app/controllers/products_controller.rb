@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
     if user_signed_in?
       current_user.viewed_products << @product
     end
+    @cart_product                 = CartProduct.new
   end
 
   def index
