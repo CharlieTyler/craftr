@@ -14,13 +14,13 @@
         </div>
       </div>
 
-      <% @cart_products.each do |cp| %>
+      <% @order_items.each do |oi| %>
         <div class = "row">
-          <div class = "col-1"><%= image_tag cp.product.product_images.first.photo_url(:thumb).to_s, class: "img-fluid" %></div>
-          <div class = "col-4"><%= cp.product.name %></div>
-          <div class = "col-2"><%= render partial: 'products/price_formatted', locals: {product: cp.product} %></div>
-          <div class = "col-2"><%= cp.quantity %></div>
-          <div class = "col-2">£<%= cp.subtotal %></div>
+          <div class = "col-1"><%= image_tag oi.product.product_images.first.photo_url(:thumb).to_s, class: "img-fluid" %></div>
+          <div class = "col-4"><%= oi.product.name %></div>
+          <div class = "col-2"><%= render partial: 'products/price_formatted', locals: {product: oi.product} %></div>
+          <div class = "col-2"><%= oi.quantity %></div>
+          <div class = "col-2">£<%= oi.subtotal %></div>
           <div class = "col-1">Remove</div>
         </div>
       <% end %>

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   #cart
-  has_one :cart
+  has_many :orders
 
   #favourite products
   has_many :user_favourite_products, dependent: :destroy

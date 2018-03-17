@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316154659) do
+ActiveRecord::Schema.define(version: 20180317075240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,20 +66,6 @@ ActiveRecord::Schema.define(version: 20180316154659) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "instagram_user_id"
-  end
-
-  create_table "cart_products", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "cart_id"
-    t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "carts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -140,6 +126,21 @@ ActiveRecord::Schema.define(version: 20180316154659) do
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.integer "product_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "order_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "state"
   end
 
   create_table "product_images", force: :cascade do |t|

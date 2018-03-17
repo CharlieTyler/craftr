@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     if user_signed_in?
       current_user.viewed_products << @product
     end
-    @cart_product                 = CartProduct.new
+    @order_item                = OrderItem.new
   end
 
   def index

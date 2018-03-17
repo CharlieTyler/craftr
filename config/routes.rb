@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get "/search" => "search#search"
 
   #cart
-  get "/cart" => "cart_products#index"
-  resources :cart_products, only: [:create, :destroy]
+  get "/cart" => "order_items#index"
+  resources :order_items, only: [:create, :destroy]
 
   # Standard pages
   resources :products, only: [:show, :index] do
