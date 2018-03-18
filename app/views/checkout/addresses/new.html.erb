@@ -34,14 +34,16 @@
   <div class = "row">
     <div class = "col-12">
       <%= simple_form_for @order, url: order_addresses_path do |f| %>
-        <%= f.input :shipping_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id %>
-        <%= f.input :billing_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id %>
+        <%= f.input :shipping_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id, include_blank: false %>
+        <%= f.input :billing_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id, include_blank: false %>
         <%= f.submit "Proceed to payment", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
-  <h6>Add a new address</h6>
-  <div class = "row" id = "new-address">
+  <div class = "row mt-5" id = "new-address">
+    <div class = "col-12">
+      <h6>Add a new address</h6>
+    </div>
     <div class = "col-md-6 col-ld-4">
     <%= simple_form_for @address, url: checkout_addresses_path do |f| %>
       <%= f.input :first_name %>

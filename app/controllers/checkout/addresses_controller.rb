@@ -1,5 +1,6 @@
 class Checkout::AddressesController < AddressesController
   before_action :authenticate_user!
+  before_action :check_items_in_cart
   # Inherits params from addresses controller
   def new
     # This is first page of checkout process
@@ -23,4 +24,14 @@ class Checkout::AddressesController < AddressesController
   def destroy
 
   end
+
+  private
+
+  def check_items_in_cart
+    unless @order.order_items.length > 0
+      flash[:alert] = 'Your cart is empty, please add items before checking out'
+      redirect_to root_path
+    end    
+  end
+
 end
