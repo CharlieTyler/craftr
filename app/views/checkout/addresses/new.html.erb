@@ -1,0 +1,57 @@
+<!-- <div class = "container">
+  <div class = "row" id = "address-book">
+    <div class = "col-12">
+      <h3>Shipping address</h3>
+    </div>
+    <dic class = "col-12">
+      <div class = "row">
+        <h6>Address book</h6>
+      </div>
+      <div class = "row">
+        <%= render partial: "addresses/lister_address", collection: current_user.addresses, as: :address %>
+      </div>
+    </dic>
+  </div>
+  <div class = "row">
+    <h6>Add a new address</h6>
+  </div>
+  <div class = "row" id = "new-address">
+    <div class = "col-md-6 col-ld-4">
+    <%= simple_form_for @address, url: checkout_addresses_path do |f| %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :line_1 %>
+      <%= f.input :line_2 %>
+      <%= f.input :line_3 %>
+      <%= f.input :post_town %>
+      <%= f.input :postcode %>
+      <%= f.submit "Add", class: "btn btn-primary col-12" %>
+    <% end %>
+  </div>
+</div> -->
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <%= simple_form_for @order, url: order_addresses_path do |f| %>
+        <%= f.input :shipping_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id %>
+        <%= f.input :billing_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id %>
+        <%= f.submit "Proceed to payment", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+  <h6>Add a new address</h6>
+  <div class = "row" id = "new-address">
+    <div class = "col-md-6 col-ld-4">
+    <%= simple_form_for @address, url: checkout_addresses_path do |f| %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :line_1 %>
+      <%= f.input :line_2 %>
+      <%= f.input :line_3 %>
+      <%= f.input :post_town %>
+      <%= f.input :postcode %>
+      <%= f.submit "Add", class: "btn btn-primary col-12" %>
+    <% end %>
+  </div>
+</div>

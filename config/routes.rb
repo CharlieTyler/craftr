@@ -9,10 +9,6 @@ Rails.application.routes.draw do
 
   get "/search" => "search#search"
 
-  #cart
-  get "/cart" => "order_items#index"
-  resources :order_items, only: [:create, :destroy]
-
   # Standard pages
   resources :products, only: [:show, :index] do
     resources :reviews, only: [:create, :update, :destroy]
@@ -27,6 +23,15 @@ Rails.application.routes.draw do
     resources :recipe_comments, only: [:create, :destroy]
   end
   resources :ingredients, only: [:create]
+
+  #checkout routes
+  namespace :checkout do
+    resources :addresses, only: [:new, :create]
+  end
+  #cart
+  get "/cart" => "order_items#index"
+  resources :order_items, only: [:create, :destroy]
+  patch "/order_addresses" => "orders#update_addresses"
 
   # All routes to form part of admin portal
   namespace :admin do

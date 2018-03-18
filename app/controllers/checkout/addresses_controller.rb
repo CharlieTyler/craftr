@@ -1,17 +1,18 @@
 class Checkout::AddressesController < AddressesController
   # Inherits params from addresses controller
+  def new
+    # This is first page of checkout process
+    @address = Address.new
+  end
+
   def create
-    if user_signed_in?
-      @address = current_user.addresses.create(address_params)
-    else
-      @address = Address.create(address_params)
-    end
+    @address = current_user.addresses.create(address_params)
     if @address.valid?
       flash[:notice] = 'Address successfully created'
     else
       flash[:alert] = 'Invalid address'
     end
-    redirect_to me_path      
+    redirect_to new_checkout_address_path      
   end
 
   def update
