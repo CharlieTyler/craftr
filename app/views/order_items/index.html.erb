@@ -21,7 +21,7 @@
           <div class = "col-2"><%= render partial: 'products/price_formatted', locals: {product: oi.product} %></div>
           <div class = "col-2"><%= oi.quantity %></div>
           <div class = "col-2">£<%= oi.subtotal %></div>
-          <div class = "col-1">Remove</div>
+          <div class = "col-1"><%=link_to "Remove", order_item_path(oi), method: :delete %></div>
         </div>
       <% end %>
     </div>

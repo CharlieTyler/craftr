@@ -1,4 +1,5 @@
 class Checkout::AddressesController < AddressesController
+  before_action :authenticate_user!
   # Inherits params from addresses controller
   def new
     # This is first page of checkout process

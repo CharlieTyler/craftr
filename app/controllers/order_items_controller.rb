@@ -1,5 +1,7 @@
 class OrderItemsController < ApplicationController
-# Cart set in application controller, giving us use of the @order variable
+  include ActionView::Helpers::TextHelper
+  # So we can use pluralize method
+  # @order set in application controller, giving us use of the @order variable
   def create
     @product = Product.find(params[:order_item][:product_id])
 
@@ -14,7 +16,8 @@ class OrderItemsController < ApplicationController
     else
       @order_item = @order.order_items.create(order_item_params)
       if @order_item.valid?
-        flash[:notice] = 'Item successfully added to cart'
+        flash[:notice] = "#{pluralize(params[:order_item][:quantity], 'item')}  successfully added to cart"
+        #Doesn't seems to work for now
       else
         flash[:alert] = 'There was an error adding your item to the cart'
       end
@@ -25,6 +28,7 @@ class OrderItemsController < ApplicationController
   def destroy
     @order_item = OrderItem.find(params[:id])
     @order_item.destroy
+    redirect_to cart_path
   end
 
   def index

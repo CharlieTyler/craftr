@@ -91,7 +91,11 @@
             </li>
             <li class = "nav-item">
               <%= link_to cart_path, class: "nav-link" do %>
-                <i class="fa fa-2x fa-shopping-cart text-primary" aria-hidden="true"></i>
+                <!-- <i class="fa fa-2x fa-shopping-cart <%= 'text-primary' if @order.order_items.length > 0 %>" aria-hidden="true"></i> -->
+                <span class="fa-stack ">
+                  <i class="fa fa-shopping-cart fa-stack-2x <%= 'text-primary' if @order.order_items.length > 0 %>"></i>
+                  <strong class="fa-stack-1x items"><%= @order.total_quantity if @order.order_items.length > 0 %></strong>
+                </span>
               <% end %>
             </li>
           </ul>
