@@ -1,6 +1,7 @@
 class Checkout::PaymentsController < ApplicationController
   before_action :check_items_in_cart
   before_action :check_order_has_address
+  before_action :check_order_has_shipping_type
 
   def new
 
@@ -44,8 +45,15 @@ class Checkout::PaymentsController < ApplicationController
   end
 
   def check_order_has_address
-    unless Address.find(@order.shipping_address_id).user == @order.user
+    unless @order.shipping_address.user == @order.user
       flash[:alert] = 'Please enter a valid shipping address before attempting to pay'
+      redirect_to checkout_addresses_path
+    end
+  end
+
+  def check_order_has_shipping_type
+    if @order.shipping_type_id.blank?
+      flash[:alert] = 'Please select a shipping type before attempting to pay'
       redirect_to checkout_addresses_path
     end
   end

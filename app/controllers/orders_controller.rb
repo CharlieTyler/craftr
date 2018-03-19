@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
     if @order.valid?
       redirect_to new_checkout_payment_path
     else
-      flash[:alert] = 'There was an error adding your addresses, please try again'
+      flash[:alert] = 'There was an error setting your shipping address, please try again'
       redirect_to new_checkout_address_path
     end
   end
@@ -12,6 +12,6 @@ class OrdersController < ApplicationController
   private
 
   def order_address_params
-    params.require(:order).permit(:billing_address_id, :shipping_address_id)
+    params.require(:order).permit(:shipping_address_id, :shipping_type_id)
   end
 end

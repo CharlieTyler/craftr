@@ -5,6 +5,7 @@ class Checkout::AddressesController < AddressesController
   def new
     # This is first page of checkout process
     @address = Address.new
+    @shipping_types = ShippingType.all
   end
 
   def create
