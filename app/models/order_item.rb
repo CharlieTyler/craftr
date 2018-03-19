@@ -6,7 +6,7 @@ class OrderItem < ApplicationRecord
   validates :order, presence: true
   validates :quantity, numericality: { only_integer: true, greater_than: 0, less_than: 20 }
 
-  def subtotal
-    (quantity * product.price).to_f / 100
+  def subtotal_in_pence
+    quantity * product.price
   end
 end

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # Copied from https://jedrekdomanski.wordpress.com/2017/02/05/building-a-shopping-cart-in-ruby-on-rails-part-1/ and then altered to deal with Devise
+  # Base of this from https://jedrekdomanski.wordpress.com/2017/02/05/building-a-shopping-cart-in-ruby-on-rails-part-1/ and then altered to deal with Devise
   def set_cart
     if user_signed_in?
       if current_user.orders.where.not(state: "complete").present?  # find non-complete order

@@ -8,6 +8,8 @@
     <script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
     <link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://js.stripe.com/v3/"></script>
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <meta name="viewport" content="initial-scale=1">
   </head>
 

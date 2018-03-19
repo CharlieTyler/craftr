@@ -2,11 +2,10 @@ class OrdersController < ApplicationController
   def update_addresses
     @order.update_attributes(order_address_params)
     if @order.valid?
-      flash[:notice] = 'Addresses successfully added'
-      redirect_to root_path
+      redirect_to new_checkout_payment_path
     else
       flash[:alert] = 'There was an error adding your addresses, please try again'
-      new_checkout_address_path
+      redirect_to new_checkout_address_path
     end
   end
 
