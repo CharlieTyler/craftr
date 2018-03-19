@@ -9,9 +9,23 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update_shipping
+    @order.update_attributes(order_shipping_params)
+    if @order.valid?
+      redirect_to new_checkout_address_path
+    else
+      flash[:alert] = 'There was an error setting your shipping method, please try again'
+      redirect_to cart_path
+    end
+  end
+
   private
 
   def order_address_params
-    params.require(:order).permit(:shipping_address_id, :shipping_type_id)
+    params.require(:order).permit(:shipping_address_id)
+  end
+
+  def order_shipping_params
+    params.require(:order).permit(:shipping_type_id)
   end
 end

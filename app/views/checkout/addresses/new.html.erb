@@ -3,25 +3,40 @@
     <div class = "col-12">
       <%= simple_form_for @order, url: order_addresses_path do |f| %>
         <%= f.input :shipping_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id, include_blank: false %>
-        <%= f.input :shipping_type_id, collection: @shipping_types, label_method: :full_shipping_type, value_method: :id, include_blank: false %>
         <%= f.submit "Proceed to payment", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
-  <div class = "row mt-5" id = "new-address">
-    <div class = "col-12">
-      <h6>Add a new address</h6>
+  <button type="button" class="btn btn-secondary my-2" data-toggle="modal" data-target="#newAddressModal">
+    Add new address
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newAddressModal" tabindex="-1" role="dialog" aria-labelledby="newAddressModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newAddressModalLabel">New address</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for @address, url: checkout_addresses_path do |f| %>
+        <div class="modal-body">
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :line_1 %>
+          <%= f.input :line_2 %>
+          <%= f.input :line_3 %>
+          <%= f.input :post_town %>
+          <%= f.input :postcode %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Add address", class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
-    <div class = "col-md-6 col-ld-4">
-    <%= simple_form_for @address, url: checkout_addresses_path do |f| %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :line_1 %>
-      <%= f.input :line_2 %>
-      <%= f.input :line_3 %>
-      <%= f.input :post_town %>
-      <%= f.input :postcode %>
-      <%= f.submit "Add", class: "btn btn-primary col-12" %>
-    <% end %>
   </div>
 </div>

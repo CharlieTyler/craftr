@@ -33,6 +33,8 @@ class OrderItemsController < ApplicationController
 
   def index
     @order_items = @order.order_items
+    @shipping_types = ShippingType.all
+    @default_shipping_type = ShippingType.first
   end
 
   private

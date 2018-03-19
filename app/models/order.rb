@@ -13,7 +13,15 @@ class Order < ApplicationRecord
     order_items.sum(&:quantity)
   end
 
-  def total_amount
+  def total_product_amount
     order_items.to_a.sum(&:subtotal_in_pence)
+  end
+
+  def total_shipping_amount
+    shipping_type.price * total_quantity
+  end
+
+  def total_amount
+    total_product_amount + total_shipping_amount
   end
 end

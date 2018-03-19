@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get "/cart" => "order_items#index"
   resources :order_items, only: [:create, :destroy]
   patch "/order_addresses" => "orders#update_addresses"
+  patch "/order_shipping" => "orders#update_shipping"
 
   # All routes to form part of admin portal
   namespace :admin do

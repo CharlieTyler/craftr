@@ -1,6 +1,7 @@
 class Checkout::AddressesController < AddressesController
   before_action :authenticate_user!
   before_action :check_items_in_cart
+  before_action :check_order_has_shipping_type
   # Inherits params from addresses controller
   def new
     # This is first page of checkout process
@@ -33,6 +34,13 @@ class Checkout::AddressesController < AddressesController
       flash[:alert] = 'Your cart is empty, please add items before checking out'
       redirect_to root_path
     end    
+  end
+
+  def check_order_has_shipping_type
+    if @order.shipping_type_id.blank?
+      flash[:alert] = 'Please select a shipping type before proceeding'
+      redirect_to checkout_addresses_path
+    end
   end
 
 end
