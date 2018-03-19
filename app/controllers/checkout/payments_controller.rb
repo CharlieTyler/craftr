@@ -24,6 +24,7 @@ class Checkout::PaymentsController < ApplicationController
     )
 
     @order.update_attributes(state: "complete")
+    session[:order_id] = nil
     flash[:notice] = "Order confirmed"
     redirect_to root_path
   rescue Stripe::CardError => e
