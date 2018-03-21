@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316101929) do
+ActiveRecord::Schema.define(version: 20180321192424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "line_1"
+    t.string "line_2"
+    t.string "line_3"
+    t.string "post_town"
+    t.string "postcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
 
   create_table "article_categories", force: :cascade do |t|
     t.integer "article_id"
@@ -104,6 +117,7 @@ ActiveRecord::Schema.define(version: 20180316101929) do
     t.integer "instagram_user_id"
     t.string "slug"
     t.string "logo"
+    t.string "youtube_video_url"
     t.index ["slug"], name: "index_distilleries_on_slug", unique: true
   end
 
@@ -126,6 +140,23 @@ ActiveRecord::Schema.define(version: 20180316101929) do
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.integer "product_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "order_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "state"
+    t.integer "shipping_address_id"
+    t.integer "shipping_type_id"
   end
 
   create_table "product_images", force: :cascade do |t|
@@ -214,6 +245,14 @@ ActiveRecord::Schema.define(version: 20180316101929) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_reviews_on_product_id"
     t.index ["user_id", "product_id"], name: "index_reviews_on_user_id_and_product_id"
+  end
+
+  create_table "shipping_types", force: :cascade do |t|
+    t.string "name"
+    t.string "shipping_time"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_favourite_products", force: :cascade do |t|

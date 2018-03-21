@@ -1,3 +1,21 @@
+<% if user_signed_in? && current_user.admin %>
+  <div class = "container py-2">
+    <div class = "row">
+      <div class = "col-md-6 offset-md-3">
+        <h6>Admin functions</h6>
+        <div class = "row">
+          <div class = "col-6">
+            <%= link_to "Edit", edit_admin_distillery_path(@distillery), class: "btn btn-secondary col-10 offset-1" %>
+          </div>
+          <div class = "col-6">
+            <%= link_to "Delete", admin_distillery_path(@distillery), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger col-10 offset-1" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class = "container-fluid">
   <%= render partial: "distillery_grid", locals: {distillery: @distillery, include_people: true, include_range: true, include_button: false} %>
 </div>
@@ -36,6 +54,15 @@
 
 <div class = "secondary-nav-content">
   <div class = ""> <!-- For background colour -->
+    <% if @distillery.youtube_video_url.present? %>
+      <div class = "container" id = "video">
+        <div class = "row">
+          <div class = "col-12 text-center">
+            <p><%= raw(youtube_embed(@distillery.youtube_video_url)) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
     <div class = "container" id = "blurb">
       <div class = "row">
         <div class = "col-md-6 offset-md-3">

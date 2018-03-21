@@ -36,6 +36,7 @@ class Admin::DistilleriesController < AdminController
     params.require(:distillery).permit(:name, 
                                        :location, 
                                        :logo,
+                                       :youtube_video_url,
                                        :summary_text, 
                                        :people_text, 
                                        :range_text,

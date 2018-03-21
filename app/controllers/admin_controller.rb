@@ -3,7 +3,8 @@ class AdminController < ApplicationController
 
   def require_admin
     unless user_signed_in? && current_user.admin
-      render plain: 'Unauthorized', status: :unauthorized
+      flash[:alert] = "Please log in as an admin to be granted access"
+      redirect_to new_user_session_path
     end
   end
 end
