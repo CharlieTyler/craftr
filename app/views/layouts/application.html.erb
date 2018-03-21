@@ -50,11 +50,14 @@
                   </div>
                   <div class = "row my-2">
                     <div class = "col-8 offset-2">
-                      <%= link_to "Browse by distillery", distilleries_path, class: "btn btn-primary col-12" %>
+                      <%= link_to "I'm feeling lucky", random_product_path, class: "btn btn-primary col-12", method: :post %>
                     </div>
                   </div>
                 </div>
               </div>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Distilleries", distilleries_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to "Recipes", recipes_path, class: "nav-link" %>

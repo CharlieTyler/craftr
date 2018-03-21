@@ -13,4 +13,9 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
   end
+
+  def random
+    @product = Product.order("RANDOM()").first
+    redirect_to product_path(@product)
+  end
 end

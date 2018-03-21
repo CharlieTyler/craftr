@@ -44,6 +44,6 @@ class Article < ApplicationRecord
     all_text = description_first + description_second + description_third
     word_count = all_text.split.size
     word_count
-    # (word_count / 250).to_f.round(0)
+    (word_count / 200).to_f.round(0)
   end
 end

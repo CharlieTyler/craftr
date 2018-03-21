@@ -20,8 +20,8 @@
         <%= f.input :website %>
         <%= f.input :facebook %>
         <%= f.input :instagram_user_id, hint: 'Use https://smashballoon.com/instagram-feed/find-instagram-user-id/ to get id from username' %>
-        <%= f.input :longitude %>
-        <%= f.input :latitude %>
+        <%= f.input :latitude, hint: 'first number in google maps url' %>
+        <%= f.input :longitude, hint: 'second number, incl - sign, in google maps url' %>
         <br />
         <%= f.submit "Update", class: "btn btn-primary" %>
       <% end %>

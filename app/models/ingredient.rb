@@ -14,6 +14,7 @@ class Ingredient < ApplicationRecord
     'Herb': 'Herb',
     'Bitter': 'Bitter',
     'Flavouring': 'Flavouring',
+    'Garnish': 'Garnish',
     'Other': 'Other'
   }
 end

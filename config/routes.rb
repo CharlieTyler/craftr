@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/search" => "search#search" 
 
   # Standard pages
+  post "random/product" => "products#random"
   resources :products, only: [:show, :index] do
     resources :reviews, only: [:create, :update, :destroy]
     resources :favourite_products, only: [:create, :destroy]
