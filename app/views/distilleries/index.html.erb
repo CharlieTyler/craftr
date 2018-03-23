@@ -41,11 +41,11 @@
         // windowContent += "<div><%= link_to('See More', distillery_path(distillery)) %></div>";
 
         
-        <%= escape_javascript distillery.name.delete(' ') %> = new google.maps.InfoWindow({
+        <%= escape_javascript distillery.name.delete(' ') + 'window' %> = new google.maps.InfoWindow({
           content: windowContent
         });
-        marker.addListener('click', function() {
-          <%= escape_javascript distillery.name.delete(' ') %>.open(map, <%= escape_javascript distillery.name.delete(' ') + 'marker' %>);
+        <%= escape_javascript distillery.name.delete(' ') + 'marker' %>.addListener('click', function() {
+          <%= escape_javascript distillery.name.delete(' ') + 'window' %>.open(map, <%= escape_javascript distillery.name.delete(' ') + 'marker' %>);
         });
 
       <% end %>
