@@ -8,8 +8,8 @@ class CategoriesController < ApplicationController
     @products = @category.products
     @recipes  = @category.recipes
     @articles = @category.articles
-    # unless @category.instagram_hashtag.blank?
-    #   @instas   = InstagramApi.tag(@category.instagram_hashtag).recent_media
-    # end
+    unless @category.instagram_hashtag.blank?
+      @instas   = InstagramApi.tag(@category.instagram_hashtag).recent_media
+    end
   end
 end

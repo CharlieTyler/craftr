@@ -4,9 +4,9 @@ class RecipesController < ApplicationController
     @recipe   = Recipe.friendly.find(params[:id])
     @comment  = RecipeComment.new
     @comments = @recipe.recipe_comments.all
-    # unless @recipe.instagram_hashtag.blank?
-    #   @instas   = InstagramApi.tag(@recipe.instagram_hashtag).recent_media
-    # end
+    unless @recipe.instagram_hashtag.blank?
+      @instas   = InstagramApi.tag(@recipe.instagram_hashtag).recent_media
+    end
   end
 
   def index
