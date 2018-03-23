@@ -31,7 +31,7 @@
 
       <% @distilleries.each do |distillery| %>
         var distilleryLatLong = {lat: <%= distillery.latitude %>, lng: <%= distillery.longitude %>};
-        var marker = new google.maps.Marker({
+        var <%= escape_javascript distillery.name.delete(' ') + 'marker' %> = new google.maps.Marker({
           position: distilleryLatLong,
           map: map,
           title: '<%= distillery.name %>'
@@ -45,7 +45,7 @@
           content: windowContent
         });
         marker.addListener('click', function() {
-          <%= escape_javascript distillery.name.delete(' ') %>.open(map, marker);
+          <%= escape_javascript distillery.name.delete(' ') %>.open(map, <%= escape_javascript distillery.name.delete(' ') + 'marker' %>);
         });
 
       <% end %>
