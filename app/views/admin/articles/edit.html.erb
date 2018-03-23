@@ -1,0 +1,225 @@
+<div class = "container-fluid">
+  <div class = "row">
+    <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <%= simple_form_for @article, url: admin_article_path(@article) do |f| %>
+        <%= f.input :title %>
+        <%= f.input :tags %>
+        <%= f.input :description %>
+        <%= f.input :banner_image %>
+        <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
+        <%= f.input :description_first, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_first %>
+        <%= f.input :description_second, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_second %>
+        <%= f.input :description_third, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_third %>
+        <h1>Joins</h1>
+        <div class = "all_category_fields">
+          <%= f.simple_fields_for :article_categories do |ac| %>
+            <div class = "row category_field">
+              <div class = "col-6">
+                <%= ac.input :category_id, collection: @categories, value_method: :id  %>
+              </div>
+              <hr />
+            </div>
+          <% end %>
+        </div>
+        <p><a href="#" class="add_category_field">+ add another</a></p>
+        <br />
+        <div class = "all_distillery_fields">
+          <%= f.simple_fields_for :article_distilleries do |ad| %>
+            <div class = "row distillery_field">
+              <div class = "col-6">
+                <%= ad.input :distillery_id, collection: @distilleries, value_method: :id  %>
+              </div>
+              <hr />
+            </div>
+          <% end %>
+        </div>
+        <p><a href="#" class="add_distillery_field">+ add another</a></p>
+        <br />
+        <div class = "all_product_fields">
+          <%= f.simple_fields_for :article_products do |ap| %>
+            <div class = "row product_field">
+              <div class = "col-6">
+                <%= ap.input :product_id, collection: @products, value_method: :id  %>
+              </div>
+              <hr />
+            </div>
+          <% end %>
+        </div>
+        <p><a href="#" class="add_product_field">+ add another</a></p>
+        <br />
+        <div class = "all_recipe_fields">
+          <%= f.simple_fields_for :article_recipes do |ar| %>
+            <div class = "row recipe_field">
+              <div class = "col-6">
+                <%= ar.input :recipe_id, collection: @recipes, value_method: :id  %>
+              </div>
+              <hr />
+            </div>
+          <% end %>
+        </div>
+        <p><a href="#" class="add_recipe_field">+ add another</a></p>
+        <br />
+        <%= f.submit "Create", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    //Categorys nested attributes
+    var categoryIndex = $('.category_field').length - 1;
+
+    $(".add_category_field").click(function(evt) {
+      evt.preventDefault();
+      categoryIndex++;
+
+      // clone the labels and select fields
+      var newFields = $('.category_field').first().clone().appendTo( ".all_category_fields" );
+      console.log(newFields);
+      // change the select field names and ids
+      newFields.find("select").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, categoryIndex);
+        newName = $(this).attr("name").replace(/0/g, categoryIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
+      //Add a remove button for all apart from the first recipe_category
+      newFields.find("hr").before('<div class = "btn btn-danger col-6 offset-3 remove-field">Remove</div>');
+      $('.remove-field').click(removeCategoryFields);
+
+      // change the label fors
+      newFields.find("label").each(function(index) {
+        newFor = $(this).attr("for").replace(/0/g, categoryIndex);
+        $(this).attr("for", newFor);
+      });
+    });
+
+    function removeCategoryFields(evt) {
+      evt.preventDefault();
+      $(this).parent('div').remove();
+      categoryIndex--;
+    }
+
+
+    //Distillerys nested attributes
+    var distilleryIndex = $('.distillery_field').length - 1;
+
+    $(".add_distillery_field").click(function(evt) {
+      evt.preventDefault();
+      distilleryIndex++;
+
+      // clone the labels and select fields
+      var newFields = $('.distillery_field').first().clone().appendTo( ".all_distillery_fields" );
+      // change the select field names and ids
+      newFields.find("select").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, distilleryIndex);
+        newName = $(this).attr("name").replace(/0/g, distilleryIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
+      //Add a remove button for all apart from the first recipe_distillery
+      newFields.find("hr").before('<div class = "btn btn-danger col-6 offset-3 remove-field">Remove</div>');
+      $('.remove-field').click(removeDistilleryFields);
+
+      // change the label fors
+      newFields.find("label").each(function(index) {
+        newFor = $(this).attr("for").replace(/0/g, distilleryIndex);
+        $(this).attr("for", newFor);
+      });
+    });
+
+    function removeDistilleryFields(evt) {
+      evt.preventDefault();
+      $(this).parent('div').remove();
+      distilleryIndex--;
+    }
+
+
+    //Product nested attributes
+    var productIndex = $('.product_field').length - 1;
+
+    $(".add_product_field").click(function(evt) {
+      evt.preventDefault();
+      productIndex++;
+
+      // clone the labels and select fields
+      var newFields = $('.product_field').first().clone().appendTo( ".all_product_fields" );
+      // change the select field names and ids
+      newFields.find("select").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, productIndex);
+        newName = $(this).attr("name").replace(/0/g, productIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
+      //Add a remove button for all apart from the first recipe_product
+      newFields.find("hr").before('<div class = "btn btn-danger col-6 offset-3 remove-field">Remove</div>');
+      $('.remove-field').click(removeProductFields);
+
+      // change the label fors
+      newFields.find("label").each(function(index) {
+        newFor = $(this).attr("for").replace(/0/g, productIndex);
+        $(this).attr("for", newFor);
+      });
+    });
+
+    function removeProductFields(evt) {
+      evt.preventDefault();
+      $(this).parent('div').remove();
+      productIndex--;
+    }
+
+    
+    
+
+    //Recipe nested attributes
+    var recipeIndex = $('.recipe_field').length - 1;
+
+    $(".add_recipe_field").click(function(evt) {
+      evt.preventDefault();
+      recipeIndex++;
+
+      // clone the labels and select fields
+      var newFields = $('.recipe_field').first().clone().appendTo( ".all_recipe_fields" );
+      // change the select field names and ids
+      newFields.find("select").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, recipeIndex);
+        newName = $(this).attr("name").replace(/0/g, recipeIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
+      //Add a remove button for all apart from the first recipe_recipe
+      newFields.find("hr").before('<div class = "btn btn-danger col-6 offset-3 remove-field">Remove</div>');
+      $('.remove-field').click(removeRecipeFields);
+
+      // change the label fors
+      newFields.find("label").each(function(index) {
+        newFor = $(this).attr("for").replace(/0/g, recipeIndex);
+        $(this).attr("for", newFor);
+      });
+    });
+
+    function removeRecipeFields(evt) {
+      evt.preventDefault();
+      $(this).parent('div').remove();
+      recipeIndex--;
+    }
+
+    var toolbarOptions = ['bold', 'italic', 'underline', 'strike'];
+
+    var quill = new Quill('#editor', {
+      modules: {
+        toolbar: toolbarOptions
+      }
+    });
+  });
+
+  
+</script>

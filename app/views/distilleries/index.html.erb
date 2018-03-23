@@ -1,12 +1,8 @@
-<div class = "distilleries-background">
-  <div class = "container">
-    <div class = "row pt-5">
-      <div class = "col-md-8 offset-md-2 text-center">
-        <div class = "mt-5 py-2 px-2">
-          <h1 class = "display-4"><span class = "logo-text px-1">Craftr partner distilleries</span></h1>
-          <h3 class = "text-white"><span class = "background-translucent-black">See all the distilleries that Craftr works with</span></h6>
-        </div>
-      </div>
+<div class = "container-fluid mt-3" id = "map">
+  <h2 class = "my-3">Our partner distilleries</h2>
+  <div class = "row">
+    <div class = "col-12">
+      <div id="distillery-map"></div>
     </div>
   </div>
 </div>
@@ -21,3 +17,38 @@
     </div>
   </div>
 </div> 
+
+<script>
+
+  function initMap() {
+    
+      var centralPoint = {lat: 54.1962717, lng: -4.4044171};
+
+      var map = new google.maps.Map(document.getElementById('distillery-map'), {
+        zoom: 5.8,
+        center: centralPoint
+      });
+
+      <% @distilleries.each do |distillery| %>
+        var distilleryLatLong = {lat: <%= distillery.latitude %>, lng: <%= distillery.longitude %>};
+        var marker = new google.maps.Marker({
+          position: distilleryLatLong,
+          map: map,
+          title: '<%= distillery.name %>'
+        });
+
+        windowContent = "<h5><%= escape_javascript distillery.name %></h5><div class='article-text'><%= escape_javascript distillery.summary_text %></div><%= escape_javascript link_to 'See more', distillery_path(distillery), class: 'btn btn-primary my-2' %>";
+        // windowContent += "<div><%= link_to('See More', distillery_path(distillery)) %></div>";
+
+        infowindow = new google.maps.InfoWindow({
+          content: windowContent
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      <% end %>
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOgMzuZzpcbkMy3Y1sZYOrW4kZ0lDoKxc&callback=initMap">
+</script>
