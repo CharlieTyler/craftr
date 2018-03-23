@@ -40,12 +40,14 @@
         windowContent = "<h5><%= escape_javascript distillery.name %></h5><div class='article-text'><%= escape_javascript distillery.summary_text %></div><%= escape_javascript link_to 'See more', distillery_path(distillery), class: 'btn btn-primary my-2' %>";
         // windowContent += "<div><%= link_to('See More', distillery_path(distillery)) %></div>";
 
-        infowindow = new google.maps.InfoWindow({
+        
+        <%= escape_javascript distillery.name.delete(' ') %> = new google.maps.InfoWindow({
           content: windowContent
         });
         marker.addListener('click', function() {
-          infowindow.open(map, marker);
+          <%= escape_javascript distillery.name.delete(' ') %>.open(map, marker);
         });
+
       <% end %>
   }
 </script>
