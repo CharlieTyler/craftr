@@ -10,12 +10,13 @@
         <div class = "lister-product-image-overlay px-3">
           <p class = "pt-3 article-text"><%= truncate(simple_format(product.description_short), length: 100) %></p>
           <h5 class = "pt-4"><%= render partial: "products/star_rating", locals: {product: product} %></h5>
+          <%= link_to "See more", product_path(product), class: "btn btn-primary col-12" %>
         </div>
       </div>
-      <div class="card-block text-left">
+      <div class="card-block text-left py-2">
         <h4 class="card-title mb-2"><%= product.name %></h4>
         <p class = "card-subtitle mb-2 text-muted">from <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
-        <h4 class = "text-primary"><%= render partial: 'products/price_formatted', locals: {product: product} %></h4>
+        <h4 class = "text-primary mb-0"><%= render partial: 'products/price_formatted', locals: {product: product} %></h4>
       </div>
     </div>
   <% end %>
