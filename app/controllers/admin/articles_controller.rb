@@ -27,7 +27,7 @@ class Admin::ArticlesController < AdminController
   end
 
   def edit
-
+    
   end
 
   def update

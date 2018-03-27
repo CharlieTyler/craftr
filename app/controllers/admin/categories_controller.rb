@@ -36,6 +36,7 @@ class Admin::CategoriesController < AdminController
     params.require(:category).permit(:name, 
                                      :icon,
                                      :banner_image,
+                                     :featured,
                                      :instagram_hashtag)
   end
 end
