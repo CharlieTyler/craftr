@@ -38,9 +38,21 @@
     </div>
   <% end %>
 
+  <% if distillery.youtube_video_url.present? %>
+    <div class = "container" id = "video">
+      <div class = "row">
+        <div class = "col-12 text-center">
+          <div class = "embed-responsive embed-responsive-16by9">
+            <%= raw(youtube_embed(@distillery.youtube_video_url)) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <% if include_button %>
     <div class = "row">
-      <%= link_to "Read more", distillery_path(distillery), class: "my-2 btn btn-secondary col-10 offset-1 col-md-6 offset-md-3" %>
+      <%= link_to "More about #{distillery.name}", distillery_path(distillery), class: "my-2 btn btn-secondary col-10 offset-1 col-md-6 offset-md-3" %>
     </div>
   <% end %>
 </div>

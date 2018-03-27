@@ -25,6 +25,17 @@
             <% @product.product_images.each do |image| %>
               <%= image_tag image.photo_url(:full).to_s, class: "product-image-large" %>
             <% end %>
+            <% if @distillery.youtube_video_url.present? %>
+              <div class = "container" id = "video">
+                <div class = "row">
+                  <div class = "col-12 text-center">
+                    <div class = "embed-responsive embed-responsive-16by9">
+                      <%= raw(youtube_embed(@distillery.youtube_video_url)) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
 
@@ -131,8 +142,10 @@
 
   <!-- Distillery -->
   <div class = "row" id = "distillery">
-    <h1>The distillery</h1>
-    <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true, include_button: true}%>
+    <h3>The distillery</h3>
+    <div class = "col-12">
+      <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true, include_button: true}%>
+    </div>
   </div>
 
   <% if @other_distillery_products.present? %>

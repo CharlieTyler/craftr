@@ -29,15 +29,15 @@ class CategoryBannerUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
   version :thumb do
-    process :resize_to_fit => [32, 32]
+    process :resize_to_fill => [32, 32, gravity = 'Center']
   end
 
   version :navbar do
-    process :resize_to_fit => [256, 256]
+    process :resize_to_fill => [256, 256, gravity = 'Center']
   end
   
   version :full do
-    process :resize_to_fit => [800, 800]
+    process :resize_to_fill => [800, 800, gravity = 'Center']
   end
 
   # Create different versions of your uploaded files:

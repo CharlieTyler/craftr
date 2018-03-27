@@ -54,17 +54,6 @@
 
 <div class = "secondary-nav-content">
   <div class = ""> <!-- For background colour -->
-    <% if @distillery.youtube_video_url.present? %>
-      <div class = "container" id = "video">
-        <div class = "row">
-          <div class = "col-12 text-center">
-            <div class = "embed-responsive embed-responsive-16by9">
-              <%= raw(youtube_embed(@distillery.youtube_video_url)) %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
     <div class = "container" id = "blurb">
       <div class = "row">
         <div class = "col-md-6 offset-md-3">
