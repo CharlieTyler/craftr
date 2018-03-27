@@ -32,13 +32,13 @@
             <a class="nav-link no-click" href="#categories"><h6>Categories</h6></a>
           </li>
           <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
+          </li>
+          <li class="nav-item mid-nav">
             <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
           </li>
           <li class="nav-item mid-nav">
             <a class="nav-link no-click" href="#distilleries"><h6>Distilleries</h6></a>
-          </li>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
           </li>
           <% unless @instas.blank? %>
             <li class="nav-item mid-nav">
@@ -64,44 +64,6 @@
         <h3>Our categories</h3>
         <div class = "row py-3 text-center">
           <%= render partial: "categories/lister_category", collection: @featured_categories, as: :category %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class = "container">
-  <div class = "row">
-    <div class = "col-12">
-      <hr class = "booyah-line mt-1"/>
-    </div>
-  </div>
-</div>
-
-<!-- Recipes -->
-<div class = "" id = "recipes">
-  <div class = "container py-3">
-    <span class = "">
-      <h3>Latest recipes</h3>
-    </span>
-    <div class = "row text-center">
-      <div class = "col-12">
-        <div class = "row">
-          <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Distilleries -->
-<div class = "" id = "distilleries">
-  <div class = "container py-3">
-    <div class = "row">
-      <div class = "col">
-        <h3>Newest distilleries</h3>
-        <div class = "row py-3 text-center">
-          <%= render partial: "distilleries/lister_distillery", collection: @featured_distilleries, as: :distillery %>
         </div>
       </div>
     </div>
@@ -149,6 +111,44 @@
     </div>
   </div>
 <% end %>
+
+<!-- Recipes -->
+<div class = "pt-1" id = "recipes">
+  <div class = "container py-3">
+    <span class = "">
+      <h3>Latest recipes</h3>
+    </span>
+    <div class = "row text-center">
+      <div class = "col-12">
+        <div class = "row">
+          <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Distilleries -->
+<div class = "" id = "distilleries">
+  <div class = "container py-3">
+    <div class = "row">
+      <div class = "col">
+        <h3>Newest distilleries</h3>
+        <div class = "row py-3 text-center">
+          <%= render partial: "distilleries/lister_distillery", collection: @featured_distilleries, as: :distillery %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <hr class = "booyah-line mt-1"/>
+    </div>
+  </div>
+</div>
 
 <% unless @instas.blank? %>
   <div class = "py-3" id = "social">

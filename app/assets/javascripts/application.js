@@ -19,4 +19,5 @@
 //= require bootstrap-sprockets
 //= require quill.global
 //= require owl.carousel2
+//= require cookies_eu
 //= require_tree .
