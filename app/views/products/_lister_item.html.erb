@@ -1,18 +1,21 @@
 <div class = "col-6 col-md-4 col-lg-3 my-2">
   <%= link_to product_path(product) do %>
     <div class="card h-100">
-      <div class = "card-img-top text-center">
+      <div class = "card-img-top lister-product-container text-center">
         <% if product.product_images.present? %>
           <%= image_tag product.product_images.first.photo_url(:preview).to_s, class: "img-fluid lister-product-image" %>
         <% else %>
           <%= image_tag "booze_placeholder.jpg", class: "img-fluid" %>
         <% end %>
+        <div class = "lister-product-image-overlay px-3">
+          <p class = "pt-3 article-text"><%= truncate(simple_format(product.description_short), length: 100) %></p>
+          <h5 class = "pt-4"><%= render partial: "products/star_rating", locals: {product: product} %></h5>
+        </div>
       </div>
-      <div class="card-block">
-        <h4 class="card-title"><%= product.name %></h4>
-        <p class="card-text"><%= truncate(simple_format(product.description_short), length: 100) %></p>
-        <%= render partial: "products/star_rating", locals: {product: product} %>
-        <%= link_to "See more", product_path(product), class: "btn btn-primary mt-auto" %>
+      <div class="card-block text-left">
+        <h4 class="card-title mb-2"><%= product.name %></h4>
+        <p class = "card-subtitle mb-2 text-muted">from <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
+        <h4 class = "text-primary"><%= render partial: 'products/price_formatted', locals: {product: product} %></h4>
       </div>
     </div>
   <% end %>
