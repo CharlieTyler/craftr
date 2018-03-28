@@ -5,6 +5,17 @@
         <div class = "mt-5 py-2 px-2">
           <h1 class = "display-4"><span class = "logo-text px-1">Craftr articles</span></h1>
           <h3 class = "text-white my-3"><span class = "background-translucent-black">Thoughtful discussion on all things craft spirit</span></h6>
+          <!-- Could probably put this into a partial -->
+          <% if @tags.length > 5 %>
+            <div class = "row">
+              <div class = "col-12 text-center">
+                <h5 class = "mt-3 text-white">Top collections</h5>
+                <% @tags.each do |tag| %>
+                  <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
