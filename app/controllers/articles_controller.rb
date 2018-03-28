@@ -4,11 +4,11 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    if params[:tag]
-      @tag = ActsAsTaggableOn::Tag.friendly.find(params[:tag])
-      @articles = Article.tagged_with(@tag)
-    else
-      @articles = Article.all
-    end
+    @articles = Article.all
+  end
+
+  def tag
+    @tag = ActsAsTaggableOn::Tag.friendly.find(params[:tag])
+    @articles = Article.tagged_with(@tag)
   end
 end

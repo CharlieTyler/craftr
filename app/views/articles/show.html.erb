@@ -21,6 +21,9 @@
     <div class = "col-md-8 offset-md-2 text-center">
       <h1 class = "py-5 text-white display-4"><span class = "background-translucent-black px-3 py-2"><%= @article.title %></span></h1>
       <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @article.description %></span></h6>
+      <% @article.tags.each do |tag| %>
+        <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
+      <% end %>
     </div>
   </div>
 </div>
