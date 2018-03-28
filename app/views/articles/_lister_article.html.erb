@@ -6,7 +6,7 @@
       </div>
       <div class="card-block">
         <h4 class="card-title"><%= article.title %></h4>
-        <p class="card-text"><%= truncate(article.description, length: 100) %></p>
+        <p class="card-text"><%= truncate_html(article.description, length: 100) %></p>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item text-muted"><em><%= article.read_time %> minute read</em></li>

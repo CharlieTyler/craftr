@@ -6,7 +6,7 @@
       </div>
       <div class="card-block">
         <h4 class="card-title"><%= recipe.name %></h4>
-        <p class="card-text"><%= truncate(recipe.description, length: 100) %></p>
+        <p class="card-text"><%= truncate_html(recipe.description, length: 100) %></p>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item text-muted"><em><%= recipe.ingredient_list %></em></li>

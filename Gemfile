@@ -85,3 +85,5 @@ gem 'mini_magick'
 gem 'fog-aws'
 
 gem 'cookies_eu'
+
+gem 'truncate_html'

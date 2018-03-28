@@ -7,7 +7,7 @@
         <%= image_tag "booze_placeholder.jpg", class: "img-fluid" %>
       <% end %>
       <div class = "lister-product-image-overlay px-3">
-        <p class = "pt-3"><small><%= truncate(simple_format(product.description_short), length: 100) %></small></p>
+        <p class = "pt-3"><small><%= truncate_html(simple_format(product.description_short), length: 100) %></small></p>
         <h5 class = "pt-4"><%= render partial: "products/star_rating", locals: {product: product} %></h5>
         <%= link_to "See more", product_path(product), class: "btn btn-primary col-12" %>
       </div>
