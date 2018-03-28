@@ -28,7 +28,7 @@ class Admin::ProductsController < AdminController
     if @product.valid?
       redirect_to product_path(@product)
     else
-      return render :new, status: :unprocessable_entity
+      return render :edit, status: :unprocessable_entity
     end
   end
 

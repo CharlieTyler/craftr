@@ -4,6 +4,7 @@
       <%= simple_form_for @article, url: admin_articles_path do |f| %>
         <%= f.input :title %>
         <%= f.input :description %>
+        <%= f.input :tag_list, label: "Tags, separated by commas" %>
         <%= f.input :banner_image %>
         <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
         <%= f.input :description_first, input_html: { class: 'quill_container' } %>

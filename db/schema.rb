@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323222533) do
+ActiveRecord::Schema.define(version: 20180328110115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20180323222533) do
     t.text "description_third"
     t.integer "author_id"
     t.string "slug"
-    t.string "tags"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
@@ -119,7 +118,6 @@ ActiveRecord::Schema.define(version: 20180323222533) do
     t.string "slug"
     t.string "logo"
     t.string "youtube_video_url"
-    t.string "tags"
     t.index ["slug"], name: "index_distilleries_on_slug", unique: true
   end
 
@@ -187,7 +185,6 @@ ActiveRecord::Schema.define(version: 20180323222533) do
     t.integer "subtle_to_intense"
     t.integer "fresh_to_complex"
     t.integer "size_ml"
-    t.string "tags"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
@@ -230,7 +227,6 @@ ActiveRecord::Schema.define(version: 20180323222533) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "featured", default: false
-    t.string "tags"
     t.string "banner_image"
     t.text "blurb"
     t.text "variants"
@@ -280,7 +276,9 @@ ActiveRecord::Schema.define(version: 20180323222533) do
   create_table "tags", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "taggings_count", default: 0
+    t.string "slug"
     t.index ["name"], name: "index_tags_on_name", unique: true
+    t.index ["slug"], name: "index_tags_on_slug"
   end
 
   create_table "user_favourite_products", force: :cascade do |t|

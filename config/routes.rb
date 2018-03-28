@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "/me" => "users#profile" 
   resources :distilleries, only: [:show, :index]
   resources :articles, only: [:show, :index]
+  get 'articles/collections/:tag', to: 'articles#index', as: :article_tag
   resources :categories, only: [:show]
   resources :recipes do 
     resources :favourite_recipes, only: [:create, :destroy]

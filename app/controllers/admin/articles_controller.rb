@@ -27,11 +27,30 @@ class Admin::ArticlesController < AdminController
   end
 
   def edit
+    @article = Article.friendly.find(params[:id])
+
+    #build joins
+    @article.article_categories.build
+    @article.article_distilleries.build
+    @article.article_products.build
+    @article.article_recipes.build
     
+    #options for joins
+    @authors = Author.all
+    @categories = Category.all
+    @distilleries = Distillery.all
+    @products = Product.all
+    @recipes = Recipe.all
   end
 
   def update
-
+    @article = Article.friendly.find(params[:id])
+    @article.update_attributes(article_params)
+    if @article.valid?
+      redirect_to article_path(@article)
+    else
+      return render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -43,6 +62,7 @@ class Admin::ArticlesController < AdminController
   def article_params
     params.require(:article).permit(:title,
                                     :description,
+                                    :tag_list,
                                     :banner_image,
                                     :image_first,
                                     :image_second,

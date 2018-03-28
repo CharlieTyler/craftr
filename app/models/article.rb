@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
+  acts_as_taggable_on :tags
 
   belongs_to :author
 
