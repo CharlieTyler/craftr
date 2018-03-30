@@ -148,7 +148,7 @@
     </div>
   </div>
 
-  <% if @other_distillery_products.present? %>
+  <% unless @other_distillery_products.blank? %>
   <!-- Other products from same distillery -->
     <div class = "row">
       <div class = "col-12">
@@ -162,7 +162,7 @@
   <% unless @recipes.blank? %>
     <div class = "row" id = "recipes">
       <div class = "col-12">
-        <h1>Recipes</h1>
+        <h4>Recipes</h4>
         <div class = "row">
           <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
         </div>
@@ -171,9 +171,9 @@
   <% end %>
 
   <!-- Reviews -->
-  <div class = "row" id = "reviews">
+  <div class = "row py-1" id = "reviews">
     <div class = "col-12">
-      <h3>Reviews</h3>
+      <h4>Reviews (<%= @product.reviews.length %>)</h4>
       <% if user_signed_in? %>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newReviewModal">
           + Add a review
@@ -182,7 +182,13 @@
         <p>Please <%= link_to "login", new_user_session_path, class: "btn btn-primary" %> or <%= link_to "sign up", new_user_registration_path, class: "btn btn-secondary" %> to add a review</p>
       <% end %>
       <div class = "row">
-        <%= render partial: "review", collection: @product.reviews %>
+        <% if @product.reviews.length == 0 %>
+          <div class = "col-12">
+            <p>No reviews yet. Be the first to add one!</p>
+          </div>
+        <% else %>
+          <%= render partial: "review", collection: @product.reviews %>
+        <% end %>
       </div>
       <div class = "clear"></div>
     </div>

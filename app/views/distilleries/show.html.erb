@@ -109,7 +109,13 @@
   <div class = "container mt-3" id = "products">
     <h3><%= "#{@distillery.name}'s products" %></h3>
     <div class = "row">
-      <%= render partial: 'products/lister_item', collection: @distillery.products, as: :product %>
+      <% if @distillery.products.length == 0 %>
+        <div class = "col-12">
+          <p><%= @distillery.name %> doesn't have any products to sell yet, but are hard at work getting their first one ready!</p>
+        </div>
+      <% else %>
+        <%= render partial: 'products/lister_item', collection: @distillery.products, as: :product %>
+      <% end %>
     </div>
   </div>
 
