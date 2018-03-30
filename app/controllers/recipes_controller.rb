@@ -13,6 +13,12 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  def tag
+    @tag = ActsAsTaggableOn::Tag.friendly.find(params[:tag])
+    @tags = Recipe.tag_counts_on(:rtags)
+    @recipes = Recipe.tagged_with(@tag)
+  end
+
   def new
     @recipe = Recipe.new
     @recipe.recipe_ingredients.build
@@ -75,7 +81,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, 
-                                   :tag,
+                                   :rtag_list,
                                    :blurb,
                                    :variants,
                                    :image, 

@@ -5,7 +5,7 @@
       <p>Add an ingredient at the bottom of this page</p>
       <%= simple_form_for @recipe do |f| %>
         <%= f.input :name %>
-        <%= f.input :tag %>
+        <%= f.input :rtag_list, label: "Tags, separated by commas" %>
         <%= f.input :description %>
         <%= f.input :instagram_hashtag %>
         <%= f.input :blurb, input_html: { class: 'quill_container' } %>

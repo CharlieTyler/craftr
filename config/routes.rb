@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :favourite_recipes, only: [:create, :destroy]
     resources :recipe_comments, only: [:create, :destroy]
   end
+  get 'recipes/collections/:tag', to: 'recipes#tag', as: :recipe_tag
   resources :ingredients, only: [:create]
 
   # All routes to form part of admin portal

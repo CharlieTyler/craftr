@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
 
   def tag
     @tag = ActsAsTaggableOn::Tag.friendly.find(params[:tag])
-    @tags = ActsAsTaggableOn::Tag.all
+    @tags = Article.tag_counts_on(:tags)
     @articles = Article.tagged_with(@tag)
   end
 end

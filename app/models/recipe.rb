@@ -1,6 +1,8 @@
 class Recipe < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  acts_as_taggable_on :rtags
   
   belongs_to :author
   has_many :recipe_ingredients, dependent: :destroy
