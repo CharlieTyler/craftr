@@ -188,8 +188,9 @@
 
 <script>
   $(function() {
-    var stickyNavTop = $('.secondary-nav').offset().top;
-      
+    setTimeout(function (){
+      var stickyNavTop = $('.secondary-nav').offset().top;
+        
       // our function that decides weather the navigation bar should have "fixed" css position or not.
       var stickyNav = function(){
         var scrollTop = $(window).scrollTop(); // our current vertical position from the top
@@ -201,12 +202,13 @@
         } else {
             $('.secondary-nav').removeClass('sticky'); 
         }
-    };
+      };
 
-    stickyNav();
-    // and run it again every time you scroll
-    $(window).scroll(function() {
       stickyNav();
-    });
+      // and run it again every time you scroll
+      $(window).scroll(function() {
+        stickyNav();
+      });
+    }, 1000);
   });
 </script>
