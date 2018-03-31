@@ -16,6 +16,8 @@ class Product < ApplicationRecord
   has_many :user_favourite_products, dependent: :destroy
   has_many :favourited_by, through: :user_favourite_products, source: :user
 
+  has_many :user_product_views
+
   accepts_nested_attributes_for :product_images
 
   validates :name, presence: true
@@ -75,5 +77,9 @@ class Product < ApplicationRecord
     else
       bs
     end
+  end
+
+  def other_popular_products
+    Product.where("(category_id = ?)", category_id).where.not("(id = ?)", id).sort_by{|product| product.user_product_views.length}
   end
 end

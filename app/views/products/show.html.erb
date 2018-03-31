@@ -158,6 +158,16 @@
     </div>
   <% end %>
 
+  <% unless @other_popular_products.blank? %>
+  <!-- Other products from same distillery -->
+    <div class = "row">
+      <div class = "col-12">
+        <h3>Other popular <%= link_to "#{@product.category.name}s", category_path(@product.category) %></h3>
+      </div>
+      <%= render partial: "products/lister_item", collection: @other_popular_products, as: :product %>
+    </div>
+  <% end %>
+
   <!-- Recipes -->
   <% unless @recipes.blank? %>
     <div class = "row" id = "recipes">
