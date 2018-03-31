@@ -20,4 +20,5 @@
 //= require quill.global
 //= require owl.carousel2
 //= require cookies_eu
+//= require bootstrap-multiselect
 //= require_tree .

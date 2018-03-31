@@ -1,7 +1,17 @@
-<h1>Admin dashboard</h1>
-<h6>New stuff</h6>
-<%= link_to "Category", new_admin_category_path, class: "btn btn-primary" %>
-<%= link_to "Distillery", new_admin_distillery_path, class: "btn btn-primary" %>
-<%= link_to "Product", new_admin_product_path, class: "btn btn-primary" %>
-<%= link_to "Article", new_admin_article_path, class: "btn btn-primary" %>
-<%= link_to "Recipe", new_recipe_path, class: "btn btn-primary" %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <h1>Admin dashboard</h1>
+      <h6>New stuff</h6>
+      <%= link_to "Category", new_admin_category_path, class: "btn btn-primary" %>
+      <%= link_to "Distillery", new_admin_distillery_path, class: "btn btn-primary" %>
+      <%= link_to "Product", new_admin_product_path, class: "btn btn-primary" %>
+      <%= link_to "Article", new_admin_article_path, class: "btn btn-primary" %>
+      <%= link_to "Recipe", new_recipe_path, class: "btn btn-primary" %>
+    </div>
+    <div class = "col-12">
+      <h6>Featured stuff</h6>
+      <%= link_to "Edit featured products and categories", admin_edit_features_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
