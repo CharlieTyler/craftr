@@ -80,6 +80,6 @@ class Product < ApplicationRecord
   end
 
   def other_popular_products
-    Product.where("(category_id = ?)", category_id).where.not("(id = ?)", id).sort_by{|product| product.user_product_views.length}
+    Product.where("(category_id = ?)", category_id).where.not("(id = ?)", id).sort_by{|product| -product.user_product_views.length}
   end
 end
