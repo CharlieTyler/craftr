@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many :user_product_views, dependent: :destroy
   has_many :viewed_products, through: :user_product_views, source: :product
 
+  #viewed recipes
+  has_many :user_recipe_views, dependent: :destroy
+  has_many :viewed_recipes, through: :user_recipe_views, source: :recipe
+
   #read articles
   has_many :user_article_views, dependent: :destroy
   has_many :read_articles, through: :user_article_views, source: :article

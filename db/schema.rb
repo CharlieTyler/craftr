@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401220745) do
+ActiveRecord::Schema.define(version: 20180401222230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -243,6 +243,7 @@ ActiveRecord::Schema.define(version: 20180401220745) do
     t.text "variants"
     t.string "instagram_hashtag"
     t.string "slug"
+    t.integer "user_recipe_views_count"
     t.index ["slug"], name: "index_recipes_on_slug", unique: true
   end
 
@@ -316,6 +317,13 @@ ActiveRecord::Schema.define(version: 20180401220745) do
   create_table "user_product_views", force: :cascade do |t|
     t.integer "user_id"
     t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_recipe_views", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -18,6 +18,8 @@ class Recipe < ApplicationRecord
   has_many :favourited_by, through: :user_favourite_recipes, source: :user
   has_many :recipe_comments, dependent: :destroy
 
+  has_many :user_recipe_views
+
   #articles
   has_many :article_recipes, dependent: :destroy
   has_many :articles, through: :article_recipes
