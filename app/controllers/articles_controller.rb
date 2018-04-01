@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
       current_user.read_articles << @article
     end
     # negated sign to reverse array as it automatically sorts in ascending order
-    @most_read_articles = Article.all.sort_by{|article| -article.user_article_views.length}.first(5)
+    @most_read_articles = Article.all.sort_by{|article| -article.user_article_views.size}.first(5)
   end
 
   def index

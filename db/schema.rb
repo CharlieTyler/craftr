@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401210006) do
+ActiveRecord::Schema.define(version: 20180401220745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180401210006) do
     t.text "description_third"
     t.integer "author_id"
     t.string "slug"
+    t.integer "user_article_views_count"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
