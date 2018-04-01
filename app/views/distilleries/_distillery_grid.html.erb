@@ -1,4 +1,4 @@
-<div class="row py-5" style="background-image: url('<%= distillery.summary_image.url %>');background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+<div class="row py-5 bg-image" style="background-image: url('<%= distillery.summary_image.url %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
   <div class = "col-md-10 offset-md-1 text-center justify-content-center">
     <% unless distillery.logo.blank? %>
       <%= image_tag distillery.logo, class: "center-block logo-text img-fluid my-3" %>

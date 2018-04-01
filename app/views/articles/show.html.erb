@@ -17,7 +17,7 @@
 <% end %>
 
 <div class = "container-fluid">
-  <div class="row py-5" style="background-image: url('<%= @article.banner_image.url(:full).to_s %>'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+  <div class="row py-5" style="background-image: url('<%= @article.banner_image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
     <div class = "col-md-8 offset-md-2 text-center">
       <h1 class = "py-5 text-white display-4"><span class = "background-translucent-black px-3 py-2"><%= @article.title %></span></h1>
       <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @article.description %></span></h6>
