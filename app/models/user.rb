@@ -13,9 +13,13 @@ class User < ApplicationRecord
   #product reviews
   has_many :reviews, dependent: :destroy
 
-  #recently viewed
+  #recently viewed products
   has_many :user_product_views, dependent: :destroy
   has_many :viewed_products, through: :user_product_views, source: :product
+
+  #read articles
+  has_many :user_article_views, dependent: :destroy
+  has_many :read_articles, through: :user_article_views, source: :article
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

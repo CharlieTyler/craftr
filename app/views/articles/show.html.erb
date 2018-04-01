@@ -67,12 +67,22 @@
               </p>
             <% end %>
           </div>
+        </div>
         <div class = "row">
           <div class = "col-12">
             <% if @article.image_third.present? %>
               <%= image_tag @article.image_third_url(:full).to_s, class: "d-block img-fluid" %>
             <% end %>
+          </div>
         </div>
+      </div>
+      <div class = "col-md-3 background-grey pt-2">
+        <h4>Most read articles</h4>
+        <ol>
+          <% @most_read_articles.each do |article| %>
+            <li><%= link_to article.title, article_path(article) %></li>
+          <% end %>
+        </ol>
       </div>
     </div>
   </div>
