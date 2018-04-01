@@ -9,7 +9,7 @@ $charcoal: rgba(36, 32, 33, 0.9);
 /*Note translucents do not update automatically */
 /* Colour scheme */
 $primary: #FF6860;
-$secondary: #1B9AAA;
+$secondary: #10304F;
 $black: #050505;
 $grey:#eeeeee;
 
@@ -51,6 +51,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-primary {
   color: $primary !important;
+}
+
+.text-secondary {
+  color: $secondary !important;
 }
 
 .logo-text {
