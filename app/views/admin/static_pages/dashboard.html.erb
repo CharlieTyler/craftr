@@ -9,8 +9,15 @@
       <%= link_to "Article", new_admin_article_path, class: "btn btn-primary" %>
       <%= link_to "Recipe", new_recipe_path, class: "btn btn-primary" %>
     </div>
-    <div class = "col-12">
-      <h6>Featured stuff</h6>
+
+    <div class = "col-12 mt-3">
+      <h6>Homepage carousel creations</h6>
+      <%= link_to "Create", new_admin_carousel_feature_path, class: "btn btn-primary" %>
+      <p>To edit or delete, please use admin controls on homepage</p>
+    </div>
+
+    <div class = "col-12 mt-3">
+      <h6>Featured products and categories</h6>
       <%= link_to "Edit featured products and categories", admin_edit_features_path, class: "btn btn-primary" %>
     </div>
   </div>

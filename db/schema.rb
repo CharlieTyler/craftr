@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328110115) do
+ActiveRecord::Schema.define(version: 20180401160623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,16 @@ ActiveRecord::Schema.define(version: 20180328110115) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "instagram_user_id"
+  end
+
+  create_table "carousel_features", force: :cascade do |t|
+    t.string "line_1"
+    t.string "line_2"
+    t.string "cta_text"
+    t.string "link_url"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|

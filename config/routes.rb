@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :articles, only: [:new, :create, :edit, :update, :destroy]
     resources :distilleries, only: [:new, :create, :edit, :update, :destroy]
     resources :categories, only: [:new, :create, :edit, :update, :destroy]
+    resources :carousel_features, only: [:new, :create, :edit, :update, :destroy]
     get "/edit_features", :controller => "featured_items", :action => "edit"
     patch "/features", :controller => "featured_items", :action => "update"
     put "/features", :controller => "featured_items", :action => "update"

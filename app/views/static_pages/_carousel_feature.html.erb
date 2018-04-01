@@ -1,0 +1,24 @@
+<div class = "row hero-row" style="background: transparent url(<%= carousel_feature.image %>) no-repeat center center /cover">
+  <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5">
+    <div class = "background-translucent-grey py-3 py-md-5 px-2 px-md-5">
+      <h1 class = ""><%= simple_format carousel_feature.line_1 %></h1>
+      <h3 class = ""><%= simple_format carousel_feature.line_2 %></h3>
+      <%= link_to carousel_feature.cta_text, "#{carousel_feature.link_url}", class: "btn btn-lg btn-primary my-3" %>
+    </div>
+  </div>
+
+  <!-- Admin options -->
+  <% if user_signed_in? && current_user.admin %>
+    <div class = "col-md-6 offset-md-3">
+      <h6>Admin functions</h6>
+      <div class = "row">
+        <div class = "col-6">
+          <%= link_to "Edit", edit_admin_carousel_feature_path(carousel_feature), class: "btn btn-secondary col-10 offset-1" %>
+        </div>
+        <div class = "col-6">
+          <%= link_to "Delete", admin_carousel_feature_path(carousel_feature), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger col-10 offset-1" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
