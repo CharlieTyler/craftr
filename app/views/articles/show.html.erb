@@ -76,13 +76,15 @@
           </div>
         </div>
       </div>
-      <div class = "col-md-3 background-grey pt-2">
-        <h4>Most read articles</h4>
-        <ol>
-          <% @most_read_articles.each do |article| %>
-            <li><%= link_to article.title, article_path(article) %></li>
-          <% end %>
-        </ol>
+      <div class = "col-md-3 pt-3 float-right">
+        <div id = "mostRead">
+          <h4>Most read articles</h4>
+          <ol>
+            <% @most_read_articles.each do |article| %>
+              <li><%= link_to article.title, article_path(article) %></li>
+            <% end %>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -120,3 +122,27 @@
   </div>
 </div>
 
+<script>
+  $(function() {
+    var mostReadTop = $('#mostRead').offset().top;
+      
+    // our function that decides weather the navigation bar should have "fixed" css position or not.
+    var sticky = function(){
+      var scrollTop = $(window).scrollTop(); // our current vertical position from the top
+           
+      // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+      // otherwise change it back to relative
+      if ((scrollTop > mostReadTop) && ($( window ).width() > 780)) { 
+          $('#mostRead').addClass('sticky');
+      } else {
+          $('#mostRead').removeClass('sticky'); 
+      }
+    };
+
+    sticky();
+    // and run it again every time you scroll
+    $(window).scroll(function() {
+      sticky();
+    });
+  });
+</script>
