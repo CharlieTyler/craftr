@@ -107,6 +107,13 @@
         $(this).attr("name", newName);
       });
 
+      newFields.find("input").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, ingredientIndex);
+        newName = $(this).attr("name").replace(/0/g, ingredientIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
       //Add a remove button for all apart from the first recipe_ingredient
       newFields.find("hr").before('<div class = "btn btn-danger col-6 offset-3 remove-field">Remove</div>');
       $('.remove-field').click(removeIngredientFields);
@@ -117,6 +124,12 @@
         $(this).attr("for", newFor);
       });
     });
+
+    function removeIngredientFields(evt) {
+      evt.preventDefault();
+      $(this).parent('div').remove();
+      ingredientIndex--;
+    }
 
     var productIndex = $('.product_field').length - 1;
 
@@ -151,11 +164,6 @@
       productIndex--;
     }
 
-    function removeIngredientFields(evt) {
-      evt.preventDefault();
-      $(this).parent('div').remove();
-      ingredientIndex--;
-    }
 
     var categoryIndex = $('.category_field').length - 1;
 
