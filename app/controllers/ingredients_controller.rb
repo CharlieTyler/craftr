@@ -14,6 +14,7 @@ class IngredientsController < ApplicationController
     params.require(:ingredient).permit(:name, 
                                        :classification,
                                        :category_id,
-                                       :product_id)
+                                       :product_id,
+                                       :image)
   end
 end

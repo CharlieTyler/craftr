@@ -7,6 +7,8 @@ class Ingredient < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :classification, presence: true
 
+  mount_uploader :image, ProductImageUploader
+
   CATEGORIES = {
     'Spirit': 'Spirit',
     'Mixer': 'Mixer',

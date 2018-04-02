@@ -1,106 +1,135 @@
-<!-- To do --><!-- 
-1. If background image, use that, otherwise use default
-2. Style bullets and method (javascript to add class to method bullets?)
-3. Add mobile toggle
-4. Add to favourites
-5. Relevant products carousel
- -->
-<div class = "background-grey pb-2">
-  <div class = "container-fluid">
-    <div class="row py-5" style="background-image: url('<%= @recipe.image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
-      <div class = "col-md-8 offset-md-2 text-center">
-        <h1 class = "py-5 display-4"><span class = "logo-text px-1"><%= @recipe.name %></span></h1>
-        <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @recipe.description %></span></h6>
-        <% @recipe.rtags.each do |tag| %>
-          <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary" %>
-        <% end %>
-        <div class = "favourite-unfavourite py-2"> <!-- This partial is replaced each time it's clicked -->
-          <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
-        </div>
+<!-- 1. List out well-presented ingredients (with placeholder image??)
+2. Method section
+3. Background section
+4. Variants -->
+
+<div class = "container-fluid">
+  <div class="row py-5" style="background-image: url('<%= @recipe.image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div class = "col-md-8 offset-md-2 text-center">
+      <h1 class = "py-5 display-4"><span class = "logo-text px-1"><%= @recipe.name %></span></h1>
+      <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @recipe.description %></span></h6>
+      <% @recipe.rtags.each do |tag| %>
+        <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary" %>
+      <% end %>
+      <div class = "favourite-unfavourite py-2"> <!-- This partial is replaced each time it's clicked -->
+        <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
       </div>
     </div>
-    <% if @recipe.blurb.present? %>
-      <div class = "row mt-2">
-        <div class = "col-md-8 offset-md-2">
-          <div class = "booyah-box nice-padding">
-            <h1 class = "recipe-header" id="background">Background</h1>
-            <%= simple_format(@recipe.blurb, class: 'method-text') %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <div class = "row py-3">
-      <div class = "col-md-4 offset-md-2">
-        <div class = "booyah-box my-1 nice-padding h-100">
-          <h1 class = "recipe-header" id="ingredients">Ingredients</h1>
-          <ul class = "">
-            <% @recipe.recipe_ingredients.each do |ri| %>
-              <li class = "ingredient-bullet"><%= "#{ri.quantity} " %> 
+  </div>
+</div>
+<div class = "container">
+  <div class = "row py-3">
+    <div class = "col-md-9">
+      <!-- Ingredients -->
+      <h3 class = "text-center" id="ingredients">Ingredients</h3>
+      <div class = "row">
+        <% @recipe.recipe_ingredients.each do |ri| %>
+          <div class = "col text-center">
+            <% if ri.ingredient.image.present? %>
+              <%= image_tag ri.ingredient.image_url(:full).to_s, class: "img-fluid" %>
+            <% else %>
+              <%= image_tag "ingredient_placeholder.jpg", class: "img-fluid" %>
+            <% end %>
+            <p class = "article-text">
+              <%= "#{ri.quantity} " %> 
+              <strong>
                 <% if ri.ingredient.product.present? %>
                   <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
                 <% else %>
                   <%= ri.ingredient.name %>
                 <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <div class = "col-md-4 mt-3 mt-md-0">
-        <div class = "booyah-box my-1 nice-padding h-100">
-          <h1 class = "recipe-header" id="method">Method</h1>
-          <%= simple_format(@recipe.method, class: 'method-text') %>
-        </div>
-      </div>
-      <div class = "col-auto"></div>
-    </div>
-    <% if @recipe.variants.present? %>
-      <div class = "row py-2">
-        <div class = "col-md-8 offset-md-2">
-          <div class = "booyah-box my-1 nice-padding">
-            <h1 class = "recipe-header" id="variants">Variants</h1>
-            <%= simple_format(@recipe.variants, class: 'method-text') %>
+              </strong>
+            </p>
           </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
-<% unless @instas.blank? %>
-  <div class = "container">
-    <h3>Recent instagrams</h3>
-    <h6 class = "text-muted"><%= link_to "##{@recipe.instagram_hashtag}", "http://instagram.com/tags/#{@recipe.instagram_hashtag}", :target => "_blank" %></h6>
-    <div class = "clear"></div>
-    <div class = "row">
-      <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
-    </div>
-  </div>
-<% end %>
-<% unless @recipe.products.blank? %>
-  <div class = "container">
-    <h4>Recommended products</h4>
-    <div class = "row py-2">
-      <%= render partial: 'products/lister_item', collection: @recipe.products, as: :product %>
-    </div>
-  </div>
-<% end %>
-<div class = "background-grey">
-  <div class = "container">
-    <h1>Comments <span class = "badge badge-primary"><%= @comments.count %></span></h1>
-    <div class = "row">
-      <%= render partial: 'recipe_comment', collection: @comments, as: :comment %>
-    </div>
-    <div class = "row pt-3">
-      <div class = "col-md-6">
-        <% if user_signed_in? %>
-          <%= simple_form_for @comment, url: recipe_recipe_comments_path(@recipe) do |f| %>
-            <%= f.input :message %>
-            <%= f.submit "Add comment", class: "btn btn-primary" %>
-          <% end %>
-        <% else %>
-          <p>Please <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %> to comment</p>
         <% end %>
       </div>
+      <div class = "row">
+        <div class = "col-6 offset-3">
+          <hr class = "booyah-line my-3"/>
+        </div>
+      </div>
+      <h3 class = "text-center" id = "method">Method</h3>
+      <div class = "row"> <!-- Method -->
+        <div class = "col-12">
+          <p class = "article-text"><%= simple_format @recipe.method %></p>
+        </div>
+      </div>
+
+    </div> <!-- End of col-9 for floating most read -->
+    <div class = "col-md-3 float-right">
+      <div id = "mostRead">
+        <h4>Most read recipes</h4>
+        <ol>
+          <% @most_viewed_recipes.each do |recipe| %>
+            <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+          <% end %>
+        </ol>
+      </div>
     </div>
   </div>
 </div>
+<div class = "background-grey">
+  <% unless @instas.blank? %>
+    <div class = "container">
+      <h3>Recent instagrams</h3>
+      <h6 class = "text-muted"><%= link_to "##{@recipe.instagram_hashtag}", "http://instagram.com/tags/#{@recipe.instagram_hashtag}", :target => "_blank" %></h6>
+      <div class = "clear"></div>
+      <div class = "row">
+        <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
+      </div>
+    </div>
+  <% end %>
+  <% unless @recipe.products.blank? %>
+    <div class = "container">
+      <h4>Recommended products</h4>
+      <div class = "row py-2">
+        <%= render partial: 'products/lister_item', collection: @recipe.products, as: :product %>
+      </div>
+    </div>
+  <% end %>
+  <div class = "background-grey">
+    <div class = "container">
+      <h1>Comments <span class = "badge badge-primary"><%= @comments.count %></span></h1>
+      <div class = "row">
+        <%= render partial: 'recipe_comment', collection: @comments, as: :comment %>
+      </div>
+      <div class = "row pt-3">
+        <div class = "col-md-6">
+          <% if user_signed_in? %>
+            <%= simple_form_for @comment, url: recipe_recipe_comments_path(@recipe) do |f| %>
+              <%= f.input :message %>
+              <%= f.submit "Add comment", class: "btn btn-primary" %>
+            <% end %>
+          <% else %>
+            <p>Please <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %> to comment</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var mostReadTop = $('#mostRead').offset().top;
+      
+    // our function that decides weather the navigation bar should have "fixed" css position or not.
+    var sticky = function(){
+      var scrollTop = $(window).scrollTop(); // our current vertical position from the top
+           
+      // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+      // otherwise change it back to relative
+      if ((scrollTop > mostReadTop) && ($( window ).width() > 780)) { 
+          $('#mostRead').addClass('sticky');
+      } else {
+          $('#mostRead').removeClass('sticky'); 
+      }
+    };
+
+    sticky();
+    // and run it again every time you scroll
+    $(window).scroll(function() {
+      sticky();
+    });
+  });
+</script>
