@@ -4,15 +4,19 @@
 4. Variants -->
 
 <div class = "container-fluid">
-  <div class="row py-5" style="background-image: url('<%= @recipe.image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+  <div class="row hero-row py-5" style="background-image: url('<%= @recipe.image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
     <div class = "col-md-8 offset-md-2 text-center">
-      <h1 class = "py-5 display-4"><span class = "logo-text px-1"><%= @recipe.name %></span></h1>
-      <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @recipe.description %></span></h6>
-      <% @recipe.rtags.each do |tag| %>
-        <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary" %>
-      <% end %>
-      <div class = "favourite-unfavourite py-2"> <!-- This partial is replaced each time it's clicked -->
-        <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
+      <div class = "background-translucent-grey py-3 mt-5">
+        <div class = "">
+          <h1 class = "my-3 display-3"><%= @recipe.name %></h1>
+          <h4 class = ""><%= @recipe.description %></h6>
+        </div>
+        <% @recipe.rtags.each do |tag| %>
+          <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary my-2" %>
+        <% end %>
+        <div class = "favourite-unfavourite my-5"> <!-- This partial is replaced each time it's clicked -->
+          <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
+        </div>
       </div>
     </div>
   </div>
@@ -24,7 +28,7 @@
       <h3 class = "text-center" id="ingredients">Ingredients</h3>
       <div class = "row">
         <% @recipe.recipe_ingredients.each do |ri| %>
-          <div class = "col text-center">
+          <div class = "col-6 col-sm-4 col-lg-3 text-center">
             <div class = "">
               <% if ri.ingredient.image.present? %>
                 <%= image_tag ri.ingredient.image_url(:full).to_s, class: "img-fluid ingredient-image" %>
@@ -72,7 +76,7 @@
           </div>
         </div>
       <% end %>
-      <% if @recipe.variants.present? %>
+      <% if @recipe.variants.length > 10 %> <!-- Seemingly has <p><br/></p> tags in as default -->
         <div class = "row">
           <div class = "col-6 offset-3">
             <hr class = "booyah-line my-3"/>
@@ -125,13 +129,15 @@
       <%= render partial: 'recipe_comment', collection: @comments, as: :comment %>
     </div>
     <div class = "row">
-      <% if user_signed_in? %>
-        <button type="button" class="btn btn-primary my-2 col-10 offset-1" data-toggle="modal" data-target="#newCommentModal">
-          Add a comment
-        </button>
-      <% else %>
-        <p>Please <%= link_to "login", new_user_session_path, class: "btn btn-primary" %> or <%= link_to "sign up", new_user_registration_path, class: "btn btn-secondary" %> to add a review</p>
-      <% end %>
+      <div class = "col-12">
+        <% if user_signed_in? %>
+          <button type="button" class="btn btn-primary my-2 col-12" data-toggle="modal" data-target="#newCommentModal">
+            Add a comment
+          </button>
+        <% else %>
+          <p class = "text-white">Please <%= link_to "login", new_user_session_path, class: "btn btn-primary" %> or <%= link_to "sign up", new_user_registration_path, class: "btn btn-secondary" %> to add a review</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

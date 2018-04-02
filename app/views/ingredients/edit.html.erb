@@ -6,7 +6,7 @@
         <%= f.input :classification, collection: Ingredient::CATEGORIES %>
         <%= f.input :category_id, collection: @categories %>
         <%= f.input :product_id, collection: @products %>
-        <%= f.input :image %>
+        <%= f.input :image, hint: "Will be cropped to square, so please crop in advance if this may be an issue" %>
         <%= f.submit "Update", class: "btn btn-priamry" %>
       <% end %>
     </div>
