@@ -147,6 +147,11 @@
       <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true, include_button: true}%>
     </div>
   </div>
+  <div class = "row">
+    <div class = "col-12">
+      <hr class = "booyah-line my-2" />
+    </div>
+  </div>
 
   <% unless @other_distillery_products.blank? %>
   <!-- Other products from same distillery -->
@@ -189,7 +194,13 @@
   <!-- Reviews -->
   <div class = "row py-1" id = "reviews">
     <div class = "col-12">
-      <h4>Reviews (<%= @product.reviews.length %>)</h4>
+      <h4>Reviews</h4>
+      <h4><%= render partial: "products/star_rating", locals: {product: @product} %></h4>
+      <div class = "row">
+        <div class = "col-12">
+          <hr class = "booyah-line my-2" />
+        </div>
+      </div>
       <% if user_signed_in? %>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newReviewModal">
           + Add a review
