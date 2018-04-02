@@ -75,6 +75,7 @@
           <%= f.input :classification, collection: Ingredient::CATEGORIES %>
           <%= f.input :category_id, collection: @categories %>
           <%= f.input :product_id, collection: @products %>
+          <%= f.input :image %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
