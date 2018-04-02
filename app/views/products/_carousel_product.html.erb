@@ -1,0 +1,12 @@
+<div class = "hero-row" style="background: transparent url(<%= product.product_images.first.photo %>) no-repeat center center /cover"> 
+  <%= link_to product_path(product) do %>
+    <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5">
+      <div class = "background-translucent-grey py-3 py-md-5 px-2 px-md-5">
+        <div class = "badge badge-default">Featured product</div>
+        <h1 class = "my-3 display-3"><%= product.name %></h1>
+        <h4 class = ""><%= product.description_short %></h4>
+        <h4><%= render partial: "products/star_rating", locals: {product: product} %></h4>
+      </div>
+    </div>
+  <% end %>
+</div>
