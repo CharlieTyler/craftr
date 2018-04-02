@@ -205,6 +205,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgba(16, 48, 79, 0.7);
 }
 
+.ingredient-image {
+  border-radius: 5px;
+}
+
 .outline-primary {
   border: 5px solid $primary;
 }

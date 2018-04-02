@@ -25,11 +25,13 @@
       <div class = "row">
         <% @recipe.recipe_ingredients.each do |ri| %>
           <div class = "col text-center">
-            <% if ri.ingredient.image.present? %>
-              <%= image_tag ri.ingredient.image_url(:full).to_s, class: "img-fluid" %>
-            <% else %>
-              <%= image_tag "ingredient_placeholder.jpg", class: "img-fluid" %>
-            <% end %>
+            <div class = "">
+              <% if ri.ingredient.image.present? %>
+                <%= image_tag ri.ingredient.image_url(:full).to_s, class: "img-fluid ingredient-image" %>
+              <% else %>
+                <%= image_tag "ingredient_placeholder.jpg", class: "img-fluid ingredient-image" %>
+              <% end %>
+            </div>
             <p class = "article-text">
               <%= "#{ri.quantity} " %> 
               <strong>
@@ -40,6 +42,9 @@
                 <% end %>
               </strong>
             </p>
+            <% if user_signed_in? && current_user.admin %>
+              <%= link_to "Edit ingredient", edit_ingredient_path(ri.ingredient), class: "btn btn-secondary" %>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -54,7 +59,32 @@
           <p class = "article-text"><%= simple_format @recipe.method %></p>
         </div>
       </div>
-
+      <% if @recipe.blurb.present? %>
+        <div class = "row">
+          <div class = "col-6 offset-3">
+            <hr class = "booyah-line my-3"/>
+          </div>
+        </div>
+        <h3 class = "text-center" id = "method">History of <%= @recipe.name %></h3>
+        <div class = "row"> <!-- History -->
+          <div class = "col-12">
+            <p class = "article-text"><%= simple_format @recipe.blurb %></p>
+          </div>
+        </div>
+      <% end %>
+      <% if @recipe.variants.present? %>
+        <div class = "row">
+          <div class = "col-6 offset-3">
+            <hr class = "booyah-line my-3"/>
+          </div>
+        </div>
+        <h3 class = "text-center" id = "method">Variants of <%= @recipe.name %></h3>
+        <div class = "row"> <!-- History -->
+          <div class = "col-12">
+            <p class = "article-text"><%= simple_format @recipe.variants %></p>
+          </div>
+        </div>
+      <% end %>
     </div> <!-- End of col-9 for floating most read -->
     <div class = "col-md-3 float-right">
       <div id = "mostRead">
@@ -70,7 +100,7 @@
 </div>
 <div class = "background-grey">
   <% unless @instas.blank? %>
-    <div class = "container">
+    <div class = "container pt-3">
       <h3>Recent instagrams</h3>
       <h6 class = "text-muted"><%= link_to "##{@recipe.instagram_hashtag}", "http://instagram.com/tags/#{@recipe.instagram_hashtag}", :target => "_blank" %></h6>
       <div class = "clear"></div>
@@ -87,24 +117,44 @@
       </div>
     </div>
   <% end %>
-  <div class = "background-grey">
-    <div class = "container">
-      <h1>Comments <span class = "badge badge-primary"><%= @comments.count %></span></h1>
-      <div class = "row">
-        <%= render partial: 'recipe_comment', collection: @comments, as: :comment %>
+</div>
+<div class = "background-secondary">
+  <div class = "container pt-2">
+    <h3 class = "text-white">Comments <span class = "badge badge-primary"><%= @comments.count %></span></h3>
+    <div class = "row">
+      <%= render partial: 'recipe_comment', collection: @comments, as: :comment %>
+    </div>
+    <div class = "row">
+      <% if user_signed_in? %>
+        <button type="button" class="btn btn-primary my-2 col-10 offset-1" data-toggle="modal" data-target="#newCommentModal">
+          Add a comment
+        </button>
+      <% else %>
+        <p>Please <%= link_to "login", new_user_session_path, class: "btn btn-primary" %> or <%= link_to "sign up", new_user_registration_path, class: "btn btn-secondary" %> to add a review</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newCommentModal" tabindex="-1" role="dialog" aria-labelledby="newCommentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newCommentModalLabel">Add a comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class = "row pt-3">
-        <div class = "col-md-6">
-          <% if user_signed_in? %>
-            <%= simple_form_for @comment, url: recipe_recipe_comments_path(@recipe) do |f| %>
-              <%= f.input :message %>
-              <%= f.submit "Add comment", class: "btn btn-primary" %>
-            <% end %>
-          <% else %>
-            <p>Please <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %> to comment</p>
-          <% end %>
+      <%= simple_form_for @comment, url: recipe_recipe_comments_path(@recipe) do |f| %>
+        <div class="modal-body">
+          <%= f.input :message %>
         </div>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Add comment", class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

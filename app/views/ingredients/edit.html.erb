@@ -1,0 +1,14 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <%= simple_form_for @ingredient do |f| %>
+        <%= f.input :name %>
+        <%= f.input :classification, collection: Ingredient::CATEGORIES %>
+        <%= f.input :category_id, collection: @categories %>
+        <%= f.input :product_id, collection: @products %>
+        <%= f.input :image %>
+        <%= f.submit "Update", class: "btn btn-priamry" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,23 @@ class IngredientsController < ApplicationController
     end
   end
 
+  def edit
+    @ingredient = Ingredient.find(params[:id])
+    @categories = Category.all
+    @products = Product.all
+  end
+
+  def update
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.update_attributes(ingredient_params)
+    if @ingredient.valid?
+      flash[:alert] = "Ingredient successfully created"
+      redirect_to root_path
+    else
+      return render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def ingredient_params
