@@ -1,24 +1,40 @@
-<div class = "recipes-background">
-  <div class = "container">
-    <div class = "row pt-5">
-      <div class = "col-md-8 offset-md-2 text-center">
-        <h1 class = "mt-4 py-5 display-3"><span class = "logo-text px-1">Craftr recipes</span></h1>
-        <h3 class = "text-white"><span class = "background-translucent-black px-3 py-2">Your home for cocktail recipes</span></h6>
-        <% if user_signed_in? && current_user.is_author? %>
-          <%= link_to "Add a recipe", new_recipe_path, class: "btn btn-primary my-3" %>
+<div class = "container-fluid">
+  <div class = "owl-carousel owl-theme recipe-carousel">
+    <%= render partial: "recipes/carousel_recipe", collection: @featured_recipes, as: :recipe %>
+  </div>
+</div>
+
+<% if @tags.length > 0 %>
+  <div class = "container-fluid background-secondary">
+    <div class = "row py-2">
+      <div class = "col-12 text-center">
+        <h5 class = "text-white">Top collections</h5>
+        <% @tags.each do |tag| %>
+          <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary" %>
         <% end %>
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class = "container-fluid">
   <div class = "row background-grey">
     <div class = "col-md-10 offset-md-1">
-      <h1 class = "display-4">Latest recipes</h1>
+      <h1>Latest recipes</h1>
       <div class = "row">
         <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
       </div>
     </div>
   </div>
 </div> 
+
+<script>
+  $('.owl-carousel.recipe-carousel').owlCarousel({
+    stagePadding: 0,
+    loop:true,
+    dots: true,
+    items: 1,
+    nav: true,
+    navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>']
+  });
+</script>

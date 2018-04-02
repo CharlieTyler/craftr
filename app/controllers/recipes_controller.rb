@@ -17,6 +17,8 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all
+    @tags = Recipe.tag_counts_on(:rtags)
+    @featured_recipes = Recipe.where(featured: true)
   end
 
   def tag

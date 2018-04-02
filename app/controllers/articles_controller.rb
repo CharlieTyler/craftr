@@ -10,7 +10,8 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
-    @tags = ActsAsTaggableOn::Tag.all
+    @featured_articles = Article.where(featured: true)
+    @tags = Article.tag_counts_on(:tags)
   end
 
   def tag
