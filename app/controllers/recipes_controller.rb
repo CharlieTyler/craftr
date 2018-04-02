@@ -53,17 +53,17 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.friendly.find(params[:id])
-    unless @recipe.author == current_user
+    unless @recipe.author == current_user || current_user.admin
       return render text: 'Not Allowed', status: :forbidden
     end
     @recipe.recipe_ingredients.build
     @recipe.recipe_products.build
     @recipe.recipe_categories.build
 
+    @ingredient = Ingredient.new
     @ingredients = Ingredient.all
     @products = Product.all
     @categories = Category.all
-    @ingredient = Ingredient.new
   end
 
   def update
