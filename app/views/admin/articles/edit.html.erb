@@ -13,6 +13,10 @@
         <%= f.input :image_second %>
         <%= f.input :description_third, input_html: { class: 'quill_container' } %>
         <%= f.input :image_third %>
+        <%= f.input :description_fourth, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_fourth %>
+        <%= f.input :description_fifth, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_fifth %>
         <h1>Joins</h1>
         <div class = "all_category_fields">
           <%= f.simple_fields_for :article_categories do |ac| %>

@@ -26,6 +26,8 @@ class Article < ApplicationRecord
   mount_uploader :image_first, ArticleImageUploader
   mount_uploader :image_second, ArticleImageUploader
   mount_uploader :image_third, ArticleImageUploader
+  mount_uploader :image_fourth, ArticleImageUploader
+  mount_uploader :image_fifth, ArticleImageUploader
 
   validates :title, presence: true
   validates :description, presence: true
