@@ -39,7 +39,7 @@
     var imageIndex = $('.image_field').length - 1;
 
     $(".add_image_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       imageIndex++;
 
       // clone the labels and select fields
@@ -64,7 +64,7 @@
     });
 
     function removeImageFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       imageIndex--;
     }

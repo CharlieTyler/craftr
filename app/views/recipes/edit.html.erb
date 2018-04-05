@@ -92,7 +92,7 @@
     var ingredientIndex = $('.ingredient_field').length - 1;
 
     $(".add_ingredient_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       ingredientIndex++;
 
       // clone the labels and select fields
@@ -126,7 +126,7 @@
     var productIndex = $('.product_field').length - 1;
 
     $(".add_product_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       productIndex++;
 
       // clone the labels and select fields
@@ -151,13 +151,13 @@
     });
 
     function removeProductFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       productIndex--;
     }
 
     function removeIngredientFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       ingredientIndex--;
     }
@@ -165,7 +165,7 @@
     var categoryIndex = $('.category_field').length - 1;
 
     $(".add_category_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       categoryIndex++;
 
       // clone the labels and select fields
@@ -191,7 +191,7 @@
     });
 
     function removeCategoryFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       categoryIndex--;
     }
