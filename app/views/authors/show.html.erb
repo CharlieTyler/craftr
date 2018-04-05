@@ -1,0 +1,11 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <h1><%= @author.name %></h1>
+      <h3>Recipes</h3>
+        <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+      <h3>Authors</h3>
+        <%= render partial: "recipes/lister_recipe", collection: @articles, as: :article %>
+    </div>
+  </div>
+</div>

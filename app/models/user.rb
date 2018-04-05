@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+
+  #author
+  has_one :author
+
   #favourite products
   has_many :user_favourite_products, dependent: :destroy
   has_many :favourite_products, through: :user_favourite_products, source: :product
@@ -31,7 +35,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   def is_author?
-    type == "Author"
+    author.present?
   end
 
   def favourited_recipe?(recipe)

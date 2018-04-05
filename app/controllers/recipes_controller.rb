@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_is_author, only: [:new, :create, :edit, :update, :destroy]
+  # Vulnerable at the moment - move new, create, edit, update, destroy to admin controller
   def show
     @recipe   = Recipe.friendly.find(params[:id])
     @comment  = RecipeComment.new
@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
 
   def create
     # Note: currently has to have recipe_ingredients and recipe_products
-    @recipe = current_user.recipes.create(recipe_params)
+    @recipe = Recipes.create(recipe_params)
     if @recipe.valid?
       redirect_to recipe_path(@recipe)
     else
@@ -62,6 +62,7 @@ class RecipesController < ApplicationController
     @recipe.recipe_products.build
     @recipe.recipe_categories.build
 
+    @authors = Author.all
     @ingredient = Ingredient.new
     @ingredients = Ingredient.all
     @products = Product.all
@@ -88,9 +89,10 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, 
+    params.require(:recipe).permit(:name,
                                    :rtag_list,
                                    :blurb,
+                                   :author_id,
                                    :variants,
                                    :image, 
                                    :banner_image,

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "/me" => "users#profile" 
   resources :distilleries, only: [:show, :index]
   resources :articles, only: [:show, :index]
+  resources :authors, only: [:show, :index]
   get 'articles/collections/:tag', to: 'articles#tag', as: :article_tag
   resources :categories, only: [:show]
   resources :recipes do 
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
 
   # All routes to form part of admin portal
   namespace :admin do
+    resources :authors, only: [:new, :create, :edit, :update, :destroy]
     resources :products, only: [:new, :create, :edit, :update, :destroy]
     resources :articles, only: [:new, :create, :edit, :update, :destroy]
     resources :distilleries, only: [:new, :create, :edit, :update, :destroy]

@@ -1,0 +1,15 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-6 offset-md-3">
+      <%= simple_form_for @author, url: admin_authors_path do |f| %>
+        <%= f.input :name %>
+        <%= f.input :location %>
+        <%= f.input :bio %>
+        <%= f.input :instagram_link %>
+        <%= f.input :website_link %>
+        <%= f.input :user_id, collection: @users, value_method: :id, label_method: :email %>
+        <%= f.submit "Create author", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
