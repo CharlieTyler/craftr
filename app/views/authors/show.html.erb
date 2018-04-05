@@ -3,9 +3,13 @@
     <div class = "col-12">
       <h1><%= @author.name %></h1>
       <h3>Recipes</h3>
+      <div class = "row">
         <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+      </div>
       <h3>Authors</h3>
-        <%= render partial: "recipes/lister_recipe", collection: @articles, as: :article %>
+      <div class = "row">
+        <%= render partial: "articles/lister_article", collection: @articles, as: :article %>
+      </div>
     </div>
   </div>
 </div>
