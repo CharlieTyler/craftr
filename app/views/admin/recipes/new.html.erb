@@ -3,7 +3,7 @@
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <h6>Strongly advise to check all the ingredients that you want to include exist before starting with the rest of the content</h6>
       <p>Add an ingredient at the bottom of this page</p>
-      <%= simple_form_for @recipe do |f| %>
+      <%= simple_form_for @recipe, url: admin_recipes_path do |f| %>
         <%= f.input :name %>
         <%= f.input :rtag_list, label: "Tags, separated by commas" %>
         <%= f.input :description %>
@@ -11,7 +11,6 @@
         <%= f.input :instagram_hashtag %>
         <%= f.input :blurb, input_html: { class: 'quill_container' } %>
         <%= f.input :image %>
-        <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
         <%= f.input :banner_image %>
         <div class = "all_ingredient_fields">
           <%= f.simple_fields_for :recipe_ingredients do |i| %>

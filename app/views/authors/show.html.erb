@@ -1,12 +1,47 @@
+<div class = "container-fluid">
+  <div class="row hero-row py-5" style="background-image: url('<%= @author.background_image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div class = "col-md-8 offset-md-2 text-center">
+      <div class = "background-translucent-grey py-3 mt-5">
+        <div class = "">
+          <%= image_tag @author.mugshot, class: "center-block logo-text img-fluid my-3" %>
+          <h1 class = "my-3 display-3"><%= @author.name %></h1>
+          <h4 class = ""><%= @author.location %></h6>
+          <% if @author.instagram_link.present? %>
+            <%= link_to @author.instagram_link, class: "btn btn-primary" do %>
+              <i class="fa fa-instagram text-white" aria-hidden="true"></i> Instagram
+            <% end %>
+          <% end %>
+          <% if @author.website_link.present? %>
+            <%= link_to @author.website_link, class: "btn btn-primary" do %>
+              <i class="fa fa-globe text-white" aria-hidden="true"></i> Website
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class = "container-fluid background-secondary">
+  <div class = "row py-3">
+    <div class = "col-md-8 offset-md-2">
+      <h3 class = "text-white">About</h3>
+      <p class = "text-white article-text"><%= @author.bio %></p>
+    </div>
+  </div>
+</div>
 <div class = "container">
   <div class = "row">
     <div class = "col-12">
-      <h1><%= @author.name %></h1>
       <h3>Recipes</h3>
       <div class = "row">
         <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
       </div>
-      <h3>Authors</h3>
+      <div class = "row">
+        <div class = "col-12">
+          <hr class = "booyah-line my-2" />
+        </div>
+      </div>
+      <h3>Articles</h3>
       <div class = "row">
         <%= render partial: "articles/lister_article", collection: @articles, as: :article %>
       </div>

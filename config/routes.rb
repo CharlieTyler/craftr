@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :authors, only: [:show, :index]
   get 'articles/collections/:tag', to: 'articles#tag', as: :article_tag
   resources :categories, only: [:show]
-  resources :recipes do 
+  resources :recipes, only: [:show, :index] do 
     resources :favourite_recipes, only: [:create, :destroy]
     resources :recipe_comments, only: [:create, :destroy]
   end
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :authors, only: [:new, :create, :edit, :update, :destroy]
     resources :products, only: [:new, :create, :edit, :update, :destroy]
     resources :articles, only: [:new, :create, :edit, :update, :destroy]
+    resources :recipes, only: [:new, :create, :edit, :update, :destroy]
     resources :distilleries, only: [:new, :create, :edit, :update, :destroy]
     resources :categories, only: [:new, :create, :edit, :update, :destroy]
     resources :carousel_features, only: [:new, :create, :edit, :update, :destroy]

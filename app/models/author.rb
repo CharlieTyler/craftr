@@ -8,6 +8,12 @@ class Author < ApplicationRecord
 
   has_many :recipes
 
-  mount_uploader :mugshot, ProductImageUploader
+  mount_uploader :mugshot, DistilleryLogoUploader
   mount_uploader :background_image, RecipeBannerImageUploader
+
+  validates :name, presence: true, uniqueness: true
+  validates :location, presence: true
+  validates :bio, presence: true
+  validates :background_image, presence: true
+  validates :mugshot, presence: true
 end
