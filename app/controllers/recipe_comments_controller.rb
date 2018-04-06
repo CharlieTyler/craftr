@@ -6,7 +6,8 @@ class RecipeCommentsController < ApplicationController
   end
 
   def destroy
-
+    @recipe_comment = RecipeComment.find(params[:id])
+    @recipe_comment.delete
   end
 
   private

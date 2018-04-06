@@ -33,7 +33,8 @@ class Admin::ProductsController < AdminController
   end
 
   def destroy
-
+    @product = Product.friendly.find(params[:id])
+    @product.delete
   end
 
   private

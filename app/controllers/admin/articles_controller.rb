@@ -53,7 +53,8 @@ class Admin::ArticlesController < AdminController
   end
 
   def destroy
-
+    @article = Article.friendly.find(params[:id])
+    @article.delete
   end
 
   private

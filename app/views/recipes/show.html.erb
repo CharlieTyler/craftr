@@ -1,7 +1,20 @@
-<!-- 1. List out well-presented ingredients (with placeholder image??)
-2. Method section
-3. Background section
-4. Variants -->
+<% if user_signed_in? && current_user.admin %>
+  <div class = "container py-2">
+    <div class = "row">
+      <div class = "col-md-6 offset-md-3">
+        <h6>Admin functions</h6>
+        <div class = "row">
+          <div class = "col-6">
+            <%= link_to "Edit", edit_admin_recipe_path(@recipe), class: "btn btn-secondary col-10 offset-1" %>
+          </div>
+          <div class = "col-6">
+            <%= link_to "Delete", admin_recipe_path(@recipe), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger col-10 offset-1" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <div class = "container-fluid">
   <div class="row hero-row py-5" style="background-image: url('<%= @recipe.image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
@@ -29,13 +42,13 @@
       <div class = "row">
         <% @recipe.recipe_ingredients.each do |ri| %>
           <div class = "col-6 col-sm-4 col-lg-3 text-center">
-            <div class = "">
+            <!-- <div class = "">
               <% if ri.ingredient.image.present? %>
                 <%= image_tag ri.ingredient.image_url(:full).to_s, class: "img-fluid ingredient-image" %>
               <% else %>
                 <%= image_tag "ingredient_placeholder.jpg", class: "img-fluid ingredient-image" %>
               <% end %>
-            </div>
+            </div> -->
             <p class = "article-text">
               <%= "#{ri.quantity} " %> 
               <strong>

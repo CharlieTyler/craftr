@@ -4,9 +4,9 @@ class Author < ApplicationRecord
 
   belongs_to :user
 
-  has_many :articles
+  has_many :articles, dependent: :destroy
 
-  has_many :recipes
+  has_many :recipes, dependent: :destroy
 
   mount_uploader :mugshot, DistilleryLogoUploader
   mount_uploader :background_image, RecipeBannerImageUploader

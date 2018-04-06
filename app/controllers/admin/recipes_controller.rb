@@ -52,7 +52,8 @@ class Admin::RecipesController < AdminController
   end
 
   def destroy
-
+    @recipe = Recipe.friendly.find(params[:id])
+    @recipe.delete
   end
 
   private

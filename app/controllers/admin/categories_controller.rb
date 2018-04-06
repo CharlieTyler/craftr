@@ -27,7 +27,8 @@ class Admin::CategoriesController < AdminController
   end
 
   def destroy
-
+    @category = Category.friendly.find(params[:id])
+    @category.delete
   end
 
   private

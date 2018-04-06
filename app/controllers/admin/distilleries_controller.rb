@@ -27,7 +27,8 @@ class Admin::DistilleriesController < AdminController
   end
 
   def destroy
-
+    @distillery = Distillery.friendly.find(params[:id])
+    @distillery.delete
   end
 
   private

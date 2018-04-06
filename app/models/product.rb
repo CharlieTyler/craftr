@@ -16,7 +16,7 @@ class Product < ApplicationRecord
   has_many :user_favourite_products, dependent: :destroy
   has_many :favourited_by, through: :user_favourite_products, source: :user
 
-  has_many :user_product_views
+  has_many :user_product_views, dependent: :destroy
 
   accepts_nested_attributes_for :product_images
 

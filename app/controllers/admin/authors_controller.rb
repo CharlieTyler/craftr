@@ -29,7 +29,8 @@ class Admin::AuthorsController < AdminController
   end
 
   def destroy
-
+    @author = Author.friendly.find(params[:id])
+    @author.delete
   end
 
   private
