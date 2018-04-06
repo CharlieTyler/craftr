@@ -21,7 +21,8 @@
     <div class = "col-md-8 offset-md-2 text-center">
       <div class = "background-translucent-grey py-3 mt-5">
         <div class = "">
-          <h1 class = "my-3 display-3"><%= @recipe.name %></h1>
+          <h1 class = "my-3"><%= @recipe.name %></h1>
+          <p class = "article-text">by <%= link_to @recipe.author.name, author_path(@recipe.author) %></p>
           <h4 class = ""><%= @recipe.description %></h6>
         </div>
         <% @recipe.rtags.each do |tag| %>

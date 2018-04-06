@@ -19,11 +19,17 @@
 <div class = "container-fluid">
   <div class="row py-5" style="background-image: url('<%= @article.banner_image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
     <div class = "col-md-8 offset-md-2 text-center">
-      <h1 class = "py-5 text-white display-4"><span class = "background-translucent-black px-3 py-2"><%= @article.title %></span></h1>
-      <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @article.description %></span></h6>
-      <% @article.tags.each do |tag| %>
-        <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
-      <% end %>
+      <div class = "background-translucent-grey py-3 mt-5">
+        <div class = "">
+          <h1 class = "my-3"><%= @article.title %></h1>
+          <p class = "article-text">by <%= link_to @article.author.name, author_path(@article.author) %></p>
+          <h4 class = ""><%= @article.description %></h6>
+        </div>
+        <% @article.tags.each do |tag| %>
+          <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
+        <% end %>
+      </div>
+      
     </div>
   </div>
 </div>
