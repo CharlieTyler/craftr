@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "/privacy-policy" => "static_pages#privacy"
 
   get "/search" => "search#search" 
-
+  resources :age_verification, only: [:create]
   # Standard pages
   post "random/product" => "products#random"
   resources :products, only: [:show, :index] do

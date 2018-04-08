@@ -101,6 +101,30 @@
           </form> -->
         </div>
       </nav>
+      <!-- Age verification Modal -->
+      <div class="modal fade" id="ageVerificationModal" tabindex="-1" role="dialog" aria-labelledby="ageVerificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ageVerificationModalLabel">Please verify your age</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <%= form_tag(age_verification_index_path, method: :post) do %>
+              <div class="modal-body">
+                <p>I confirm that I am <span class = "text-primary">over the legal drinking age</span> in my country of residence</p>
+                <p class = "my-0"><strong>Hint</strong></p>
+                <p>To avoid seeing this form again next time, please <%= link_to "Log in", new_user_session_path, class: "text-primary" %> or <%= link_to "Sign up", new_user_registration_path, class: "text-primary" %></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Do not verify</button>
+                <%= submit_tag "Verify", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <% if notice.present? %>
         <p class="alert alert-info"><%= notice %></p>
       <% end %>
@@ -121,5 +145,10 @@
         </ul>
       </div>
     </div>
+    <script>
+      <% if session[:age_verified] != true && user_signed_in? == false %>
+        $("#ageVerificationModal").modal('show');
+      <% end %>
+    </script>
   </body>
 </html>
