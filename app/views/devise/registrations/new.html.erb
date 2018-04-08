@@ -11,6 +11,8 @@
             <%= f.input :email, required: true, autofocus: true %>
             <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
             <%= f.input :password_confirmation, required: true %>
+            <%= f.input :age_verified, required: true, label: "(Required) Tick if you are older than the legal drinking age in your country of residence" %>
+            <%= f.input :newsletter_sign_up, hint: "Revitalise your cocktail repetoire by receiving our weekly email on  our best recipes and articles. No spam, ever." %>
           </div>
 
           <div class="form-actions">

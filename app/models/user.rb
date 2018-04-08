@@ -34,6 +34,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Validates that age verification is a) present and b) true
+  validates :age_verified, exclusion: { in: [nil], message: "Age verification is a requirement" }
+  validates :age_verified, inclusion: { in: [true], message: "Age verification is a requirement" }
+
   def is_author?
     author.present?
   end

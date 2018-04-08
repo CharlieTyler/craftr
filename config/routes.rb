@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  # Use custom registrations_controller.rb file to add sign_up_params etc
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # Largely non-database driven pages
