@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :articles, only: [:show, :index]
   resources :authors, only: [:show, :index]
   get 'articles/collections/:tag', to: 'articles#tag', as: :article_tag
-  resources :categories, only: [:show]
+  resources :categories, only: [:show, :index]
   resources :recipes, only: [:show, :index] do 
     resources :favourite_recipes, only: [:create, :destroy]
     resources :recipe_comments, only: [:create, :destroy]
