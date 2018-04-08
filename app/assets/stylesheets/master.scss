@@ -318,6 +318,7 @@ span.help-block {
   opacity: 0;
   transition: .5s ease;
   background-color: white;
+  overflow: hidden;
 }
 
 .lister-product-container:hover .lister-product-image-overlay {
