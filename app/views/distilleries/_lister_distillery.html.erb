@@ -2,7 +2,7 @@
   <%= link_to distillery_path(distillery) do %>
     <div class="card h-100">
       <div class = "card-img-top">
-        <% if distillery.summary_image_url(:square).present? %>
+        <% if distillery.summary_image.square.file.exists? %>
           <%= image_tag distillery.summary_image_url(:square), class: "img-fluid" %>
         <% else %>
           <%= image_tag distillery.summary_image, class: "img-fluid" %>
