@@ -8,6 +8,8 @@ class RecipeCommentsController < ApplicationController
   def destroy
     @recipe_comment = RecipeComment.find(params[:id])
     @recipe_comment.delete
+    flash[:alert] = "Comment deleted"
+    redirect_to root_path
   end
 
   private

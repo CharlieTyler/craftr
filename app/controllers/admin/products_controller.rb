@@ -35,6 +35,8 @@ class Admin::ProductsController < AdminController
   def destroy
     @product = Product.friendly.find(params[:id])
     @product.delete
+    flash[:alert] = "Product successfully deleted"
+    redirect_to root_path
   end
 
   private

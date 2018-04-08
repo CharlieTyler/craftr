@@ -14,6 +14,9 @@
               <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
             <% end %>
 
+            <%= f.input :age_verified, required: true, label: "(Required) Tick if you are older than the legal drinking age in your country of residence" %>
+            <%= f.input :newsletter_sign_up, hint: "Revitalise your cocktail repetoire by receiving our weekly email on  our best recipes and articles. No spam, ever." %>
+
             <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
             <%= f.input :password_confirmation, required: false %>
             <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>

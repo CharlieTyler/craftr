@@ -31,6 +31,8 @@ class Admin::AuthorsController < AdminController
   def destroy
     @author = Author.friendly.find(params[:id])
     @author.delete
+    flash[:alert] = "Author successfully deleted"
+    redirect_to root_path
   end
 
   private

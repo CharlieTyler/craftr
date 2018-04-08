@@ -11,25 +11,6 @@ $( document ).on('turbolinks:load', function() {
 });
 
 $( document ).on('turbolinks:load', function() { 
-  $(function() {
-    $('.top-nav-carousel').owlCarousel({
-      loop:true,
-      responsiveClass:true,
-      responsive:{
-        0:{
-            items:1,
-            nav:false
-        },
-        600:{
-            items:3,
-            nav:false
-        },
-      }
-    })
-  });
-});
-
-$( document ).on('turbolinks:load', function() { 
   //Dropdowns for navbar
   $('body').on('mouseenter mouseleave','.dropdown',function(e){
     var _d=$(e.target).closest('.dropdown');_d.addClass('show');
@@ -110,5 +91,24 @@ $(document).on('turbolinks:load', function() {
     $(window).scroll(function() {
       stickyNav();
     });
+  });
+});
+
+$( document ).on('turbolinks:load', function() { 
+  $(function() {
+    $('.top-nav-carousel').owlCarousel({
+      loop:true,
+      responsiveClass:true,
+      responsive:{
+        0:{
+            items:1,
+            nav:false
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+      }
+    })
   });
 });

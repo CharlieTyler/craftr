@@ -29,6 +29,8 @@ class Admin::CarouselFeaturesController < AdminController
   def destroy
     @carousel_feature = CarouselFeature.find(params[:id])
     @carousel_feature.delete
+    flash[:alert] = "Carousel feature successfully deleted"
+    redirect_to root_path
   end
 
   private

@@ -54,6 +54,8 @@ class Admin::RecipesController < AdminController
   def destroy
     @recipe = Recipe.friendly.find(params[:id])
     @recipe.delete
+    flash[:alert] = "Recipe successfully deleted"
+    redirect_to root_path
   end
 
   private

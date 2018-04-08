@@ -55,6 +55,8 @@ class Admin::ArticlesController < AdminController
   def destroy
     @article = Article.friendly.find(params[:id])
     @article.delete
+    flash[:alert] = "Article successfully deleted"
+    redirect_to root_path
   end
 
   private

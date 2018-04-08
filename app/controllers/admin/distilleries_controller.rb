@@ -29,6 +29,8 @@ class Admin::DistilleriesController < AdminController
   def destroy
     @distillery = Distillery.friendly.find(params[:id])
     @distillery.delete
+    flash[:alert] = "Distillery successfully deleted"
+    redirect_to root_path
   end
 
   private
