@@ -5,9 +5,11 @@
         <div class = "badge badge-default">Featured recipe</div>
         <h1 class = "my-3"><%= recipe.name %></h1>
         <h4 class = ""><%= recipe.description %></h4>
-        Collections: 
-        <% recipe.rtags.each do |tag| %>
-          <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary my-2" %>
+        <% if recipe.rtags.length > 0 %>
+          Collections: 
+          <% recipe.rtags.each do |tag| %>
+            <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary my-2" %>
+          <% end %>
         <% end %>
       </div>
     </div>

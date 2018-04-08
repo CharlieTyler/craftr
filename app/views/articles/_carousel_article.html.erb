@@ -5,9 +5,11 @@
         <div class = "badge badge-default">Featured article</div>
         <h1 class = "my-3"><%= article.title %></h1>
         <h4 class = ""><%= article.description %></h4>
-        Collections: 
-        <% article.tags.each do |tag| %>
-          <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
+        <% if article.tags.length > 0 %>
+          Collections: 
+          <% article.tags.each do |tag| %>
+            <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
+          <% end %>
         <% end %>
       </div>
     </div>
