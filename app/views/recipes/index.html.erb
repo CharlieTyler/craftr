@@ -20,7 +20,7 @@
 <div class = "container-fluid">
   <div class = "row background-grey">
     <div class = "col-md-10 offset-md-1">
-      <h1>Latest recipes</h1>
+      <h1><%= title 'Latest recipes' %></h1>
       <div class = "row">
         <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
       </div>

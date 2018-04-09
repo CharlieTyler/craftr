@@ -41,7 +41,7 @@
 
         <!-- Product descriptions -->
         <div class = "col-md-5 pt-3">
-          <h1><%= @product.name %></h1>
+          <h1><%= title @product.name %></h1>
           <h6 class = "text-muted">by <%= link_to @product.distillery.name, distillery_path(@product.distillery), class: "text-primary" %></h6>
           <h4><%= render partial: "products/star_rating", locals: {product: @product} %></h4>
             <h6 class = "my-3 text-muted">

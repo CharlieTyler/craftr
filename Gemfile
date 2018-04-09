@@ -93,3 +93,5 @@ gem 'truncate_html'
 gem 'bootstrap-multiselect-rails'
 
 gem 'ranked-model'
+
+gem 'meta-tags'

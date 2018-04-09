@@ -1,7 +1,7 @@
 <div class = "container-fluid">
   <div class = "row background-grey">
     <div class = "col-md-10 offset-md-1">
-      <h3><%= "'#{@tag.name.capitalize}' articles (#{@articles.length})" %></h3> 
+      <h1><%= title "#{@tag.name.capitalize} articles" %></h1>
       <div class = "row">
         <div class = "col-12 text-center">
           <% @tags.each do |tag| %>

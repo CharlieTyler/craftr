@@ -21,7 +21,7 @@
     <div class = "col-md-8 offset-md-2 text-center">
       <div class = "background-translucent-grey py-3 mt-5">
         <div class = "">
-          <h1 class = "my-3"><%= @article.title %></h1>
+          <h1 class = "my-3"><%= title @article.title %></h1>
           <% if @article.author.present? %>
             <p class = "article-text">by <%= link_to @article.author.name, author_path(@article.author) %></p>
           <% end %>

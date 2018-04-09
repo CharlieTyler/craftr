@@ -3,6 +3,7 @@
     <div class = "row">
       <div class = "col-md-6 offset-md-3">
         <h6>Admin functions</h6>
+        <h1><%= title @distillery.name %></h1> <!-- Otherwise title found in partial -->
         <div class = "row">
           <div class = "col-6">
             <%= link_to "Edit", edit_admin_distillery_path(@distillery), class: "btn btn-secondary col-10 offset-1" %>
