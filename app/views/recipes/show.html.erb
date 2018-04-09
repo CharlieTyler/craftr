@@ -118,7 +118,7 @@
     </div>
   </div>
 </div>
-<div class = "background-grey">
+<div class = "background-grey" id = "mostReadBottom">
   <% unless @instas.blank? %>
     <div class = "container pt-3">
       <h3>Recent instagrams</h3>
@@ -184,6 +184,7 @@
 <script>
   $(function() {
     var mostReadTop = $('#mostRead').offset().top;
+    var mostReadBottom = $('#mostReadBottom').position().top - $('#mostRead').innerHeight();
       
     // our function that decides weather the navigation bar should have "fixed" css position or not.
     var sticky = function(){
@@ -191,7 +192,7 @@
            
       // if we've scrolled more than the navigation, change its position to fixed to stick to top,
       // otherwise change it back to relative
-      if ((scrollTop > mostReadTop) && ($( window ).width() > 780)) { 
+      if (((scrollTop > mostReadTop) && (scrollTop < mostReadBottom)) && ($( window ).width() > 780)) { 
           $('#mostRead').addClass('sticky');
       } else {
           $('#mostRead').removeClass('sticky'); 
