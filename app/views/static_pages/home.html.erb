@@ -86,6 +86,9 @@
         <div class = "row">
           <%= render partial: "products/lister_item", collection: @featured_products, as: :product %>
         </div>
+        <div class = "row">
+          <%= link_to "See all our craftr spirits", products_path, class: "btn btn-primary col-8 offset-2" %>
+        </div>
       </div>
     </div>
   </div>
