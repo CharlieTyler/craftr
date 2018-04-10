@@ -4,8 +4,8 @@
     <div class = "hero-row" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
       <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5">
         <div class = "background-translucent-grey py-3 py-md-5 px-2 px-md-5">
-          <h1>I'm feeling lucky</h1>
-          <h3>Pick me a random product</h3>
+          <h1 class = "js-animate-me animated">I'm feeling lucky</h1>
+          <h3 class = "js-animate-me2 animated">Pick me a random product</h3>
           <%= link_to 'Randomise', random_product_path, class: "btn btn-lg btn-primary my-3", method: :post %>
         </div>
       </div>
@@ -181,12 +181,25 @@
 <% end %>
 
 <script>
-  $('.owl-carousel.hero-carousel').owlCarousel({
+  var owl = $('.owl-carousel.hero-carousel'); 
+  owl.owlCarousel({
     stagePadding: 0,
     loop:true,
     dots: true,
     items: 1,
     nav: true,
     navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>']
+  });
+
+  var animation_end = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+  owl.on('initialized.owl.carousel changed.owl.carousel', function(e) {
+    owl.find(".js-animate-me").addClass("fadeInLeft")
+    .one(animation_end, function(){ 
+      $(this).removeClass("fadeInLeft");
+    });
+    owl.find(".js-animate-me2").addClass("slideInUp")
+    .one(animation_end, function(){
+      $(this).removeClass("slideInUp");
+    })
   });
 </script>

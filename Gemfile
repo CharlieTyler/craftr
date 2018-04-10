@@ -95,3 +95,5 @@ gem 'bootstrap-multiselect-rails'
 gem 'ranked-model'
 
 gem 'meta-tags'
+
+gem 'animate-rails'
