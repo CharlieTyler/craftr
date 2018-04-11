@@ -1,0 +1,4 @@
+<%= simple_form_for email_sign_up, url: email_sign_ups_path, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
+  <%= f.input :email, label: "Email sign up: ", placeholder: "myemail@domain.com", html: { class: "col" } %>
+  <%= f.submit "Sign up", class: "btn btn-primary col" %>
+<% end %>

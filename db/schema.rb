@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408123421) do
+ActiveRecord::Schema.define(version: 20180411165942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,12 @@ ActiveRecord::Schema.define(version: 20180408123421) do
     t.string "logo"
     t.string "youtube_video_url"
     t.index ["slug"], name: "index_distilleries_on_slug", unique: true
+  end
+
+  create_table "email_sign_ups", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

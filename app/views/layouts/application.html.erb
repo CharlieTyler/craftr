@@ -164,6 +164,9 @@
               <%= image_tag "drink_aware_logo.jpg", class: "img-fluid drink-aware mt-0" %>
             <% end %>
           </div>
+          <div class = "col-md-6">
+            <%= render partial: "static_pages/email_sign_up", locals: { email_sign_up: @email_sign_up } %>
+          </div>
         </div>
       </div>
     </div>
