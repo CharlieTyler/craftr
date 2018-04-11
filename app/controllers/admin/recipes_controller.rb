@@ -14,7 +14,7 @@ class Admin::RecipesController < AdminController
 
   def create
     # Note: currently has to have recipe_ingredients and recipe_products
-    @recipe = Recipes.create(recipe_params)
+    @recipe = Recipe.create(recipe_params)
     if @recipe.valid?
       redirect_to recipe_path(@recipe)
     else
