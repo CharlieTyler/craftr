@@ -31,7 +31,7 @@ class ArticleImageUploader < CarrierWave::Uploader::Base
   # end
   
   version :full do
-    process :resize_to_limit => [800, 0]
+    process :resize_to_limit => [800, nil]
     # Resizes to be 800px wide and maintain aspect ratio
   end
 

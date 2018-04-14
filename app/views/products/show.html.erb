@@ -1,4 +1,4 @@
-<p class="alert alert-danger">Craftr is not yet transactional - favourite products to get notified when they're available for purchase</p>
+<p class="alert alert-info">Craftr is not yet transactional - favourite products to get notified when they're available for purchase</p>
 <% if user_signed_in? && current_user.admin %>
   <div class = "container py-2">
     <div class = "row">
@@ -143,8 +143,8 @@
   </div>
 
   <!-- Distillery -->
-  <div class = "row" id = "distillery">
-    <h3>The distillery</h3>
+  <div class = "row mt-3" id = "distillery">
+    <h1>The distillery</h1>
     <div class = "col-12">
       <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true, include_button: true}%>
     </div>
