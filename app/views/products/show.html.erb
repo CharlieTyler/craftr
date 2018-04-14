@@ -1,3 +1,4 @@
+<p class="alert alert-danger">Craftr is not yet transactional - favourite products to get notified when they're available for purchase</p>
 <% if user_signed_in? && current_user.admin %>
   <div class = "container py-2">
     <div class = "row">
@@ -135,11 +136,7 @@
           </p>
         </div>
         <div class = "col-12">
-          <% if @product.product_images.length > 2 %>
-            <%= image_tag @product.product_images.third.photo, class: "d-block img-fluid product-page-image" %>
-          <% else %>
-            <%= image_tag @product.product_images.second.photo, class: "d-block img-fluid product-page-image" %>
-          <% end %>
+          <%= image_tag @product.product_images.last.photo, class: "d-block img-fluid product-page-image" %>
         </div>
       </div>
     </div>
