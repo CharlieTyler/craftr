@@ -1,10 +1,13 @@
 class OrderItemsController < ApplicationController
+
+  before_action :find_product, only: [:create]
+  before_action :check_product_live_and_in_stock, only: [:create]
+
   include ActionView::Helpers::TextHelper
   # So we can use pluralize method
   # @order set in application controller, giving us use of the @order variable
   def create
-    @product = Product.find(params[:order_item][:product_id])
-
+    # Product found in before_action
     # Check if this product is already in the cart
     current_order_item = @order.order_items.find_by(product_id: @product.id)
     if current_order_item.present?
@@ -32,12 +35,26 @@ class OrderItemsController < ApplicationController
   end
 
   def index
+    # This is the basket page
+
     @order_items = @order.order_items
     @shipping_types = ShippingType.all
     @default_shipping_type = ShippingType.first
   end
 
   private
+  
+  def find_product
+    @product = Product.find(params[:order_item][:product_id])
+  end
+
+  def check_product_live_and_in_stock
+    unless @product.live_and_in_stock?
+      flash[:alert] = 'This product is out of stock, please select another'
+      redirect_to request.referrer
+    end
+  end
+
 
   def order_item_params
     params.require(:order_item).permit(:product_id,

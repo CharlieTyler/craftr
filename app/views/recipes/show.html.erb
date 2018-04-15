@@ -129,11 +129,11 @@
       </div>
     </div>
   <% end %>
-  <% unless @recipe.products.blank? %>
+  <% unless @recipe.products.live.blank? %>
     <div class = "container">
       <h4>Recommended products</h4>
       <div class = "row py-2">
-        <%= render partial: 'products/lister_item', collection: @recipe.products, as: :product %>
+        <%= render partial: 'products/lister_item', collection: @recipe.products.live, as: :product %>
       </div>
     </div>
   <% end %>

@@ -59,9 +59,10 @@
             <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
           </blockquote>
           <h3 class = "text-primary"><%= render partial: 'price_formatted', locals: {product: @product} %></h3>
-           <!--  <div class = "col-12 favourite-unfavourite py-2">
-              <%= render partial: 'favourite_button', locals: {product: @product} %>
-            </div> -->
+          <div class = "row favourite-unfavourite py-2">
+            <%= render partial: 'favourite_button', locals: {product: @product} %>
+          </div>
+          <% if @product.live? && @product.in_stock? %> 
             <div class = "row my-4">
               <%= simple_form_for @order_item, class: "form-inline" do |f| %>
                 <%= f.input :quantity, :input_html => { :value => 1, :min => 1, :max => 20 } %>
@@ -69,6 +70,7 @@
                 <%= f.submit "Add to basket", class: "btn-lg btn-primary col-12" %>
               <% end %>
             </div>
+          <% end %>
           </div>
         </div>
       </div>

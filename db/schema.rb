@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411165942) do
+ActiveRecord::Schema.define(version: 20180415181009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -214,6 +214,8 @@ ActiveRecord::Schema.define(version: 20180411165942) do
     t.integer "subtle_to_intense"
     t.integer "fresh_to_complex"
     t.integer "size_ml"
+    t.boolean "live?", default: true
+    t.boolean "in_stock?", default: true
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
@@ -364,6 +366,7 @@ ActiveRecord::Schema.define(version: 20180411165942) do
     t.boolean "admin"
     t.boolean "age_verified", default: false
     t.boolean "newsletter_sign_up", default: false
+    t.string "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

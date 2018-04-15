@@ -4,7 +4,7 @@
       <div class="col-10 offset-1 col-md-8 offset-md-2 text-center py-1 py-md-2">
         <div class = "background-translucent-grey py-1 py-md-2 px-1 px-md-2">
           <h1 class = "my-3"><%= category.name %></h1>
-          <p class = "article-text"><%= pluralize(category.products.length, "product") %>
+          <p class = "article-text"><%= pluralize(category.products.live.length, "product") %>
         </div>
       </div>
     </div>

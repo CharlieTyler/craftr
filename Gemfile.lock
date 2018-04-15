@@ -304,6 +304,7 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe
   truncate_html
   stripe
   turbolinks (~> 5)

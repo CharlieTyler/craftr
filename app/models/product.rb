@@ -2,6 +2,8 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  scope :live, -> { where(live?: true) }
+
   belongs_to :distillery
   belongs_to :category
   has_many :reviews, dependent: :destroy
@@ -81,5 +83,9 @@ class Product < ApplicationRecord
 
   def other_popular_products
     Product.where("(category_id = ?)", category_id).where.not("(id = ?)", id).sort_by{|product| -product.user_product_views.length}
+  end
+
+  def live_and_in_stock?
+    live? && in_stock?
   end
 end

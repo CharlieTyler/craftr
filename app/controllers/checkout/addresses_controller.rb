@@ -2,6 +2,8 @@ class Checkout::AddressesController < AddressesController
   before_action :authenticate_user!
   before_action :check_items_in_cart
   before_action :check_order_has_shipping_type
+  before_action :check_all_products_live_and_in_stock
+
   # Inherits params from addresses controller
   def new
     # This is first page of checkout process
@@ -40,6 +42,15 @@ class Checkout::AddressesController < AddressesController
     if @order.shipping_type_id.blank?
       flash[:alert] = 'Please select a shipping type before proceeding'
       redirect_to checkout_addresses_path
+    end
+  end
+
+  def check_all_products_live_and_in_stock
+    @order.order_items.each do |oi|
+      unless oi.product.live_and_in_stock?
+        flash[:alert] = "#{oi.product.name} is currently out of stock, please remove from basket before proceeding"
+        redirect_to order_items_path
+      end
     end
   end
 

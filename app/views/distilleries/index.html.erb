@@ -37,7 +37,7 @@
           title: '<%= distillery.name %>'
         });
 
-        windowContent = "<h5><%= escape_javascript distillery.name %></h5><div class=''><%= escape_javascript pluralize(distillery.products.length, 'product') %></div><%= escape_javascript link_to 'More about ' + distillery.name, distillery_path(distillery), class: 'btn btn-primary my-2' %>";
+        windowContent = "<h5><%= escape_javascript distillery.name %></h5><div class=''><%= escape_javascript pluralize(distillery.products.live.length, 'product') %></div><%= escape_javascript link_to 'More about ' + distillery.name, distillery_path(distillery), class: 'btn btn-primary my-2' %>";
 
         
         <%= escape_javascript distillery.name.delete(' ') + 'window' %> = new google.maps.InfoWindow({

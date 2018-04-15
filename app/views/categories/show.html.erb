@@ -69,7 +69,7 @@
         <div class = "col-md-10 offset-md-1">
           <h3>Products</h3>
           <div class = "row">
-            <%= render partial: 'products/lister_item', collection: @category.products, as: :product %>
+            <%= render partial: 'products/lister_item', collection: @category.products.live, as: :product %>
           </div>
         </div>
       </div>

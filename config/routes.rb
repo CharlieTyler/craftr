@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get "/search" => "search#search" 
   resources :age_verification, only: [:create]
   resources :email_sign_ups, only: [:create, :destroy]
-  get "/search" => "search#search"
 
   # Standard pages
   post "random/product" => "products#random"
