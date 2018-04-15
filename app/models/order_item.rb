@@ -9,4 +9,8 @@ class OrderItem < ApplicationRecord
   def subtotal_in_pence
     quantity * product.price
   end
+
+  def product_in_stock_and_live?
+    
+  end
 end

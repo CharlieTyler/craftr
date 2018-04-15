@@ -23,6 +23,11 @@
           <div class = "col-2"><%= number_to_currency((oi.subtotal_in_pence / 100).to_f, unit: "£") %></div>
           <div class = "col-1"><%=link_to "Remove", order_item_path(oi), method: :delete %></div>
         </div>
+        <% unless oi.product.live? && oi.product.in_stock? %>
+          <div class = "row">
+            <p class = "alert alert-danger">We are currently out of stock of <%= oi.product.name %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</p>
+          </div>
+        <% end %>
       <% end %>
       <h6 class = "mt-3">Delivery</h6>
       <%= simple_form_for @order, url: order_shipping_path do |f| %>
