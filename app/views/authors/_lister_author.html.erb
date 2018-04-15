@@ -3,15 +3,14 @@
     <div class="card h-100">
       <div class = "card-img-top">
         <%= image_tag author.background_image_url(:full), class: "img-fluid" %>
-        
       </div>
       <div class="card-block">
         <h4 class="card-title"><%= author.name %></h4>
         <p class="card-text text-muted"><%= author.location %></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><em><%= pluralize(author.recipes.length, 'recipes') %></em></li>
-        <li class="list-group-item text-muted"><em><%= pluralize(author.articles.length, 'articles') %></em></li>
+        <li class="list-group-item text-muted"><em><%= pluralize(author.recipes.size, 'recipes') %></em></li>
+        <li class="list-group-item text-muted"><em><%= pluralize(author.articles.size, 'articles') %></em></li>
       </ul>
     </div>
   <% end %>
