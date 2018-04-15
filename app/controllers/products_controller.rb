@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
     if user_signed_in?
       current_user.viewed_products << @product
     end
-    flash[:notice] = "Craftr is not yet transactional - favourite products to get notified when they're available for purchase"
   end
 
   def index

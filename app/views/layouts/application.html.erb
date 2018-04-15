@@ -78,6 +78,9 @@
             <li class="nav-item">
               <%= link_to "Articles", articles_path, class: "nav-link" %>
             </li>
+            <li class="nav-item">
+              <%= link_to "Bloggers", authors_path, class: "nav-link" %>
+            </li>
           </ul>
           <ul class="navbar-nav float-right">
             <li class = "nav-item">
@@ -171,7 +174,7 @@
       </div>
     </div>
     <script>
-      <% if session[:age_verified] != true && user_signed_in? == false %>
+      <% if session[:age_verified] != true && user_signed_in? == false && controller_name != "registrations" && controller_name != "sessions" %>
         $("#ageVerificationModal").modal('show');
       <% end %>
     </script>
