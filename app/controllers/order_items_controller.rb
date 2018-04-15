@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+
   before_action :find_product, only: [:create]
   before_action :check_product_live_and_in_stock, only: [:create]
 
@@ -35,12 +36,14 @@ class OrderItemsController < ApplicationController
 
   def index
     # This is the basket page
+
     @order_items = @order.order_items
     @shipping_types = ShippingType.all
     @default_shipping_type = ShippingType.first
   end
 
   private
+  
   def find_product
     @product = Product.find(params[:order_item][:product_id])
   end
@@ -51,6 +54,7 @@ class OrderItemsController < ApplicationController
       redirect_to request.referrer
     end
   end
+
 
   def order_item_params
     params.require(:order_item).permit(:product_id,

@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   resources :order_items, only: [:create, :destroy]
   patch "/order_addresses" => "orders#update_addresses"
   patch "/order_shipping" => "orders#update_shipping"
-  
+
   # All routes to form part of admin portal
   namespace :admin do
     resources :authors, only: [:new, :create, :edit, :update, :destroy]

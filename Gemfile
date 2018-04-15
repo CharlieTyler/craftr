@@ -99,3 +99,5 @@ gem 'ranked-model'
 gem 'meta-tags'
 
 gem 'animate-rails'
+
+gem 'stripe'

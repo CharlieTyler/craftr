@@ -3,6 +3,7 @@ class Checkout::AddressesController < AddressesController
   before_action :check_items_in_cart
   before_action :check_order_has_shipping_type
   before_action :check_all_products_live_and_in_stock
+
   # Inherits params from addresses controller
   def new
     # This is first page of checkout process
