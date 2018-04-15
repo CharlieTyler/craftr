@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :store_user_location!, if: :storable_location?
   before_action :set_email_sign_up
+  before_action :set_cart
 
   private
   # Its important that the location is NOT stored if:
@@ -20,6 +21,28 @@ class ApplicationController < ActionController::Base
 
   def set_email_sign_up
     @email_sign_up = EmailSignUp.new
+  end
+
+  # Base of this from https://jedrekdomanski.wordpress.com/2017/02/05/building-a-shopping-cart-in-ruby-on-rails-part-1/ and then altered to deal with Devise
+  def set_cart
+    if user_signed_in?
+      if current_user.orders.where.not(state: "complete").present?  # find non-complete order
+        @order = current_user.orders.where.not(state: "complete").first
+      elsif session[:order_id].present? # if built a cart without being logged in and is now logged in
+        @order = Order.find(session[:order_id])
+        if @order.user_id.blank? # if hasn't already updated
+          @order.update_attributes(user_id: current_user.id) # update user
+        end
+        session[:order_id] = nil # and remove from unassigned carts
+      else
+        @order = Order.create(user_id: current_user.id, state: "cart")
+      end
+    elsif session[:order_id].present?
+      @order = Order.find(session[:order_id])
+    else
+      @order = Order.create(state: "cart")
+      session[:order_id] = @order.id
+    end
   end
 
   helper_method :navbar_categories

@@ -1,7 +1,12 @@
 class User < ApplicationRecord
-
   #author
   has_one :author
+
+  #cart
+  has_many :orders
+
+  #addresses
+  has_many :addresses
 
   #favourite products
   has_many :user_favourite_products, dependent: :destroy

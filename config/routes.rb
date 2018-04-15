@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "/search" => "search#search" 
   resources :age_verification, only: [:create]
   resources :email_sign_ups, only: [:create, :destroy]
+  get "/search" => "search#search"
+
   # Standard pages
   post "random/product" => "products#random"
   resources :products, only: [:show, :index] do
@@ -30,6 +32,17 @@ Rails.application.routes.draw do
   end
   get 'recipes/collections/:tag', to: 'recipes#tag', as: :recipe_tag
   resources :ingredients, only: [:create, :edit, :update, :destroy]
+
+  #checkout routes
+  namespace :checkout do
+    resources :addresses, only: [:new, :create]
+    resources :payments, only: [:new, :create]
+  end
+  #cart
+  get "/cart" => "order_items#index"
+  resources :order_items, only: [:create, :destroy]
+  patch "/order_addresses" => "orders#update_addresses"
+  patch "/order_shipping" => "orders#update_shipping"
 
   # All routes to form part of admin portal
   namespace :admin do

@@ -20,6 +20,8 @@
     <script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
     <link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://js.stripe.com/v3/"></script>
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <meta name="viewport" content="initial-scale=1">
   </head>
 
@@ -108,7 +110,15 @@
                 <% end %>
               </div>
             </li>
-            
+            <li class = "nav-item">
+              <%= link_to cart_path, class: "nav-link" do %>
+                <!-- <i class="fa fa-2x fa-shopping-cart <%= 'text-primary' if @order.order_items.length > 0 %>" aria-hidden="true"></i> -->
+                <span class="fa-stack ">
+                  <i class="fa fa-shopping-cart fa-stack-2x <%= 'text-primary' if @order.order_items.length > 0 %>"></i>
+                  <strong class="fa-stack-1x items"><%= @order.total_quantity if @order.order_items.length > 0 %></strong>
+                </span>
+              <% end %>
+            </li>
           </ul>
           <!-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
