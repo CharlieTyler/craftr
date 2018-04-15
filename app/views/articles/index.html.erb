@@ -1,23 +1,40 @@
-<div class = "articles-background">
-  <div class = "container">
-    <div class = "row pt-5">
-      <div class = "col-md-8 offset-md-2 text-center">
-        <div class = "mt-5 py-2 px-2">
-          <h1 class = "display-4"><span class = "logo-text px-1">Craftr articles</span></h1>
-          <h3 class = "text-white my-3"><span class = "background-translucent-black">Thoughtful discussion on all things craft spirit</span></h6>
-        </div>
+<div class = "container-fluid">
+  <div class = "owl-carousel owl-theme article-carousel">
+    <%= render partial: "articles/carousel_article", collection: @featured_articles, as: :article %>
+  </div>
+</div>
+
+<% if @tags.length > 0 %>
+  <div class = "container-fluid background-secondary">
+    <div class = "row py-2">
+      <div class = "col-12 text-center">
+        <h5 class = "text-white">Top collections</h5>
+        <% @tags.each do |tag| %>
+          <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
+        <% end %>
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class = "container-fluid">
   <div class = "row background-grey">
     <div class = "col-md-10 offset-md-1">
-      <h1 class = "display-4">Latest articles</h1>
+      <h1 class = "display-4"><%= title 'Latest articles' %></h1>
       <div class = "row">
         <%= render partial: "articles/lister_article", collection: @articles, as: :article %>
       </div>
     </div>
   </div>
-</div> 
+</div>
+
+<script>
+  $('.owl-carousel.article-carousel').owlCarousel({
+    stagePadding: 0,
+    loop:true,
+    dots: true,
+    items: 1,
+    nav: true,
+    navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>']
+  });
+</script>

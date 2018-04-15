@@ -1,22 +1,13 @@
 <div class = "container-fluid">
   <div class = "owl-carousel owl-theme hero-carousel">
-    <div class = "row hero-row" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
-      <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5 px-2 px-md-5">
-        <h1 class = "logo-text display-4">Craft spirits straight from our partner distilleries</h1>
-        <%= link_to 'Our products', products_path, class: "btn btn-lg btn-primary my-3" %>
-      </div>
-    </div>
-    <div class = "row hero-row" style="background: transparent url(<%= image_url('recipe_hero.jpg') %>) no-repeat center center /cover">
-      <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5 px-2 px-md-5">
-        <h1 class = "logo-text display-4">Cocktail recipes from our brilliant mixologists</h1>
-        <%= link_to 'Recipes', recipes_path, class: "btn btn-lg btn-primary my-3" %>
-      </div>
-    </div>
-    <div class = "row hero-row" style="background: transparent url(<%= image_url(@featured_product.product_images.first.photo) %>) no-repeat center center /cover">
-      <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5 px-2 px-md-5">
-        <h1 class = "logo-text display-4">Featured product</h1>
-        <h3>Hills and harbour gin</h3>
-        <%= link_to 'Learn more', product_path(@featured_product), class: "btn btn-lg btn-primary my-3" %>
+    <%= render partial: "static_pages/carousel_feature", collection: @carousel_features, as: :carousel_feature %>
+    <div class = "hero-row" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
+      <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5">
+        <div class = "background-translucent-grey py-3 py-md-5 px-2 px-md-5">
+          <h1 class = "js-animate-me animated">I'm feeling lucky</h1>
+          <h3 class = "js-animate-me2 animated">Pick me a random product</h3>
+          <%= link_to 'Randomise', random_product_path, class: "btn btn-lg btn-primary my-3", method: :post %>
+        </div>
       </div>
     </div>
   </div> <!-- Owl carousel -->
@@ -32,10 +23,13 @@
             <a class="nav-link no-click" href="#categories"><h6>Categories</h6></a>
           </li>
           <li class="nav-item mid-nav">
+            <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
+          </li>
+          <li class="nav-item mid-nav">
             <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
           </li>
           <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
+            <a class="nav-link no-click" href="#distilleries"><h6>Distilleries</h6></a>
           </li>
           <% unless @instas.blank? %>
             <li class="nav-item mid-nav">
@@ -56,13 +50,15 @@
 <!-- Categories -->
 <div class = "" id = "categories">
   <div class = "container py-3">
+    <div class = "d-inline-block">
+      <h3>Featured categories</h3>
+    </div>
+    <div class = "d-inline-block float-right">
+      <p class = "text-primary"><%= link_to "See all", categories_path %></p>
+    </div>
+    <div class = "clear"></div>
     <div class = "row">
-      <div class = "col">
-        <h3>Our categories</h3>
-        <div class = "row py-3 text-center">
-          <%= render partial: "categories/lister_category", collection: @featured_categories, as: :category %>
-        </div>
-      </div>
+      <%= render partial: "categories/lister_category", collection: @featured_categories, as: :category %>
     </div>
   </div>
 </div>
@@ -75,32 +71,23 @@
   </div>
 </div>
 
-<!-- Recipes -->
-<div class = "" id = "recipes">
-  <div class = "container py-3">
-    <span class = "">
-      <h3>Latest recipes</h3>
-    </span>
-    <div class = "row text-center">
-      <div class = "col-md-10 offset-md-1">
-        <div class = "row">
-          <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Products -->
 <div class = "products-background" id = "products">
   <div class = "container py-3">
-    <span class = "">
+    <div class = "d-inline-block">
       <h3>Featured products</h3>
-    </span>
+    </div>
+    <div class = "d-inline-block float-right">
+      <p class = "text-primary"><%= link_to "See all", products_path %></p>
+    </div>
+    <div class = "clear"></div>
     <div class = "row text-center">
-      <div class = "col-md-10 offset-md-1">
+      <div class = "col-12">
         <div class = "row">
           <%= render partial: "products/lister_item", collection: @featured_products, as: :product %>
+        </div>
+        <div class = "row">
+          <%= link_to "See all our craftr spirits", products_path, class: "btn btn-primary col-8 offset-2" %>
         </div>
       </div>
     </div>
@@ -115,15 +102,71 @@
         <h3>Recently viewed</h3>
       </span>
       <div class = "row text-center">
-        <div class = "col-md-10 offset-md-1">
+        <div class = "col-12">
           <div class = "row">
-            <%= render partial: "products/lister_item", collection: current_user.recently_viewed_products, as: :product %>
+            <%= render partial: "products/lister_item", collection: current_user.recently_viewed_products.first(3), as: :product %>
           </div>
         </div>
       </div>
     </div>
   </div>
 <% end %>
+
+<!-- Recipes -->
+<div class = "pt-1" id = "recipes">
+  <div class = "container py-3">
+    <div class = "d-inline-block">
+      <h3>Latest recipes</h3>
+    </div>
+    <div class = "d-inline-block float-right">
+      <p class = "text-primary"><%= link_to "See all", recipes_path %></p>
+    </div>
+    <div class = "clear"></div>
+    <div class = "row text-center">
+      <div class = "col-12">
+        <div class = "row">
+          <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
+</div>
+
+<!-- Distilleries -->
+<div class = "" id = "distilleries">
+  <div class = "container py-3">
+    <div class = "row">
+      <div class = "col">
+        <div class = "d-inline-block">
+          <h3>Newest distilleries</h3>
+        </div>
+        <div class = "d-inline-block float-right">
+          <p class = "text-primary"><%= link_to "See all", distilleries_path %></p>
+        </div>
+        <div class = "clear"></div>
+        <div class = "row py-3 text-center">
+          <%= render partial: "distilleries/lister_distillery", collection: @featured_distilleries, as: :distillery %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <hr class = "booyah-line mt-1"/>
+    </div>
+  </div>
+</div>
 
 <% unless @instas.blank? %>
   <div class = "py-3" id = "social">
@@ -138,12 +181,25 @@
 <% end %>
 
 <script>
-  $('.owl-carousel.hero-carousel').owlCarousel({
+  var owl = $('.owl-carousel.hero-carousel'); 
+  owl.owlCarousel({
     stagePadding: 0,
     loop:true,
     dots: true,
     items: 1,
     nav: true,
     navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>']
+  });
+
+  var animation_end = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+  owl.on('initialized.owl.carousel changed.owl.carousel', function(e) {
+    owl.find(".js-animate-me").addClass("fadeInLeft")
+    .one(animation_end, function(){ 
+      $(this).removeClass("fadeInLeft");
+    });
+    owl.find(".js-animate-me2").addClass("slideInUp")
+    .one(animation_end, function(){
+      $(this).removeClass("slideInUp");
+    })
   });
 </script>

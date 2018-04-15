@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319190940) do
+ActiveRecord::Schema.define(version: 20180415181009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,15 +70,37 @@ ActiveRecord::Schema.define(version: 20180319190940) do
     t.text "description_third"
     t.integer "author_id"
     t.string "slug"
+    t.integer "user_article_views_count"
+    t.boolean "featured", default: false
+    t.text "description_fourth"
+    t.text "description_fifth"
+    t.string "image_fourth"
+    t.string "image_fifth"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
   create_table "authors", force: :cascade do |t|
-    t.string "website"
-    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "instagram_user_id"
+    t.string "name"
+    t.string "location"
+    t.text "bio"
+    t.string "background_image"
+    t.string "mugshot"
+    t.string "instagram_link"
+    t.string "website_link"
+    t.string "slug"
+    t.integer "user_id"
+  end
+
+  create_table "carousel_features", force: :cascade do |t|
+    t.string "line_1"
+    t.string "line_2"
+    t.string "cta_text"
+    t.string "link_url"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -114,10 +136,17 @@ ActiveRecord::Schema.define(version: 20180319190940) do
     t.string "facebook"
     t.float "longitude"
     t.float "latitude"
-    t.integer "instagram_user_id"
+    t.string "instagram_user_id"
     t.string "slug"
     t.string "logo"
+    t.string "youtube_video_url"
     t.index ["slug"], name: "index_distilleries_on_slug", unique: true
+  end
+
+  create_table "email_sign_ups", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -139,6 +168,7 @@ ActiveRecord::Schema.define(version: 20180319190940) do
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.integer "product_id"
+    t.string "image"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -184,6 +214,8 @@ ActiveRecord::Schema.define(version: 20180319190940) do
     t.integer "subtle_to_intense"
     t.integer "fresh_to_complex"
     t.integer "size_ml"
+    t.boolean "live?", default: true
+    t.boolean "in_stock?", default: true
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
@@ -208,6 +240,8 @@ ActiveRecord::Schema.define(version: 20180319190940) do
     t.integer "ingredient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "row_order"
+    t.index ["row_order"], name: "index_recipe_ingredients_on_row_order"
   end
 
   create_table "recipe_products", force: :cascade do |t|
@@ -226,12 +260,12 @@ ActiveRecord::Schema.define(version: 20180319190940) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "featured", default: false
-    t.string "tag"
     t.string "banner_image"
     t.text "blurb"
     t.text "variants"
     t.string "instagram_hashtag"
     t.string "slug"
+    t.integer "user_recipe_views_count"
     t.index ["slug"], name: "index_recipes_on_slug", unique: true
   end
 
@@ -250,6 +284,40 @@ ActiveRecord::Schema.define(version: 20180319190940) do
     t.string "name"
     t.string "shipping_time"
     t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taggings", id: :serial, force: :cascade do |t|
+    t.integer "tag_id"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.string "tagger_type"
+    t.integer "tagger_id"
+    t.string "context", limit: 128
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+  end
+
+  create_table "tags", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.integer "taggings_count", default: 0
+    t.string "slug"
+    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.index ["slug"], name: "index_tags_on_slug"
+  end
+
+  create_table "user_article_views", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -275,6 +343,13 @@ ActiveRecord::Schema.define(version: 20180319190940) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_recipe_views", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -288,8 +363,10 @@ ActiveRecord::Schema.define(version: 20180319190940) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "type"
     t.boolean "admin"
+    t.boolean "age_verified", default: false
+    t.boolean "newsletter_sign_up", default: false
+    t.string "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -85,3 +85,17 @@ gem 'mini_magick'
 gem 'fog-aws'
 
 gem 'stripe'
+
+gem 'cookies_eu'
+
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
+
+gem 'truncate_html'
+
+gem 'bootstrap-multiselect-rails'
+
+gem 'ranked-model'
+
+gem 'meta-tags'
+
+gem 'animate-rails'

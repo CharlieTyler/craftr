@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Craftr</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Code taken from https://gist.github.com/esBeee/545653241530f8f2c2e16371bec56f20 -->
+    <% if Rails.env.production? %>
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-117259081-1', 'auto');
+      </script>
+    <% end %>
+
+    <%= display_meta_tags site: 'CRAFTR' %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -17,7 +29,7 @@
     <div id="flex-content-container">
       <% if controller_name == "static_pages" %>
         <div class = "container-fluid">
-          <div class = "row background-charcoal">
+          <div class = "row background-secondary">
             <div class = "owl-carousel owl-theme top-nav-carousel">
               <div class = "text-center">
                 <p class = "text-white my-1"><i class="fa fa-glass text-primary" aria-hidden="true"></i> &nbsp The finest craft spirits</p>
@@ -32,6 +44,7 @@
           </div>
         </div>
       <% end %>
+      <%= render 'cookies_eu/consent_banner' %>
 
       
       <nav class="navbar navbar-toggleable-md navbar-light background-white mb-1">
@@ -52,17 +65,23 @@
                   </div>
                   <div class = "row my-2">
                     <div class = "col-8 offset-2">
-                      <%= link_to "Browse by distillery", distilleries_path, class: "btn btn-primary col-12" %>
+                      <%= link_to "I'm feeling lucky", random_product_path, class: "btn btn-primary col-12", method: :post %>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
             <li class="nav-item">
+              <%= link_to "Distilleries", distilleries_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
               <%= link_to "Recipes", recipes_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to "Articles", articles_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Bloggers", authors_path, class: "nav-link" %>
             </li>
           </ul>
           <ul class="navbar-nav float-right">
@@ -107,6 +126,30 @@
           </form> -->
         </div>
       </nav>
+      <!-- Age verification Modal -->
+      <div class="modal fade" id="ageVerificationModal" tabindex="-1" role="dialog" aria-labelledby="ageVerificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ageVerificationModalLabel">Please verify your age</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <%= form_tag(age_verification_index_path, method: :post) do %>
+              <div class="modal-body">
+                <p>I confirm that I am <span class = "text-primary">over the legal drinking age</span> in my country of residence</p>
+                <p class = "my-0"><strong>Hint</strong></p>
+                <p>To avoid seeing this form again next time, please <%= link_to "Log in", new_user_session_path, class: "text-primary" %> or <%= link_to "Sign up", new_user_registration_path, class: "text-primary" %></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Do not verify</button>
+                <%= submit_tag "Verify", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <% if notice.present? %>
         <p class="alert alert-info"><%= notice %></p>
       <% end %>
@@ -117,14 +160,33 @@
     </div>
     <div id="footer">
       <div class="container">
-        <ul class = "no-bullet-list">
-          <li><%= link_to 'About', about_path %></li>
-          <% if user_signed_in? && current_user.admin %>
-            <li><%= link_to 'Admin dashboard', admin_dashboard_path %></li>
-          <% end %>
-          <li><%= link_to 'Contact us', contact_path %></li>
-        </ul>
+        <div class = "row">
+          <div class = "col-md-6">
+            <ul class = "no-bullet-list">
+              <li><%= link_to 'About', about_path %></li>
+              <% if user_signed_in? && current_user.admin %>
+                <li><%= link_to 'Admin dashboard', admin_dashboard_path %></li>
+              <% end %>
+              <li><%= link_to 'Contact us', contact_path %></li>
+              <li><%= link_to 'Privacy policy', privacy_policy_path %></li>
+            </ul>
+          </div>
+          <div class = "col-md-6">
+            <p class = "mb-0">Please drink responsibly. For the facts, visit: </p>
+            <%= link_to "http://www.drinkaware.co.uk" do %>
+              <%= image_tag "drink_aware_logo.jpg", class: "img-fluid drink-aware mt-0" %>
+            <% end %>
+          </div>
+          <div class = "col-md-6">
+            <%= render partial: "static_pages/email_sign_up", locals: { email_sign_up: @email_sign_up } %>
+          </div>
+        </div>
       </div>
     </div>
+    <script>
+      <% if session[:age_verified] != true && user_signed_in? == false && controller_name != "registrations" && controller_name != "sessions" %>
+        $("#ageVerificationModal").modal('show');
+      <% end %>
+    </script>
   </body>
 </html>

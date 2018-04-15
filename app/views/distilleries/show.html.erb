@@ -1,3 +1,22 @@
+<% if user_signed_in? && current_user.admin %>
+  <div class = "container py-2">
+    <div class = "row">
+      <div class = "col-md-6 offset-md-3">
+        <h6>Admin functions</h6>
+        <h1><%= title @distillery.name %></h1> <!-- Otherwise title found in partial -->
+        <div class = "row">
+          <div class = "col-6">
+            <%= link_to "Edit", edit_admin_distillery_path(@distillery), class: "btn btn-secondary col-10 offset-1" %>
+          </div>
+          <div class = "col-6">
+            <%= link_to "Delete", admin_distillery_path(@distillery), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger col-10 offset-1" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class = "container-fluid">
   <%= render partial: "distillery_grid", locals: {distillery: @distillery, include_people: true, include_range: true, include_button: false} %>
 </div>
@@ -91,7 +110,13 @@
   <div class = "container mt-3" id = "products">
     <h3><%= "#{@distillery.name}'s products" %></h3>
     <div class = "row">
-      <%= render partial: 'products/lister_item', collection: @distillery.products, as: :product %>
+      <% if @distillery.products.live.length == 0 %>
+        <div class = "col-12">
+          <p><%= @distillery.name %> doesn't have any products to sell yet, but are hard at work getting their first one ready!</p>
+        </div>
+      <% else %>
+        <%= render partial: 'products/lister_item', collection: @distillery.products.live, as: :product %>
+      <% end %>
     </div>
   </div>
 
@@ -161,43 +186,3 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOgMzuZzpcbkMy3Y1sZYOrW4kZ0lDoKxc&callback=initMap">
   </script>
 <% end %>
-
-<script>
-// Scrolling to appropriate area on page
-// Select all links with hashes
-$('a[href*="#"]')
-  // Remove links that don't actually link to anything
-  .not('[href="#"]')
-  .not('[href="#0"]')
-  .click(function(event) {
-    // On-page links
-    if (
-      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
-      && 
-      location.hostname == this.hostname
-    ) {
-      // Figure out element to scroll to
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      // Does a scroll target exist?
-      if (target.length) {
-        // Only prevent default if animation is actually gonna happen
-        event.preventDefault();
-        $('html, body').animate({
-          scrollTop: target.offset().top
-        }, 1000, function() {
-          // Callback after animation
-          // Must change focus!
-          var $target = $(target);
-          $target.focus();
-          if ($target.is(":focus")) { // Checking if the target was focused
-            return false;
-          } else {
-            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
-            $target.focus(); // Set focus again
-          };
-        });
-      }
-    }
-  });
-</script>

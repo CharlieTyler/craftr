@@ -21,6 +21,8 @@ class Distillery < ApplicationRecord
   validates :blurb_1, presence: true
   validates :image_1, presence: true
   validates :website, presence: true
+  validates :longitude, presence: true
+  validates :latitude, presence: true
 
   mount_uploader :logo, DistilleryLogoUploader
   mount_uploader :summary_image, DistilleryBannerImageUploader

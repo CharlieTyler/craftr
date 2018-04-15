@@ -11,10 +11,17 @@ class Checkout::PaymentsController < ApplicationController
     # Amount in cents
     @amount = @order.total_amount
 
-    customer = Stripe::Customer.create(
-      email: current_user.email,
-      source: params[:stripeToken]
-    )
+    # Find Stripe customer, or create if not present
+    if current_user.stripe_customer_id.present?
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    else
+      customer = Stripe::Customer.create(
+        email: current_user.email,
+        source: params[:stripeToken]
+      )
+      current_user.update_attributes(stripe_customer_id_params)
+      # Possibly should check if valid at this point, but don't want to reject transaction for some other username format issue etc.
+    end
 
     charge = Stripe::Charge.create(
       customer: customer.id,
@@ -33,6 +40,10 @@ class Checkout::PaymentsController < ApplicationController
   end
 
   private
+
+  def stripe_customer_id_params
+    params.require(:user).permit(:stripe_customer_id)
+  end
 
   def payment_params
 

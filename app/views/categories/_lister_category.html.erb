@@ -1,11 +1,10 @@
 <div class = "col-6 col-md-4 col-lg-3">
   <%= link_to category_path(category) do %>
-    <div class = "row">
-      <div class="col-12" style="background:transparent url('<%= category.banner_image_url(:navbar) %>') no-repeat center center /cover">
-        <div class = "col-10 offset-1 text-center">
-          <div class = "py-5">
-            <h1><strong class = "px-1 logo-text"><%= category.name.upcase %></strong></h1>
-          </div>
+    <div class = "row" style="background: transparent url(<%= category.banner_image_url(:navbar) %>) no-repeat center center /cover">
+      <div class="col-10 offset-1 col-md-8 offset-md-2 text-center py-1 py-md-2">
+        <div class = "background-translucent-grey py-1 py-md-2 px-1 px-md-2">
+          <h1 class = "my-3"><%= category.name %></h1>
+          <p class = "article-text"><%= pluralize(category.products.live.length, "product") %>
         </div>
       </div>
     </div>

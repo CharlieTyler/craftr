@@ -1,4 +1,4 @@
-<div class = "col-6 col-md-4 col-lg-3 my-2">
+<div class = "col-6 col-md-4 my-2">
   <%= link_to recipe_path(recipe) do %>
     <div class="card h-100">
       <div class = "card-img-top">
@@ -6,7 +6,7 @@
       </div>
       <div class="card-block">
         <h4 class="card-title"><%= recipe.name %></h4>
-        <p class="card-text"><%= recipe.description[0..100] %></p>
+        <p class="card-text"><%= truncate_html(recipe.description, length: 100) %></p>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item text-muted"><em><%= recipe.ingredient_list %></em></li>

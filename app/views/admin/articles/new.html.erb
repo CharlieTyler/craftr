@@ -4,14 +4,19 @@
       <%= simple_form_for @article, url: admin_articles_path do |f| %>
         <%= f.input :title %>
         <%= f.input :description %>
+        <%= f.input :tag_list, label: "Tags, separated by commas" %>
         <%= f.input :banner_image %>
-        <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
+        <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :name %>
         <%= f.input :description_first, input_html: { class: 'quill_container' } %>
         <%= f.input :image_first %>
         <%= f.input :description_second, input_html: { class: 'quill_container' } %>
         <%= f.input :image_second %>
         <%= f.input :description_third, input_html: { class: 'quill_container' } %>
         <%= f.input :image_third %>
+        <%= f.input :description_fourth, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_fourth %>
+        <%= f.input :description_fifth, input_html: { class: 'quill_container' } %>
+        <%= f.input :image_fifth %>
         <h1>Joins</h1>
         <div class = "all_category_fields">
           <%= f.simple_fields_for :article_categories do |ac| %>
@@ -73,7 +78,7 @@
     var categoryIndex = $('.category_field').length - 1;
 
     $(".add_category_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       categoryIndex++;
 
       // clone the labels and select fields
@@ -99,7 +104,7 @@
     });
 
     function removeCategoryFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       categoryIndex--;
     }
@@ -109,7 +114,7 @@
     var distilleryIndex = $('.distillery_field').length - 1;
 
     $(".add_distillery_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       distilleryIndex++;
 
       // clone the labels and select fields
@@ -134,7 +139,7 @@
     });
 
     function removeDistilleryFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       distilleryIndex--;
     }
@@ -144,7 +149,7 @@
     var productIndex = $('.product_field').length - 1;
 
     $(".add_product_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       productIndex++;
 
       // clone the labels and select fields
@@ -169,7 +174,7 @@
     });
 
     function removeProductFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       productIndex--;
     }
@@ -181,7 +186,7 @@
     var recipeIndex = $('.recipe_field').length - 1;
 
     $(".add_recipe_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       recipeIndex++;
 
       // clone the labels and select fields
@@ -206,7 +211,7 @@
     });
 
     function removeRecipeFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       recipeIndex--;
     }

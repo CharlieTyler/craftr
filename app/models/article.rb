@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
+  acts_as_taggable_on :tags
 
   belongs_to :author
 
@@ -19,10 +20,14 @@ class Article < ApplicationRecord
   has_many :products, through: :article_products
   has_many :recipes, through: :article_recipes
 
+  has_many :user_article_views
+
   mount_uploader :banner_image, DistilleryBannerImageUploader
   mount_uploader :image_first, ArticleImageUploader
   mount_uploader :image_second, ArticleImageUploader
   mount_uploader :image_third, ArticleImageUploader
+  mount_uploader :image_fourth, ArticleImageUploader
+  mount_uploader :image_fifth, ArticleImageUploader
 
   validates :title, presence: true
   validates :description, presence: true
@@ -44,6 +49,6 @@ class Article < ApplicationRecord
     all_text = description_first + description_second + description_third
     word_count = all_text.split.size
     word_count
-    # (word_count / 250).to_f.round(0)
+    (word_count / 200).to_f.round(0)
   end
 end

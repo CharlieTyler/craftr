@@ -1,0 +1,10 @@
+<div class = "container-fluid">
+  <div class = "row">
+    <div class = "col-md-10 offset-md-1">
+      <h1 class = ""><%= title 'Our mixologists' %></h1>
+      <div class = "row">
+        <%= render partial: "authors/lister_author", collection: @authors, as: :author %>
+      </div>
+    </div>
+  </div>
+</div>

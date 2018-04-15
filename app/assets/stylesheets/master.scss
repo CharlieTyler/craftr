@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "font-awesome";
+@import "cookies_eu";
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black|Roboto');
 
 $blue:#1565c0;
@@ -8,7 +9,7 @@ $charcoal: rgba(36, 32, 33, 0.9);
 /*Note translucents do not update automatically */
 /* Colour scheme */
 $primary: #FF6860;
-$secondary: #1B9AAA;
+$secondary: #10304F;
 $black: #050505;
 $grey:#eeeeee;
 
@@ -45,11 +46,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-white {
-  color: white;
+  color: white !important;
 }
 
 .text-primary {
   color: $primary !important;
+}
+
+.text-secondary {
+  color: $secondary !important;
+}
+
+.text-blend {
+  color: white;
+  mix-blend-mode: difference;
 }
 
 .logo-text {
@@ -183,12 +193,20 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.background-translucent-grey {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
 .background-translucent-primary {
   background-color: rgba(255, 104, 96, 0.8);
 }
 
 .background-translucent-secondary {
-  background-color: rgba(27, 154, 170, 1);
+  background-color: rgba(16, 48, 79, 0.7);
+}
+
+.ingredient-image {
+  border-radius: 5px;
 }
 
 .outline-primary {
@@ -209,6 +227,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-row {
   min-height: 500px;
+  max-height: 800px;
 }
 
 .recipes-background {
@@ -237,6 +256,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .category-background {
   min-height: 400px;
+}
+
+span.help-block {
+  background-color: #f2dede;
+  border-color: #ebcccc;
+  color: #a94442;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  display: block;
 }
 
 .booyah-box {
@@ -274,6 +304,27 @@ h1, h2, h3, h4, h5, h6 {
   width: auto;
   overflow: hidden;
 }
+
+.lister-product-container {
+  position: relative;
+}
+
+.lister-product-image-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: white;
+  overflow: hidden;
+}
+
+.lister-product-container:hover .lister-product-image-overlay {
+  opacity: 0.8;
+}
+
 
 .distillery-image {
   margin-top: auto;
@@ -354,12 +405,6 @@ a, a:hover {
 
 }
 
-.insta-image {
-  height: auto;
-  width: auto;
-
-}
-
 .insta-overlay {
   position: absolute;
   top: 0;
@@ -396,24 +441,4 @@ a, a:hover {
   -webkit-transition: width 0.3s;
   -moz-transition: width 0.3s;
   transition: width 0.3s;
-}
-
-@keyframes spinner {
-  to {transform: rotate(360deg);}
-}
- 
-.spinner:before {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  width: 30px;
-  height: 30px;
-  margin-top: -15px;
-  margin-left: -15px;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  border-top-color: #07d;
-  animation: spinner .6s linear infinite;
 }

@@ -30,7 +30,7 @@ class RecipeImageUploader < CarrierWave::Uploader::Base
   # end
   
   version :full do
-    process :resize_to_fit => [800, 800]
+    process :resize_to_fill => [800, 800, gravity = 'Center']
   end
 
   # Create different versions of your uploaded files:

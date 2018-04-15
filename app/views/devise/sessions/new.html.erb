@@ -2,7 +2,7 @@
   <div class = "row py-2">
     <div class = "col-md-6 offset-md-3">
       <div class = "booyah-box nice-padding">
-        <h2>Log in</h2>
+        <h2><%= title 'Log in' %></h2>
 
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-inputs">

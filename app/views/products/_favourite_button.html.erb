@@ -1,20 +1,20 @@
 <% if user_signed_in? %>
   <% if current_user.favourited_product?(product) %>
-    <%= link_to product_favourite_product_path(current_user.user_favourite_products.find_by(product: product), product_id: product.id), class: "btn btn-primary favourite-button col-12", method: :delete, remote: true do %>
+    <%= link_to product_favourite_product_path(current_user.user_favourite_products.find_by(product: product), product_id: product.id), class: "btn-lg btn-primary favourite-button col-12", method: :delete, remote: true do %>
       <i class="fa fa-heart" aria-hidden="true"></i> Favourited
     <% end %>
   <% else %>
     <p>Craftr will be transactional soon! Favourite a product so we can let you know when you can buy it!</p> 
-    <%= link_to product_favourite_products_path(product_id: product.id), class: "btn btn-primary favourite-button col-12", method: :post, remote: true do %>
+    <%= link_to product_favourite_products_path(product_id: product.id), class: "btn-lg btn-primary favourite-button col-12", method: :post, remote: true do %>
       <i class="fa fa-heart-o" aria-hidden="true"></i> Favourite
     <% end %>
   <% end %>
 <% else %>
-  <%= link_to "Sign in to favourite", new_user_session_path, class: "btn btn-primary col-12" %>
+  <%= link_to "Sign in to favourite", new_user_session_path, class: "btn-lg btn-primary col-12" %>
 <% end %>
 
 <script>
   $('.favourite-button').click(function() {
-    $('.favourite-button').addClass('spinner');
+    $('.favourite-button').html('<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i>');
   });
 </script>

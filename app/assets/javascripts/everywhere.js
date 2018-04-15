@@ -1,31 +1,8 @@
 $( document ).on('turbolinks:load', function() { 
-  $(function() {
-    $('.search-toggle').click(function() {
-      $('.search-show-hide').toggle();
-      $('.search-box').focus();
-      $('.fa-search').toggleClass('fa-times');
-
-
-    });
-  });
-});
-
-$( document ).on('turbolinks:load', function() { 
-  $(function() {
-    $('.top-nav-carousel').owlCarousel({
-      loop:true,
-      responsiveClass:true,
-      responsive:{
-        0:{
-            items:1,
-            nav:false
-        },
-        600:{
-            items:3,
-            nav:false
-        },
-      }
-    })
+  $('.search-toggle').click(function() {
+    $('.search-show-hide').toggle();
+    $('.search-box').focus();
+    $('.fa-search').toggleClass('fa-times');
   });
 });
 
@@ -79,9 +56,6 @@ $( document ).on('turbolinks:load', function() {
   });
 });
 
-$( document ).on('turbolinks:load', function() { 
-  $('body').toggleClass('loaded')
-});
 
 $(document).on('turbolinks:load', function() { 
 
@@ -91,22 +65,20 @@ $(document).on('turbolinks:load', function() {
 
 });
 
-$( document ).on('turbolinks:load', function() { 
-  //Sticky secondary nav
-    // grab the initial top offset of the navigation 
+$(document).on('turbolinks:load', function() { 
   var stickyNavTop = $('.secondary-nav').offset().top;
     
-    // our function that decides weather the navigation bar should have "fixed" css position or not.
-    var stickyNav = function(){
-      var scrollTop = $(window).scrollTop(); // our current vertical position from the top
-           
-      // if we've scrolled more than the navigation, change its position to fixed to stick to top,
-      // otherwise change it back to relative
-      if (scrollTop > stickyNavTop) { 
-          $('.secondary-nav').addClass('sticky');
-      } else {
-          $('.secondary-nav').removeClass('sticky'); 
-      }
+  // our function that decides weather the navigation bar should have "fixed" css position or not.
+  var stickyNav = function(){
+    var scrollTop = $(window).scrollTop(); // our current vertical position from the top
+         
+    // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+    // otherwise change it back to relative
+    if (scrollTop > stickyNavTop) { 
+        $('.secondary-nav').addClass('sticky');
+    } else {
+        $('.secondary-nav').removeClass('sticky'); 
+    }
   };
 
   stickyNav();
@@ -114,4 +86,21 @@ $( document ).on('turbolinks:load', function() {
   $(window).scroll(function() {
     stickyNav();
   });
+});
+
+$( document ).on('turbolinks:load', function() { 
+  $('.top-nav-carousel').owlCarousel({
+    loop:true,
+    responsiveClass:true,
+    responsive:{
+      0:{
+          items:1,
+          nav:false
+      },
+      600:{
+          items:3,
+          nav:false
+      },
+    }
+  })
 });

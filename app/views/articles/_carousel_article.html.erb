@@ -1,0 +1,17 @@
+<div class = "hero-row" style="background: transparent url(<%= article.banner_image %>) no-repeat center center /cover"> 
+  <%= link_to article_path(article) do %> 
+    <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5">
+      <div class = "background-translucent-grey py-3 py-md-5 px-2 px-md-5">
+        <div class = "badge badge-default">Featured article</div>
+        <h1 class = "my-3"><%= article.title %></h1>
+        <h4 class = ""><%= article.description %></h4>
+        <% if article.tags.length > 0 %>
+          Collections: 
+          <% article.tags.each do |tag| %>
+            <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

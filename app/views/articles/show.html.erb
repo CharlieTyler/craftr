@@ -1,8 +1,37 @@
+<% if user_signed_in? && current_user.admin %>
+  <div class = "container py-2">
+    <div class = "row">
+      <div class = "col-md-6 offset-md-3">
+        <h6>Admin functions</h6>
+        <div class = "row">
+          <div class = "col-6">
+            <%= link_to "Edit", edit_admin_article_path(@article), class: "btn btn-secondary col-10 offset-1" %>
+          </div>
+          <div class = "col-6">
+            <%= link_to "Delete", admin_article_path(@article), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger col-10 offset-1" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class = "container-fluid">
-  <div class="row py-5" style="background-image: url('<%= @article.banner_image.url(:full).to_s %>'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+  <div class="row py-5" style="background-image: url('<%= @article.banner_image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
     <div class = "col-md-8 offset-md-2 text-center">
-      <h1 class = "py-5 text-white display-4"><span class = "background-translucent-black px-3 py-2"><%= @article.title %></span></h1>
-      <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= @article.description %></span></h6>
+      <div class = "background-translucent-grey py-3 mt-5">
+        <div class = "">
+          <h1 class = "my-3"><%= title @article.title %></h1>
+          <% if @article.author.present? %>
+            <p class = "article-text">by <%= link_to @article.author.name, author_path(@article.author) %></p>
+          <% end %>
+          <h4 class = ""><%= @article.description %></h6>
+        </div>
+        <% @article.tags.each do |tag| %>
+          <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
+        <% end %>
+      </div>
+      
     </div>
   </div>
 </div>
@@ -19,7 +48,7 @@
         </div>
         <div class = "row">
           <div class = "col-12">
-            <%= image_tag @article.image_first_url(:full).to_s), class: "d-block img-fluid" %>
+            <%= image_tag @article.image_first_url(:full).to_s, class: "d-block img-fluid" %>
           </div>
         </div>
         <div class = "row">
@@ -34,7 +63,7 @@
         <div class = "row">
           <div class = "col-12">
             <% if @article.image_second.present? %>
-              <%= image_tag @article.image_second_url(:full).to_s), class: "d-block img-fluid" %>
+              <%= image_tag @article.image_second_url(:full).to_s, class: "d-block img-fluid" %>
             <% end %>
           </div>
         </div>
@@ -46,11 +75,55 @@
               </p>
             <% end %>
           </div>
+        </div>
         <div class = "row">
           <div class = "col-12">
             <% if @article.image_third.present? %>
-              <%= image_tag @article.image_third_url(:full).to_s), class: "d-block img-fluid" %>
+              <%= image_tag @article.image_third_url(:full).to_s, class: "d-block img-fluid" %>
             <% end %>
+          </div>
+        </div>
+        <div class = "row">
+          <div class = "col-12">
+            <% if @article.description_fourth.present? %>
+              <p class = "article-text">
+                <%= simple_format(@article.description_fourth) %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+        <div class = "row">
+          <div class = "col-12">
+            <% if @article.image_fourth.present? %>
+              <%= image_tag @article.image_fourth_url(:full).to_s, class: "d-block img-fluid" %>
+            <% end %>
+          </div>
+        </div>
+        <div class = "row">
+          <div class = "col-12">
+            <% if @article.description_fifth.present? %>
+              <p class = "article-text">
+                <%= simple_format(@article.description_fifth) %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+        <div class = "row">
+          <div class = "col-12">
+            <% if @article.image_fifth.present? %>
+              <%= image_tag @article.image_fifth_url(:full).to_s, class: "d-block img-fluid" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class = "col-md-3 pt-3 float-right">
+        <div id = "mostRead">
+          <h4>Most read articles</h4>
+          <ol>
+            <% @most_read_articles.each do |article| %>
+              <li><%= link_to article.title, article_path(article) %></li>
+            <% end %>
+          </ol>
         </div>
       </div>
     </div>
@@ -58,34 +131,59 @@
 </div>
 
 <!-- Joins -->
-<div class = "container">
+<div class = "container" id = "mostReadBottom">
   <div class = "row">
     <div class = "col-md-10 offset-md-1">
-      <% if @article.products.present? %>
+      <% unless @article.products.blank? %>
         <h4>Related products</h4>
         <div class = "row py-2"> 
-          <%= render partial: 'products/lister_item', collection: @article.products, as: :product %>
+          <%= render partial: 'products/lister_item', collection: @article.products.live, as: :product %>
         </div>
       <% end %>
-      <% if @article.recipes.present? %>
+      <% unless @article.recipes.blank? %>
         <h4>Related recipes</h4>
         <div class = "row py-2">
           <%= render partial: 'recipes/lister_recipe', collection: @article.recipes, as: :recipe %>
         </div>
       <% end %>
-      <% if @article.distilleries.present? %>
+      <% unless @article.distilleries.blank? %>
         <h4>Related distilleries</h4>
         <div class = "row py-2"> 
-          <!-- Should probably make a distilleries lister -->
+          <%= render partial: 'distilleries/lister_distillery', collection: @article.distilleries, as: :distillery %>
         </div>
       <% end %>
-      <% if @article.categories.present? %>
+      <% unless @article.categories.blank? %>
         <h4>Related categories</h4>
         <div class = "row py-2"> 
-          <!-- Should probably make a categories lister -->
+          <%= render partial: 'categories/lister_category', collection: @article.categories, as: :category %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
 
+<script>
+  $(function() {
+    var mostReadTop = $('#mostRead').offset().top;
+    var mostReadBottom = $('#mostReadBottom').position().top - $('#mostRead').innerHeight();
+      
+    // our function that decides weather the navigation bar should have "fixed" css position or not.
+    var sticky = function(){
+      var scrollTop = $(window).scrollTop(); // our current vertical position from the top
+           
+      // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+      // otherwise change it back to relative
+      if (((scrollTop > mostReadTop) && (scrollTop < mostReadBottom)) && ($( window ).width() > 780)) { 
+          $('#mostRead').addClass('sticky');
+      } else {
+          $('#mostRead').removeClass('sticky'); 
+      }
+    };
+
+    sticky();
+    // and run it again every time you scroll
+    $(window).scroll(function() {
+      sticky();
+    });
+  });
+</script>

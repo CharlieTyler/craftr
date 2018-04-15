@@ -1,0 +1,17 @@
+<div class = "hero-row" style="background: transparent url(<%= recipe.image %>) no-repeat center center /cover"> 
+  <%= link_to recipe_path(recipe) do %>
+    <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5">
+      <div class = "background-translucent-grey py-3 py-md-5 px-2 px-md-5">
+        <div class = "badge badge-default">Featured recipe</div>
+        <h1 class = "my-3"><%= recipe.name %></h1>
+        <h4 class = ""><%= recipe.description %></h4>
+        <% if recipe.rtags.length > 0 %>
+          Collections: 
+          <% recipe.rtags.each do |tag| %>
+            <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary my-2" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

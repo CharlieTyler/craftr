@@ -1,66 +1,64 @@
 <div class = "container-fluid">
   <div class = "row">
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-      <h6>Strongly advise to check all the ingredients that you want to include exist before starting with the rest of the content</h6>
-      <p>Add an ingredient at the bottom of this page</p>
-      <%= simple_form_for @recipe do |f| %>
-        <%= f.input :name %>
-        <%= f.input :tag %>
-        <%= f.input :description %>
-        <%= f.input :instagram_hashtag %>
-        <%= f.input :blurb, input_html: { class: 'quill_container' } %>
-        <%= f.input :image %>
-        <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :email %>
-        <%= f.input :banner_image %>
-        <div class = "all_ingredient_fields">
-          <%= f.simple_fields_for :recipe_ingredients do |i| %>
-            <div class = "row ingredient_field">
-              <div class = "col-6">
-                <%= i.input :quantity %>
+        <%= simple_form_for @recipe, url: admin_recipe_path(@recipe) do |f| %>
+          <%= f.input :name %>
+          <%= f.input :rtag_list, label: "Tags, separated by commas" %>
+          <%= f.input :description %>
+          <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :name %>
+          <%= f.input :instagram_hashtag %>
+          <%= f.input :blurb, input_html: { class: 'quill_container' } %>
+          <%= f.input :image %>
+          <%= f.input :banner_image %>
+          <div class = "all_ingredient_fields">
+            <%= f.simple_fields_for :recipe_ingredients do |i| %>
+              <div class = "row ingredient_field">
+                <div class = "col-6">
+                  <%= i.input :quantity %>
+                </div>
+                <div class = "col-6">
+                  <%= i.input :ingredient_id, collection: @ingredients, value_method: :id  %>
+                </div>
+                <hr />
               </div>
-              <div class = "col-6">
-                <%= i.input :ingredient_id, collection: @ingredients, value_method: :id  %>
+            <% end %>
+          </div>
+          <p><a href="#" class="add_ingredient_field">+ add another</a></p>
+          <%= f.input :method, input_html: { class: 'quill_container' } %>
+          <div class = "all_product_fields">
+            <%= f.simple_fields_for :recipe_products do |i| %>
+              <div class = "row product_field">
+                <div class = "col-6">
+                  <%= i.input :product_id, collection: @products, value_method: :id  %>
+                </div>
+                <hr />
               </div>
-              <hr />
-            </div>
-          <% end %>
-        </div>
-        <p><a href="#" class="add_ingredient_field">+ add another</a></p>
-        <%= f.input :method, input_html: { class: 'quill_container' } %>
-        <div class = "all_product_fields">
-          <%= f.simple_fields_for :recipe_products do |i| %>
-            <div class = "row product_field">
-              <div class = "col-6">
-                <%= i.input :product_id, collection: @products, value_method: :id  %>
+            <% end %>
+          </div>
+          <p><a href="#" class="add_product_field">+ add another</a></p>
+          <div class = "all_category_fields">
+            <%= f.simple_fields_for :recipe_categories do |rc| %>
+              <div class = "row category_field">
+                <div class = "col-6">
+                  <%= rc.input :category_id, collection: @categories, value_method: :id  %>
+                </div>
+                <hr />
               </div>
-              <hr />
-            </div>
-          <% end %>
-        </div>
-        <p><a href="#" class="add_product_field">+ add another</a></p>
-        <div class = "all_category_fields">
-          <%= f.simple_fields_for :recipe_categories do |rc| %>
-            <div class = "row category_field">
-              <div class = "col-6">
-                <%= rc.input :category_id, collection: @categories, value_method: :id  %>
-              </div>
-              <hr />
-            </div>
-          <% end %>
-        </div>
-        <p><a href="#" class="add_category_field">+ add another</a></p>
-        <br />
-        <%= f.input :variants, input_html: { class: 'quill_container' } %>
-        <%= f.submit "Create recipe", class: "btn btn-primary col-12" %>
-      <% end %>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-secondary my-2" data-toggle="modal" data-target="#newIngredientModal">
-        Add an ingredient
-      </button>
+            <% end %>
+          </div>
+          <p><a href="#" class="add_category_field">+ add another</a></p>
+          <%= f.input :variants, input_html: { class: 'quill_container' } %>
+          <%= f.submit "Update", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newIngredientModal">
+  Add an ingredient
+</button>
 
 <!-- Modal -->
 <div class="modal fade" id="newIngredientModal" tabindex="-1" role="dialog" aria-labelledby="newIngredientModalLabel" aria-hidden="true">
@@ -78,6 +76,7 @@
           <%= f.input :classification, collection: Ingredient::CATEGORIES %>
           <%= f.input :category_id, collection: @categories %>
           <%= f.input :product_id, collection: @products %>
+          <%= f.input :image %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -94,13 +93,20 @@
     var ingredientIndex = $('.ingredient_field').length - 1;
 
     $(".add_ingredient_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       ingredientIndex++;
 
       // clone the labels and select fields
       var newFields = $('.ingredient_field').first().clone().appendTo( ".all_ingredient_fields" );
       // change the select field names and ids
       newFields.find("select").each(function(index) {
+        newId   = $(this).attr("id").replace(/0/g, ingredientIndex);
+        newName = $(this).attr("name").replace(/0/g, ingredientIndex);
+        $(this).attr("id", newId);
+        $(this).attr("name", newName);
+      });
+
+      newFields.find("input").each(function(index) {
         newId   = $(this).attr("id").replace(/0/g, ingredientIndex);
         newName = $(this).attr("name").replace(/0/g, ingredientIndex);
         $(this).attr("id", newId);
@@ -121,7 +127,7 @@
     var productIndex = $('.product_field').length - 1;
 
     $(".add_product_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       productIndex++;
 
       // clone the labels and select fields
@@ -146,13 +152,13 @@
     });
 
     function removeProductFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       productIndex--;
     }
 
     function removeIngredientFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       ingredientIndex--;
     }
@@ -160,7 +166,7 @@
     var categoryIndex = $('.category_field').length - 1;
 
     $(".add_category_field").click(function(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       categoryIndex++;
 
       // clone the labels and select fields
@@ -186,7 +192,7 @@
     });
 
     function removeCategoryFields(evt) {
-      evt.preventDefault();
+      evt.stopImmediatePropagation();
       $(this).parent('div').remove();
       categoryIndex--;
     }

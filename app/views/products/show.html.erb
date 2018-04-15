@@ -1,3 +1,22 @@
+<p class="alert alert-info">Craftr is not yet transactional - favourite products to get notified when they're available for purchase</p>
+<% if user_signed_in? && current_user.admin %>
+  <div class = "container py-2">
+    <div class = "row">
+      <div class = "col-md-6 offset-md-3">
+        <h6>Admin functions</h6>
+        <div class = "row">
+          <div class = "col-6">
+            <%= link_to "Edit", edit_admin_product_path(@product), class: "btn btn-secondary col-10 offset-1" %>
+          </div>
+          <div class = "col-6">
+            <%= link_to "Delete", admin_product_path(@product), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger col-10 offset-1" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class = "container-fluid">
   <div class = "row">
     <div class = "col-md-10 offset-md-1">
@@ -7,13 +26,24 @@
             <% @product.product_images.each do |image| %>
               <%= image_tag image.photo_url(:full).to_s, class: "product-image-large" %>
             <% end %>
+            <% if @distillery.youtube_video_url.present? %>
+              <div class = "container" id = "video">
+                <div class = "row">
+                  <div class = "col-12 text-center">
+                    <div class = "embed-responsive embed-responsive-16by9">
+                      <%= raw(youtube_embed(@distillery.youtube_video_url)) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
 
         <!-- Product descriptions -->
         <div class = "col-md-5 pt-3">
-          <h1><%= @product.name %></h1>
-          <h6 class = "text-muted">by <%= link_to @product.distillery.name, distillery_path(@product.distillery) %></h6>
+          <h1><%= title @product.name %></h1>
+          <h6 class = "text-muted">by <%= link_to @product.distillery.name, distillery_path(@product.distillery), class: "text-primary" %></h6>
           <h4><%= render partial: "products/star_rating", locals: {product: @product} %></h4>
             <h6 class = "my-3 text-muted">
               <% if @product.size_ml.present? %>
@@ -32,13 +62,15 @@
            <!--  <div class = "col-12 favourite-unfavourite py-2">
               <%= render partial: 'favourite_button', locals: {product: @product} %>
             </div> -->
-            <div class = "row my-4">
-              <%= simple_form_for @order_item, class: "form-inline" do |f| %>
-                <%= f.input :quantity, :input_html => { :value => 1, :min => 1, :max => 20 } %>
-                <%= f.input :product_id, :as => :hidden, :input_html => { :value => @product.id } %>
-                <%= f.submit "Add to basket", class: "btn-lg btn-primary col-12" %>
-              <% end %>
-            </div>
+            <% if @product.live? && @product.in_stock? %> 
+              <div class = "row my-4">
+                <%= simple_form_for @order_item, class: "form-inline" do |f| %>
+                  <%= f.input :quantity, :input_html => { :value => 1, :min => 1, :max => 20 } %>
+                  <%= f.input :product_id, :as => :hidden, :input_html => { :value => @product.id } %>
+                  <%= f.submit "Add to basket", class: "btn-lg btn-primary col-12" %>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -82,9 +114,6 @@
           <li class="nav-item mid-nav">
             <a class="nav-link no-click" href="#reviews"><h6>Reviews</h6></a>
           </li>
-          <li class = "nav-item mid-nav">
-            <a class = "nav-link"><h6>Add to basket</h6></a>
-          </li>
         </ul>
       </div>
     </div>
@@ -103,7 +132,11 @@
           </p>
         </div>
         <div class = "col-12 justify-content-center">
-          <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
+          <% if @product.product_images.length > 2 %>
+            <%= image_tag @product.product_images.second.photo, class: "d-block img-fluid product-page-image" %>
+          <% else %>
+            <%= image_tag @product.product_images.first.photo, class: "d-block img-fluid product-page-image" %>
+          <% end %>
         </div>
         <div class = "col-12">
           <p class = "article-text">
@@ -111,19 +144,26 @@
           </p>
         </div>
         <div class = "col-12">
-          <%= image_tag @product.product_images.sample.photo, class: "d-block img-fluid product-page-image" %>
+          <%= image_tag @product.product_images.last.photo, class: "d-block img-fluid product-page-image" %>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Distillery -->
-  <div class = "row" id = "distillery">
+  <div class = "row mt-3" id = "distillery">
     <h1>The distillery</h1>
-    <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true, include_button: true}%>
+    <div class = "col-12">
+      <%= render partial: "distilleries/distillery_grid", locals: {distillery: @product.distillery, include_people: true, include_range: true, include_button: true}%>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-12">
+      <hr class = "booyah-line my-2" />
+    </div>
   </div>
 
-  <% if @other_distillery_products.present? %>
+  <% unless @other_distillery_products.blank? %>
   <!-- Other products from same distillery -->
     <div class = "row">
       <div class = "col-12">
@@ -133,11 +173,21 @@
     </div>
   <% end %>
 
+  <% unless @other_popular_products.blank? %>
+  <!-- Other products from same distillery -->
+    <div class = "row">
+      <div class = "col-12">
+        <h3>Other popular <%= link_to "#{@product.category.name}s", category_path(@product.category) %></h3>
+      </div>
+      <%= render partial: "products/lister_item", collection: @other_popular_products, as: :product %>
+    </div>
+  <% end %>
+
   <!-- Recipes -->
   <% unless @recipes.blank? %>
     <div class = "row" id = "recipes">
       <div class = "col-12">
-        <h1>Recipes</h1>
+        <h4>Recipes</h4>
         <div class = "row">
           <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
         </div>
@@ -145,23 +195,65 @@
     </div>
   <% end %>
 
+  <div class = "row">
+    <div class = "col-12 my-3">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
+
   <!-- Reviews -->
-  <div class = "row" id = "reviews">
+  <div class = "row py-1" id = "reviews">
     <div class = "col-12">
-      <h1>Reviews</h1>
+      <h4>Reviews</h4>
+      <h4><%= render partial: "products/star_rating", locals: {product: @product} %></h4>
       <div class = "row">
-        <%= render partial: "review", collection: @product.reviews %>
+        <div class = "col-12">
+          <hr class = "booyah-line my-2" />
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newReviewModal">
+          + Add a review
+        </button>
+      <% else %>
+        <p>Please <%= link_to "login", new_user_session_path, class: "btn btn-primary" %> or <%= link_to "sign up", new_user_registration_path, class: "btn btn-secondary" %> to add a review</p>
+      <% end %>
+      <div class = "row">
+        <% if @product.reviews.length == 0 %>
+          <div class = "col-12">
+            <p>No reviews yet. Be the first to add one!</p>
+          </div>
+        <% else %>
+          <%= render partial: "review", collection: @product.reviews %>
+        <% end %>
       </div>
       <div class = "clear"></div>
-      <h1>Add a review</h1>
-      <% if user_signed_in? %>
-        <%= simple_form_for @review, url: product_reviews_path(@product) do |f| %>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade mt-5" id="newReviewModal" tabindex="-1" role="dialog" aria-labelledby="newReviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newreviewModalLabel">New review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for @review, url: product_reviews_path(@product) do |f| %>
+        <div class="modal-body">
           <%= f.input :rating, collection: 1..5 %>
           <%= f.input :message %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <%= f.submit "Submit", class: "btn btn-primary" %>
-        <% end %>
-      <% else %>
-        <p>Please <%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to add a review</p>
+        </div>
       <% end %>
     </div>
   </div>
@@ -185,5 +277,5 @@
           nav:true
       },
     }
-  })
+  });
 </script>

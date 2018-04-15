@@ -1,0 +1,21 @@
+<div class = "hero-row" style="background: transparent url(<%= product.product_images.first.photo %>) no-repeat center center /cover"> 
+  <%= link_to product_path(product) do %>
+    <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5">
+      <div class = "background-translucent-grey py-3 py-md-5 px-2 px-md-5">
+        <div class = "badge badge-default">Featured product</div>
+        <h1 class = "my-3"><%= product.name %></h1>
+        <h6 class = "my-3 text-muted">
+          <% if product.size_ml.present? %>
+            <!-- Allow for products not to have size -->
+            <%= "#{product.size_ml}ml - #{product.alcohol_percentage}%" %>
+            <!-- Must still have alcohol percentage -->
+          <% else %>
+            <%= "#{product.alcohol_percentage}%" %>
+          <% end %>
+        </h6>
+        <h4><%= render partial: "products/star_rating", locals: {product: product} %></h4>
+        <h3 class = "text-primary"><%= render partial: 'products/price_formatted', locals: {product: product} %></h3>
+      </div>
+    </div>
+  <% end %>
+</div>

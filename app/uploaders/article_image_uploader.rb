@@ -31,7 +31,8 @@ class ArticleImageUploader < CarrierWave::Uploader::Base
   # end
   
   version :full do
-    process :resize_to_fill => [1000, 500, gravity = 'Center']
+    process :resize_to_limit => [800, nil]
+    # Resizes to be 800px wide and maintain aspect ratio
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

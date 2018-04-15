@@ -1,0 +1,17 @@
+<div class = "container-fluid">
+  <div class = "row background-grey">
+    <div class = "col-md-10 offset-md-1">
+      <h1><%= title "#{@tag.name.capitalize} articles" %></h1>
+      <div class = "row">
+        <div class = "col-12 text-center">
+          <% @tags.each do |tag| %>
+            <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary" %>
+          <% end %>
+        </div>
+      </div>
+      <div class = "row">
+        <%= render partial: "articles/lister_article", collection: @articles, as: :article %>
+      </div>
+    </div>
+  </div>
+</div> 

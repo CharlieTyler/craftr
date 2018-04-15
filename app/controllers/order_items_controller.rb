@@ -1,4 +1,6 @@
 class OrderItemsController < ApplicationController
+  before_action :check_product_live_and_in_stock, only: [:create]
+  
   include ActionView::Helpers::TextHelper
   # So we can use pluralize method
   # @order set in application controller, giving us use of the @order variable
@@ -32,12 +34,20 @@ class OrderItemsController < ApplicationController
   end
 
   def index
+    # This is the basket page
     @order_items = @order.order_items
     @shipping_types = ShippingType.all
     @default_shipping_type = ShippingType.first
   end
 
   private
+
+  def check_product_live_and_in_stock
+    unless product.live? && product.in_stock?
+      flash[:alert] = 'This product is out of stock, please select another'
+      redirect_to request.referrer
+    end
+  end
 
   def order_item_params
     params.require(:order_item).permit(:product_id,

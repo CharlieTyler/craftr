@@ -7,6 +7,7 @@
         <%= f.input :logo %>
         <%= f.input :summary_text, hint: 'Short description appears on lister page and in banner image' %>
         <%= f.input :summary_image, hint: 'Will be banner image' %>
+        <%= f.input :youtube_video_url %>
         <%= f.input :people_text, input_html: { class: 'quill_container' } %>
         <%= f.input :people_image %>
         <%= f.input :range_text, input_html: { class: 'quill_container' } %>
@@ -20,8 +21,8 @@
         <%= f.input :website, hint: 'Please include http://' %>
         <%= f.input :facebook, hint: 'Please include http://' %>
         <%= f.input :instagram_user_id, hint: 'Use https://smashballoon.com/instagram-feed/find-instagram-user-id/ to get id from username' %>
-        <%= f.input :longitude, hint: 'type into google maps and get from url' %>
-        <%= f.input :latitude %>
+        <%= f.input :latitude, hint: 'first number in google maps url' %>
+        <%= f.input :longitude, hint: 'second number, incl - sign, in google maps url' %>
         <br />
         <%= f.submit "Create", class: "btn btn-primary" %>
       <% end %>

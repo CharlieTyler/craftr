@@ -1,22 +1,20 @@
-<div class = "col-6 col-md-4">
-  <%= link_to distillery_path(distillery) do%>
-    <div class = "booyah-box px-1 py-1">
-      <div class = "row">
-        <div class = "col-12">
-          <%= image_tag distillery.summary_image, class: "d-block img-fluid" %>
-        </div>
+<div class = "col-6 col-md-4 col-lg-3 my-2">
+  <%= link_to distillery_path(distillery) do %>
+    <div class="card h-100">
+      <div class = "card-img-top">
+        <% if distillery.summary_image.square.file.exists? %>
+          <%= image_tag distillery.summary_image_url(:square), class: "img-fluid" %>
+        <% else %>
+          <%= image_tag distillery.summary_image, class: "img-fluid" %>
+        <% end %>
       </div>
-      <div class = "row py-1">
-        <div class = "col-12">
-          <hr class = "booyah-line">
-        </div>
+      <div class="card-block">
+        <h4 class="card-title"><%= distillery.name %></h4>
+        <p class="card-text"><%= truncate_html(distillery.summary_text, length: 100) %></p>
       </div>
-      <div class = "row">
-        <div class = "col-12">
-          <h3><%= distillery.name %></h3>
-          <p class = "article-text"><%= distillery.summary_text %></p>
-        </div>
-      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item text-muted text-left"><%= pluralize(distillery.products.live.length, 'product') %> from <%= distillery.location %></li>
+      </ul>
     </div>
   <% end %>
 </div>

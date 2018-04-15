@@ -27,7 +27,10 @@ class Admin::CategoriesController < AdminController
   end
 
   def destroy
-
+    @category = Category.friendly.find(params[:id])
+    @category.delete
+    flash[:alert] = "Category successfully deleted"
+    redirect_to root_path
   end
 
   private
@@ -36,6 +39,7 @@ class Admin::CategoriesController < AdminController
     params.require(:category).permit(:name, 
                                      :icon,
                                      :banner_image,
+                                     :featured,
                                      :instagram_hashtag)
   end
 end

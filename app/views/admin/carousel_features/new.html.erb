@@ -1,0 +1,15 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-6 offset-md-3">
+      <h4>New carousel feature</h4>
+      <%= simple_form_for @carousel_feature, url: admin_carousel_features_path do |f| %>
+        <%= f.input :line_1, input_html: { class: 'quill_container' } %>
+        <%= f.input :line_2, input_html: { class: 'quill_container' } %>
+        <%= f.input :cta_text %>
+        <%= f.input :link_url, hint: "If this is internal, just enter everything after the slash, e.g. products/duck-and-crutch-gin. Make sure you check this link after creation" %>
+        <%= f.input :image %>
+        <%= f.submit "Create", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

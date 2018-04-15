@@ -27,7 +27,10 @@ class Admin::DistilleriesController < AdminController
   end
 
   def destroy
-
+    @distillery = Distillery.friendly.find(params[:id])
+    @distillery.delete
+    flash[:alert] = "Distillery successfully deleted"
+    redirect_to root_path
   end
 
   private
@@ -36,6 +39,7 @@ class Admin::DistilleriesController < AdminController
     params.require(:distillery).permit(:name, 
                                        :location, 
                                        :logo,
+                                       :youtube_video_url,
                                        :summary_text, 
                                        :people_text, 
                                        :range_text,

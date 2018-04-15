@@ -2,6 +2,8 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  scope :live, -> { where(live?: true) }
+
   belongs_to :distillery
   belongs_to :category
   has_many :reviews, dependent: :destroy
@@ -15,6 +17,8 @@ class Product < ApplicationRecord
 
   has_many :user_favourite_products, dependent: :destroy
   has_many :favourited_by, through: :user_favourite_products, source: :user
+
+  has_many :user_product_views, dependent: :destroy
 
   accepts_nested_attributes_for :product_images
 
@@ -75,5 +79,9 @@ class Product < ApplicationRecord
     else
       bs
     end
+  end
+
+  def other_popular_products
+    Product.where("(category_id = ?)", category_id).where.not("(id = ?)", id).sort_by{|product| -product.user_product_views.length}
   end
 end
