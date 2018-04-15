@@ -1,15 +1,25 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-12">
-      <%= simple_form_for @order, url: order_addresses_path do |f| %>
-        <%= f.input :shipping_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id, include_blank: false %>
-        <%= f.submit "Proceed to payment", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+    <%= render partial: 'checkout/checkout_progress', locals: {order: @order} %>
   </div>
-  <button type="button" class="btn btn-secondary my-2" data-toggle="modal" data-target="#newAddressModal">
-    Add new address
-  </button>
+  <div class = "row">
+    <div class = "col-md-9">
+      <div class = "row">
+        <div class = "col-12">
+          <%= simple_form_for @order, url: order_addresses_path do |f| %>
+            <%= f.input :shipping_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id, include_blank: false %>
+            <%= f.submit "Proceed to payment", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class = "col-md-3">
+      <%= render partial: 'orders/order_summary', locals: {order: @order} %>
+    </div>
+    <button type="button" class="btn btn-secondary my-2" data-toggle="modal" data-target="#newAddressModal">
+      Add new address
+    </button>
+  </div>
 </div>
 
 <!-- Modal -->

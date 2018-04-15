@@ -2,6 +2,9 @@
 
 <div class = "container">
   <div class = "row">
+    <%= render partial: 'checkout/checkout_progress', locals: {order: @order} %>
+  </div>
+  <div class = "row">
     <div class = "col-12">
       <h3>Your basket</h3>
       <div class="basket-header">
