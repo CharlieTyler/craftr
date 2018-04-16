@@ -10,6 +10,7 @@ class Checkout::PaymentsController < ApplicationController
   end
 
   def create
+    # STRIPE PAYMENT
     # Amount in cents
     @amount = @order.total_amount
 
@@ -32,6 +33,10 @@ class Checkout::PaymentsController < ApplicationController
       currency: 'gbp'
     )
 
+    # SHIPPING - EASYPOST
+    @order.create_shipments
+
+    # BACKEND STUFF
     @order.update_attributes(state: "complete")
     session[:order_id] = nil
     flash[:notice] = "Order confirmed"

@@ -5,6 +5,7 @@
         <%= f.input :name, hint: "End with the category of product in lowercase, e.g. 'Duck and Crutch gin'" %>
         <%= f.input :live?, hint: "This means it will be displayed across the site" %>
         <%= f.input :in_stock?, hint: "This means it can be added to orders and purchased" %>
+        <%= f.input :weight, hint: "Weight in oz, required to be transactional" %>
         <%= f.input :distillery_id, collection: @distilleries %>
         <%= f.input :category_id, collection: @categories %>
         <%= f.input :price, hint: "*Enter in pennies* This is super important, and won't let you enter anything less than 100" %>

@@ -1,11 +1,13 @@
 class Address < ApplicationRecord
   belongs_to :user, required: false
+  belongs_to :distillery, required: false
 
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :line_1, presence: true
   validates :post_town, presence: true
   validates :postcode, presence: true
+  validates :easypost_address_id, presence: true
   validate :postcode_is_valid_postcode
 
   # copied from https://gist.github.com/mudge/163332
@@ -17,5 +19,9 @@ class Address < ApplicationRecord
 
   def full_address_no_name
     [line_1, line_2, line_3, post_town, postcode].join(", ")
+  end
+
+  def full_name
+    [first_name, last_name].join(" ")
   end
 end

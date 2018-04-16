@@ -13,6 +13,13 @@ class Checkout::AddressesController < AddressesController
 
   def create
     @address = current_user.addresses.create(address_params)
+    easypost_address = EasyPost::Address.create(
+      name: @address.full_name,
+      street1: @address.line_1,
+      city: @address.post_town,
+      zip: @address.postcode
+    )
+    @address.update_attributes(easypost_address_id: easypost_address.id)
     if @address.valid?
       flash[:notice] = 'Address successfully created'
     else

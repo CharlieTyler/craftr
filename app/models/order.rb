@@ -24,4 +24,26 @@ class Order < ApplicationRecord
   def total_amount
     total_product_amount + total_shipping_amount
   end
+
+  def create_shipments
+    order_items.each do |oi|
+      oi.quantity.times do
+        parcel       = EasyPost::Parcel.create(
+                        predefined_package: 'MediumParcel',
+                        weight: 35
+                       )
+        toAddress   = EasyPost::Address.retrieve(shipping_address.easypost_address_id)
+        fromAddress = EasyPost::Address.retrieve(oi.product.distillery.address.easypost_address_id)
+        shipment     = EasyPost::Shipment.create(
+                        to_address: toAddress,
+                        from_address: fromAddress,
+                        parcel: parcel,
+                        options: {alcohol: true}
+                       )
+        shipment.buy(
+          rate: shipment.lowest_rate(carriers = ['RoyalMail'], services = ['2ndClassSignedFor'])
+        )
+      end
+    end
+  end
 end

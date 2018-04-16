@@ -45,6 +45,7 @@ class Admin::ProductsController < AdminController
     params.require(:product).permit(:name, 
                                     :SKU, 
                                     :live?,
+                                    :weight,
                                     :in_stock?,
                                     :price,
                                     :description_short, 
