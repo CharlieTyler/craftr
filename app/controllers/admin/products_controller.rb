@@ -8,7 +8,6 @@ class Admin::ProductsController < AdminController
 
   def create
     @product = Product.create(product_params)
-    byebug
     if @product.valid?
       redirect_to product_path(@product)
     else
