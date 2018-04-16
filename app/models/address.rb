@@ -1,4 +1,6 @@
 class Address < ApplicationRecord
+  after_create :create_easypost_address
+
   belongs_to :user, required: false
   belongs_to :distillery, required: false
 
@@ -18,10 +20,21 @@ class Address < ApplicationRecord
   end
 
   def full_address_no_name
-    [line_1, line_2, line_3, post_town, postcode].join(", ")
+    [line_1, line_2, line_3, post_town, postcode].reject!(&:empty?).join(", ")
   end
 
   def full_name
     [first_name, last_name].join(" ")
+  end
+
+  def create_easypost_address
+    ep_address = EasyPost::Address.create(
+      name: full_name,
+      street1: line_1,
+      street2: line_2,
+      city: post_town,
+      zip: postcode
+    )
+    update_attributes(easypost_address_id: ep_address.id)
   end
 end

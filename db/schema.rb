@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416170625) do
+ActiveRecord::Schema.define(version: 20180416232736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,8 +216,8 @@ ActiveRecord::Schema.define(version: 20180416170625) do
     t.integer "subtle_to_intense"
     t.integer "fresh_to_complex"
     t.integer "size_ml"
-    t.boolean "live?", default: true
-    t.boolean "in_stock?", default: true
+    t.boolean "is_live", default: true
+    t.boolean "is_in_stock", default: true
     t.float "weight"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end

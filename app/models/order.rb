@@ -29,7 +29,7 @@ class Order < ApplicationRecord
     order_items.each do |oi|
       oi.quantity.times do
         parcel       = EasyPost::Parcel.create(
-                        predefined_package: 'MediumParcel',
+                        predefined_package: 'SmallParcel',
                         weight: 35
                        )
         toAddress   = EasyPost::Address.retrieve(shipping_address.easypost_address_id)

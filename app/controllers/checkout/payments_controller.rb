@@ -34,7 +34,9 @@ class Checkout::PaymentsController < ApplicationController
     )
 
     # SHIPPING - EASYPOST
-    @order.create_shipments
+    # May want to move to a worker server so that payment page isn't delayed?
+    # Read up on queueing jobs other than emails
+    # @order.create_shipments
 
     # BACKEND STUFF
     @order.update_attributes(state: "complete")

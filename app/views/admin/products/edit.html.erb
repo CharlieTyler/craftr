@@ -3,8 +3,8 @@
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <%= simple_form_for @product, url: admin_product_path(@product) do |f| %>
         <%= f.input :name %>
-        <%= f.input :live?, hint: "This means it will be displayed across the site" %>
-        <%= f.input :in_stock?, hint: "This means it can be added to orders and purchased" %>
+        <%= f.input :is_live, hint: "This means it will be displayed across the site" %>
+        <%= f.input :is_in_stock, hint: "This means it can be added to orders and purchased" %>
         <%= f.input :weight, hint: "Weight in oz, required to be transactional" %>
         <%= f.input :distillery_id, collection: @distilleries %>
         <%= f.input :category_id, collection: @categories %>
