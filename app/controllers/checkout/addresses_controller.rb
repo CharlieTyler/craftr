@@ -49,7 +49,7 @@ class Checkout::AddressesController < AddressesController
     @order.order_items.each do |oi|
       unless oi.product.live_and_in_stock?
         flash[:alert] = "#{oi.product.name} is currently out of stock, please remove from basket before proceeding"
-        redirect_to order_items_path
+        redirect_to cart_path
       end
     end
   end
