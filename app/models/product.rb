@@ -23,7 +23,6 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :product_images
 
   validates :name, presence: true
-  validates :SKU, presence: true, uniqueness: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 100 }
   validates :description_short, presence: true
   validates :description_first, presence: true
