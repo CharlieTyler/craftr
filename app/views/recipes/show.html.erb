@@ -43,30 +43,40 @@
       <!-- Ingredients -->
       <h3 class = "text-center" id="ingredients">Ingredients</h3>
       <div class = "row">
-        <% @recipe.recipe_ingredients.each do |ri| %>
-          <div class = "col-6 col-sm-4 col-lg-3 text-center">
-            <!-- <div class = "">
-              <% if ri.ingredient.image.present? %>
-                <%= image_tag ri.ingredient.image_url(:full).to_s, class: "img-fluid ingredient-image" %>
-              <% else %>
-                <%= image_tag "ingredient_placeholder.jpg", class: "img-fluid ingredient-image" %>
+        <ol>
+          <% @recipe.recipe_ingredients.each do |ri| %>
+            <!-- OLD VERSION WITH IMAGE - SAVED FOR IF WE RETURN TO THIS -->
+            <!-- <div class = "col-6 col-sm-4 col-lg-3 text-center"> -->
+              <!-- <div class = "">
+                <% if ri.ingredient.image.present? %>
+                  <%= image_tag ri.ingredient.image_url(:full).to_s, class: "img-fluid ingredient-image" %>
+                <% else %>
+                  <%= image_tag "ingredient_placeholder.jpg", class: "img-fluid ingredient-image" %>
+                <% end %>
+              </div> -->
+              <!-- <p class = "article-text">
+                <%= "#{ri.quantity} " %> 
+                <strong>
+                  <% if ri.ingredient.product.present? %>
+                    <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
+                  <% else %>
+                    <%= ri.ingredient.name %>
+                  <% end %>
+                </strong>
+              </p>
+              <% if user_signed_in? && current_user.admin %>
+                <%= link_to "Edit ingredient", edit_ingredient_path(ri.ingredient), class: "btn btn-secondary" %>
               <% end %>
             </div> -->
-            <p class = "article-text">
-              <%= "#{ri.quantity} " %> 
-              <strong>
-                <% if ri.ingredient.product.present? %>
-                  <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
-                <% else %>
-                  <%= ri.ingredient.name %>
-                <% end %>
-              </strong>
-            </p>
-            <% if user_signed_in? && current_user.admin %>
-              <%= link_to "Edit ingredient", edit_ingredient_path(ri.ingredient), class: "btn btn-secondary" %>
-            <% end %>
-          </div>
-        <% end %>
+            <li>
+              <% if ri.ingredient.product.present? %>
+                <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
+              <% else %>
+                <%= ri.ingredient.name %>
+              <% end %>
+            </li>
+          <% end %>
+        </ol>
       </div>
       <div class = "row">
         <div class = "col-6 offset-3">
