@@ -14,6 +14,7 @@ class Checkout::AddressesController < AddressesController
   def create
     @address = current_user.addresses.create(address_params)
     if @address.valid?
+      # Creates easy_post_address in after_create action
       flash[:notice] = 'Address successfully created'
     else
       flash[:alert] = 'Invalid address'

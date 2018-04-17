@@ -9,7 +9,6 @@ class Address < ApplicationRecord
   validates :line_1, presence: true
   validates :post_town, presence: true
   validates :postcode, presence: true
-  validates :easypost_address_id, presence: true
   validate :postcode_is_valid_postcode
 
   # copied from https://gist.github.com/mudge/163332
@@ -20,7 +19,7 @@ class Address < ApplicationRecord
   end
 
   def full_address_no_name
-    [line_1, line_2, line_3, post_town, postcode].reject!(&:empty?).join(", ")
+    [line_1, line_2, line_3, post_town, postcode].reject { |e| e.to_s.empty? }.join(", ")
   end
 
   def full_name
