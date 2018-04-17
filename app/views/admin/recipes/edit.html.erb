@@ -3,7 +3,7 @@
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
         <%= simple_form_for @recipe, url: admin_recipe_path(@recipe) do |f| %>
           <%= f.input :name %>
-          <%= f.input :rtag_list, label: "Tags, separated by commas" %>
+          <%= f.input :rtag_list, label: "Tags, separated by commas", :input_html => { :value => @recipe.rtag_list.join(", ") } %>
           <%= f.input :description %>
           <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :name %>
           <%= f.input :instagram_hashtag %>
