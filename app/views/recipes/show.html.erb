@@ -69,6 +69,7 @@
               <% end %>
             </div> -->
             <li>
+              <%= "#{ri.quantity} " %> 
               <% if ri.ingredient.product.present? %>
                 <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
               <% else %>
