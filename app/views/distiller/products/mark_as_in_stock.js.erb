@@ -1,0 +1,1 @@
+$(".product-<%= @product.id %>").html('<%= j render partial: 'distiller/products/stock_toggle', locals: {product: @product} %>');

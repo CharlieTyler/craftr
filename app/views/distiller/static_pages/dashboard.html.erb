@@ -34,6 +34,7 @@
                   <% end %>
                 </li>
                 <li class="list-group-item">
+                  <%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %>
                   <!-- Note: could put a form here to allow direct marking of in-stock out of stock -->
                   <%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary" %>
                 </li>

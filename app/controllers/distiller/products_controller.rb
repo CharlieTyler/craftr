@@ -7,10 +7,27 @@ class Distiller::ProductsController < DistillersController
     @product = Product.friendly.find(params[:id])
     @product.update_attributes(distiller_product_params)
     if @product.valid?
-      redirect_to product_path(@product)
+      flash[:notice] = "#{@product.name} updated"
+      redirect_to distiller_dashboard
     else
       return render :edit, status: :unprocessable_entity
     end
+  end
+
+  def mark_as_in_stock
+    respond_to do |format|
+      format.js
+    end
+    @product = Product.friendly.find(params[:id])
+    @product.update_attributes(is_in_stock: true)
+  end
+
+  def mark_as_out_of_stock
+    respond_to do |format|
+      format.js
+    end
+    @product = Product.friendly.find(params[:id])
+    @product.update_attributes(is_in_stock: false)
   end
 
   private

@@ -59,7 +59,14 @@ Rails.application.routes.draw do
   end
 
   namespace :distiller do
-    resources :products, only: [:edit, :update]
+    resources :products, only: [:edit, :update] do
+      member do
+        patch 'mark_as_out_of_stock'
+        put 'mark_as_out_of_stock'
+        patch 'mark_as_in_stock'
+        put 'mark_as_in_stock'
+      end
+    end
     resources :order_items, only: [:edit, :update]
     get "/dashboard", :controller => "static_pages", :action => "dashboard"
   end
