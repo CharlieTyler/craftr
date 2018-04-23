@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180423165408) do
+ActiveRecord::Schema.define(version: 20180423180128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -282,28 +282,20 @@ ActiveRecord::Schema.define(version: 20180423165408) do
     t.index ["user_id", "product_id"], name: "index_reviews_on_user_id_and_product_id"
   end
 
-  create_table "sale_items", force: :cascade do |t|
-    t.integer "sale_id"
+  create_table "shipping_types", force: :cascade do |t|
+    t.string "name"
+    t.string "shipping_time"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sold_items", force: :cascade do |t|
     t.integer "product_id"
     t.integer "order_item_id"
     t.integer "quantity"
     t.integer "item_price"
     t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sales", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "shipping_types", force: :cascade do |t|
-    t.string "name"
-    t.string "shipping_time"
-    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
