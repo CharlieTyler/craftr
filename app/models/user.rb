@@ -5,6 +5,9 @@ class User < ApplicationRecord
   #cart
   has_many :orders
 
+  #completed transactions
+  has_many :sales
+
   #distiller portal
   belongs_to :distillery, required: false
 

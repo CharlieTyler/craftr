@@ -1,5 +1,7 @@
 class Order < ApplicationRecord
   has_many :order_items
+  has_one :sale
+  after_commit :create_sale, if: :order_paid_and_not_denormalised, on: :update
   belongs_to :shipping_type, required: false
   belongs_to :shipping_address, class_name: 'Address', foreign_key: 'shipping_address_id', required: false
   belongs_to :user, required: false
@@ -44,6 +46,18 @@ class Order < ApplicationRecord
           rate: shipment.lowest_rate(carriers = ['RoyalMail'], services = ['2ndClassSignedFor'])
         )
       end
+    end
+  end
+
+  def order_paid_and_not_denormalised
+    state == "paid" && sale.blank?
+  end
+
+  def create_sale
+    sale = Sale.create(order_id: self.id, user_id: self.user.id)
+    sale.save!
+    order_items.each do |oi|
+      sale.sale_items.create(product_id: oi.product.id, order_item_id: oi.id, quantity: oi.quantity, item_price: oi.product.price, status: "Awaiting shipping")
     end
   end
 end

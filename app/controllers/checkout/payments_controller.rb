@@ -39,7 +39,7 @@ class Checkout::PaymentsController < ApplicationController
     # @order.create_shipments
 
     # BACKEND STUFF
-    @order.update_attributes(state: "complete")
+    @order.update_attributes(state: "paid")
     session[:order_id] = nil
     flash[:notice] = "Order confirmed"
     redirect_to root_path
