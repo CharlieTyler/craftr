@@ -1,0 +1,47 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <h1>Distillery portal</h1>
+      <h3>Orders</h3>
+      <div class = "row">
+        <!-- List out all incomplete orders and allow to mark as complete -->
+      </div>
+      <h3>Products</h3>
+      <div class = "row">
+        <!-- List out all products and allow to mark as out of stock or go to edit page - Maybe just indicate instock and link to edit -->
+        <% @products.each do |product| %>
+          <div class = "col-6 col-md-4 my-2">
+            <div class="card h-100">
+              <div class = "card-img-top lister-product-container text-center">
+                <% if product.product_images.present? %>
+                  <%= image_tag product.product_images.first.photo_url(:full).to_s, class: "img-fluid" %>
+                <% else %>
+                  <%= image_tag "booze_placeholder.jpg", class: "img-fluid" %>
+                <% end %>
+                <div class = "lister-product-image-overlay px-3">
+                  <%= link_to product_path(product) do %>
+                    <p class = "pt-3"><small><%= truncate_html(simple_format(product.description_short), length: 100) %></small></p>
+                    <h5 class = "pt-4"><%= render partial: "products/star_rating", locals: {product: product} %></h5>
+                  <% end %>
+                </div>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <%= link_to product_path(product) do %>
+                    <h4 class="card-title mb-2"><%= product.name %></h4>
+                    <p class = "card-subtitle mb-2 text-muted">from <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
+                    <h4 class = "text-primary mb-0"><%= render partial: 'products/price_formatted', locals: {product: product} %></h4>
+                  <% end %>
+                </li>
+                <li class="list-group-item">
+                  <!-- Note: could put a form here to allow direct marking of in-stock out of stock -->
+                  <%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary" %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

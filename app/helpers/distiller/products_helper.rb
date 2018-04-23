@@ -1,0 +1,2 @@
+module Distiller::ProductsHelper
+end

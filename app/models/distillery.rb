@@ -1,6 +1,9 @@
 class Distillery < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  # distillery portal access
+  has_many :users
   
   has_many :products
 

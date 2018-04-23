@@ -57,4 +57,10 @@ Rails.application.routes.draw do
     put "/features", :controller => "featured_items", :action => "update"
     get "/dashboard", :controller => "static_pages", :action => "dashboard"
   end
+
+  namespace :distiller do
+    resources :products, only: [:edit, :update]
+    resources :order_items, only: [:edit, :update]
+    get "/dashboard", :controller => "static_pages", :action => "dashboard"
+  end
 end

@@ -1,0 +1,2 @@
+module Distiller::StaticPagesHelper
+end
