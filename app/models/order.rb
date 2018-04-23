@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   has_many :order_items
   has_many :sold_items
-  after_commit :create_sale, if: :order_paid_and_not_denormalised, on: :update
+  after_commit :create_sold_items, if: :order_paid_and_not_denormalised, on: :update
   belongs_to :shipping_type, required: false
   belongs_to :shipping_address, class_name: 'Address', foreign_key: 'shipping_address_id', required: false
   belongs_to :user, required: false
@@ -53,9 +53,9 @@ class Order < ApplicationRecord
     state == "paid" && sold_items.blank?
   end
 
-  def create_sale
+  def create_sold_items
     order_items.each do |oi|
-      self.sold_items.create(product_id: oi.product.id, order_item_id: oi.id, quantity: oi.quantity, item_price: oi.product.price, status: "Awaiting shipping")
+      self.sold_items.create(order_id: self.id, product_id: oi.product.id, order_item_id: oi.id, quantity: oi.quantity, item_price: oi.product.price, status: "Awaiting shipping")
     end
   end
 end

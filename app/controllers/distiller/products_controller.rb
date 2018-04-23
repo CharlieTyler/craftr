@@ -8,7 +8,7 @@ class Distiller::ProductsController < DistillersController
     @product.update_attributes(distiller_product_params)
     if @product.valid?
       flash[:notice] = "#{@product.name} updated"
-      redirect_to distiller_dashboard
+      redirect_to distiller_dashboard_path
     else
       return render :edit, status: :unprocessable_entity
     end
