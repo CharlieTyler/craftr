@@ -1,0 +1,11 @@
+<div class = "container">
+  <div class = "row">
+    <%= render partial: 'checkout/checkout_progress', locals: {order: @confirmed_order} %>
+  </div>
+  <div class = "row">
+    <div class = "col-12">
+      <h3>Order confirmed</h3>
+      <p>Id: <%= @confirmed_order.id %></p>
+    </div>
+  </div>
+</div>

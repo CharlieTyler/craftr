@@ -19,6 +19,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  def confirmation
+    @confirmed_order = Order.find(session[:confirmed_order_id])
+  end
+
   private
 
   def order_address_params

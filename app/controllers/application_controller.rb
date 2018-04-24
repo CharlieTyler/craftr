@@ -27,8 +27,8 @@ class ApplicationController < ActionController::Base
   # Base of this from https://jedrekdomanski.wordpress.com/2017/02/05/building-a-shopping-cart-in-ruby-on-rails-part-1/ and then altered to deal with Devise
   def set_cart
     if user_signed_in?
-      if current_user.orders.where.not(state: "complete").present?  # find non-complete order
-        @order = current_user.orders.where.not(state: "complete").first
+      if current_user.orders.where.not(state: "paid").present?  # find non-complete order
+        @order = current_user.orders.where.not(state: "paid").first
       elsif session[:order_id].present? # if built a cart without being logged in and is now logged in
         @order = Order.find(session[:order_id])
         if @order.user_id.blank? # if hasn't already updated

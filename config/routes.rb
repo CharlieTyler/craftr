@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   namespace :checkout do
     resources :addresses, only: [:new, :create]
     resources :payments, only: [:new, :create]
+    get "/confirmation" => "orders#confirmation"
   end
   #cart
   get "/cart" => "order_items#index"

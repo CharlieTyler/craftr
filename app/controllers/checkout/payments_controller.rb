@@ -34,15 +34,17 @@ class Checkout::PaymentsController < ApplicationController
     )
 
     # SHIPPING - EASYPOST
-    # May want to move to a worker server so that payment page isn't delayed?
+    # May want to move to a worker server so that payment page isn't delayed? e.g. @order.queue_shipment_creation
     # Read up on queueing jobs other than emails
     # @order.create_shipments
 
     # BACKEND STUFF
+    @order.denormalise_order
+    session[:confirmed_order_id] = @order.id
     @order.update_attributes(state: "paid")
     session[:order_id] = nil
     flash[:notice] = "Order confirmed"
-    redirect_to root_path
+    redirect_to checkout_confirmation_path
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to root_path
