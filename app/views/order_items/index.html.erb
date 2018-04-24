@@ -34,7 +34,7 @@
 
       <% end %>
       <h6 class = "mt-3">Delivery</h6>
-      <%= simple_form_for @order, url: order_shipping_path do |f| %>
+      <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
         <div class = "row">
           <div class = "col-1"><i class="fa fa-truck" aria-hidden="true"></i></div>
           <div class = "col-4"><%= f.input :shipping_type_id, collection: @shipping_types, label_method: :full_shipping_type, value_method: :id, label: false, include_blank: false, input_html: {value: 1} %></div>

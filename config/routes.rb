@@ -33,16 +33,20 @@ Rails.application.routes.draw do
   resources :ingredients, only: [:create, :edit, :update, :destroy]
 
   #checkout routes
-  namespace :checkout do
-    resources :addresses, only: [:new, :create]
-    resources :payments, only: [:new, :create]
-    get "/confirmation" => "orders#confirmation"
-  end
   #cart
   get "/cart" => "order_items#index"
+  namespace :checkout do
+    patch "/update_shipping_method" => "orders#update_shipping"
+    put "/update_shipping_method" => "orders#update_shipping"
+    get "/address" => "orders#address"
+    post "/create_address" => "orders#create_address"
+    patch "/update_address" => "orders#update_address"
+    put "/update_address" => "orders#update_address"
+    get "/payment" => "orders#payment"
+    post "/charge_payment" => "orders#charge_payment"
+    get "/confirmation" => "orders#confirmation"
+  end
   resources :order_items, only: [:create, :destroy]
-  patch "/order_addresses" => "orders#update_addresses"
-  patch "/order_shipping" => "orders#update_shipping"
 
   # All routes to form part of admin portal
   namespace :admin do

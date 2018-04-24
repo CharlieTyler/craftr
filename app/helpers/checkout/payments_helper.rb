@@ -1,2 +1,0 @@
-module Checkout::PaymentsHelper
-end

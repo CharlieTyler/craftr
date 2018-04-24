@@ -14,11 +14,11 @@
 <div class = "col-3">
   <div class = "row my-2">
     <div class = "col-12 text-center booyah-box py-1">
-      <h6><span class = "text-primary">2.</span> <%= link_to_if(order.order_items.length > 0, "Address", new_checkout_address_path) %></h6>
+      <h6><span class = "text-primary">2.</span> <%= link_to_if(order.order_items.length > 0, "Address", checkout_address_path) %></h6>
       <% if order.shipping_address_id.present? %>
         <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
       <% else %>
-        <i class="fa fa-2x fa-circle-o <%= controller_name = 'addresses' ? 'text-primary' : 'text-secondary' %>" aria-hidden="true"></i>
+        <i class="fa fa-2x fa-circle-o" aria-hidden="true"></i>
       <% end %>
     </div>
   </div>
@@ -26,11 +26,11 @@
 <div class = "col-3">
   <div class = "row my-2">
     <div class = "col-12 text-center booyah-box py-1">
-      <h6><span class = "text-primary">3.</span> <%= link_to_if(order.shipping_address_id.present?, "Payment", new_checkout_payment_path) %></h6>
+      <h6><span class = "text-primary">3.</span> <%= link_to_if(order.shipping_address_id.present?, "Payment", checkout_payment_path) %></h6>
       <% if order.state == "complete" %>
         <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
       <% else %>
-        <i class="fa fa-2x fa-circle-o <%= controller_name = 'payments' ? 'text-primary' : 'text-secondary' %>" aria-hidden="true"></i>
+        <i class="fa fa-2x fa-circle-o" aria-hidden="true"></i>
       <% end %>
     </div>
   </div>
@@ -39,7 +39,7 @@
   <div class = "row my-2">
     <div class = "col-12 text-center booyah-box py-1">
       <h6><span class = "text-primary">4.</span> Confirmation</h6>
-      <% if order.state == "complete" %>
+      <% if order.state == "paid" %>
         <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
       <% else %>
         <i class="fa fa-2x fa-circle-o" aria-hidden="true"></i>
