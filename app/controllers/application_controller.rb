@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       if current_user.orders.where.not(state: "paid").present?  # find non-complete order
         @order = current_user.orders.where.not(state: "paid").first
+        # Should probably delete others
       elsif session[:order_id].present? # if built a cart without being logged in and is now logged in
         @order = Order.find(session[:order_id])
         if @order.user_id.blank? # if hasn't already updated

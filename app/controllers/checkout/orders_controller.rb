@@ -1,8 +1,8 @@
 class Checkout::OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_items_in_cart
-  before_action :check_all_products_live_and_in_stock
-  before_action :check_order_has_shipping_type, except: [:update_shipping]
+  before_action :check_items_in_cart, except: [:confirmation]
+  before_action :check_all_products_live_and_in_stock, except: [:confirmation]
+  before_action :check_order_has_shipping_type, except: [:update_shipping, :confirmation]
   before_action :check_order_has_address, only: [:payment, :charge_payment]
   def update_shipping
     @order.update_attributes(order_shipping_params)
