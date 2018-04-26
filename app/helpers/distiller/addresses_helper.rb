@@ -1,0 +1,2 @@
+module Distiller::AddressesHelper
+end

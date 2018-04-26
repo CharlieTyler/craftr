@@ -8,4 +8,9 @@ class DistillersController < ApplicationController
       redirect_to new_user_session_path
     end
   end
+
+  helper_method :current_distillery
+  def current_distillery
+    @current_distillery = current_user.distillery
+  end
 end

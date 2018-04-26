@@ -1,0 +1,20 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <h1>Transactional checklist</h1>
+      <!-- 1. Address -->
+      <h6>1. Address</h6>
+      <% if current_distillery.address.present? %>
+        <p><i class="fa fa-check-circle text-primary" aria-hidden="true"></i> Address: <%= current_distillery.address.full_address_no_name %> <%= link_to "Edit", edit_distiller_address_path(current_distillery.address), class: "text-primary" %></p>
+      <% else %>
+        <p><i class="fa fa-times-circle text-primary" aria-hidden="true"></i><%= link_to "Add address", new_distiller_address_path, class: "btn btn-primary" %></p>
+      <% end %>
+
+      <h6>2. Stripe account</h6>
+      <!-- 2. Stripe connect -->
+      <% if current_distillery.stripe_id.blank? %>
+        <%= link_to "Register your Stripe connect account", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['CLIENT_ID']}&scope=read_write", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div> 

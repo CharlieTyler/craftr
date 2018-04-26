@@ -65,6 +65,8 @@ Rails.application.routes.draw do
 
   namespace :distiller do
     get "/dashboard", :controller => "static_pages", :action => "dashboard"
+    get "/transactional_checklist" => "details#transactional_checklist"
+    resources :addresses, only: [:new, :create, :edit, :update]
     post "/register-stripe-key", :controller => "details", :action => "register_stripe_key"
     resources :products, only: [:edit, :update] do
       member do
