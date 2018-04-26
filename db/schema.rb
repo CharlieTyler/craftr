@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180424060940) do
+ActiveRecord::Schema.define(version: 20180426105427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20180424060940) do
     t.string "slug"
     t.string "logo"
     t.string "youtube_video_url"
+    t.string "stripe_id"
     t.index ["slug"], name: "index_distilleries_on_slug", unique: true
   end
 
@@ -219,6 +220,7 @@ ActiveRecord::Schema.define(version: 20180424060940) do
     t.boolean "is_live", default: true
     t.boolean "is_in_stock", default: true
     t.float "weight"
+    t.integer "distillery_take"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 

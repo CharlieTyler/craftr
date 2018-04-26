@@ -64,6 +64,8 @@ Rails.application.routes.draw do
   end
 
   namespace :distiller do
+    get "/dashboard", :controller => "static_pages", :action => "dashboard"
+    post "/register-stripe-key", :controller => "details", :action => "register_stripe_key"
     resources :products, only: [:edit, :update] do
       member do
         patch 'mark_as_out_of_stock'
@@ -72,7 +74,5 @@ Rails.application.routes.draw do
         put 'mark_as_in_stock'
       end
     end
-    resources :order_items, only: [:edit, :update]
-    get "/dashboard", :controller => "static_pages", :action => "dashboard"
   end
 end

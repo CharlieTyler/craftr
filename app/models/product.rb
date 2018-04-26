@@ -33,6 +33,7 @@ class Product < ApplicationRecord
   validates :distillery, presence: true
   validates :category, presence: true
   validates :product_images, presence: true
+  validate :distillery_take_less_than_price_if_present
 
 
   def self.search(params)
@@ -49,6 +50,14 @@ class Product < ApplicationRecord
     search_scope
   end
 
+  # Custom validations
+  def distillery_take_less_than_price_if_present
+    if distillery_take.present?
+      distillery_take < (price - 200)
+    else
+      return true
+    end
+  end
 
   # Rating calculations
   def average_rating

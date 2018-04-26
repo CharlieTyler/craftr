@@ -5,7 +5,9 @@
   <div class = "row">
     <div class = "col-12">
       <h3>Order confirmed</h3>
+      <h6>You will receive an email confirmation shortly</h6>
       <p>Id: <%= @confirmed_order.id %></p>
+      <%= render partial: 'checkout/orders/order_summary', locals: {order: @confirmed_order} %>
     </div>
   </div>
 </div>

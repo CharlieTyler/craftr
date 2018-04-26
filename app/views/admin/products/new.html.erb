@@ -9,6 +9,7 @@
         <%= f.input :distillery_id, collection: @distilleries %>
         <%= f.input :category_id, collection: @categories %>
         <%= f.input :price, hint: "*Enter in pennies* This is super important, and won't let you enter anything less than 100" %>
+        <%= f.input :distillery_take, hint: "*Enter in pennies* This must be less than the price"
         <%= f.input :description_short, input_html: { class: 'quill_container' }, hint: 'Surfaces as "What we say"' %>
         <%= f.input :description_first, input_html: { class: 'quill_container' } %>
         <%= f.input :description_second, input_html: { class: 'quill_container' } %>

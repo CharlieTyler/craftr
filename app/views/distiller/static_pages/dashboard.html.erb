@@ -1,6 +1,9 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-12">
+      <% if distillery.stripe_id.blank? %>
+        <%= link_to "Register your Stripe connect account", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7&scope=read_write", class: "btn btn-primary" %>
+      <% end %>
       <h1>Distillery portal</h1>
       <h3>Orders</h3>
       <div class = "row">

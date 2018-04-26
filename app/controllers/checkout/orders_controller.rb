@@ -4,6 +4,7 @@ class Checkout::OrdersController < ApplicationController
   before_action :check_all_products_live_and_in_stock, except: [:confirmation]
   before_action :check_order_has_shipping_type, except: [:update_shipping, :confirmation]
   before_action :check_order_has_address, only: [:payment, :charge_payment]
+
   def update_shipping
     @order.update_attributes(order_shipping_params)
     if @order.valid?
@@ -68,6 +69,16 @@ class Checkout::OrdersController < ApplicationController
       description: 'Craftr purchase',
       currency: 'gbp'
     )
+
+    @order.order_items.each do |oi|
+      transfer = Stripe::Transfer.create({
+        :amount => oi.product.distillery_take * oi.quantity,
+        :currency => "gbp",
+        # Source transaction means payment doesn't go out until funds are processed. Also means trasfer group param not necessary
+        :source_transaction => charge.id,
+        :destination => oi.product.distillery.stripe_id,
+      })
+    end
 
     # SHIPPING - EASYPOST
     # May want to move to a worker server so that payment page isn't delayed? e.g. @order.queue_shipment_creation
