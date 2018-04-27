@@ -67,7 +67,7 @@ Rails.application.routes.draw do
     get "/dashboard", :controller => "static_pages", :action => "dashboard"
     get "/transactional_checklist" => "details#transactional_checklist"
     resources :addresses, only: [:new, :create, :edit, :update]
-    post "/register-stripe-key", :controller => "details", :action => "register_stripe_key"
+    get "/register-stripe-key", :controller => "details", :action => "register_stripe_key"
     resources :products, only: [:edit, :update] do
       member do
         patch 'mark_as_out_of_stock'
