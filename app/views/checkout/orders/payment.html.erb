@@ -35,7 +35,7 @@
   var stripe = Stripe($('meta[name="stripe-key"]').attr('content'));
   var elements = stripe.elements();
 
-  $( document ).ready(function() {
+  $( document ).on('turbolinks:load', function() {
     // Custom styling can be passed to options when creating an Element.
     var style = {
       base: {

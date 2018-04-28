@@ -15,11 +15,11 @@ class Distiller::DetailsController < DistillersController
       token_url: '/oauth/token'
     }
     code = params[:code]
-    client = OAuth2::client.new(ENV['CLIENT_ID'], ENV['SECRET_KEY'], options)
+    client = OAuth2::Client.new(ENV['CLIENT_ID'], ENV['SECRET_KEY'], options)
     @resp = client.auth_code.get_token(code, :params => {:scope => 'read_write'})
     @access_token = @resp.token
     current_distillery.update_attributes(stripe_id: @resp.params["stripe_user_id"]) if @resp
-    flash[:notice] = "Your account has been successfully created and is ready to process payments!"
-    redirect_to distillery_dashboard_path
+    flash[:notice] = "Your Stripe account has been successfully linked - we're ready to process payments!"
+    redirect_to distiller_dashboard_path
   end
 end

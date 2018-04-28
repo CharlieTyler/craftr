@@ -2,6 +2,10 @@
   <div class = "row">
     <div class = "col-12">
       <h1>Distillery portal</h1>
+      <% unless current_distillery.is_transactional %>
+        <h3 class = "text-primary">You're not yet transactional
+        <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn-lg btn-primary" %>
+      <% end %>
       <h3>Orders</h3>
       <div class = "row">
         <!-- List out all incomplete orders and allow to mark as complete -->
@@ -29,9 +33,10 @@
             <%= product.total_sold %>
           </div>
           <div class = "col-5">
-            <%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %>
-            <!-- Note: could put a form here to allow direct marking of in-stock out of stock -->
-            <%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary d-inline-block" %>
+            <div class = "btn-group">
+              <%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %>
+              <%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary d-inline" %>
+            </div>
           </div>
         <% end %>
       </div>

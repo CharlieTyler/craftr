@@ -62,7 +62,7 @@
           <div class = "row favourite-unfavourite py-2">
             <%= render partial: 'favourite_button', locals: {product: @product} %>
           </div>
-          <% if @product.live_and_in_stock? %> 
+          <% if @product.is_transactional %> 
             <div class = "row my-4">
               <%= simple_form_for @order_item, class: "form-inline" do |f| %>
                 <%= f.input :quantity, :input_html => { :value => 1, :min => 1, :max => 20 } %>
