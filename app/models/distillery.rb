@@ -14,6 +14,8 @@ class Distillery < ApplicationRecord
   #address
   has_one :address
 
+  has_many :sold_items, through: :products
+
 
   #Validations: does not require blurb & image 2&3, or fb, long and lat
   validates :name, presence: true, uniqueness: true

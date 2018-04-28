@@ -1,4 +1,7 @@
 class CarouselFeature < ApplicationRecord
+  include RankedModel
+  ranks :row_order
+  
   validates :line_1, presence: true
   validates :line_2, presence: true
   validates :cta_text, presence: true

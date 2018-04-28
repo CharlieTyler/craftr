@@ -6,39 +6,50 @@
         <h3 class = "text-primary">You're not yet transactional
         <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn-lg btn-primary" %>
       <% end %>
-      <h3>Orders</h3>
+      <h3>New Orders</h3>
       <div class = "row">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Product</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @unfulfilled_sold_items.each do |usi| %>
+              <tr>
+                <th scope="row"><%= usi.created_at.strftime('%Y-%m-%d at %H:%M:%S') %></th>
+                <td><%= usi.product.name %></td>
+                <td><%= usi.quantity %></td>
+                <td><%= usi.status %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
         <!-- List out all incomplete orders and allow to mark as complete -->
       </div>
       <h3>Products</h3>
       <div class = "row">
-        <div class = "col-5">
-          <p>Name</p>
-        </div>
-        <div class = "col-2">
-          <p>Orders</p>
-        </div>
-        <div class = "col-5">
-          <p>Stock</p>
-        </div>
-      </div>
-      <div class = "row">
-        <!-- List out all products and allow to mark as out of stock or go to edit page - Maybe just indicate instock and link to edit -->
-        <% @products.each do |product| %>
-          <div class = "col-5">
-            <%= link_to product.name, product_path(product) %>
-            <%= render partial: 'products/star_rating', locals: {product: product}, class: "float-right" %>
-          </div>
-          <div class = "col-2">
-            <%= product.total_sold %>
-          </div>
-          <div class = "col-5">
-            <div class = "btn-group">
-              <%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %>
-              <%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary d-inline" %>
-            </div>
-          </div>
-        <% end %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Orders</th>
+              <th scope="col">Stock status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @products.each do |product| %>
+              <tr>
+                <th scope="row"><%= link_to product.name, product_path(product) %><%= render partial: 'products/star_rating', locals: {product: product}, class: "float-right" %></th>
+                <td><%= product.total_sold %></td>
+                <td><%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %><%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary d-inline" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

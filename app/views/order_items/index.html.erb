@@ -9,29 +9,37 @@
       <h3>Your basket</h3>
       <div class="basket-header">
         <div class="row">
-          <div class="col-5"><strong>Product</strong></div>
-          <div class="col-2 text-right"><strong>Price</strong></div>
-          <div class="col-2 text-right"><strong>Quantity</strong></div>
-          <div class="col-2 text-right"><strong>Subtotal</strong></div>
-          <div class="col-1 text-right"><strong>Remove</strong></div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @order_items.each do |oi| %>
+                <tr>
+                  <th scope="row"><%= image_tag oi.product.product_images.first.photo_url(:thumb).to_s, class: "img-fluid" %><%= oi.product.name %></th>
+                  <td><%= number_to_currency((oi.product.price / 100).to_f, unit: "£") %></td>
+                  <td><%= oi.quantity %></td>
+                  <td><%= number_to_currency((oi.subtotal_in_pence / 100).to_f, unit: "£") %></td>
+                  <td><%=link_to "Remove", order_item_path(oi), method: :delete %></td>
+                </tr>
+                <% unless oi.product.is_transactional %>
+                  <tr class = "alert alert-danger">
+                    <th scope="row">Info</th>
+                    <td colspan="4">We are currently out of stock of <%= oi.product.name %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
-      <% @order_items.each do |oi| %>
-        <div class = "row py-1 text-right">
-          <div class = "col-1"><%= image_tag oi.product.product_images.first.photo_url(:thumb).to_s, class: "img-fluid" %></div>
-          <div class = "col-4 text-left"><%= oi.product.name %></div>
-          <div class = "col-2"><%= number_to_currency((oi.product.price / 100).to_f, unit: "£") %></div>
-          <div class = "col-2"><%= oi.quantity %></div>
-          <div class = "col-2"><%= number_to_currency((oi.subtotal_in_pence / 100).to_f, unit: "£") %></div>
-          <div class = "col-1"><%=link_to "Remove", order_item_path(oi), method: :delete %></div>
-        </div>
-        <% unless oi.product.is_transactional %>
-          <div class = "row">
-            <p class = "alert alert-danger">We are currently out of stock of <%= oi.product.name %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</p>
-          </div>
-        <% end %>
 
-      <% end %>
       <h6 class = "mt-4"><strong>Delivery</strong></h6>
       <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
         <div class = "row text-right">
