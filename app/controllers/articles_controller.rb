@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all
+    @articles = Article.order('created_at DESC')
     @featured_articles = Article.where(featured: true)
     @tags = Article.tag_counts_on(:tags)
   end

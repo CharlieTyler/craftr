@@ -44,10 +44,20 @@
           </div>
         </div>
       <% end %>
+
+      <% if user_signed_in? && current_user.distillery.present? %>
+        <div class = "container-fluid">
+          <div class = "row background-secondary">
+            <div class = "col-12 text-center">
+              <p class = "text-white my-1"><%= link_to "Go to distiller dashboard", distiller_dashboard_path %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <%= render 'cookies_eu/consent_banner' %>
 
       
-      <nav class="navbar navbar-toggleable-md navbar-light background-white mb-1">
+      <nav class="navbar navbar-expand-md navbar-light background-white mb-1">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

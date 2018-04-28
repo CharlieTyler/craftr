@@ -2,7 +2,7 @@ class Author < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  belongs_to :user
+  belongs_to :user, required: false
 
   has_many :articles, dependent: :destroy
 

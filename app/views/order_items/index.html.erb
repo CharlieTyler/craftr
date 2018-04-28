@@ -9,18 +9,17 @@
       <h3>Your basket</h3>
       <div class="basket-header">
         <div class="row">
-          <div class="col-5">Product</div>
-          <div class="col-2">Price</div>
-          <div class="col-2">Quantity</div>
-          <div class="col-2">Total</div>
-          <div class="col-1 text-center">Remove</div>
+          <div class="col-5"><strong>Product</strong></div>
+          <div class="col-2 text-right"><strong>Price</strong></div>
+          <div class="col-2 text-right"><strong>Quantity</strong></div>
+          <div class="col-2 text-right"><strong>Subtotal</strong></div>
+          <div class="col-1 text-right"><strong>Remove</strong></div>
         </div>
       </div>
-      <h6>Products</h6>
       <% @order_items.each do |oi| %>
-        <div class = "row">
+        <div class = "row py-1 text-right">
           <div class = "col-1"><%= image_tag oi.product.product_images.first.photo_url(:thumb).to_s, class: "img-fluid" %></div>
-          <div class = "col-4"><%= oi.product.name %></div>
+          <div class = "col-4 text-left"><%= oi.product.name %></div>
           <div class = "col-2"><%= number_to_currency((oi.product.price / 100).to_f, unit: "£") %></div>
           <div class = "col-2"><%= oi.quantity %></div>
           <div class = "col-2"><%= number_to_currency((oi.subtotal_in_pence / 100).to_f, unit: "£") %></div>
@@ -33,22 +32,27 @@
         <% end %>
 
       <% end %>
-      <h6 class = "mt-3">Delivery</h6>
+      <h6 class = "mt-4"><strong>Delivery</strong></h6>
       <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
-        <div class = "row">
+        <div class = "row text-right">
           <div class = "col-1"><i class="fa fa-truck" aria-hidden="true"></i></div>
           <div class = "col-4"><%= f.input :shipping_type_id, collection: @shipping_types, label_method: :full_shipping_type, value_method: :id, label: false, include_blank: false, input_html: {value: 1} %></div>
           <div class = "col-2 delivery-individual price"><%= number_to_currency((@default_shipping_type.price / 100).to_f, unit: "£") %></div> 
           <div class = "col-2"><%= @order.total_quantity %></div>
           <div class = "col-2 delivery-total-price"><%= number_to_currency((@order.total_quantity * @default_shipping_type.price / 100).to_f, unit: "£") %></div>
         </div>
-        <div class = "row">
+        <div class = "row py-1">
+          <div class = "col-12">
+            <hr class = "booyah-line" />
+          </div>
+        </div>
+        <div class = "row text-right">
           <div class = "col-9"></div>
           <div class = "col-2">
             <strong><%= number_to_currency(((@order.total_product_amount + (@order.total_quantity * @default_shipping_type.price)) / 100).to_f, unit: "£") %></strong>
           </div>
         </div>
-        <%= f.submit "Proceed to checkout", class: "btn btn-primary col-12" %>
+        <%= f.submit "Proceed to checkout", class: "btn btn-primary col-12 my-3" %>
       <% end %>
     </div>
   </div>

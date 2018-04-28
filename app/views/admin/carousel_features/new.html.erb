@@ -7,6 +7,7 @@
         <%= f.input :line_2, input_html: { class: 'quill_container' } %>
         <%= f.input :cta_text %>
         <%= f.input :link_url, hint: "If this is internal, just enter everything after the slash, e.g. products/duck-and-crutch-gin. Make sure you check this link after creation" %>
+        <%= f.input :row_order_position %>
         <%= f.input :image %>
         <%= f.submit "Create", class: "btn btn-primary" %>
       <% end %>

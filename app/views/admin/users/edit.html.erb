@@ -1,0 +1,12 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-6 offset-md-3">
+      <h4>Select a distillery for <%= @user.email %> to have access to the portal for</h4>
+      <%= simple_form_for @user, url: admin_user_path(@user), method: :patch do |f| %>
+        <%= f.input :distillery_id, collection: @distilleries, value_method: :id, label_method: :name %>
+        <%= f.input :age_verified %>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

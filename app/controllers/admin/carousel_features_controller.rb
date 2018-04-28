@@ -40,6 +40,7 @@ class Admin::CarouselFeaturesController < AdminController
                                              :line_2,
                                              :cta_text,
                                              :link_url,
+                                             :row_order_position,
                                              :image)
   end
 end

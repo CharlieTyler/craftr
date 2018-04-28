@@ -101,3 +101,5 @@ gem 'animate-rails'
 gem 'stripe'
 
 gem 'easypost'
+
+gem 'omniauth-stripe-connect'

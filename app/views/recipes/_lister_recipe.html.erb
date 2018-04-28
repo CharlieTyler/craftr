@@ -4,7 +4,7 @@
       <div class = "card-img-top">
         <%= image_tag recipe.image_url(:full).to_s, class: "img-fluid" %>
       </div>
-      <div class="card-block">
+      <div class="card-body">
         <h4 class="card-title"><%= recipe.name %></h4>
         <p class="card-text"><%= truncate_html(recipe.description, length: 100) %></p>
       </div>

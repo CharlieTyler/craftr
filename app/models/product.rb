@@ -59,6 +59,10 @@ class Product < ApplicationRecord
     end
   end
 
+  # Sales
+  def total_sold
+    sold_items.sum(&:quantity)
+  end
   # Rating calculations
   def average_rating
     reviews.average('rating').to_f

@@ -8,7 +8,7 @@
           <%= image_tag distillery.summary_image, class: "img-fluid" %>
         <% end %>
       </div>
-      <div class="card-block">
+      <div class="card-body">
         <h4 class="card-title"><%= distillery.name %></h4>
         <p class="card-text"><%= truncate_html(distillery.summary_text, length: 100) %></p>
       </div>
