@@ -99,7 +99,7 @@ class Product < ApplicationRecord
     Product.where("(category_id = ?)", category_id).where.not("(id = ?)", id).sort_by{|product| -product.user_product_views.length}
   end
 
-  def live_and_in_stock?
-    is_live && is_in_stock
+  def is_transactional
+    is_live && is_in_stock && weight.present? && distillery_take.present? && distillery.is_transactional
   end
 end

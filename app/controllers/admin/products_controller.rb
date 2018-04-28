@@ -47,6 +47,7 @@ class Admin::ProductsController < AdminController
                                     :is_in_stock,
                                     :weight,
                                     :price,
+                                    :distillery_take,
                                     :description_short, 
                                     :description_first, 
                                     :description_second,

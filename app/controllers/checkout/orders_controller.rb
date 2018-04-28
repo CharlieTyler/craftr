@@ -1,7 +1,7 @@
 class Checkout::OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_items_in_cart, except: [:confirmation]
-  before_action :check_all_products_live_and_in_stock, except: [:confirmation]
+  before_action :check_all_products_and_distilleries_transactional, except: [:confirmation]
   before_action :check_order_has_shipping_type, except: [:update_shipping, :confirmation]
   before_action :check_order_has_address, only: [:payment, :charge_payment]
 
@@ -125,10 +125,10 @@ class Checkout::OrdersController < ApplicationController
     end
   end
 
-  def check_all_products_live_and_in_stock
+  def check_all_products_and_distilleries_transactional
     @order.order_items.each do |oi|
-      unless oi.product.live_and_in_stock?
-        flash[:alert] = "#{oi.product.name} is currently out of stock, please remove from basket before proceeding"
+      unless oi.product.is_transactional
+        flash[:alert] = "#{oi.product.name} is currently not available, please remove from basket before proceeding"
         redirect_to cart_path
       end
     end

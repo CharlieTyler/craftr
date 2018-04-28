@@ -1,7 +1,7 @@
 class OrderItemsController < ApplicationController
 
   before_action :find_product, only: [:create]
-  before_action :check_product_live_and_in_stock, only: [:create]
+  before_action :check_all_products_and_distilleries_transactional, only: [:create]
 
   include ActionView::Helpers::TextHelper
   # So we can use pluralize method
@@ -48,9 +48,9 @@ class OrderItemsController < ApplicationController
     @product = Product.find(params[:order_item][:product_id])
   end
 
-  def check_product_live_and_in_stock
-    unless @product.live_and_in_stock?
-      flash[:alert] = 'This product is out of stock, please select another'
+  def check_all_products_and_distilleries_transactional
+    unless @product.is_transactional
+      flash[:alert] = 'This product is currently unavailable, please select another'
       redirect_to request.referrer
     end
   end

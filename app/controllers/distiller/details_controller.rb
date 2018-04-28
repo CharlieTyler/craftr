@@ -8,6 +8,7 @@ class Distiller::DetailsController < DistillersController
   end
 
   def register_stripe_key
+    # Taken from https://medium.com/@darealdemdestin/setting-up-stripe-connect-w-rails-e9b9dfde6c1e
     options = {
       site: 'https://connect.stripe.com',
       authorize_url: '/oauth/authorize',

@@ -37,5 +37,8 @@ class Distillery < ApplicationRecord
   mount_uploader :image_1, ArticleImageUploader
   mount_uploader :image_2, ArticleImageUploader
   mount_uploader :image_3, ArticleImageUploader
-  
+
+  def is_transactional
+    stripe_id.present? && address.present?
+  end
 end
