@@ -14,7 +14,7 @@
       </div>
     </div>
     <%= link_to product_path(product) do %>
-      <div class="card-body text-left py-2">
+      <div class="card-block text-left py-2">
         <h4 class="card-title mb-2"><%= product.name %></h4>
         <p class = "card-subtitle mb-2 text-muted">from <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
         <h4 class = "text-primary mb-0"><%= render partial: 'products/price_formatted', locals: {product: product} %></h4>
