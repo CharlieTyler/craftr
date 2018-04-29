@@ -6,5 +6,6 @@ class UsersController < ApplicationController
 
   def profile
     @user = current_user
+    @address = Address.new
   end
 end

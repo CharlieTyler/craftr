@@ -15,6 +15,9 @@
       <h1>My account</h1>
       <h4>Address book</h4>
       <div class = "row">
+        <button type="button" class="btn btn-secondary my-2 col-12" data-toggle="modal" data-target="#newAddressModal">
+          Add new address
+        </button>
         <% if @user.addresses.present? %>
           <%= render partial: "account/addresses/lister_address", collection: @user.addresses, as: :address %>
         <% else %>
@@ -51,6 +54,35 @@
           </div>
         <% end %>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- New address Modal -->
+<div class="modal fade" id="newAddressModal" tabindex="-1" role="dialog" aria-labelledby="newAddressModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newAddressModalLabel">New address</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for @address, url: account_addresses_path do |f| %>
+        <div class="modal-body">
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :line_1 %>
+          <%= f.input :line_2 %>
+          <%= f.input :line_3 %>
+          <%= f.input :post_town %>
+          <%= f.input :postcode %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Add address", class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
