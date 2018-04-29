@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   get 'recipes/collections/:tag', to: 'recipes#tag', as: :recipe_tag
   resources :ingredients, only: [:create, :edit, :update, :destroy]
 
+  namespace :account do
+    resources :addresses, only: [:create, :edit, :update, :destroy]
+  end
+
   #checkout routes
   #cart
   get "/cart" => "order_items#index"

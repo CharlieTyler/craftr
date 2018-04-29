@@ -26,15 +26,23 @@ class Order < ApplicationRecord
     total_product_amount + total_shipping_amount
   end
 
-  def create_shipments
+  def denormalise_order
+    update_attributes(paid_shipping_price: total_shipping_amount)
     order_items.each do |oi|
-      oi.quantity.times do
+      self.sold_items.create(order_id: self.id, product_id: oi.product.id, order_item_id: oi.id, quantity: oi.quantity, item_price: oi.product.price, status: "Awaiting shipping")
+    end
+  end
+
+  def create_shipments
+    sold_items.each do |si|
+      # Look into whether a product can fit 2 products in a Small Parcel
+      si.quantity.times do
         parcel       = EasyPost::Parcel.create(
                         predefined_package: 'SmallParcel',
-                        weight: 35
+                        weight: si.product.weight
                        )
         toAddress   = EasyPost::Address.retrieve(shipping_address.easypost_address_id)
-        fromAddress = EasyPost::Address.retrieve(oi.product.distillery.address.easypost_address_id)
+        fromAddress = EasyPost::Address.retrieve(si.product.distillery.address.easypost_address_id)
         shipment     = EasyPost::Shipment.create(
                         to_address: toAddress,
                         from_address: fromAddress,
@@ -44,14 +52,8 @@ class Order < ApplicationRecord
         shipment.buy(
           rate: shipment.lowest_rate(carriers = ['RoyalMail'], services = ['2ndClassSignedFor'])
         )
+        Postage.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, sold_item_id: si.id)
       end
-    end
-  end
-
-  def denormalise_order
-    update_attributes(paid_shipping_price: total_shipping_amount)
-    order_items.each do |oi|
-      self.sold_items.create(order_id: self.id, product_id: oi.product.id, order_item_id: oi.id, quantity: oi.quantity, item_price: oi.product.price, status: "Awaiting shipping")
     end
   end
 end

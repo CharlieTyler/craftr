@@ -1,6 +1,7 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
+  has_one :sold_item
 
   validates :product, presence: true
   validates :order, presence: true
