@@ -13,13 +13,15 @@
               <%= f.submit "Next: Add payment details", class: "btn btn-primary col-12" %>
             </div>
           <% end %>
+          <div class = "row">
+            <button type="button" class="btn btn-secondary my-2 col-12" data-toggle="modal" data-target="#newAddressModal">
+              Add new address
+            </button>
+          </div>
         </div>
-        <button type="button" class="btn btn-secondary my-2 col-12" data-toggle="modal" data-target="#newAddressModal">
-          Add new address
-        </button>
       </div>
     </div>
-    <div class = "col-md-3">
+    <div class = "col-md-3 px-0">
       <%= render partial: 'order_summary', locals: {order: @order} %>
     </div>
   </div>
