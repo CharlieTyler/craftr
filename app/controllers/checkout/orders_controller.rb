@@ -80,15 +80,16 @@ class Checkout::OrdersController < ApplicationController
       })
     end
 
-    # SHIPPING - EASYPOST
-    # May want to move to a worker server so that payment page isn't delayed? e.g. @order.queue_shipment_creation
-    # Read up on queueing jobs other than emails
-    # @order.create_shipments
 
     # BACKEND STUFF
     @order.denormalise_order
     session[:confirmed_order_id] = @order.id
     @order.update_attributes(state: "paid")
+    # SHIPPING - EASYPOST
+    # May want to move to a worker server so that payment page isn't delayed? e.g. @order.queue_shipment_creation
+    # Read up on queueing jobs other than emails
+    # Must be done after denormalising as shipments are created on sold items
+    # @order.create_shipments
     session[:order_id] = nil
     flash[:notice] = "Order confirmed"
     redirect_to checkout_confirmation_path

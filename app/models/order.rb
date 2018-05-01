@@ -19,7 +19,7 @@ class Order < ApplicationRecord
   end
 
   def total_shipping_amount
-    shipping_type.price * total_quantity
+    shipping_type.price
   end
 
   def total_amount
@@ -38,7 +38,7 @@ class Order < ApplicationRecord
       # Look into whether a product can fit 2 products in a Small Parcel
       si.quantity.times do
         parcel       = EasyPost::Parcel.create(
-                        predefined_package: 'SmallParcel',
+                        predefined_package: 'Parcel',
                         weight: si.product.weight
                        )
         toAddress   = EasyPost::Address.retrieve(shipping_address.easypost_address_id)
@@ -50,7 +50,8 @@ class Order < ApplicationRecord
                         options: {alcohol: true}
                        )
         shipment.buy(
-          rate: shipment.lowest_rate(carriers = ['RoyalMail'], services = ['2ndClassSignedFor'])
+          rate: shipment.lowest_rate(carriers = ['USPS'], services = ['First'])
+          # (carriers = ['RoyalMail'], services = ['2ndClassSignedFor']) leaving until Royal Mail account present
         )
         Postage.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, sold_item_id: si.id)
       end

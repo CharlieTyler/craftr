@@ -9,7 +9,7 @@
       <h3>Your basket</h3>
       <div class="basket-header">
         <div class="row">
-          <table class="table table-striped">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col">Product</th>
@@ -35,33 +35,34 @@
                   </tr>
                 <% end %>
               <% end %>
+              <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
+                <tr>
+                  <th scope = "row"><i class="fa fa-truck" aria-hidden="true"></i> Delivery</th>
+                  <td><%= f.input :shipping_type_id, collection: @shipping_types, label_method: :full_shipping_type, value_method: :id, label: false, include_blank: false, input_html: {value: @default_shipping_type.id} %>
+                    <% if @order.total_quantity > 1 %>
+                      <p><em><%= number_to_currency(@default_shipping_type.price / (100 * @order.total_quantity).to_f, unit: "£") %> shipping per bottle</em></p>
+                    <% end %>
+                  </td>
+                  <td>1</td>
+                  <td><%= number_to_currency((@default_shipping_type.price / 100).to_f, unit: "£") %></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope = "row">To pay: </th>
+                  <td colspan = "2"></td>
+                  <td><strong><%= number_to_currency(((@order.total_product_amount + @default_shipping_type.price) / 100).to_f, unit: "£") %></strong></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td scope = "row" colspan = "5">
+                    <%= f.submit "Next: Add delivery address", class: "btn btn-primary col-12" %>
+                  </td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
-      </div>
-
-      <h6 class = "mt-4"><strong>Delivery</strong></h6>
-      <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
-        <div class = "row text-right">
-          <div class = "col-1"><i class="fa fa-truck" aria-hidden="true"></i></div>
-          <div class = "col-4"><%= f.input :shipping_type_id, collection: @shipping_types, label_method: :full_shipping_type, value_method: :id, label: false, include_blank: false, input_html: {value: 1} %></div>
-          <div class = "col-2 delivery-individual price"><%= number_to_currency((@default_shipping_type.price / 100).to_f, unit: "£") %></div> 
-          <div class = "col-2"><%= @order.total_quantity %></div>
-          <div class = "col-2 delivery-total-price"><%= number_to_currency((@order.total_quantity * @default_shipping_type.price / 100).to_f, unit: "£") %></div>
-        </div>
-        <div class = "row py-1">
-          <div class = "col-12">
-            <hr class = "booyah-line" />
-          </div>
-        </div>
-        <div class = "row text-right">
-          <div class = "col-9"></div>
-          <div class = "col-2">
-            <strong><%= number_to_currency(((@order.total_product_amount + (@order.total_quantity * @default_shipping_type.price)) / 100).to_f, unit: "£") %></strong>
-          </div>
-        </div>
-        <%= f.submit "Proceed to checkout", class: "btn btn-primary col-12 my-3" %>
-      <% end %>
+      </div>      
     </div>
   </div>
 </div>
