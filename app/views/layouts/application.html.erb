@@ -146,17 +146,15 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <%= form_tag(age_verification_index_path, method: :post) do %>
-              <div class="modal-body">
-                <p>I confirm that I am <span class = "text-primary">over the legal drinking age</span> in my country of residence</p>
-                <p class = "my-0"><strong>Hint</strong></p>
-                <p>To avoid seeing this form again next time, please <%= link_to "Log in", new_user_session_path, class: "text-primary" %> or <%= link_to "Sign up", new_user_registration_path, class: "text-primary" %></p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Do not verify</button>
-                <%= submit_tag "Verify", class: "btn btn-primary" %>
-              </div>
-            <% end %>
+            <div class="modal-body">
+              <p>I confirm that I am <span class = "text-primary">over the legal drinking age</span> in my country of residence</p>
+              <p class = "my-0"><strong>Hint</strong></p>
+              <p>To avoid seeing this form again next time, please <%= link_to "Log in", new_user_session_path, class: "text-primary" %> or <%= link_to "Sign up", new_user_registration_path, class: "text-primary" %></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Do not verify</button>
+              <%= link_to  "Verify", age_verification_index_path, class: "btn btn-primary", method: :post, remote: true %>
+            </div>
           </div>
         </div>
       </div>
