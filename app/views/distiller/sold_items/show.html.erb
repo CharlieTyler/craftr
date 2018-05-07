@@ -1,0 +1,24 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <h1>Order #<%= @sold_item.id %></h1>
+      <div class = "pb-2">
+        <div class = "card">
+          <div class = "card-block py-1 px-1">
+            <h4 class = "card-title">Order summary</h4>
+            <p><%= "#{@sold_item.quantity} x #{@sold_item.product.name}" %></p>
+            <p>Sold for <%= number_to_currency((@sold_item.total_paid / 100).to_f, unit: "£") %></p>
+            <p>We've paid you <%= number_to_currency((@sold_item.total_distillery_received / 100).to_f, unit: "£") %> and sorted your shipping</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <% @sold_item.postages.each_with_index do |sl, index| %>
+              <li class="list-group-item">
+                <%= link_to "Shipping label #{index}", sl.postage_label_url %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

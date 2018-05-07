@@ -9,4 +9,11 @@ class SoldItem < ApplicationRecord
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :item_price, numericality: { only_integer: true }
   
+  def total_paid
+    quantity * item_price
+  end
+
+  def total_distillery_received
+    quantity * distillery_take
+  end
 end

@@ -29,7 +29,13 @@ class Order < ApplicationRecord
   def denormalise_order
     update_attributes(paid_shipping_price: total_shipping_amount)
     order_items.each do |oi|
-      self.sold_items.create(order_id: self.id, product_id: oi.product.id, order_item_id: oi.id, quantity: oi.quantity, item_price: oi.product.price, status: "Awaiting shipping")
+      self.sold_items.create(order_id: self.id, 
+                             product_id: oi.product.id, 
+                             order_item_id: oi.id, 
+                             quantity: oi.quantity, 
+                             item_price: oi.product.price, 
+                             distillery_take: oi.product.distillery_take, 
+                             status: "Awaiting shipping")
     end
   end
 

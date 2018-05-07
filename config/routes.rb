@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :update, :destroy]
     resources :favourite_products, only: [:create, :destroy]
   end
-  get "/me" => "users#profile" 
   resources :distilleries, only: [:show, :index]
   resources :articles, only: [:show, :index]
   resources :authors, only: [:show, :index]
@@ -32,6 +31,7 @@ Rails.application.routes.draw do
   get 'recipes/collections/:tag', to: 'recipes#tag', as: :recipe_tag
   resources :ingredients, only: [:create, :edit, :update, :destroy]
 
+  get "/me" => "users#profile" 
   namespace :account do
     resources :addresses, only: [:create, :edit, :update, :destroy]
   end
@@ -72,6 +72,7 @@ Rails.application.routes.draw do
     get "/dashboard", :controller => "static_pages", :action => "dashboard"
     get "/transactional_checklist" => "details#transactional_checklist"
     resources :addresses, only: [:new, :create, :edit, :update]
+    resources :sold_items, only: [:show]
     get "/register-stripe-key", :controller => "details", :action => "register_stripe_key"
     resources :products, only: [:edit, :update] do
       member do
