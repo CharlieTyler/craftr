@@ -1,0 +1,22 @@
+<p>Dear customer,</p>
+
+<p>Your CRAFTR order has been successfully placed!</p>
+
+<h6>What happens now?</h6>
+<ul>
+  <li>We get in touch with our partner distilleries and tell them about your order</li>
+  <li>They pick your bottles from their own stock, held at their distillery</li>
+  <li>They send it straight to you!</li>
+</ul>
+
+<h6>What did I order again?</h6>
+<p>For your records, here's what you went for</p>
+<ul>
+  <% @order.sold_items.each do |si| %>
+    <li><%= "#{si.quantity} * #{si.product.name}, #{si.total_paid}" %></li>
+  <% end %>
+  <li>Delivery <%= @order.paid_shipping_price %></li>
+</ul>
+
+<p>Best wishes,</p>
+<p>The CRAFTR team</p>

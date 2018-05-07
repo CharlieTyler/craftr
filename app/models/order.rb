@@ -26,6 +26,10 @@ class Order < ApplicationRecord
     total_product_amount + total_shipping_amount
   end
 
+  def send_confirmation_email
+    OrderNotifierMailer.user_confirmation_email(self).deliver_now    
+  end
+
   def denormalise_order
     update_attributes(paid_shipping_price: total_shipping_amount)
     order_items.each do |oi|
