@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Distiller::OrderItemsControllerTest < ActionDispatch::IntegrationTest
+class Distiller::SoldItemsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

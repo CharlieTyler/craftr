@@ -8,6 +8,7 @@ class SoldItem < ApplicationRecord
   validates :product_id, presence: true
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :item_price, numericality: { only_integer: true }
+  validates :distillery_take, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   
   def total_paid
     quantity * item_price

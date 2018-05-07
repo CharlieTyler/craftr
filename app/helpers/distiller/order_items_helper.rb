@@ -1,2 +1,0 @@
-module Distiller::OrderItemsHelper
-end

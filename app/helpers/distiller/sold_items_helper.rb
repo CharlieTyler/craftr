@@ -1,0 +1,2 @@
+module Distiller::SoldItemsHelper
+end
