@@ -20,7 +20,7 @@
       <% else %>
         <p>Please select shipping type</p>
       <% end %>
-      <% if order.total_amount.present? %>
+      <% if order.total_unpaid_amount.present? %>
         <div class = "row">
           <div class = "col-12">
             <hr class = "booyah-line"/>
@@ -31,7 +31,7 @@
             <p><strong>Total: </strong></p>
           </div>
           <div class = "d-inline-block float-right">
-            <p><strong><%= number_to_currency((order.total_amount / 100).to_f, unit: "£") %></strong></p>
+            <p><strong><%= number_to_currency((order.total_unpaid_amount / 100).to_f, unit: "£") %></strong></p>
           </div> 
         </div>
       <% end %>

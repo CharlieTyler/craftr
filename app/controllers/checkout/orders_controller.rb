@@ -49,7 +49,7 @@ class Checkout::OrdersController < ApplicationController
   def charge_payment
     # STRIPE PAYMENT
     # Amount in cents
-    @amount = @order.total_amount
+    @amount = @order.total_unpaid_amount
 
     # Find Stripe customer, or create if not present
     if current_user.stripe_customer_id.present?
