@@ -39,8 +39,8 @@
                 <tr>
                   <th scope = "row"><i class="fa fa-truck" aria-hidden="true"></i> Delivery</th>
                   <td><%= f.input :shipping_type_id, collection: @shipping_types, label_method: :full_shipping_type, value_method: :id, label: false, include_blank: false, input_html: {value: @default_shipping_type.id} %>
-                    <% if @order.total_quantity > 1 %>
-                      <p><em><%= number_to_currency(@default_shipping_type.price / (100 * @order.total_quantity).to_f, unit: "£") %> shipping per bottle</em></p>
+                    <% if @order.total_unpaid_quantity > 1 %>
+                      <p><em><%= number_to_currency(@default_shipping_type.price / (100 * @order.total_unpaid_quantity).to_f, unit: "£") %> shipping per bottle</em></p>
                     <% end %>
                   </td>
                   <td>1</td>
@@ -50,7 +50,7 @@
                 <tr>
                   <th scope = "row">To pay: </th>
                   <td colspan = "2"></td>
-                  <td><strong><%= number_to_currency(((@order.total_product_amount + @default_shipping_type.price) / 100).to_f, unit: "£") %></strong></td>
+                  <td><strong><%= number_to_currency(((@order.total_unpaid_product_amount + @default_shipping_type.price) / 100).to_f, unit: "£") %></strong></td>
                   <td></td>
                 </tr>
                 <tr>

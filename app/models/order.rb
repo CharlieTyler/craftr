@@ -4,34 +4,54 @@ class Order < ApplicationRecord
   belongs_to :shipping_type, required: false
   belongs_to :shipping_address, class_name: 'Address', foreign_key: 'shipping_address_id', required: false
   belongs_to :user, required: false
-  # validate :addresses_belongs_to_order_user
+  # validate :address_belongs_to_order_user
 
-  def addresses_belongs_to_order_user
+  # Custom validations
+  def address_belongs_to_order_user
     shipping_address.user == user
   end
 
-  def total_quantity
+  # Attribute methods pre-denormalising
+  def total_unpaid_quantity
     order_items.sum(&:quantity)
   end
 
-  def total_product_amount
+  def total_unpaid_product_amount
     order_items.to_a.sum(&:subtotal_in_pence)
   end
 
-  def total_shipping_amount
+  def total_unpaid_shipping_amount
     shipping_type.price
   end
 
-  def total_amount
-    total_product_amount + total_shipping_amount
+  def total_unpaid_amount
+    total_unpaid_product_amount + total_unpaid_shipping_amount
   end
 
+  # Attribute methods post denormalising
+  def total_paid_quantity
+    sold_items.sum(&:quantity)
+  end
+
+  def total_paid_product_amount
+    sold_items.to_a.sum(&:total_paid)
+  end
+
+  def total_paid_amount
+    total_paid_product_amount + paid_shipping_price
+  end
+
+  def product_summary
+    sold_items.map { |si| "#{si.quantity} * #{si.product.name}"}.join(", ")
+  end
+
+  # Actions
   def send_confirmation_email
     OrderNotifierMailer.user_confirmation_email(self).deliver_now    
   end
 
   def denormalise_order
-    update_attributes(paid_shipping_price: total_shipping_amount)
+    update_attributes(paid_shipping_price: total_unpaid_shipping_amount)
     order_items.each do |oi|
       self.sold_items.create(order_id: self.id, 
                              product_id: oi.product.id, 
