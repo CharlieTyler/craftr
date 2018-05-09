@@ -1,0 +1,35 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <h4>My orders</h4>
+      <div class = "row">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Products</th>
+              <th scope="col">Price</th>
+              <th scope="col">Delivery</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @orders.present? %>
+              <% @orders.each do |order| %>
+                <tr>
+                  <th scope="row"><%= order.created_at.strftime('%Y-%m-%d at %H:%M:%S') %></th>
+                  <td><%= order.product_summary %></td>
+                  <td><%= order.total_product_amount %></td>
+                  <td><%= order.paid_shipping_price %></td>
+                  <td><%= order.total_amount %></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <p>You have no orders</p>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

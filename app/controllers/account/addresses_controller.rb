@@ -1,6 +1,11 @@
 class Account::AddressesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @addresses = current_user.addresses
+    @address = Address.new
+  end
+
   def create
     @address = current_user.addresses.create(address_params)
     if @address.valid?

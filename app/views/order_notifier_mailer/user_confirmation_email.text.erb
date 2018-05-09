@@ -1,0 +1,19 @@
+Dear customer,
+
+Your CRAFTR order has been successfully placed!
+
+What happens now?
+  We get in touch with our partner distilleries and tell them about your order
+  They pick your bottles from their own stock, held at their distillery
+  They send it straight to you!
+
+What did I order again?
+For your records, here's what you went for:
+
+  <% @order.sold_items.each do |si| %>
+    <%= "#{si.quantity} * #{si.product.name}, #{number_to_currency((si.total_paid / 100).to_f, unit: '£')}" %>
+  <% end %>
+  Delivery: <%= number_to_currency((@order.paid_shipping_price / 100).to_f, unit: '£') %>
+
+Best wishes,
+The CRAFTR team

@@ -33,7 +33,9 @@ Rails.application.routes.draw do
 
   get "/me" => "users#profile" 
   namespace :account do
-    resources :addresses, only: [:create, :edit, :update, :destroy]
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :orders, only: [:show, :index]
+    resources :sold_items, only: [:show]
   end
 
   #checkout routes
