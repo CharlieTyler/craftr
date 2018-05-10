@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
     @recipes               = Recipe.last(3)
     @featured_products     = Product.where(featured: true).first(6)
     @featured_distilleries = Distillery.last(4)
-    @instas              = InstagramApi.user.recent_media
+    # @instas              = InstagramApi.user.recent_media
   end
 
   def about

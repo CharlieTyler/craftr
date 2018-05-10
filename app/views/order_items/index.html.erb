@@ -9,33 +9,33 @@
       <h3>Your basket</h3>
       <div class="basket-header">
         <div class="row">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Subtotal</th>
-                <th scope="col">Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @order_items.each do |oi| %>
+          <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
+            <table class="table">
+              <thead>
                 <tr>
-                  <th scope="row"><%= image_tag oi.product.product_images.first.photo_url(:thumb).to_s, class: "img-fluid" %><%= oi.product.name %></th>
-                  <td><%= number_to_currency((oi.product.price / 100).to_f, unit: "£") %></td>
-                  <td><%= oi.quantity %></td>
-                  <td><%= number_to_currency((oi.subtotal_in_pence / 100).to_f, unit: "£") %></td>
-                  <td><%=link_to "Remove", order_item_path(oi), method: :delete %></td>
+                  <th scope="col">Product</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Subtotal</th>
+                  <th scope="col">Remove</th>
                 </tr>
-                <% unless oi.product.is_transactional %>
-                  <tr class = "alert alert-danger">
-                    <th scope="row">Info</th>
-                    <td colspan="4">We are currently out of stock of <%= oi.product.name %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</td>
+              </thead>
+              <tbody>
+                <% @order_items.each do |oi| %>
+                  <tr>
+                    <th scope="row"><%= image_tag oi.product.product_images.first.photo_url(:thumb).to_s, class: "img-fluid" %><%= oi.product.name %></th>
+                    <td><%= number_to_currency((oi.product.price / 100).to_f, unit: "£") %></td>
+                    <td><%= oi.quantity %></td>
+                    <td><%= number_to_currency((oi.subtotal_in_pence / 100).to_f, unit: "£") %></td>
+                    <td><%=link_to "Remove", order_item_path(oi), method: :delete %></td>
                   </tr>
+                  <% unless oi.product.is_transactional %>
+                    <tr class = "alert alert-danger">
+                      <th scope="row">Info</th>
+                      <td colspan="4">We are currently out of stock of <%= oi.product.name %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</td>
+                    </tr>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
                 <tr>
                   <th scope = "row"><i class="fa fa-truck" aria-hidden="true"></i> Delivery</th>
                   <td><%= f.input :shipping_type_id, collection: @shipping_types, label_method: :full_shipping_type, value_method: :id, label: false, include_blank: false, input_html: {value: @default_shipping_type.id} %>
@@ -56,11 +56,11 @@
                 <tr>
                   <th scope = "row" colspan = "5">
                     <%= f.submit "Next: Add delivery address", class: "btn btn-primary col-12" %>
-                  </td>
+                  </th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          <% end %>
         </div>
       </div>      
     </div>

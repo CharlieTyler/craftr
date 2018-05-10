@@ -66,7 +66,7 @@ class Checkout::OrdersController < ApplicationController
     charge = Stripe::Charge.create(
       customer: customer.id,
       amount: @amount,
-      description: 'Craftr purchase',
+      description: @order.product_summary,
       currency: 'gbp'
     )
 
