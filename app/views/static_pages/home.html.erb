@@ -12,87 +12,36 @@
     </div>
   </div> <!-- Owl carousel -->
 </div>
-<!-- Secondary nav -->
-<hr class = "booyah-line"/>
-<div class="nav-wrapper" style="height:50px;">
-  <nav class = "secondary-nav background-white mb-0 pb-0" id = "secondary-nav" style = "height:50px;">
-    <div class = "container-fluid">
-      <div class = "row">
-        <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#categories"><h6>Categories</h6></a>
-          </li>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
-          </li>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
-          </li>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#distilleries"><h6>Distilleries</h6></a>
-          </li>
-          <% unless @instas.blank? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#social"><h6>Social</h6></a>
-            </li>
-          <% end %>
-        </ul>
+
+<% @featured_categories.each do |category| %>
+  <!-- Products -->
+  <div class = "products-background" id = "products">
+    <div class = "container py-3">
+      <div class = "d-inline-block">
+        <h3>Featured <%= "#{category.name}s" %></h3>
+      </div>
+      <div class = "d-inline-block float-right">
+        <p class = "text-primary"><%= link_to "See all", category_path(category) %></p>
+      </div>
+      <div class = "clear"></div>
+      <div class = "row text-center">
+        <div class = "col-12">
+          <div class = "row">
+            <%= render partial: "products/lister_item", collection: category.products.where(featured: true), as: :product %>
+          </div>
+          <div class = "row">
+            <%= link_to "See all our #{category.name}s", category_path(category), class: "btn btn-secondary col-8 offset-2" %>
+          </div>
+        </div>
       </div>
       <div class = "row">
         <div class = "col-12">
-          <hr class = "booyah-line">
-        </div>
-      </div>
-    </div>
-  </nav>
-</div>
-
-<!-- Categories -->
-<div class = "" id = "categories">
-  <div class = "container py-3">
-    <div class = "d-inline-block">
-      <h3>Featured categories</h3>
-    </div>
-    <div class = "d-inline-block float-right">
-      <p class = "text-primary"><%= link_to "See all", categories_path %></p>
-    </div>
-    <div class = "clear"></div>
-    <div class = "row">
-      <%= render partial: "categories/lister_category", collection: @featured_categories, as: :category %>
-    </div>
-  </div>
-</div>
-
-<div class = "container">
-  <div class = "row">
-    <div class = "col-12">
-      <hr class = "booyah-line mt-1"/>
-    </div>
-  </div>
-</div>
-
-<!-- Products -->
-<div class = "products-background" id = "products">
-  <div class = "container py-3">
-    <div class = "d-inline-block">
-      <h3>Featured products</h3>
-    </div>
-    <div class = "d-inline-block float-right">
-      <p class = "text-primary"><%= link_to "See all", products_path %></p>
-    </div>
-    <div class = "clear"></div>
-    <div class = "row text-center">
-      <div class = "col-12">
-        <div class = "row">
-          <%= render partial: "products/lister_item", collection: @featured_products, as: :product %>
-        </div>
-        <div class = "row">
-          <%= link_to "See all our craftr spirits", products_path, class: "btn btn-primary col-8 offset-2" %>
+          <hr class = "booyah-line" />
         </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <!-- Recently viewed -->
 <% if user_signed_in? && current_user.recently_viewed_products.present? %>
