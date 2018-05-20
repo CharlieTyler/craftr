@@ -14,33 +14,35 @@
 </div>
 
 <% @featured_categories.each do |category| %>
-  <!-- Products -->
-  <div class = "products-background" id = "products">
-    <div class = "container py-3">
-      <div class = "d-inline-block">
-        <h3>Featured <%= "#{category.name}s" %></h3>
-      </div>
-      <div class = "d-inline-block float-right">
-        <p class = "text-primary"><%= link_to "See all", category_path(category) %></p>
-      </div>
-      <div class = "clear"></div>
-      <div class = "row text-center">
-        <div class = "col-12">
-          <div class = "row">
-            <%= render partial: "products/lister_item", collection: category.products.where(featured: true), as: :product %>
-          </div>
-          <div class = "row">
-            <%= link_to "See all our #{category.name}s", category_path(category), class: "btn btn-secondary col-8 offset-2" %>
+  <% if category.products.where(featured: true).size > 0 %>
+    <!-- Products -->
+    <div class = "products-background" id = "products">
+      <div class = "container py-3">
+        <div class = "d-inline-block">
+          <h3>Featured <%= "#{category.name}s" %></h3>
+        </div>
+        <div class = "d-inline-block float-right">
+          <p class = "text-primary"><%= link_to "See all", category_path(category) %></p>
+        </div>
+        <div class = "clear"></div>
+        <div class = "row text-center">
+          <div class = "col-12">
+            <div class = "row">
+              <%= render partial: "products/lister_item", collection: category.products.where(featured: true), as: :product %>
+            </div>
+            <div class = "row">
+              <%= link_to "See all our #{category.name}s", category_path(category), class: "btn btn-secondary col-8 offset-2" %>
+            </div>
           </div>
         </div>
-      </div>
-      <div class = "row">
-        <div class = "col-12">
-          <hr class = "booyah-line" />
+        <div class = "row">
+          <div class = "col-12">
+            <hr class = "booyah-line mt-2" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <!-- Recently viewed -->
