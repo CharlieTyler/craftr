@@ -45,11 +45,16 @@ class Order < ApplicationRecord
     sold_items.map { |si| "#{si.quantity} * #{si.product.name}"}.join(", ")
   end
 
-  # Actions
+  # Emails
+  def queue_confirmation_email
+    UserOrderEmailWorker.perform_async(id)
+  end
+
   def send_confirmation_email
     OrderNotifierMailer.user_confirmation_email(self).deliver_now    
   end
 
+  # Actions
   def denormalise_order
     update_attributes(paid_shipping_price: total_unpaid_shipping_amount)
     order_items.each do |oi|

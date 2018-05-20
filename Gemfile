@@ -105,3 +105,5 @@ gem 'easypost'
 gem 'omniauth-stripe-connect'
 
 gem 'sendgrid-ruby'
+
+gem 'sidekiq'
