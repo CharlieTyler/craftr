@@ -1,0 +1,21 @@
+<p>Dear customer,</p>
+
+<p>3 weeks ago, you made an excellent decision - you ordered craft spirits from <%= link_to "Craftr", "https://www.craftr.co.uk" %>. We hope you've managed to have a sample in the meantime.</p>
+
+<h6>Something for us</h6>
+<p>Reviews are what makes the Craftr community great, letting us know what <strong>the best</strong> spirits are.</p>
+
+<p>Let us know what you think about the spirits you bought:</p>
+<ul>
+  <% @order.sold_items.each do |si| %>
+    <li><%= link_to si.product.name, product_path(si.product) %></li>
+  <% end %>
+</ul>
+
+<h6>Something for you</h6>
+<p>We've pulled together a load of great recipes for you, so you can make the most of your purchases</p>
+
+<p>Check them out <%= link_to "here", recipes_path %></p>
+
+<p>Best wishes,</p>
+<p>The CRAFTR team</p>

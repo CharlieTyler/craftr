@@ -83,8 +83,9 @@ class Checkout::OrdersController < ApplicationController
 
     # BACKEND STUFF
     @order.denormalise_order
-    # Will definitely want to move this to a worker server
-    @order.send_confirmation_email
+    # Uses worker server to send email
+    @order.queue_confirmation_email
+
     session[:confirmed_order_id] = @order.id
     @order.update_attributes(state: "paid")
     # SHIPPING - EASYPOST

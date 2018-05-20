@@ -54,6 +54,14 @@ class Order < ApplicationRecord
     OrderNotifierMailer.user_confirmation_email(self).deliver_now    
   end
 
+  def queue_please_review_email
+    UserPleaseReviewWorker.perform_in(3.weeks, id)
+  end
+
+  def send_please_review_email
+
+  end
+
   # Actions
   def denormalise_order
     update_attributes(paid_shipping_price: total_unpaid_shipping_amount)
