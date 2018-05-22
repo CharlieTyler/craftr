@@ -137,25 +137,25 @@
       <% unless @article.products.blank? %>
         <h4>Related products</h4>
         <div class = "row py-2"> 
-          <%= render partial: 'products/lister_item', collection: @article.products.live, as: :product %>
+          <%= render partial: 'products/lister_item', collection: @article.products.live, as: :product, locals: { md_upwards_col: (12/(@article.products.live.size)).to_s } %>
         </div>
       <% end %>
       <% unless @article.recipes.blank? %>
         <h4>Related recipes</h4>
         <div class = "row py-2">
-          <%= render partial: 'recipes/lister_recipe', collection: @article.recipes, as: :recipe %>
+          <%= render partial: 'recipes/lister_recipe', collection: @article.recipes, as: :recipe, locals: { md_upwards_col: (12/(@article.recipes.size)).to_s } %>
         </div>
       <% end %>
       <% unless @article.distilleries.blank? %>
         <h4>Related distilleries</h4>
         <div class = "row py-2"> 
-          <%= render partial: 'distilleries/lister_distillery', collection: @article.distilleries, as: :distillery %>
+          <%= render partial: 'distilleries/lister_distillery', collection: @article.distilleries, as: :distillery, locals: { md_upwards_col: (12/(@article.distilleries.size)).to_s } %>
         </div>
       <% end %>
       <% unless @article.categories.blank? %>
         <h4>Related categories</h4>
         <div class = "row py-2"> 
-          <%= render partial: 'categories/lister_category', collection: @article.categories, as: :category %>
+          <%= render partial: 'categories/lister_category', collection: @article.categories, as: :category, locals: { md_upwards_col: (12/(@article.categories.size)).to_s } %>
         </div>
       <% end %>
     </div>

@@ -144,7 +144,7 @@
     <div class = "container">
       <h4>Recommended products</h4>
       <div class = "row py-2">
-        <%= render partial: 'products/lister_item', collection: @recipe.products.live, as: :product %>
+        <%= render partial: 'products/lister_item', collection: @recipe.products.live, as: :product, locals: { md_upwards_col: (12/(@recipe.products.live.size)).to_s } %>
       </div>
     </div>
   <% end %>
