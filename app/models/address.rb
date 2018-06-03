@@ -32,6 +32,7 @@ class Address < ApplicationRecord
       street1: line_1,
       street2: line_2,
       city: post_town,
+      country: "GB",
       zip: postcode
     )
     update_attributes(easypost_address_id: ep_address.id)

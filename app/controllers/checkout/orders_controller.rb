@@ -93,7 +93,7 @@ class Checkout::OrdersController < ApplicationController
     # May want to move to a worker server so that payment page isn't delayed? e.g. @order.queue_shipment_creation
     # Read up on queueing jobs other than emails
     # Must be done after denormalising as shipments are created on sold items
-    # @order.create_shipments
+    @order.create_shipments
     session[:order_id] = nil
     flash[:notice] = "Order confirmed"
     redirect_to checkout_confirmation_path

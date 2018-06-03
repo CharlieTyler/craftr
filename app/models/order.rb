@@ -91,10 +91,9 @@ class Order < ApplicationRecord
 
   def create_shipments
     sold_items.each do |si|
-      # Look into whether a product can fit 2 products in a Small Parcel
       si.quantity.times do
         parcel       = EasyPost::Parcel.create(
-                        predefined_package: 'Parcel',
+                        predefined_package: 'SMALLPARCEL',
                         weight: si.product.weight
                        )
         toAddress   = EasyPost::Address.retrieve(shipping_address.easypost_address_id)
@@ -103,11 +102,12 @@ class Order < ApplicationRecord
                         to_address: toAddress,
                         from_address: fromAddress,
                         parcel: parcel,
+                        carrier_account_id: "ca_c3a3178260c54bac8e41f01df1340b14",
                         options: {alcohol: true}
                        )
         shipment.buy(
-          rate: shipment.lowest_rate(carriers = ['USPS'], services = ['First'])
-          # (carriers = ['RoyalMail'], services = ['2ndClassSignedFor']) leaving until Royal Mail account present
+          rate: shipment.lowest_rate(carrier_accounts = ['RoyalMail'], service = ['RoyalMail2ndClass'])
+          #  leaving until Royal Mail account present
         )
         Postage.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, sold_item_id: si.id)
       end
