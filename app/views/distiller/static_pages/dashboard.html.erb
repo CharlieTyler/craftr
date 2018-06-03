@@ -25,7 +25,7 @@
                 <th scope="row"><%= usi.created_at.strftime('%B %d, %Y at %H:%M') %></th>
                 <td><%= usi.product.name %></td>
                 <td><%= usi.quantity %></td>
-                <td><%= usi.status %></td>
+                <td><%= usi.state %></td>
                 <td class="table-success"><%= link_to "View order", distiller_sold_item_path(usi) %></td>
               </tr>
             <% end %>

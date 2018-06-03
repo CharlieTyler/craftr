@@ -19,6 +19,12 @@ class SoldItem < ApplicationRecord
   end
 
   def state
-
+    if shipped
+      return "Shipped"
+    elsif shipping_label_created
+      return "Awaiting shipping"
+    else
+      return "Awaiting shipping label"
+    end
   end
 end

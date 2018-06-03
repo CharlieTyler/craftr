@@ -13,7 +13,15 @@ class Order < ApplicationRecord
 
   # General attribute methods
   def state
-    
+    if paid
+      return "#{shipped_sold_items_length} of #{sold_items.length} items shipped"
+    else
+      return "upaid"
+    end
+  end
+
+  def shipped_sold_items_length
+    sold_items.where(shipped: true).length
   end
 
   # Attribute methods pre-denormalising
