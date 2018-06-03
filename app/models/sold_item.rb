@@ -17,4 +17,8 @@ class SoldItem < ApplicationRecord
   def total_distillery_received
     quantity * distillery_take
   end
+
+  def state
+
+  end
 end

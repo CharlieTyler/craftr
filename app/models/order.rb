@@ -11,6 +11,11 @@ class Order < ApplicationRecord
     shipping_address.user == user
   end
 
+  # General attribute methods
+  def state
+    
+  end
+
   # Attribute methods pre-denormalising
   def total_unpaid_quantity
     order_items.sum(&:quantity)
@@ -59,7 +64,7 @@ class Order < ApplicationRecord
   end
 
   def send_please_review_email
-
+    
   end
 
   # Actions
@@ -71,8 +76,8 @@ class Order < ApplicationRecord
                              order_item_id: oi.id, 
                              quantity: oi.quantity, 
                              item_price: oi.product.price, 
-                             distillery_take: oi.product.distillery_take, 
-                             status: "Awaiting shipping")
+                             distillery_take: oi.product.distillery_take
+                             )
     end
   end
 

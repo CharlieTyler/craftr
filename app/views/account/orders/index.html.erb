@@ -11,17 +11,19 @@
               <th scope="col">Price</th>
               <th scope="col">Delivery</th>
               <th scope="col">Total</th>
+              <th scope="col">View</th>
             </tr>
           </thead>
           <tbody>
             <% if @orders.present? %>
               <% @orders.each do |order| %>
                 <tr>
-                  <th scope="row"><%= link_to order.created_at.strftime('%Y-%m-%d at %H:%M:%S'), account_order_path(order) %></th>
+                  <th scope="row"><%= order.created_at.strftime('%B %d, %Y') %></th>
                   <td><%= order.product_summary %></td>
                   <td><%= number_to_currency((order.total_paid_product_amount / 100).to_f, unit: "£") %></td>
                   <td><%= number_to_currency((order.paid_shipping_price / 100).to_f, unit: "£") %></td>
                   <td><strong><%= number_to_currency((order.total_paid_amount / 100).to_f, unit: "£") %></strong></td>
+                  <td class = "table-success"><strong><%= link_to "View order", account_order_path(order) %></strong></td>
                 </tr>
               <% end %>
             <% else %>

@@ -27,7 +27,7 @@
   <div class = "row my-2">
     <div class = "col-12 text-center card py-1">
       <h6><span class = "text-primary">3.</span> <%= link_to_if(order.shipping_address_id.present?, "Payment", checkout_payment_path) %></h6>
-      <% if order.state == "paid" %>
+      <% if order.paid %>
         <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
       <% else %>
         <i class="fa fa-2x fa-circle-o" aria-hidden="true"></i>
@@ -39,7 +39,7 @@
   <div class = "row my-2">
     <div class = "col-12 text-center card py-1">
       <h6><span class = "text-primary">4.</span> Confirmation</h6>
-      <% if order.state == "paid" %>
+      <% if order.paid %>
         <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
       <% else %>
         <i class="fa fa-2x fa-circle-o" aria-hidden="true"></i>

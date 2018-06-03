@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507082603) do
+ActiveRecord::Schema.define(version: 20180603163346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,10 +188,10 @@ ActiveRecord::Schema.define(version: 20180507082603) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.string "state"
     t.integer "shipping_address_id"
     t.integer "shipping_type_id"
     t.integer "paid_shipping_price"
+    t.boolean "paid", default: false
   end
 
   create_table "postages", force: :cascade do |t|
@@ -308,11 +308,12 @@ ActiveRecord::Schema.define(version: 20180507082603) do
     t.integer "order_item_id"
     t.integer "quantity"
     t.integer "item_price"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order_id"
     t.integer "distillery_take"
+    t.boolean "shipping_label_created", default: false
+    t.boolean "shipped", default: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

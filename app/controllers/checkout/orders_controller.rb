@@ -60,6 +60,7 @@ class Checkout::OrdersController < ApplicationController
         source: params[:stripeToken]
       )
       current_user.update_attributes(stripe_customer_id: customer.id)
+      # Is there a possibility that this update_attributes could fail validation if we introduce new user validation criteria?
       # Possibly should check if valid at this point, but don't want to reject transaction for some other username format issue etc.
     end
 
@@ -87,7 +88,7 @@ class Checkout::OrdersController < ApplicationController
     @order.queue_confirmation_email
 
     session[:confirmed_order_id] = @order.id
-    @order.update_attributes(state: "paid")
+    @order.update_attributes(paid: true)
     # SHIPPING - EASYPOST
     # May want to move to a worker server so that payment page isn't delayed? e.g. @order.queue_shipment_creation
     # Read up on queueing jobs other than emails
