@@ -12,6 +12,7 @@ class Address < ApplicationRecord
   validates :line_1, presence: true
   validates :post_town, presence: true
   validates :postcode, presence: true
+  validates :phone_number, presence: true
   validate :postcode_is_valid_postcode
   validate :phone_number_is_valid_uk_number
 

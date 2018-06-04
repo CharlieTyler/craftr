@@ -89,6 +89,10 @@ class Order < ApplicationRecord
     end
   end
 
+  def queue_shipment_creation
+    CreateOrderShipmentsWorker.perform_async(id)
+  end
+
   def create_shipments
     sold_items.each do |si|
       si.quantity.times do
