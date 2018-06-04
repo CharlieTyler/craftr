@@ -101,6 +101,6 @@ class Product < ApplicationRecord
   end
 
   def is_transactional
-    is_live && is_in_stock && weight.present? && distillery_take.present? && distillery.is_transactional
+    is_live && is_in_stock && weight.present? && weight.is_a? Integer && distillery_take.present? && distillery.is_transactional
   end
 end

@@ -26,7 +26,7 @@
                 <td><%= usi.product.name %></td>
                 <td><%= usi.quantity %></td>
                 <td><%= usi.state %></td>
-                <td class="table-success"><%= link_to "View order", distiller_sold_item_path(usi) %></td>
+                <td class= <%= usi.shipping_label_created ? "table-success" : "" %>><%= link_to "View order", distiller_sold_item_path(usi) %></td>
               </tr>
             <% end %>
           </tbody>

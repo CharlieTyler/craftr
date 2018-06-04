@@ -8,7 +8,7 @@
             <h4 class = "card-title">Order summary</h4>
             <p><%= "#{@sold_item.quantity} x #{@sold_item.product.name}" %></p>
             <p>Sold for <%= number_to_currency((@sold_item.total_paid / 100).to_f, unit: "£") %></p>
-            <p>We've paid you <%= number_to_currency((@sold_item.total_distillery_received / 100).to_f, unit: "£") %> and sorted your shipping</p>
+            <p>We've paid you <%= number_to_currency((@sold_item.total_distillery_received / 100).to_f, unit: "£") %> and <%= @sold_item.shipping_label_created ? "have sorted your shipping" : "are sorting your shipping - please check back in 5 minutes. If this persists, please contact support@craftr.co.uk" %></p>
           </div>
           <ul class="list-group list-group-flush">
             <% @postages.each_with_index do |sl, index| %>
