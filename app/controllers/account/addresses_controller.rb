@@ -28,6 +28,7 @@ class Account::AddressesController < ApplicationController
     @address = Address.find(params[:id])
     @address.update_attributes(address_params)
     if @address.valid? && @address.user == current_user
+      @address.create_easypost_address
       flash[:notice] = "Address updated"
       redirect_to me_path
     else

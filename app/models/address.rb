@@ -1,5 +1,8 @@
 class Address < ApplicationRecord
   after_create :create_easypost_address
+  # after_update :create_easypost_address 
+  # This gets itself stuck in an infinite loop of creating a new easypost address, saving it, seeing it's changed and repeating
+  # Currently handled in all update controller actions. Not the DRYest, but functional for now
 
   belongs_to :user, required: false
   belongs_to :distillery, required: false

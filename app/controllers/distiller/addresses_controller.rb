@@ -21,6 +21,7 @@ class Distiller::AddressesController < DistillersController
     @address = Address.find(params[:id])
     @address.update_attributes(distiller_address_params)
     if @address.valid?
+      @address.create_easypost_address
       flash[:notice] = "Address successfully Updated"
     else
       flash[:error] = "Address not updated - please try again"
