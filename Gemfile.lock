@@ -196,6 +196,7 @@ GEM
     orm_adapter (0.5.0)
     owlcarousel2-rails (2.2.1)
     pg (0.21.0)
+    phonelib (0.6.22)
     plural (0.1.0)
     popper_js (1.11.1)
     public_suffix (3.0.2)
@@ -346,6 +347,7 @@ DEPENDENCIES
   omniauth-stripe-connect
   owlcarousel2-rails
   pg (~> 0.18)
+  phonelib
   popper_js (~> 1.11.1)
   puma (~> 3.7)
   quilljs-rails

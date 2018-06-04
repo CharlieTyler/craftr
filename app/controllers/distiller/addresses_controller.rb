@@ -33,6 +33,7 @@ class Distiller::AddressesController < DistillersController
   def distiller_address_params
     params.require(:address).permit(:first_name,
                                     :last_name,
+                                    :phone_number,
                                     :line_1,
                                     :line_2,
                                     :line_3,

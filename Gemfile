@@ -104,6 +104,8 @@ gem 'easypost'
 
 gem 'omniauth-stripe-connect'
 
+gem 'phonelib'
+
 gem 'sendgrid-ruby'
 
 gem 'sidekiq'
