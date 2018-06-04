@@ -26,6 +26,7 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 100 }
+  validates :weight, presence: true, numericality: true
   validates :description_short, presence: true
   validates :description_first, presence: true
   validates :description_second, presence: true

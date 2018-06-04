@@ -4,7 +4,7 @@
       <%= simple_form_for @product, url: distiller_product_path(@product), method: :patch do |f| %>
         <%= f.input :is_live, hint: "This means it will be displayed across the site" %>
         <%= f.input :is_in_stock, hint: "This means it can be added to orders and purchased" %>
-        <%= f.input :weight, hint: "Weight in oz, required to be transactional" %>
+        <%= f.input :weight, :input_html => { :type => "number" }, hint: "Weight in oz, required to be transactional" %>
         <%= f.input :dry_to_sweet %>
         <%= f.input :subtle_to_intense %>
         <%= f.input :fresh_to_complex %>
