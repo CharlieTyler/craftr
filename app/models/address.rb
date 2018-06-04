@@ -33,7 +33,8 @@ class Address < ApplicationRecord
       street2: line_2,
       city: post_town,
       country: "GB",
-      zip: postcode
+      zip: postcode,
+      email: distillery.present? ? distillery.users.first.email : user.email
     )
     update_attributes(easypost_address_id: ep_address.id)
   end
