@@ -3,7 +3,7 @@ class Distiller::SoldItemsController < DistillersController
   before_action :verify_order_item_belongs_to_distiller
 
   def show
-    # Item found in before_action 
+    @postages = @sold_item.postages.order("created_at DESC")
   end
 
   private

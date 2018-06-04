@@ -115,6 +115,7 @@ class Order < ApplicationRecord
         )
         Postage.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, sold_item_id: si.id)
       end
+      si.update_attributes(shipping_label_created: true)
     end
   end
 end

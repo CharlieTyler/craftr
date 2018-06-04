@@ -11,9 +11,9 @@
             <p>We've paid you <%= number_to_currency((@sold_item.total_distillery_received / 100).to_f, unit: "£") %> and sorted your shipping</p>
           </div>
           <ul class="list-group list-group-flush">
-            <% @sold_item.postages.each_with_index do |sl, index| %>
+            <% @postages.each_with_index do |sl, index| %>
               <li class="list-group-item">
-                <%= link_to "Shipping label #{index}", sl.postage_label_url %>
+                <%= link_to "Shipping label #{index + 1}", sl.postage_label_url %>
               </li>
             <% end %>
           </ul>
