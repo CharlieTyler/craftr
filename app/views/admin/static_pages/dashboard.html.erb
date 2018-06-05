@@ -1,7 +1,12 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-12">
-      <h1>Admin dashboard</h1>
+      <h4 class = "mt-4">Sales by product</h4>
+      <%= line_chart Product.all.map { |product|
+          {name: product.name, data: product.sold_items.group_by_day(:created_at).sum(:quantity)}
+      } %>
+      <h4 class = "mt-4">Cumulative user creation</h4>
+      <%= line_chart User.group_by_day(:created_at).count %>
       <h6>New stuff</h6>
       <%= link_to "Category", new_admin_category_path, class: "btn btn-primary my-2 mx-2" %>
       <%= link_to "Distillery", new_admin_distillery_path, class: "btn btn-primary my-2 mx-2" %>

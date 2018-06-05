@@ -21,4 +21,6 @@
 //= require owl.carousel2
 //= require cookies_eu
 //= require bootstrap-multiselect
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
