@@ -103,4 +103,8 @@ class Product < ApplicationRecord
   def is_transactional
     is_live && is_in_stock && weight.present? && distillery_take.present? && distillery.is_transactional
   end
+
+  def related_recipes
+    recipes + category.recipes.first(3)    
+  end
 end

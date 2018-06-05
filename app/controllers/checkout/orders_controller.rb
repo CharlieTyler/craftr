@@ -89,7 +89,7 @@ class Checkout::OrdersController < ApplicationController
 
     session[:confirmed_order_id] = @order.id
     @order.update_attributes(paid: true)
-    
+
     @order.queue_shipment_creation
     session[:order_id] = nil
     redirect_to checkout_confirmation_path
@@ -100,6 +100,7 @@ class Checkout::OrdersController < ApplicationController
 
   def confirmation
     @confirmed_order = Order.find(session[:confirmed_order_id])
+    @relevant_recipes = @confirmed_order.order_items.first.product.related_recipes
     session[:confirmed_order_id] = nil
   end
 

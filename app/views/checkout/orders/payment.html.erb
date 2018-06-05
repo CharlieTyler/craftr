@@ -6,7 +6,7 @@
     <div class = "col-md-9">
       <div class = "row">
         <div class = "col-12">
-          <h6 class = "my-3">Add payment details</h6>
+          <h4 class = "my-3">Add payment details</h4>
           <form action="/checkout/charge_payment" method="post" id="payment-form">
               <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
             <div class="form-row">
@@ -38,7 +38,8 @@
 
 <script>
   $('.pay-btn').click(function() {
-    $(this).html('<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i>');
+    $(this).html('<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i> Processing');
+    $(this).addClass("disabled")
   });
 </script>
 
