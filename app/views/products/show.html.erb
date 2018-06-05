@@ -94,9 +94,11 @@
     <div class = "container-fluid">
       <div class = "row">
         <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
-          <li class="nav-item mid-nav">
-            <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false} %>
-          </li> 
+          <% if @product.is_transactional %>
+            <li class="nav-item mid-nav">
+              <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false} %>
+            </li> 
+          <% end %>
           <li class="nav-item mid-nav">
             <a class="nav-link no-click" href="#details"><h6>Product details</h6></a>
           </li>
