@@ -1,11 +1,7 @@
 <div class = "product-<%= product.id %>">
   <% if product.is_in_stock %>
-    <p class = "d-inline"><i class="fa fa-check-circle-o" aria-hidden="true"></i> In stock</p>
-    <div class = "clear"></div>
     <%= link_to "Mark as out of stock", mark_as_out_of_stock_distiller_product_path(product), class: "btn btn-danger stock-toggle d-inline", method: :patch, remote: true %>
   <% else %>
-    <p class = "d-inline"><i class="fa fa-times-circle-o" aria-hidden="true"></i> Out of stock</p>
-    <div class = "clear"></div>
     <%= link_to "Mark as in stock", mark_as_in_stock_distiller_product_path(product), class: "btn btn-success stock-toggle d-inline", method: :patch, remote: true %>
   <% end %>
 </div>

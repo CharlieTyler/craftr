@@ -102,7 +102,7 @@ class Order < ApplicationRecord
                        )
         toAddress   = EasyPost::Address.retrieve(shipping_address.easypost_address_id)
         fromAddress = EasyPost::Address.retrieve(si.product.distillery.address.easypost_address_id)
-        shipment     = EasyPost::Shipment.create(
+        shipment    = EasyPost::Shipment.create(
                         to_address: toAddress,
                         from_address: fromAddress,
                         parcel: parcel,

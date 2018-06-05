@@ -1,24 +1,29 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-12">
-      <h1>Order #<%= @sold_item.id %></h1>
-      <div class = "pb-2">
-        <div class = "card">
-          <div class = "card-block py-1 px-1">
-            <h4 class = "card-title">Order summary</h4>
-            <p><%= "#{@sold_item.quantity} x #{@sold_item.product.name}" %></p>
-            <p>Sold for <%= number_to_currency((@sold_item.total_paid / 100).to_f, unit: "£") %></p>
-            <p>We've paid you <%= number_to_currency((@sold_item.total_distillery_received / 100).to_f, unit: "£") %> and <%= @sold_item.shipping_label_created ? "have sorted your shipping" : "are sorting your shipping - please check back in 5 minutes. If this persists, please contact support@craftr.co.uk" %></p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <% @postages.each_with_index do |sl, index| %>
-              <li class="list-group-item">
-                <%= link_to "Shipping label #{index + 1}", sl.postage_label_url %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
+      <div class = "d-inline-block">
+        <h4>Order of <span class = "text-primary"><%= "#{@sold_item.quantity} x #{@sold_item.product.name}" %></span></h4>
+        <p class = "text-muted">We've paid you <%= number_to_currency((@sold_item.total_distillery_received / 100).to_f, unit: "£") %> and <%= @sold_item.shipping_label_created ? "have sorted your shipping" : "are sorting your shipping - please check back in 5 minutes. If this persists, please contact support@craftr.co.uk" %></p>
+      </div>
+      <div class = "d-inline-block float-right">
+        <p>Status: <%= @sold_item.state %></p>
       </div>
     </div>
+  </div>
+  <div class = "row mb-2">
+    <div class = "col-12">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
+  <div class = "row mb-2">
+    <% @postages.each_with_index do |sl, index| %>
+      <div class = "col-6 col-md-3 mb-3">
+        <%= link_to sl.postage_label_url do %>
+          <h6>Shipping label #<%= index + 1 %></h6>
+          <p class = "text-muted">For 1 bottle in a Royal Mail Small Parcel</p>
+          <%= image_tag sl.postage_label_url, class: "img-fluid" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
