@@ -2,6 +2,7 @@
   <div class = "row">
     <div class = "col-12">
       <h1>Transactional checklist</h1>
+      <h4>Your distillery</h4>
       <!-- 1. Address -->
       <h6>1. Address</h6>
       <% if current_distillery.address.present? %>
@@ -16,6 +17,15 @@
         <%= link_to "Register your Stripe connect account", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['CLIENT_ID']}&scope=read_write", class: "btn btn-primary" %>
       <% else %>
         <p><i class="fa fa-check-circle text-primary" aria-hidden="true"></i> Stripe account connected</p>
+      <% end %>
+
+      <h4>Your products</h4>
+      <% current_distillery.products.each do |product| %>
+        <% if product.is_transactional %>
+          <p><i class="fa fa-check-circle text-primary" aria-hidden="true"></i> <%= product.name %> <%= link_to "Edit", edit_distiller_product_path(product), class: "text-primary" %></p>
+        <% else %>
+          <p><i class="fa fa-times-circle text-primary" aria-hidden="true"></i> <%= product.name %> <%= link_to "Please complete all attributes", edit_distiller_product_path(product), class: "btn btn-primary" %></p>
+        <% end %>
       <% end %>
     </div>
   </div>

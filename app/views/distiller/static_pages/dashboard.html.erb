@@ -2,35 +2,41 @@
   <div class = "row">
     <div class = "col-12">
       <h3>Distillery portal</h3>
-      <% unless current_distillery.is_transactional %>
+      <% if current_distillery.is_transactional %>
+        <h6 class = "text-muted">You're transactional. <%= link_to "Edit details", distiller_transactional_checklist_path %></h6>
+      <% else %>
         <h3 class = "text-primary">You're not yet transactional. <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn-lg btn-primary" %>
         </h3>
       <% end %>
       <h4>New Orders</h4>
       <div class = "row">
-        <!-- List out all incomplete orders and allow to mark as complete -->
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Product</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Status</th>
-              <th scope="col">View</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @unfulfilled_sold_items.each do |usi| %>
+        <% if @unfulfilled_sold_items.length > 0 %>
+          <!-- List out all incomplete orders and allow to mark as complete -->
+          <table class="table table-striped">
+            <thead>
               <tr>
-                <th scope="row"><%= usi.created_at.strftime('%B %d, %Y at %H:%M') %></th>
-                <td><%= usi.product.name %></td>
-                <td><%= usi.quantity %></td>
-                <td><%= usi.state %></td>
-                <td><%= link_to "View order", distiller_sold_item_path(usi), class: "btn #{usi.shipping_label_created ? 'btn-success' : 'btn-secondary'}" %></td>
+                <th scope="col">Date</th>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Status</th>
+                <th scope="col">View</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @unfulfilled_sold_items.each do |usi| %>
+                <tr>
+                  <th scope="row"><%= usi.created_at.strftime('%B %d, %Y at %H:%M') %></th>
+                  <td><%= usi.product.name %></td>
+                  <td><%= usi.quantity %></td>
+                  <td><%= usi.state %></td>
+                  <td><%= link_to "View order", distiller_sold_item_path(usi), class: "btn #{usi.shipping_label_created ? 'btn-success' : 'btn-secondary'}" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>You don't have any new orders :(</p>
+        <% end %>
       </div>
       <h3>Products</h3>
       <div class = "row">

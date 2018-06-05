@@ -1,5 +1,4 @@
 class OrderItemsController < ApplicationController
-
   before_action :find_product, only: [:create]
   before_action :check_all_products_and_distilleries_transactional, only: [:create]
 
@@ -15,7 +14,7 @@ class OrderItemsController < ApplicationController
       current_order_item.quantity += params[:order_item][:quantity].to_i
       # Save the change quantity
       current_order_item.save
-      flash[:notice] = "You now have #{current_order_item.quantity} of these in your cart"
+      flash[:notice] = "You now have #{current_order_item.quantity} of these in your cart. #{view_context.link_to('Go to cart', cart_path)}.".html_safe
     else
       @order_item = @order.order_items.create(order_item_params)
       if @order_item.valid?

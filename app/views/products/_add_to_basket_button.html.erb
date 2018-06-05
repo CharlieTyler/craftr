@@ -1,0 +1,18 @@
+<%= simple_form_for @order_item, wrapper: :inline_form, html: { class: 'form-inline col-12 mx-0 px-0' } do |f| %>
+  <%= f.input :quantity, :as => :hidden, :input_html => { :value => 1 } %>
+  <%= f.input :product_id, :as => :hidden, :input_html => { :value => @product.id } %>
+  <%= f.submit "Add to basket", class: "btn btn-primary atb-button col" %>
+<% end %>
+
+<% if include_go_to_checkout %>
+  <% if @order.order_items.any? {|oi| oi.product_id == product.id } %>
+    <p class = "text-muted pt-3 pb-1"><%= @order.order_items.where(product_id: product.id).first.quantity %> of these in your cart </p>
+    <%= link_to "Go to checkout", cart_path, class: "btn-lg btn-secondary col-12" %>
+  <% end %>
+<% end %>
+
+<script>
+  $('.atb-button').click(function() {
+    $(this).html('<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i>');
+  });
+</script>

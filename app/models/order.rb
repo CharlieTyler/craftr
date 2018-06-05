@@ -14,7 +14,7 @@ class Order < ApplicationRecord
   # General attribute methods
   def state
     if paid
-      return "#{shipped_sold_items_length} of #{sold_items.length} items shipped"
+      return "#{shipped_sold_items_length} of #{sold_items.length} products shipped"
     else
       return "upaid"
     end
