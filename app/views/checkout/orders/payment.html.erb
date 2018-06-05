@@ -23,7 +23,7 @@
             </div>
             <div class = "card-wrapper">
             </div>
-            <button class = "btn btn-primary col-12 mt-2">Pay <%= number_to_currency((@order.total_unpaid_amount / 100).to_f, unit: "£") %>
+            <button class = "btn btn-primary pay-btn col-12 mt-2">Pay <%= number_to_currency((@order.total_unpaid_amount / 100).to_f, unit: "£") %>
             </button>
             </div>
           </form>
@@ -35,6 +35,12 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.pay-btn').click(function() {
+    $(this).html('<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i>');
+  });
+</script>
 
 <script>
   var stripe = Stripe($('meta[name="stripe-key"]').attr('content'));

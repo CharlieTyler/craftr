@@ -18,7 +18,7 @@ class OrderItemsController < ApplicationController
     else
       @order_item = @order.order_items.create(order_item_params)
       if @order_item.valid?
-        flash[:notice] = "#{pluralize(params[:order_item][:quantity], 'item')}  successfully added to cart"
+        flash[:notice] = "#{pluralize(params[:order_item][:quantity], 'item')}  successfully added to cart. #{view_context.link_to('Go to cart', cart_path)}.".html_safe
         #Doesn't seems to work for now
       else
         flash[:alert] = 'There was an error adding your item to the cart'
