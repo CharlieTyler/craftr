@@ -6,13 +6,13 @@
     <div class = "col-md-9">
       <div class = "row">
         <div class = "col-12">
-          <h6>Add payment details</h6>
+          <h6 class = "my-3">Add payment details</h6>
           <form action="/checkout/charge_payment" method="post" id="payment-form">
               <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
             <div class="form-row">
               <div class = "col-12">
               <label for="card-element">
-                Credit or debit card
+                
               </label>
               <div id="card-element">
                 <!-- A Stripe Element will be inserted here. -->
@@ -23,7 +23,7 @@
             </div>
             <div class = "card-wrapper">
             </div>
-            <button class = "btn btn-primary pay-btn col-12 mt-2">Pay <%= number_to_currency((@order.total_unpaid_amount / 100).to_f, unit: "£") %>
+            <button class = "btn btn-primary pay-btn col-12 mt-3">Pay <%= number_to_currency((@order.total_unpaid_amount / 100).to_f, unit: "£") %>
             </button>
             </div>
           </form>
@@ -51,7 +51,7 @@
     var style = {
       base: {
         // Add your base input styles here. For example:
-        fontSize: '16px',
+        fontSize: '20px',
         color: "#32325d",
       }
     };
