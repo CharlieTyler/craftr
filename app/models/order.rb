@@ -82,7 +82,7 @@ class Order < ApplicationRecord
   end
 
   def send_please_review_email
-    
+    OrderNotifierMailer.user_review_email(self).deliver_now
   end
 
   # Actions

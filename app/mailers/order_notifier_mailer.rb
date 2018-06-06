@@ -13,13 +13,13 @@ class OrderNotifierMailer < ApplicationMailer
     @distillery = si.product.distillery
     @user = @distillery.users.first
     mail( :to => @user.email,
-      :subject => "#{oi.quantity} * #{oi.product.name} orderd on Craftr")
+      :subject => "#{si.quantity} * #{si.product.name} orderd on Craftr")
   end
 
   def user_review_email(order)
     @order = order
     @user = order.user
     mail( :to => @user.email,
-    :subject => 'Craft spirits are [insert your thoughts here]' )
+    :subject => "How about a trade... recipes for a review?" )
   end
 end
