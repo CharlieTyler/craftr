@@ -5,7 +5,7 @@
       <%= simple_form_for @address, url: distiller_addresses_path do |f| %>
         <%= f.input :first_name %>
         <%= f.input :last_name %>
-        <%= f.input :phone_number %>
+        <%= f.input :phone_number, hint: "Royal Mail require a phone number for delivering parcels" %>
         <%= f.input :line_1 %>
         <%= f.input :line_2 %>
         <%= f.input :line_3 %>

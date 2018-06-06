@@ -254,6 +254,10 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 1px 1px rgba(0,0,0,.2)
 }
 
+.cart-item-count {
+  border: 3px solid $secondary;
+}
+
 .category-background {
   min-height: 400px;
 }
