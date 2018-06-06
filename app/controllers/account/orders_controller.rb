@@ -12,6 +12,8 @@ class Account::OrdersController < ApplicationController
 
   def index
     @orders = current_user.orders.where(paid: true)
-    @products = current_user.most_purchased_products.first(4)
+    if @orders.length > 0
+      @products = current_user.most_purchased_products.first(4)
+    end
   end
 end
