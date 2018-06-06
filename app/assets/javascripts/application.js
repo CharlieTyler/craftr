@@ -23,4 +23,5 @@
 //= require bootstrap-multiselect
 //= require Chart.bundle
 //= require chartkick
+//= require card
 //= require_tree .
