@@ -1,0 +1,11 @@
+<p>Hi <%= @distillery.name %></p>
+
+<p>You have a new order for <%= "#{@order_item.quantity} bottles of #{@order_item.product.name}" %>.</p>
+<br />
+<p>Within a few minutes, we will have generated your shipping labels, which you can find in the <%= link_to "Distiller portal", distiller_dashboard_path %></p>
+
+<p>Print these off, stick them to the packages and post them off to the customer!</p>
+
+<p>Best wishes,</p>
+
+<p>The CRAFTR team</p>

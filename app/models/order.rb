@@ -67,6 +67,16 @@ class Order < ApplicationRecord
     OrderNotifierMailer.user_confirmation_email(self).deliver_now    
   end
 
+  def queue_distiller_emails
+    DistillerOrderEmailWorker.perform_async(id)
+  end
+
+  def send_distiller_emails
+    order.items.each do |oi|
+      OrderNotifierMailer.distiller_confirmation_email(oi).deliver_now
+    end
+  end
+
   def queue_please_review_email
     UserPleaseReviewWorker.perform_in(3.weeks, id)
   end
