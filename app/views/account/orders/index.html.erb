@@ -43,7 +43,7 @@
     <div class = "row mt-5">
       <div class = "col-12">
         <h4>You haven't made any orders yet.</h4>
-        <%= if @order.order_items.length > 0 %>
+        <% if @order.order_items.length > 0 %>
           <p class = "text-muted">Checkout your current cart, which contains <%= @order.product_summary %>, <%= link_to "here", cart_path %>.</p>
         <% else %>
           <p class = "text-muted">Fill your cart with some of our <%= link_to "fantastic products", products_path %>.</p>
