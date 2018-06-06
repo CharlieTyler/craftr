@@ -1,13 +1,13 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-12">
-      <h4 class = "text-primary my-3"><i class="fa fa-smile-o" aria-hidden="true"></i> Status: <%= @order.state %></h4>
+      <h4 class = "text-primary my-3"><i class="fa fa-smile-o" aria-hidden="true"></i> Status: <%= @user_order.state %></h4>
       <p class = "text-muted">We've got some recipe suggestions for you below.</p>
     </div>
   </div>
   <div class = "row">
     <div class = "col-12">
-      <%= render partial: 'account/orders/order_summary', locals: {order: @order} %>
+      <%= render partial: 'account/orders/order_summary', locals: {order: @user_order} %>
     </div>
   </div>
   <div class = "row">

@@ -1,43 +1,53 @@
 <div class = "container">
-  <% if current_user.orders.where(paid: true).length > 0 %>
+  <% if @orders.length > 0 %>
     <div class = "row">
       <div class = "col-12">
         <h4>My previously purchased products</h4>
       </div>
       <%= render partial: "products/lister_item", collection: @products, as: :product %>
     </div>
-  <% end %>
-  <div class = "row mt-4">
-    <div class = "col-12">
-      <h4>My orders</h4>
-      <div class = "row">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Products</th>
-              <th scope="col">State</th>
-              <th scope="col">Total</th>
-              <th scope="col">View</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if @orders.present? %>
-              <% @orders.each do |order| %>
-                <tr>
-                  <th scope="row"><%= order.created_at.strftime('%B %d, %Y') %></th>
-                  <td><%= order.product_summary %></td>
-                  <td><%= order.state %></td>
-                  <td><strong><%= number_to_currency((order.total_paid_amount / 100).to_f, unit: "£") %></strong></td>
-                  <td><strong><%= link_to "View order", account_order_path(order), class: "btn btn-secondary" %></strong></td>
-                </tr>
+    <div class = "row mt-4">
+      <div class = "col-12">
+        <h4>My orders</h4>
+        <div class = "row">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Products</th>
+                <th scope="col">State</th>
+                <th scope="col">Total</th>
+                <th scope="col">View</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @orders.present? %>
+                <% @orders.each do |order| %>
+                  <tr>
+                    <th scope="row"><%= order.created_at.strftime('%B %d, %Y') %></th>
+                    <td><%= order.product_summary %></td>
+                    <td><%= order.state %></td>
+                    <td><strong><%= number_to_currency((order.total_paid_amount / 100).to_f, unit: "£") %></strong></td>
+                    <td><strong><%= link_to "View order", account_order_path(order), class: "btn btn-secondary" %></strong></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <p>You have no orders</p>
               <% end %>
-            <% else %>
-              <p>You have no orders</p>
-            <% end %>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
+    </div>
+  <% else %>
+  <div class = "row mt-5">
+    <div class = "col-12">
+      <h4>You haven't made any orders yet :(</h4>
+      <%= if @order.order_items.length > 0 %>
+        <p class = "text-muted">Checkout your current cart, which contains <%= @order.product_summary %>, <%= link_to "here", cart_path %>.</p>
+      <% else %>
+        <p class = "text-muted">Fill your cart with some of our <%= link_to "fantastic products", products_path %>.</p>
+      <% end %>
     </div>
   </div>
 </div>
