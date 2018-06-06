@@ -298,6 +298,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    to_csv-rails (0.1.5)
     truncate_html (0.9.3)
     turbolinks (5.1.1)
       turbolinks-source (~> 5.1)
@@ -367,6 +368,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   stripe
+  to_csv-rails
   truncate_html
   turbolinks (~> 5)
   tzinfo-data

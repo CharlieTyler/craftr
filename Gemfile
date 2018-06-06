@@ -113,3 +113,5 @@ gem 'phonelib'
 gem 'groupdate'
 
 gem 'chartkick'
+
+gem 'to_csv-rails'

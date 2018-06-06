@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :ingredients, only: [:create, :edit, :update, :destroy]
 
   get "/me" => "users#profile" 
+  get "/export-data" => "users#export_data"
   namespace :account do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :orders, only: [:show, :index]
