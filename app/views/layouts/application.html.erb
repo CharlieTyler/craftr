@@ -135,14 +135,20 @@
                   <% end %>
                 </div>
               </li>
-              <li class = "nav-item">
-                <%= link_to cart_path, class: "nav-link" do %>
-                  <span class="fa-stack ">
-                    <i class="fa fa-shopping-cart fa-stack-2x <%= 'text-primary' if @order.order_items.length > 0 %>"></i>
-                    <strong class="fa-stack-1x cart-item-count"><%= @order.total_unpaid_quantity if @order.order_items.length > 0 %></strong>
-                  </span>
+              <%= link_to cart_path do %>
+                <li class = "nav-item">
+                  <a href = "" class = "nav-link"><i class="fa fa-shopping-cart fa-2x <%= 'text-primary' if @order.order_items.length > 0 %>"></i></a>
+                </li>
+                <% if @order.total_unpaid_quantity > 0 %>
+                  <li class = "nav-item">
+                    <a href = "" class = "nav-link py-0 my-0">
+                      <%= pluralize(@order.total_unpaid_quantity, 'item') %>
+                      <br />
+                      <%= number_to_currency((@order.total_unpaid_product_amount / 100).to_f, unit: "£") %>
+                    </a>
+                  </li>
                 <% end %>
-              </li>
+              <% end %>
             </ul>
           </div>
         <% else %>
