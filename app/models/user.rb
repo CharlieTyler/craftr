@@ -53,6 +53,16 @@ class User < ApplicationRecord
     author.present?
   end
 
+  def most_purchased_products
+    products = []
+    orders.each do |order|
+      order.order_items.each do |oi|
+        products << oi.product 
+      end
+    end
+    products.uniq!
+  end
+
   def favourited_recipe?(recipe)
     favourite_recipes.include? recipe
   end

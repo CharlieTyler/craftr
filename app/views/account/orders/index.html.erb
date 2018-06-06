@@ -1,5 +1,13 @@
 <div class = "container">
-  <div class = "row">
+  <% if current_user.orders.where(paid: true).length > 0 %>
+    <div class = "row">
+      <div class = "col-12">
+        <h4>My previously purchased products</h4>
+      </div>
+      <%= render partial: "products/lister_item", collection: @products, as: :product %>
+    </div>
+  <% end %>
+  <div class = "row mt-4">
     <div class = "col-12">
       <h4>My orders</h4>
       <div class = "row">
@@ -8,8 +16,7 @@
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Products</th>
-              <th scope="col">Price</th>
-              <th scope="col">Delivery</th>
+              <th scope="col">State</th>
               <th scope="col">Total</th>
               <th scope="col">View</th>
             </tr>
@@ -20,10 +27,9 @@
                 <tr>
                   <th scope="row"><%= order.created_at.strftime('%B %d, %Y') %></th>
                   <td><%= order.product_summary %></td>
-                  <td><%= number_to_currency((order.total_paid_product_amount / 100).to_f, unit: "£") %></td>
-                  <td><%= number_to_currency((order.paid_shipping_price / 100).to_f, unit: "£") %></td>
+                  <td><%= order.state %></td>
                   <td><strong><%= number_to_currency((order.total_paid_amount / 100).to_f, unit: "£") %></strong></td>
-                  <td class = "table-success"><strong><%= link_to "View order", account_order_path(order) %></strong></td>
+                  <td><strong><%= link_to "View order", account_order_path(order), class: "btn btn-secondary" %></strong></td>
                 </tr>
               <% end %>
             <% else %>

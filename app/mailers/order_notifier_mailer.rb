@@ -8,9 +8,9 @@ class OrderNotifierMailer < ApplicationMailer
     :subject => 'Order confirmed - craft spirits inbound!' )
   end
 
-  def distiller_confirmation_email(oi)
-    @order_item = oi
-    @distillery = oi.product.distillery
+  def distiller_confirmation_email(si)
+    @sold_item = si
+    @distillery = si.product.distillery
     @user = @distillery.users.first
     mail( :to => @user.email,
       :subject => "#{oi.quantity} * #{oi.product.name} orderd on Craftr")

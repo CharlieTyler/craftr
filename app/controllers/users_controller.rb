@@ -8,13 +8,14 @@ class UsersController < ApplicationController
 
   def export_data
     respond_to do |format|
-    # Gather all user data
-    @users = current_user
+      # Gather all user data
+      @users = []
+      @users << current_user
 
-    format.csv {
-      filename = "Your-data-#{Time.now.strftime("%Y%m%d%H%M%S")}.csv"
-      send_data(@users.to_a.to_csv, :type => "text/csv; charset=utf-8; header=present", :filename => filename)
-    }
-  end
+      format.csv {
+        filename = "Your-data-#{Time.now.strftime("%Y%m%d%H%M%S")}.csv"
+        send_data(@users.to_a.to_csv, :type => "text/csv; charset=utf-8; header=present", :filename => filename)
+      }
+    end
   end
 end

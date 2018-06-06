@@ -78,7 +78,7 @@
         <%= link_to root_path, class: "navbar-brand" do %>
           <%= image_tag "CraftrLogoPNG.png", height: '35', class: "d-inline-block align-top", alt: "Craftr logo" %>
         <% end %>
-        <% unless controller_name == "orders" %>
+        <% unless action_name == "address" || action_name == "payment" %>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item dropdown" style="position:static;">

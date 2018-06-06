@@ -14,14 +14,14 @@ class Order < ApplicationRecord
   # General attribute methods
   def state
     if paid
-      return "#{shipped_sold_items_length} of #{sold_items.length} products shipped"
+      return "#{shipped_sold_items_length} of #{total_paid_quantity} products shipped"
     else
       return "upaid"
     end
   end
 
   def shipped_sold_items_length
-    sold_items.where(shipped: true).length
+    sold_items.where(shipped: true).sum(&:quantity)
   end
 
   # Attribute methods pre-denormalising
@@ -72,8 +72,8 @@ class Order < ApplicationRecord
   end
 
   def send_distiller_emails
-    order.items.each do |oi|
-      OrderNotifierMailer.distiller_confirmation_email(oi).deliver_now
+    sold_items.each do |si|
+      OrderNotifierMailer.distiller_confirmation_email(si).deliver_now
     end
   end
 
