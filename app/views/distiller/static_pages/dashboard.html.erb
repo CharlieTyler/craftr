@@ -27,9 +27,9 @@
             <thead>
               <tr>
                 <th scope="col">Date</th>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
+                <th scope="col">Order</th>
                 <th scope="col">Status</th>
+                <th scope="col">Mark as shipped</th>
                 <th scope="col">View</th>
               </tr>
             </thead>
@@ -37,13 +37,14 @@
               <% @unfulfilled_sold_items.each do |usi| %>
                 <tr>
                   <th scope="row"><%= usi.created_at.strftime('%B %d, %Y at %H:%M') %></th>
-                  <td><%= usi.product.name %></td>
-                  <td><%= usi.quantity %></td>
+                  <td><%= "#{usi.quantity} * #{usi.product.name}" %></td>
                   <td><%= usi.state %></td>
+                  <td><%= render partial: 'distiller/sold_items/shipped_toggle', locals: {si: usi} %></td>
                   <td><%= link_to "View order", distiller_sold_item_path(usi), class: "btn #{usi.shipping_label_created ? 'btn-success' : 'btn-secondary'}" %></td>
                 </tr>
               <% end %>
             </tbody>
+          </table>
           </table>
         <% else %>
           <p>You don't have any new orders :(</p>

@@ -1,0 +1,13 @@
+<div class = "si-<%= si.id %>">
+  <% if si.shipped %>
+    <div class = "btn btn-success">Shipped</div>
+  <% else %>
+    <%= link_to "Mark as shipped", mark_as_shipped_distiller_sold_item_path(si), class: "btn btn-primary shipped-toggle d-inline", method: :patch, remote: true %>
+  <% end %>
+</div>
+
+<script>
+  $('.shipped-toggle').click(function() {
+    $(this).html('<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i>');
+  });
+</script>

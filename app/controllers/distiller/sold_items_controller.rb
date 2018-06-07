@@ -10,6 +10,14 @@ class Distiller::SoldItemsController < DistillersController
     @fulfilled_sold_items = current_distillery.sold_items.where(shipped: true)
   end
 
+  def mark_as_shipped
+    respond_to do |format|
+      format.js
+    end
+    @si = SoldItem.find(params[:id])
+    @si.update_attributes(shipped: true)
+  end
+
   private
 
   def find_sold_item

@@ -7,6 +7,7 @@
       </div>
       <div class = "d-inline-block float-right">
         <p>Status: <%= @sold_item.state %></p>
+        <%= render partial: 'distiller/sold_items/shipped_toggle', locals: {si: @sold_item} %>
       </div>
     </div>
   </div>
