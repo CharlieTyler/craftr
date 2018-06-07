@@ -22,4 +22,14 @@ class OrderNotifierMailer < ApplicationMailer
     mail( :to => @user.email,
     :subject => "How about a trade... recipes for a review?" )
   end
+
+  def item_shipped_email(si)
+    @sold_item = si
+    @distillery = si.product.distillery
+    @order = si.order_item.order
+    @address = @order.address
+    @recipient = @order.user
+    mail( :to => @recipent.email,
+      :subject => "#{@distillery.name} have shipped #{si.quantity} * #{si.product.name} to you!")
+  end
 end

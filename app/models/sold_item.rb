@@ -27,4 +27,11 @@ class SoldItem < ApplicationRecord
       return "Awaiting shipping label"
     end
   end
+
+  def queue_shipped_email
+  end
+
+  def send_shipped_email
+    OrderNotifierMailer.item_shipped_email(self).deliver_now 
+  end
 end

@@ -15,6 +15,7 @@ class Distiller::SoldItemsController < DistillersController
     respond_to do |format|
       format.js
     end
+    @sold_item.queue_shipped_email
   end
 
   private
