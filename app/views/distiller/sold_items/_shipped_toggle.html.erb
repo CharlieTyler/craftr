@@ -1,8 +1,10 @@
-<div class = "si-<%= si.id %>">
-  <% if si.shipped %>
+<div class = <%= "si-#{sold_item.id}" %>>
+  <% if sold_item.shipped %>
     <div class = "btn btn-success">Shipped</div>
+  <% elsif sold_item.shipping_label_created %>
+    <%= link_to "Mark as shipped", mark_as_shipped_distiller_sold_item_path(sold_item), class: "btn btn-primary shipped-toggle d-inline", method: :patch, remote: true %>
   <% else %>
-    <%= link_to "Mark as shipped", mark_as_shipped_distiller_sold_item_path(si), class: "btn btn-primary shipped-toggle d-inline", method: :patch, remote: true %>
+    <div class = "btn btn-secondary">Awaiting label</div>
   <% end %>
 </div>
 

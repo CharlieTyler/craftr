@@ -1,6 +1,6 @@
 class Distiller::SoldItemsController < DistillersController
-  before_action :find_sold_item, only: [:show]
-  before_action :verify_order_item_belongs_to_distiller, only: [:show]
+  before_action :find_sold_item, only: [:show, :mark_as_shipped]
+  before_action :verify_order_item_belongs_to_distiller, only: [:show, :mark_as_shipped]
 
   def show
     @postages = @sold_item.postages.order("created_at DESC")
@@ -11,11 +11,10 @@ class Distiller::SoldItemsController < DistillersController
   end
 
   def mark_as_shipped
+    @sold_item.update_attributes(shipped: true)
     respond_to do |format|
       format.js
     end
-    @si = SoldItem.find(params[:id])
-    @si.update_attributes(shipped: true)
   end
 
   private

@@ -39,8 +39,8 @@
                   <th scope="row"><%= usi.created_at.strftime('%B %d, %Y at %H:%M') %></th>
                   <td><%= "#{usi.quantity} * #{usi.product.name}" %></td>
                   <td><%= usi.state %></td>
-                  <td><%= render partial: 'distiller/sold_items/shipped_toggle', locals: {si: usi} %></td>
-                  <td><%= link_to "View order", distiller_sold_item_path(usi), class: "btn #{usi.shipping_label_created ? 'btn-success' : 'btn-secondary'}" %></td>
+                  <td><%= render partial: 'distiller/sold_items/shipped_toggle', locals: {sold_item: usi} %></td>
+                  <td><%= link_to usi.shipping_label_created ? "View labels" : "View order", distiller_sold_item_path(usi), class: "btn #{usi.shipping_label_created ? 'btn-success' : 'btn-secondary'}" %></td>
                 </tr>
               <% end %>
             </tbody>
