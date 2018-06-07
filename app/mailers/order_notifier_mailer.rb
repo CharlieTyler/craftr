@@ -27,9 +27,9 @@ class OrderNotifierMailer < ApplicationMailer
     @sold_item = si
     @distillery = si.product.distillery
     @order = si.order_item.order
-    @address = @order.address
+    @address = @order.shipping_address
     @recipient = @order.user
-    mail( :to => @recipent.email,
+    mail( :to => @recipient.email,
       :subject => "#{@distillery.name} have shipped #{si.quantity} * #{si.product.name} to you!")
   end
 end

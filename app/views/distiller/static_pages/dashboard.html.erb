@@ -20,6 +20,7 @@
     <div class = "col-12 my-4">
       <h4 class = "d-inline-block">New Orders</h4>
       <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
+      <div class = "clear"></div>
       <div class = "row">
         <% if @unfulfilled_sold_items.length > 0 %>
           <!-- List out all incomplete orders and allow to mark as complete -->

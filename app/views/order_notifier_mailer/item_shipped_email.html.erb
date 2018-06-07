@@ -1,1 +1,10 @@
-Your item has been shipped.
+<p>Dear customer,</p>
+
+<p><%= @distillery.name %> have shipped your order of <%= @sold_item.quantity %> * <%= @sold_item.product.name %>.</p>
+
+<p>It should arrive at <%= @address.full_address_no_name %> within the next few days.</p>
+
+<p>You can see the status of your full order, <%= link_to "here", account_order_url(@order) %>.</p>
+
+<p>Best wishes,</p>
+<p>CRAFTR team</p>
