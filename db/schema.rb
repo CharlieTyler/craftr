@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180608182822) do
+ActiveRecord::Schema.define(version: 20180608190442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20180608182822) do
     t.text "description_fifth"
     t.string "image_fourth"
     t.string "image_fifth"
+    t.index ["featured"], name: "index_articles_on_featured"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(version: 20180608182822) do
     t.string "banner_image"
     t.string "instagram_hashtag"
     t.string "slug"
+    t.index ["featured"], name: "index_categories_on_featured"
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
@@ -194,6 +196,7 @@ ActiveRecord::Schema.define(version: 20180608182822) do
     t.integer "shipping_type_id"
     t.integer "paid_shipping_price"
     t.boolean "paid", default: false
+    t.index ["paid"], name: "index_orders_on_paid"
   end
 
   create_table "postages", force: :cascade do |t|
@@ -233,6 +236,8 @@ ActiveRecord::Schema.define(version: 20180608182822) do
     t.boolean "is_in_stock", default: true
     t.integer "distillery_take"
     t.integer "weight"
+    t.index ["featured"], name: "index_products_on_featured"
+    t.index ["is_live"], name: "index_products_on_is_live"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
@@ -283,6 +288,7 @@ ActiveRecord::Schema.define(version: 20180608182822) do
     t.string "instagram_hashtag"
     t.string "slug"
     t.integer "user_recipe_views_count"
+    t.index ["featured"], name: "index_recipes_on_featured"
     t.index ["slug"], name: "index_recipes_on_slug", unique: true
   end
 
@@ -317,6 +323,7 @@ ActiveRecord::Schema.define(version: 20180608182822) do
     t.boolean "shipping_label_created", default: false
     t.boolean "shipped", default: false
     t.string "scan_form_id"
+    t.index ["shipped"], name: "index_sold_items_on_shipped"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
