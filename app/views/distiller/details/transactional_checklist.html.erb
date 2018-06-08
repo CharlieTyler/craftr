@@ -8,7 +8,7 @@
       <% if current_distillery.address.present? %>
         <p><i class="fa fa-check-circle text-primary" aria-hidden="true"></i> Address: <%= current_distillery.address.full_address_no_name %> <%= link_to "Edit", edit_distiller_address_path(current_distillery.address), class: "text-primary" %></p>
       <% else %>
-        <p><i class="fa fa-times-circle text-primary" aria-hidden="true"></i><%= link_to "Add address", new_distiller_address_path, class: "btn btn-primary" %></p>
+        <p><i class="fa fa-times-circle text-primary" aria-hidden="true"></i> <%= link_to "Add address", new_distiller_address_path, class: "btn btn-primary" %></p>
       <% end %>
 
       <h6>2. Stripe account</h6>
@@ -19,7 +19,7 @@
         <p><i class="fa fa-check-circle text-primary" aria-hidden="true"></i> Stripe account connected</p>
       <% end %>
 
-      <h4>Your products</h4>
+      <h4 class = "mt-4">Your products</h4>
       <% current_distillery.products.each do |product| %>
         <% if product.is_transactional %>
           <p><i class="fa fa-check-circle text-primary" aria-hidden="true"></i> <%= product.name %> <%= link_to "Edit", edit_distiller_product_path(product), class: "text-primary" %></p>
