@@ -13,7 +13,7 @@
       <% if current_distillery.is_transactional %>
         <h6 class = "text-muted">You're transactional. <%= link_to "Edit details", distiller_transactional_checklist_path %></h6>
       <% else %>
-        <h3 class = "text-primary">You're not yet transactional. <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn-lg btn-primary" %>
+        <h3 class = "text-primary mt-4">You're not yet transactional. <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn-lg btn-primary" %>
         </h3>
       <% end %>
     </div>
