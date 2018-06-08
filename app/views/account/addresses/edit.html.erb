@@ -11,6 +11,7 @@
         <%= f.input :line_3 %>
         <%= f.input :post_town %>
         <%= f.input :postcode %>
+        <%= f.input :country, collection: Address::COUNTRIES, include_blank: false %>
         <%= f.submit "Update", class: "btn btn-primary" %>
       <% end %>
     </div>

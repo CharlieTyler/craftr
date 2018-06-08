@@ -53,6 +53,7 @@ class Account::AddressesController < ApplicationController
                                     :line_2,
                                     :line_3,
                                     :post_town,
-                                    :postcode)
+                                    :postcode,
+                                    :country)
   end
 end

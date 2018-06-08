@@ -13,8 +13,13 @@ class Address < ApplicationRecord
   validates :post_town, presence: true
   validates :postcode, presence: true
   validates :phone_number, presence: true
+  validate :country_is_permitted
   validate :postcode_is_valid_postcode
   validate :phone_number_is_valid_uk_number
+
+  COUNTRIES = {
+    'United Kingdom': 'GB'
+  }
 
   # copied from https://gist.github.com/mudge/163332
   def postcode_is_valid_postcode
@@ -26,6 +31,13 @@ class Address < ApplicationRecord
   def phone_number_is_valid_uk_number
     unless !!(Phonelib.valid_for_country? phone_number, 'GB')
       errors.add(:phone_number, "Please enter a valid UK phone number")
+    end
+  end
+
+  def country_is_permitted
+    permitted_countries = ["GB"]
+    unless !!(permitted_countries.include?(country))
+      errors.add(:country, "This is not a permitted country")
     end
   end
 
@@ -43,7 +55,7 @@ class Address < ApplicationRecord
       street1: line_1,
       street2: line_2,
       city: post_town,
-      country: "GB",
+      country: country,
       zip: postcode,
       email: distillery.present? ? distillery.users.first.email : user.email,
       phone: phone_number

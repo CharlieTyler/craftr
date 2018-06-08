@@ -39,7 +39,8 @@ class Distiller::AddressesController < DistillersController
                                     :line_2,
                                     :line_3,
                                     :post_town,
-                                    :postcode)
+                                    :postcode,
+                                    :country)
     
   end
 end

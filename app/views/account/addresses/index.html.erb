@@ -38,6 +38,7 @@
           <%= f.input :line_3 %>
           <%= f.input :post_town %>
           <%= f.input :postcode %>
+          <%= f.input :country, collection: Address::COUNTRIES, include_blank: false %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
