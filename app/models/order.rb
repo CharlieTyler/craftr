@@ -105,6 +105,7 @@ class Order < ApplicationRecord
 
   def create_shipments
     sold_items.each do |si|
+      batch = EasyPost::Batch.create()
       si.quantity.times do
         parcel       = EasyPost::Parcel.create(
                         predefined_package: 'SMALLPARCEL',
@@ -123,9 +124,13 @@ class Order < ApplicationRecord
           rate: shipment.lowest_rate(carrier_accounts = ['RoyalMail'], service = ['RoyalMail2ndClass'])
           #  leaving until Royal Mail account present
         )
+        batch.add_shipments({shipments: [
+          {id: shipment.id}
+        ]})
         Postage.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, sold_item_id: si.id)
       end
-      si.update_attributes(shipping_label_created: true)
+      scan_form = batch.create_scan_form()
+      si.update_attributes(shipping_label_created: true, scan_form_id: scan_form[:scan_form][:id])
     end
   end
 end

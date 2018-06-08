@@ -20,6 +20,25 @@
       <hr class = "booyah-line" />
     </div>
   </div>
+  <div class = "row">
+    <div class = "col-md-4">
+      <% if @scan_form_url.present? %>
+        <%= link_to @scan_form_url do %>
+          <h4>Your scan form</h4>
+          <p class = "text-muted">Please print this and take to the Post Office to speed up shipment</p>
+          <%= image_tag @scan_form_url, class: "img-fluid" %>
+        <% end %>
+      <% else %>
+        <h4>Please wait - we are creating the scanform for this manifest.</h4>
+        <p class = "text-muted">This is required for posting at a post office - please check back in 5 minutes</p>
+      <% end %>
+    </div>
+  </div>
+  <div class = "row mb-2">
+    <div class = "col-12">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
   <div class = "row mb-2">
     <% @postages.each_with_index do |sl, index| %>
       <div class = "col-6 col-md-3 mb-3">
