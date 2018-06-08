@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  after_create :attempt_to_subscribe_to_mailchimp
+  after_update :attempt_to_subscribe_to_mailchimp, :unsubscribe_from_mailchimp
+
   #author
   has_one :author
 
@@ -78,5 +81,26 @@ class User < ApplicationRecord
       recently_viewed_products.push(vup.product) unless recently_viewed_products.include?(vup.product)
     end
     recently_viewed_products
+  end
+
+  def attempt_to_subscribe_to_mailchimp
+    if distillery_id.present?
+      list_id = ENV["DISTILLER_MAILCHIMP_LIST"]
+      gibbon.lists(list_id).members.upsert(body: {email_address: email, status: "subscribed"})
+    end
+    if newsletter_sign_up
+      # Might need a model in which to store list ids
+      gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
+      list_id = ENV["MAIN_MAILCHIMP_LIST"]
+      gibbon.lists(list_id).members.upsert(body: {email_address: email, status: "subscribed"})
+    end
+  end
+
+  def unsubscribe_from_mailchimp
+    unless newsletter_sign_up
+      gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
+      list_id = ENV['MAIN_MAILCHIMP_LIST']
+      gibbon.lists(list_id).members(email).update(body: { status: "unsubscribed" })
+    end
   end
 end
