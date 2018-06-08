@@ -84,15 +84,15 @@ class User < ApplicationRecord
   end
 
   def attempt_to_subscribe_to_mailchimp
+    gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
     if distillery_id.present?
       list_id = ENV["DISTILLER_MAILCHIMP_LIST"]
-      gibbon.lists(list_id).members.upsert(body: {email_address: email, status: "subscribed"})
+      gibbon.lists(list_id).members(Digest::MD5.hexdigest(email)).upsert(body: {email_address: email, status: "subscribed"})
     end
     if newsletter_sign_up
       # Might need a model in which to store list ids
-      gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
       list_id = ENV["MAIN_MAILCHIMP_LIST"]
-      gibbon.lists(list_id).members.upsert(body: {email_address: email, status: "subscribed"})
+      gibbon.lists(list_id).members(Digest::MD5.hexdigest(email)).upsert(body: {email_address: email, status: "subscribed"})
     end
   end
 
@@ -100,7 +100,7 @@ class User < ApplicationRecord
     unless newsletter_sign_up
       gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
       list_id = ENV['MAIN_MAILCHIMP_LIST']
-      gibbon.lists(list_id).members(email).update(body: { status: "unsubscribed" })
+      gibbon.lists(list_id).members(Digest::MD5.hexdigest(email)).update(body: { status: "unsubscribed" })
     end
   end
 end
