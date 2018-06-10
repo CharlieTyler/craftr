@@ -89,8 +89,18 @@ class Order < ApplicationRecord
     end
   end
 
+  def queue_abandoned_basket_email
+    AbandonedBasketWorker.perform_in(2.days, id)
+  end
+
+  def send_abandoned_basket_email
+    if user.present? && order_items.present? && paid == false
+      OrderNotifierMailer.abandoned_basket_email(self).deliver_now
+    end
+  end
+
   def queue_please_review_email
-    UserPleaseReviewWorker.perform_in(3.weeks, id)
+    UserPleaseReviewEmailWorker.perform_in(3.weeks, id)
   end
 
   def send_please_review_email

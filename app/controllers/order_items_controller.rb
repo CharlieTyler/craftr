@@ -6,6 +6,10 @@ class OrderItemsController < ApplicationController
   # So we can use pluralize method
   # @order set in application controller, giving us use of the @order variable
   def create
+    # Queue abandoned basket email to be sent if this is the first item being added (only queue once)
+    unless @order.order_items.length > 0
+      @order.queue_abandoned_basket_email
+    end
     # Product found in before_action
     # Check if this product is already in the cart
     current_order_item = @order.order_items.find_by(product_id: @product.id)

@@ -1,6 +1,14 @@
 class OrderNotifierMailer < ApplicationMailer
   default :from => 'orders@craftr.co.uk'
 
+  def abandoned_basket_email(order)
+    @order = order
+    @user = @order.user
+    @order_items = @order.order_items
+    mail( :to => @user.email,
+      :subject => "#{@order.total_unpaid_quantity} lonely craft spirits await your return")
+  end
+
   def user_confirmation_email(order)
     @order = order
     @user = order.user
@@ -13,7 +21,7 @@ class OrderNotifierMailer < ApplicationMailer
     @distillery = si.product.distillery
     @user = @distillery.users.first
     mail( :to => @user.email,
-      :subject => "#{si.quantity} * #{si.product.name} orderd on Craftr")
+      :subject => "#{si.quantity} * #{si.product.name} ordered on Craftr")
   end
 
   def item_shipped_email(si)
