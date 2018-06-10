@@ -77,6 +77,18 @@ class Order < ApplicationRecord
     end
   end
 
+  def queue_distiller_reminder_emails
+    DistillerOrderEmailReminderWorker.perform_in(2.days, id)
+  end
+
+  def send_distiller_reminder_emails_if_not_shipped
+    sold_items.each do |si|
+      unless si.shipped
+        OrderNotifierMailer.distiller_reminder_email(si).deliver_now
+      end
+    end
+  end
+
   def queue_please_review_email
     UserPleaseReviewWorker.perform_in(3.weeks, id)
   end
