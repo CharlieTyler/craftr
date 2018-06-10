@@ -3,6 +3,7 @@
   <%= f.input :product_id, :as => :hidden, :input_html => { :value => @product.id } %>
   <%= f.submit "Add to basket", class: "#{large_button ? 'btn-lg' : 'btn'} btn-primary atb-button col" %>
 <% end %>
+<div class = "btn btn-lg atb-button">Test</div>
 
 <% if include_go_to_checkout %>
   <% if @order.order_items.any? {|oi| oi.product_id == product.id } %>
@@ -15,6 +16,8 @@
 
 <script>
   $('.atb-button').click(function() {
-    $('.atn-button').html('<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i>');
+    $('.atb-button').each(function() {
+      $('.atb-button').prop("disabled", true);
+    });
   });
 </script>

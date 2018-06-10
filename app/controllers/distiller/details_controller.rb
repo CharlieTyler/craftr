@@ -15,7 +15,7 @@ class Distiller::DetailsController < DistillersController
       token_url: '/oauth/token'
     }
     code = params[:code]
-    client = OAuth2::Client.new(ENV['CLIENT_ID'], ENV['SECRET_KEY'], options)
+    client = OAuth2::Client.new(ENV['CLIENT_ID'], Stripe.api_key, options)
     @resp = client.auth_code.get_token(code, :params => {:scope => 'read_write'})
     @access_token = @resp.token
     current_distillery.update_attributes(stripe_id: @resp.params["stripe_user_id"]) if @resp
