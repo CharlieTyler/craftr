@@ -39,13 +39,22 @@
       <hr class = "booyah-line" />
     </div>
   </div>
+  <% if current_distillery.sold_items.where(shipped: true).length < 10 %>
+    <div class = "row">
+      <div class = "col-12">
+        <div class = "alert alert-info">Hint: to print, click the label, then right click <strong>not on the image</strong> in the new tab and click Print</div>
+      </div>
+    </div>
+  <% end %>
   <div class = "row mb-2">
     <% @postages.each_with_index do |sl, index| %>
       <div class = "col-6 col-md-3 mb-3">
         <%= link_to sl.postage_label_url do %>
           <h6>Shipping label #<%= index + 1 %></h6>
           <p class = "text-muted">For 1 bottle in a Royal Mail Small Parcel</p>
-          <%= image_tag sl.postage_label_url, class: "img-fluid" %>
+          <div id = "divToPrint">
+            <%= image_tag sl.postage_label_url, class: "img-fluid" %>
+          </div>
         <% end %>
       </div>
     <% end %>
