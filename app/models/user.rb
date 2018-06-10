@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  after_create :attempt_to_subscribe_to_mailchimp
-  after_update :attempt_to_subscribe_to_mailchimp, :unsubscribe_from_mailchimp
+  after_create :subscribe_to_mailchimps
+  after_update :subscribe_or_unsubscribe_from_mailchimp_on_change
 
   #author
   has_one :author
@@ -83,7 +83,7 @@ class User < ApplicationRecord
     recently_viewed_products
   end
 
-  def attempt_to_subscribe_to_mailchimp
+  def subscribe_to_mailchimps
     gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
     if distillery_id.present?
       list_id = ENV["DISTILLER_MAILCHIMP_LIST"]
@@ -96,11 +96,15 @@ class User < ApplicationRecord
     end
   end
 
-  def unsubscribe_from_mailchimp
-    unless newsletter_sign_up
-      gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
-      list_id = ENV['MAIN_MAILCHIMP_LIST']
-      gibbon.lists(list_id).members(Digest::MD5.hexdigest(email)).update(body: { status: "unsubscribed" })
+  def subscribe_or_unsubscribe_from_mailchimp_on_change
+    if saved_change_to_newsletter_sign_up?
+      if newsletter_sign_up
+        subscribe_to_mailchimps
+      else
+        gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
+        list_id = ENV['MAIN_MAILCHIMP_LIST']
+        gibbon.lists(list_id).members(Digest::MD5.hexdigest(email)).update(body: { status: "unsubscribed" })
+      end
     end
   end
 end

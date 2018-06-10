@@ -90,7 +90,7 @@ class Order < ApplicationRecord
   end
 
   def queue_abandoned_basket_email
-    AbandonedBasketWorker.perform_in(2.days, id)
+    AbandonedBasketWorker.perform_in(1.minute, id)
   end
 
   def send_abandoned_basket_email
