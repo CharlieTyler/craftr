@@ -69,6 +69,6 @@ class ApplicationController < ActionController::Base
       youtube_id = $5
     end
 
-    %Q{<iframe class = "embed-responsive-item" title="YouTube video player" src="http://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
+    %Q{<iframe class = "embed-responsive-item" title="YouTube video player" src="https://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
   end
 end
