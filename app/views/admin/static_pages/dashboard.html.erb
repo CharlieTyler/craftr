@@ -3,7 +3,7 @@
     <div class = "col-12">
       <h4 class = "mt-4">Sales by product</h4>
       <%= line_chart Product.all.map { |product|
-          {name: product.name, data: product.sold_items.group_by_day(:created_at).sum(:quantity)}
+          {name: product.name, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
       } %>
       <h4 class = "mt-4">Cumulative user creation</h4>
       <%= line_chart User.group_by_day(:created_at).count %>

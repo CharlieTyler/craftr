@@ -4,13 +4,13 @@
   <div class = "row">
     <div class = "col-md-6 mt-2">
       <h6 class = "my-3">By week</h6>
-      <%= line_chart current_distillery.products.map { |product|
+      <%= line_chart current_distillery.products.order("user_product_views_count DESC").map { |product|
           {name: product.name, data: product.user_product_views.group_by_week(:created_at).count}
       } %>
     </div>
     <div class = "col-md-6 mt-2">
       <h6 class = "my-3">All time</h6>
-      <%= bar_chart current_distillery.products.map { |product|
+      <%= bar_chart current_distillery.products.order("user_product_views_count DESC").map { |product|
           [product.name, product.user_product_views.count]
       } %>
     </div>
@@ -45,7 +45,7 @@
   <div class = "row">
     <div class = "col-md-6 mt-2">
       <h6 class = "my-3">By product</h6>
-      <%= bar_chart current_distillery.products.map { |product|
+      <%= bar_chart current_distillery.products.order("user_product_views_count DESC").map { |product|
           [product.name, (product.sold_items.sum(&:quantity))/product.user_product_views.count.to_f]
       }, suffix: "%" %>
     </div>
@@ -84,13 +84,13 @@
   <div class = "row">
     <div class = "col-md-6 mt-2">
       <h6 class = "my-3">By week</h6>
-      <%= line_chart current_distillery.products.map { |product|
+      <%= line_chart current_distillery.products.order("user_product_views_count DESC").map { |product|
           {name: product.name, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
       } %>
     </div>
     <div class = "col-md-6 mt-2">
       <h6 class = "my-3">All time</h6>
-      <%= bar_chart current_distillery.products.map { |product|
+      <%= bar_chart current_distillery.products.order("user_product_views_count DESC").map { |product|
           [product.name, product.sold_items.sum(:quantity)]
       } %>
     </div>
