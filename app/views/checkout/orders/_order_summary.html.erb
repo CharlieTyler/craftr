@@ -44,9 +44,11 @@
       <hr class = "booyah-line"/>
     </div>
   </div>
+
   <ul class="no-bullet-list pl-0">
     <li>
-      <p><strong>Deliver to: &nbsp</strong></p>
+      
+      <p><strong>Delivering in <%= order.shipping_type.shipping_time %> (<%= order.shipping_type.name %>) to:</strong></p>
       <% if order.shipping_address.present? %>
         <p><%= order.shipping_address.full_name %></p>
         <p><%= order.shipping_address.full_address_no_name %></p>
