@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   # Vulnerable at the moment - move new, create, edit, update, destroy to admin controller
   def show
     @recipe   = Recipe.friendly.find(params[:id])
+    UserRecipeView.create(user: user_signed_in? ? current_user : nil, recipe: @recipe)
     @comment  = RecipeComment.new
     @comments = @recipe.recipe_comments.all
     # unless @recipe.instagram_hashtag.blank?
