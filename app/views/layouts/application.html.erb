@@ -162,19 +162,29 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="ageVerificationModalLabel">Please verify your age</h5>
+              <h3 class="modal-title" id="ageVerificationModalLabel">Please verify your age</h3>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p>I confirm that I am <span class = "text-primary">over the legal drinking age</span> in my country of residence</p>
-              <p class = "my-0"><strong>Hint</strong></p>
-              <p>To avoid seeing this form again next time, please <%= link_to "Log in", new_user_session_path, class: "text-primary" %> or <%= link_to "Sign up", new_user_registration_path, class: "text-primary" %></p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Do not verify</button>
-              <%= link_to  "Verify", age_verification_index_path, class: "btn btn-primary", method: :post, remote: true %>
+              <div class = "row">
+                <div class = "col-6">
+                  <h4>Verify age</h4>
+                  <p>I confirm that I am <span class = "text-primary">over the legal drinking age</span> in my country of residence</p>
+                  <div class = "row">
+                    <%= link_to  "Verify", age_verification_index_path, class: "btn btn-primary col-10 offset-1 my-1", method: :post, remote: true %>
+                    <%= link_to "Do not verify", "https://www.drinkaware.co.uk/advice/how-to-reduce-your-drinking/", class: "btn btn-secondary col-10 offset-1 my-1" %>
+                  </div>
+                </div>
+                <div class = "col-6">
+                  <h4>Or log in</h4>
+                  <div class = "row">
+                    <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary col-10 offset-1 my-1" %>
+                    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-secondary col-10 offset-1 my-1" %>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

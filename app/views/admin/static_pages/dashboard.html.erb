@@ -1,6 +1,9 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-12">
+      <div class = "row">
+        <%= link_to "Go to reporting dashboard", admin_reports_path, class: "btn btn-secondary col-12 my-2 mx-2" %>
+      </div>
       <h4 class = "mt-4">Sales by product</h4>
       <%= line_chart Product.all.map { |product|
           {name: product.name, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
