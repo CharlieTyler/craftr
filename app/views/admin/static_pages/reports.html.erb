@@ -1,0 +1,64 @@
+<div class = "container">
+  <!-- Views -->
+  <h4>Views</h4>
+  <div class = "row">
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">By week</h6>
+      <%= line_chart Product.all.map { |product|
+          {name: product.name, data: product.user_product_views.group_by_week(:created_at).count}
+      } %>
+    </div>
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">All time</h6>
+      <%= bar_chart Product.all.map { |product|
+          [product.name, product.user_product_views.count]
+      } %>
+    </div>
+  </div>
+
+  <div class = "row my-3">
+    <div class = "col-12">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
+
+  <!-- Conversion rate -->
+  <h4>Conversion rate</h4>
+  <div class = "row">
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">By product</h6>
+      <%= bar_chart Product.all.map { |product|
+          [product.name, (product.sold_items.sum(&:quantity))/product.user_product_views.count.to_f]
+      }, suffix: "%" %>
+    </div>
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">By distillery</h6>
+      <%= bar_chart Distillery.all.map { |distillery|
+          [distillery.name, (distillery.sold_items.sum(&:quantity))/distillery.user_product_views.count.to_f]
+      }, suffix: "%" %>
+    </div>
+  </div>
+
+  <div class = "row my-3">
+    <div class = "col-12">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
+
+  <!-- Orders -->
+  <h4>Orders</h4>
+  <div class = "row">
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">By week</h6>
+      <%= line_chart Product.all.map { |product|
+          {name: product.name, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
+      } %>
+    </div>
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">All time</h6>
+      <%= bar_chart Product.all.map { |product|
+          [product.name, product.sold_items.sum(:quantity)]
+      } %>
+    </div>
+  </div>
+</div>

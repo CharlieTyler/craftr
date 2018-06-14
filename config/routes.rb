@@ -57,6 +57,8 @@ Rails.application.routes.draw do
 
   # All routes to form part of admin portal
   namespace :admin do
+    get "/dashboard", :controller => "static_pages", :action => "dashboard"
+    get "/reports" => "static_pages#reports"
     resources :authors, only: [:new, :create, :edit, :update, :destroy]
     resources :products, only: [:new, :create, :edit, :update, :destroy]
     resources :articles, only: [:new, :create, :edit, :update, :destroy]
@@ -68,7 +70,6 @@ Rails.application.routes.draw do
     get "/edit_features", :controller => "featured_items", :action => "edit"
     patch "/features", :controller => "featured_items", :action => "update"
     put "/features", :controller => "featured_items", :action => "update"
-    get "/dashboard", :controller => "static_pages", :action => "dashboard"
   end
 
   namespace :distiller do
