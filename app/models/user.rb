@@ -58,10 +58,10 @@ class User < ApplicationRecord
     author.present?
   end
 
-  def most_purchased_products
+  def previously_purchased_products
     products = []
     orders.each do |order|
-      order.order_items.each do |oi|
+      order.sold_items.each do |oi|
         products << oi.product 
       end
     end

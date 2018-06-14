@@ -5,8 +5,14 @@
   <% (5 - review.rating).times do %>
     <i class="fa fa-star-o text-primary" aria-hidden="true"></i>
   <% end %>
+  <% if review.verified %>
+    - <strong><i class="fa fa-check-circle-o text-primary" aria-hidden="true"></i> Verified review</strong>
+  <% end %>
   <p class = "my-1"><%= review.message %></p>
   <p class = "mb-0 text-muted"> - <%= review.user.email %></p>
+  <% if review.user == current_user %>
+    <%= link_to "Delete", product_review_path(product_id: review.product, id: review.id), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+  <% end %>
 </div>
 <div class = "col-12">
   <hr class = "booyah-line"/>
