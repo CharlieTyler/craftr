@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   #cart
   has_many :orders
+  has_many :sold_items, through: :orders
+  has_many :purchased_products, through: :sold_items, source: :product
 
   #completed transactions
   has_many :sales
@@ -72,6 +74,15 @@ class User < ApplicationRecord
 
   def favourited_product?(product)
     favourite_products.include? product
+  end
+
+  def recently_ordered_products
+    purchases = sold_items.where("(sold_items.created_at > ? AND sold_items.created_at < ?)", Time.now.in_time_zone('London') - 4.weeks, Time.now.in_time_zone('London') - 5.days)
+    recently_ordered_products = []
+    purchases.each do |purchase|
+      recently_ordered_products.push(purchase.product) unless recently_ordered_products.include?(purchase.product)
+    end
+    recently_ordered_products 
   end
 
   def recently_viewed_products
