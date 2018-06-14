@@ -21,7 +21,7 @@
 
 <div class = "container">
   <div class = "row">
-    <div class = "col-md-7">
+    <div class = "col-12 col-md-7">
       <div class = "owl-carousel product-image-carousel">
         <% @product.product_images.each do |image| %>
           <%= image_tag image.photo_url(:full).to_s, class: "product-image-large" %>
@@ -41,7 +41,7 @@
     </div>
 
     <!-- Product descriptions -->
-    <div class = "col-md-5 pt-3">
+    <div class = "col-12 col-md-5 pt-3">
       <h1><%= title @product.name %></h1>
       <h6 class = "text-muted">by <%= link_to @product.distillery.name, distillery_path(@product.distillery), class: "text-primary" %></h6>
       <h4><%= render partial: "products/star_rating", locals: {product: @product} %></h4>
@@ -99,7 +99,7 @@
               <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false} %>
             </li> 
           <% end %>
-          <li class="nav-item mid-nav">
+          <!-- <li class="nav-item mid-nav">
             <a class="nav-link no-click" href="#details"><h6>Product details</h6></a>
           </li>
           <li class="nav-item mid-nav">
@@ -112,7 +112,7 @@
           <% end %>
           <li class="nav-item mid-nav">
             <a class="nav-link no-click" href="#reviews"><h6>Reviews</h6></a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
