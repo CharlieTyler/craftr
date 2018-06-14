@@ -80,7 +80,7 @@
 <% unless @product.fresh_to_complex.blank? && @product.dry_to_sweet.blank? && @product.subtle_to_intense.blank? %>
   <div class = "container">
     <div class = "row py-3">
-      <h1 class = "text-muted">Tasting notes</h1>
+      <h4>Tasting notes</h4>
       <div class = "col-12">
         <%= render partial: "products/taste_sliders", locals: {product: @product} %>
       </div>
