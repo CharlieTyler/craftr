@@ -152,7 +152,7 @@ class Order < ApplicationRecord
         Postage.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, sold_item_id: si.id)
       end
       scan_form = batch.create_scan_form()
-      si.update_attributes(shipping_label_created: true, scan_form_id: scan_form[:scan_form][:id])
+      si.update_attributes(shipping_label_created: true, shipping_created_at: Time.now, scan_form_id: scan_form[:scan_form][:id])
     end
   end
 end

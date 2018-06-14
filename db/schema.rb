@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180610173039) do
+ActiveRecord::Schema.define(version: 20180614154833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,6 +236,7 @@ ActiveRecord::Schema.define(version: 20180610173039) do
     t.boolean "is_in_stock", default: true
     t.integer "distillery_take"
     t.integer "weight"
+    t.integer "user_product_views_count"
     t.index ["featured"], name: "index_products_on_featured"
     t.index ["is_live"], name: "index_products_on_is_live"
     t.index ["slug"], name: "index_products_on_slug", unique: true
@@ -323,6 +324,8 @@ ActiveRecord::Schema.define(version: 20180610173039) do
     t.boolean "shipping_label_created", default: false
     t.boolean "shipped", default: false
     t.string "scan_form_id"
+    t.datetime "shipping_created_at"
+    t.datetime "shipped_at"
     t.index ["shipped"], name: "index_sold_items_on_shipped"
   end
 
