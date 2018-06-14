@@ -90,7 +90,7 @@ class Order < ApplicationRecord
   end
 
   def queue_abandoned_basket_email
-    AbandonedBasketWorker.perform_in(1.minute, id)
+    AbandonedBasketWorker.perform_in(2.days, id)
   end
 
   def send_abandoned_basket_email
@@ -152,7 +152,7 @@ class Order < ApplicationRecord
         Postage.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, sold_item_id: si.id)
       end
       scan_form = batch.create_scan_form()
-      si.update_attributes(shipping_label_created: true, shipping_created_at: Time.now, scan_form_id: scan_form[:scan_form][:id])
+      si.update_attributes(shipping_label_created: true, shipping_created_at: Time.now.in_time_zone('London'), scan_form_id: scan_form[:scan_form][:id])
     end
   end
 end

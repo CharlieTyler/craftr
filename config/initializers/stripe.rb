@@ -1,6 +1,6 @@
 Rails.configuration.stripe = {
     :publishable_key => Rails.env.production? ? ENV['STRIPE_LIVE_PUBLISHABLE_KEY'] : ENV['STRIPE_TEST_PUBLISHABLE_KEY'],
-    :secret_key      => Rails.env.production? ? ENV['STRIPE_LIVE_SECRET_KEY'] : ENV['STRIPE>TEST_SECRET_KEY'],
+    :secret_key      => Rails.env.production? ? ENV['STRIPE_LIVE_SECRET_KEY'] : ENV['STRIPE_TEST_SECRET_KEY'],
     :client_id       => ENV['CLIENT_ID']
 }
 
