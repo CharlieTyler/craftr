@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .secondary-nav {
   white-space: nowrap;
-  overflow-x: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }

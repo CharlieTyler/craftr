@@ -1,5 +1,11 @@
 <% unless @product.is_transactional %>
-  <p class="alert alert-info">This product is not yet transactional - favourite it to get notified when it's available</p>
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-12">
+        <p class="alert alert-info">This product is not yet transactional - favourite it to get notified when it's available</p>
+      </div>
+    </div>
+  </div>
 <% end %>
 <% if user_signed_in? && current_user.admin %>
   <div class = "container py-2">
@@ -39,7 +45,9 @@
         <% end %>
       </div>
     </div>
+  </div>
 
+  <div class = "row">
     <!-- Product descriptions -->
     <div class = "col-12 col-md-5 pt-3">
       <h1><%= title @product.name %></h1>
