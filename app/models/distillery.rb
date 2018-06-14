@@ -6,6 +6,7 @@ class Distillery < ApplicationRecord
   has_many :users
   
   has_many :products
+  has_many :user_product_views, through: :products
 
   #articles
   has_many :article_distilleries
@@ -42,5 +43,9 @@ class Distillery < ApplicationRecord
 
   def is_transactional
     stripe_id.present? && address.present?
+  end
+
+  def total_product_views
+
   end
 end

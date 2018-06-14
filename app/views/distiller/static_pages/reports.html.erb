@@ -1,0 +1,120 @@
+<div class = "container">
+  <!-- Views -->
+  <h4>Views</h4>
+  <div class = "row">
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">By week</h6>
+      <%= line_chart current_distillery.products.map { |product|
+          {name: product.name, data: product.user_product_views.group_by_week(:created_at).count}
+      } %>
+    </div>
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">All time</h6>
+      <%= bar_chart current_distillery.products.map { |product|
+          [product.name, product.user_product_views.count]
+      } %>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-12">
+      <h6 class = "toggle mt-3">How do I improve? <i class="fa fa-chevron-down text-primary" aria-hidden="true"></i></h6>
+      <div class = "panel hidden article-text">
+        <p>
+          Views are dependent on exposure. We give the most exposure across both the site and our marketing efforts to the distilleries who illustrate the best potential to delight customers. This means great customer service, great content and, of course, amazing products!
+        </p>
+        <p>A few things you can do:</p>
+        <ul>
+          <li>Promote your CRAFTR page on your social channels. Your link is: <%= link_to distillery_url(current_distillery) %></li>
+          <li>Let's organise a joint social media and website campaign. We can feature your story, products and content across our site and to our many <%= link_to "followers on social media", "https://www.instagram.com/craftrspirits" %>. We only ask that you're prepared to handle the orders and are willing to co-promote the features.</li>
+          <li>Help us to keep your product page updated with great new imagery and content - please email to support@craftr.co.uk with any new content</li>
+          <li>Contribute recipes and articles to the site. We want to build a community of craft lovers -  having great content is key to that. If you have a recipe or article that you'd like to pitch, please email support@craftr.co.uk</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class = "row my-3">
+    <div class = "col-12">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
+
+  <!-- Conversion rate -->
+  <h4>Conversion rate</h4>
+  <div class = "row">
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">By product</h6>
+      <%= bar_chart current_distillery.products.map { |product|
+          [product.name, (product.sold_items.sum(&:quantity))/product.user_product_views.count.to_f]
+      }, suffix: "%" %>
+    </div>
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">Average vs. other distilleries</h6>
+      <%= bar_chart Distillery.all.map { |distillery|
+          [distillery == current_distillery ? "You" : "Name redacted", (distillery.sold_items.sum(&:quantity))/distillery.user_product_views.count.to_f]
+      }, suffix: "%" %>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col-12">
+      <h6 class = "toggle mt-3">How do I improve? <i class="fa fa-chevron-down text-primary" aria-hidden="true"></i></h6>
+      <div class = "panel hidden article-text">
+        <p class = "">Increasing your conversion rate is about having a great product page and proposition. A few things you can do:</p>
+        <ol>
+          <li>Help us to <strong>improve your product pages</strong>. Send us images, new elements to your story and keep us updated on what you're up to.</li>
+          <li>Drive <strong>higher quality traffic</strong>. If the average person visiting your product page is more interested, your conversion rate will increase. So, help us to deliver excellent marketing for your brand to bring in the right people from outside Craftr, and contribute recipes and articles to drive traffic from within.</li>
+          <li><strong>Get great reviews</strong>. Do the basics right: ship the right product within a day of it being ordered. Once you've got this down, try something additional: add a hand-written note to orders saying thanks or suggesting a recipe, or even asking for a nice review!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class = "row my-3">
+    <div class = "col-12">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
+
+  <!-- Orders -->
+  <h4>Orders</h4>
+  <div class = "row">
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">By week</h6>
+      <%= line_chart current_distillery.products.map { |product|
+          {name: product.name, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
+      } %>
+    </div>
+    <div class = "col-md-6 mt-2">
+      <h6 class = "my-3">All time</h6>
+      <%= bar_chart current_distillery.products.map { |product|
+          [product.name, product.sold_items.sum(:quantity)]
+      } %>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col-12">
+      <h6 class = "toggle mt-3">How do I improve? <i class="fa fa-chevron-down text-primary" aria-hidden="true"></i></h6>
+      <div class = "panel hidden article-text">
+        <p class = "">If you increase your traffic and conversion rate, an increase in orders is the result. Here's some general advice that meshes these two together.</p>
+        <ol>
+          <li>If you're willing to <strong>make CRAFTR your exclusive online partner</strong> and we think you're one of our key products, we'll do everything we can to build an even stronger partnership. Please contact support@craftr.co.uk if this is something you want to explore!</li>
+          <li><strong>Help us tell your story</strong>. The people behind the products, and the stories behind the people are a good part of what gives craft spirits its charm. Help us convey this in your brand in whatever ways you can think of.</li>
+          <li><strong>Get great reviews</strong>. Do the basics right: ship the right product within a day of it being ordered. Once you've got this down, try something additional: add a hand-written note to orders saying thanks or suggesting a recipe, or even asking for a nice review!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $(".toggle").click(function () {
+        $(this).next('.panel').slideToggle("slow");
+    });
+  });
+</script>

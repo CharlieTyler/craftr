@@ -132,9 +132,9 @@
         </div>
         <div class = "col-12 justify-content-center">
           <% if @product.product_images.length > 2 %>
-            <%= image_tag @product.product_images.second.photo, class: "d-block img-fluid product-page-image" %>
+            <%= image_tag @product.product_images.second.photo_url(:full), class: "d-block img-fluid product-page-image" %>
           <% else %>
-            <%= image_tag @product.product_images.first.photo, class: "d-block img-fluid product-page-image" %>
+            <%= image_tag @product.product_images.first.photo_url(:full), class: "d-block img-fluid product-page-image" %>
           <% end %>
         </div>
         <div class = "col-12">
@@ -143,7 +143,7 @@
           </p>
         </div>
         <div class = "col-12">
-          <%= image_tag @product.product_images.last.photo, class: "d-block img-fluid product-page-image" %>
+          <%= image_tag @product.product_images.last.photo_url(:full), class: "d-block img-fluid product-page-image" %>
         </div>
       </div>
     </div>

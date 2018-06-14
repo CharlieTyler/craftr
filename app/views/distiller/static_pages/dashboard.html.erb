@@ -3,7 +3,7 @@
     <% if current_distillery.is_transactional %>
       <div class = "col-12 my-3">
         <h4 class = "d-inline-block">Sales by product</h4>
-        <p class = "d-inline-block float-right text-primary">See all reports</p>
+        <p class = "d-inline-block float-right text-primary"><%= link_to "See all reports",distiller_reports_path %></p>
         <%= line_chart current_distillery.products.map { |product|
             {name: product.name, data: product.sold_items.group_by_day(:created_at).sum(:quantity)}
         } %>

@@ -4,4 +4,8 @@ class Distiller::StaticPagesController < DistillersController
     @unfulfilled_sold_items = current_distillery.sold_items.where(shipped: false).order("created_at DESC")
     @fulfilled_sold_items   = current_distillery.sold_items.where(shipped: true)
   end
+
+  def reports
+    
+  end
 end

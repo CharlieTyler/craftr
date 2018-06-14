@@ -73,6 +73,7 @@ Rails.application.routes.draw do
 
   namespace :distiller do
     get "/dashboard", :controller => "static_pages", :action => "dashboard"
+    get "/reports" => "static_pages#reports"
     get "/transactional_checklist" => "details#transactional_checklist"
     resources :addresses, only: [:new, :create, :edit, :update]
     resources :sold_items, only: [:show, :index] do
