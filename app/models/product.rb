@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  scope :live, -> { where(is_live: true) }
+  scope :live, -> { where(is_live: true, is_test: false) }
 
   belongs_to :distillery
   belongs_to :category

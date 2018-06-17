@@ -2,6 +2,8 @@ class Distillery < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  scope :live, -> { where(is_live: true, is_test: false) }
+
   # distillery portal access
   has_many :users
   

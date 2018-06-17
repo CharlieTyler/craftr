@@ -6,7 +6,7 @@
     <i class="fa fa-star-o text-primary" aria-hidden="true"></i>
   <% end %>
   <% if review.verified %>
-    - <strong><i class="fa fa-check-circle-o text-primary" aria-hidden="true"></i> Verified review</strong>
+    - <strong><i class="fa fa-check-circle-o text-primary" aria-hidden="true"></i> Verified review</strong><span class = "taste-slider-tooltip" data-toggle="tooltip" title= "This person has previously purchased this product on CRAFTR"> <i class="fa fa-question-circle text-secondary" aria-hidden="true"></i></span>
   <% end %>
   <p class = "my-1"><%= review.message %></p>
   <p class = "mb-0 text-muted"> - <%= review.user.email %></p>
@@ -17,3 +17,9 @@
 <div class = "col-12">
   <hr class = "booyah-line"/>
 </div>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  });
+</script>

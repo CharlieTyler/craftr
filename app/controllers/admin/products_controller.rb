@@ -44,6 +44,7 @@ class Admin::ProductsController < AdminController
   def product_params
     params.require(:product).permit(:name, 
                                     :is_live,
+                                    :is_test,
                                     :is_in_stock,
                                     :weight,
                                     :price,

@@ -1,6 +1,6 @@
-<%= simple_form_for @order_item, wrapper: :inline_form, html: { class: 'form-inline col-12 mx-0 px-0' } do |f| %>
+<%= simple_form_for order_item, wrapper: :inline_form, html: { class: 'form-inline col-12 mx-0 px-0' } do |f| %>
   <%= f.input :quantity, :as => :hidden, :input_html => { :value => 1 } %>
-  <%= f.input :product_id, :as => :hidden, :input_html => { :value => @product.id } %>
+  <%= f.input :product_id, :as => :hidden, :input_html => { :value => product.id } %>
   <%= f.submit "Add to basket", class: "#{large_button ? 'btn-lg' : 'btn'} btn-primary atb-button col" %>
 <% end %>
 <div class = "btn btn-lg atb-button">Test</div>
@@ -13,11 +13,3 @@
     </span>
   <% end %>
 <% end %>
-
-<script>
-  $('.atb-button').click(function() {
-    $('.atb-button').each(function() {
-      $('.atb-button').prop("disabled", true);
-    });
-  });
-</script>

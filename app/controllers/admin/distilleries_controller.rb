@@ -36,7 +36,9 @@ class Admin::DistilleriesController < AdminController
   private
 
   def distillery_params
-    params.require(:distillery).permit(:name, 
+    params.require(:distillery).permit(:name,
+                                       :is_live,
+                                       :is_test,
                                        :location, 
                                        :logo,
                                        :youtube_video_url,

@@ -3,6 +3,8 @@
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <%= simple_form_for @distillery, url: admin_distillery_path(@distillery) do |f| %>
         <%= f.input :name %>
+        <%= f.input :is_live, hint: "This is if they should be shown (except for if test)" %>
+        <%= f.input :is_test, hint: "This is for dummy transactions in production" %>
         <%= f.input :location %>
         <%= f.input :logo %>
         <%= f.input :summary_text %>
