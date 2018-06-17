@@ -1,6 +1,12 @@
 class ProductsController < ApplicationController
   def show
     @product                   = Product.friendly.find(params[:id])
+    if @product.is_test
+      unless user_signed_in? && current_user.admin
+        flash[:notice] = "You are not permitted to view test products - please log in to an admin account"
+        redirect_to distilleries_path
+      end
+    end
     @distillery                = @product.distillery
     @review                    = Review.new
     @recipes                   = @product.recipes

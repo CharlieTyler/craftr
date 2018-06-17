@@ -7,6 +7,7 @@ class OrderItemsController < ApplicationController
   # @order set in application controller, giving us use of the @order variable
   def create
     # Queue abandoned basket email to be sent if this is the first item being added (only queue once)
+    # Note: if they keep adding and removing the first item, this will queue multiple.
     unless @order.order_items.length > 0
       @order.queue_abandoned_basket_email
     end
