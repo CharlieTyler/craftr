@@ -148,6 +148,14 @@
       </div>
     </div>
   <% end %>
+  <% unless @recipe.categories.blank? %>
+    <div class = "container">
+      <h4>Related categories</h4>
+      <div class = "row py-2">
+        <%= render partial: 'categories/lister_category', collection: @recipe.categories, as: :category, locals: { md_upwards_col: (12/(@recipe.products.live.size)).to_s } %>
+      </div>
+    </div>
+  <% end %>
 </div>
 <div class = "background-secondary">
   <div class = "container pt-2">

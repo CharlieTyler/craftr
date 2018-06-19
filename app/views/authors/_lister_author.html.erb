@@ -9,8 +9,8 @@
         <p class="card-text text-muted"><%= author.location %></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><em><%= pluralize(author.recipes.size, 'recipes') %></em></li>
-        <li class="list-group-item text-muted"><em><%= pluralize(author.articles.size, 'articles') %></em></li>
+        <li class="list-group-item text-muted"><em><%= pluralize(author.recipes.size, 'recipe') %></em></li>
+        <li class="list-group-item text-muted"><em><%= pluralize(author.articles.size, 'article') %></em></li>
       </ul>
     </div>
   <% end %>
