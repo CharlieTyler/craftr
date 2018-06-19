@@ -38,6 +38,14 @@ class Recipe < ApplicationRecord
     'Other': 'Other'
   }
 
+  def seo_description
+    "#{description} - a CRAFTR recipe by #{author.name}, using #{ingredient_list}"
+  end
+
+  def seo_keywords
+    "craft, spirits, recipe, recipes, #{categories.map(&:name).join(", ")}, #{ingredient_list}.join(', ')"
+  end
+
   def self.search(params)
     search_scope = Recipe.joins(:recipe_ingredients)
 

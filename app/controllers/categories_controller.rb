@@ -11,6 +11,11 @@ class CategoriesController < ApplicationController
     @products = @category.products.live
     @recipes  = @category.recipes
     @articles = @category.articles
+
+    # SEO
+    @page_description          = @category.seo_description
+    @page_keywords             = @category.seo_keywords
+    
     # unless @category.instagram_hashtag.blank?
     #   @instas   = InstagramApi.tag(@category.instagram_hashtag).recent_media
     # end

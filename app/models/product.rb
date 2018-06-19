@@ -51,6 +51,19 @@ class Product < ApplicationRecord
     search_scope
   end
 
+  def seo_description
+    "#{name}, from #{distillery.name}. #{description_short}. #{distillery.location}"
+  end
+
+  def seo_keywords
+    word_array = []
+    word_array << category.name
+    word_array << "craft, spirits"
+    word_array << distillery.name
+    word_array << distillery.location
+    word_array.join(", ")
+  end
+
   # Custom validations
   def distillery_take_less_than_price_if_present
     if distillery_take.present?

@@ -14,10 +14,16 @@ class ProductsController < ApplicationController
     @other_popular_products    = @product.other_popular_products.first(6)
     @order_item                = OrderItem.new
     UserProductView.create(user: user_signed_in? ? current_user : nil, product: @product)
+    # SEO
+    @page_description          = @product.seo_description
+    @page_keywords             = @product.seo_keywords
   end
 
   def index
     @products = Product.live
+    # SEO
+    @page_description          = "Find and buy craft #{category_list.to_sentence} straight from the distilleries."
+    @page_keywords             = "Craft, spirits, distillery, bottle, #{category_list.join(', ')}"
   end
 
   def random

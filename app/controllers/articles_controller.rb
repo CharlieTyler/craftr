@@ -4,12 +4,16 @@ class ArticlesController < ApplicationController
     UserArticleView.create(user: user_signed_in? ? current_user : nil, article: @article)
     # negated sign to reverse array as it automatically sorts in ascending order
     @most_read_articles = Article.all.sort_by{|article| -article.user_article_views.size}.first(5)
+    @page_description          = @article.seo_description
+    @page_keywords             = @article.seo_keywords
   end
 
   def index
     @articles = Article.order('created_at DESC')
     @featured_articles = Article.where(featured: true)
     @tags = Article.tag_counts_on(:tags)
+    @page_description          = "Read expert articles from CRAFTR's bloggers on everything craft spirit! #{@articles.length} articles ready to read."
+    @page_keywords             = "craft, spirits, bloggers, articles, instagram, #{category_list.join(', ')}"
   end
 
   def tag

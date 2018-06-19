@@ -35,6 +35,14 @@ class Article < ApplicationRecord
   validates :description_first, presence: true
   validates :image_first, presence: true
 
+  def seo_description
+    "#{description} - a CRAFTR article by #{author.name}"
+  end
+
+  def seo_keywords
+    "#{title.split(" ").join(", ")}, #{categories.map(&:name).join(", ")}"
+  end
+
   def self.search(params)
     search_scope = Article
 

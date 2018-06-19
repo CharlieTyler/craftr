@@ -16,4 +16,12 @@ class Category < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :icon, presence: true
+
+  def seo_description
+    "Find and buy craft #{category.name} direct from the distillers. Read recipes, browse articles and buy the likes of #{products.all.sample(3).map(&:name).to_sentence}."
+  end
+
+  def seo_keywords
+    "#{category.name}, craft, spirits, distillery, bottles, recipes, articles"
+  end
 end

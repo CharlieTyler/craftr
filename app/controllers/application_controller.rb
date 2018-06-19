@@ -53,6 +53,15 @@ class ApplicationController < ActionController::Base
     @navbar_categories = Category.all
   end
 
+  helper_method :category_list
+  def category_list
+    @category_list = []
+    navbar_categories.each do |category|
+      @category_list << category.name
+    end
+    @category_list
+  end
+
   def authenticate_is_author
     unless user_signed_in? && current_user.is_author?
       render plain: 'Unauthorized', status: :unauthorized

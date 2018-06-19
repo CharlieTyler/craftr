@@ -43,6 +43,14 @@ class Distillery < ApplicationRecord
   mount_uploader :image_2, ArticleImageUploader
   mount_uploader :image_3, ArticleImageUploader
 
+  def seo_description
+    "Craft spirits from #{location}. Buy #{products.all.sample(3).map(&:name).to_sentence} - shipped direct from #{name}."
+  end
+
+  def seo_keywords
+    "#{name}, #{location}, craft, spirits"
+  end
+
   def is_transactional
     stripe_id.present? && address.present?
   end

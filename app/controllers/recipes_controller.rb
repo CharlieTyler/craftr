@@ -5,6 +5,8 @@ class RecipesController < ApplicationController
     UserRecipeView.create(user: user_signed_in? ? current_user : nil, recipe: @recipe)
     @comment  = RecipeComment.new
     @comments = @recipe.recipe_comments.all
+    @page_description          = @recipe.seo_description
+    @page_keywords             = @recipe.seo_keywords
     # unless @recipe.instagram_hashtag.blank?
     #   @instas   = InstagramApi.tag(@recipe.instagram_hashtag).recent_media
     # end
@@ -20,6 +22,8 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
     @tags = Recipe.tag_counts_on(:rtags)
     @featured_recipes = Recipe.where(featured: true)
+    @page_description          = "Recipes for beautiful cocktails using craft spirits from CRAFTR. See #{@recipes.length} recipes from craft distilleries, bloggers and enthusiasts."
+    @page_keywords             = "craft, spirits, recipes, cocktail, #{category_list.join(', ')}"
   end
 
   def tag
