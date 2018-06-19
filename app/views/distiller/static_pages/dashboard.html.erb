@@ -10,11 +10,12 @@
       </div>
     <% end %>
     <div class = "col-12">
-      <% if current_distillery.is_transactional %>
+      <% if current_distillery.is_transactional && current_distillery.products.map{|product| product.is_transactional}.all? %>
         <h6 class = "text-muted">You're transactional. <%= link_to "Edit details", distiller_transactional_checklist_path %></h6>
+      <% elsif current_distillery.is_transactional %>
+        <h6 class = "text-primary mt-4">Not all of your products are yet transactional.</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
       <% else %>
-        <h3 class = "text-primary mt-4">You're not yet transactional. <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn-lg btn-primary" %>
-        </h3>
+        <h6 class = "text-primary mt-4">You're not yet transactional.</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
       <% end %>
     </div>
     <div class = "col-12 my-4">
