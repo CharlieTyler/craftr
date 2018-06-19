@@ -117,3 +117,5 @@ gem 'chartkick'
 gem 'to_csv-rails'
 
 gem 'gibbon'
+
+gem 'sitemap_generator'
