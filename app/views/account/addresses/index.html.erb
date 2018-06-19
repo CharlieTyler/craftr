@@ -36,9 +36,9 @@
           <%= f.input :line_1 %>
           <%= f.input :line_2 %>
           <%= f.input :line_3 %>
-          <%= f.input :post_town %>
+          <%= f.input :post_town, label: "Town / City" %>
           <%= f.input :postcode %>
-          <%= f.input :country, collection: Address::COUNTRIES, include_blank: false %>
+          <%= f.input :country, collection: Address::COUNTRIES, include_blank: false, hint: "We only ship to the UK!" %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

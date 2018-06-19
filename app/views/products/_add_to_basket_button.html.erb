@@ -1,9 +1,8 @@
 <%= simple_form_for order_item, wrapper: :inline_form, html: { class: 'form-inline col-12 mx-0 px-0' } do |f| %>
   <%= f.input :quantity, :as => :hidden, :input_html => { :value => 1 } %>
   <%= f.input :product_id, :as => :hidden, :input_html => { :value => product.id } %>
-  <%= f.submit "Add to basket", class: "#{large_button ? 'btn-lg' : 'btn'} btn-primary atb-button col" %>
+  <%= f.submit "Add to basket", class: "#{large_button ? 'btn-lg' : 'btn'} btn-primary atb-button col", data: { disable_with: 'Adding...'} %>
 <% end %>
-<div class = "btn btn-lg atb-button">Test</div>
 
 <% if include_go_to_checkout %>
   <% if @order.order_items.any? {|oi| oi.product_id == product.id } %>
