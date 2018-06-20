@@ -60,10 +60,8 @@ class User < ApplicationRecord
 
   def previously_purchased_products
     products = []
-    orders.each do |order|
-      order.sold_items.each do |oi|
-        products << oi.product 
-      end
+    sold_items.each do |si|
+      products << si.product 
     end
     products.uniq!
   end
