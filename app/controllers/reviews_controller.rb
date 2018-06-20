@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   def create
     @product = Product.friendly.find(params[:product_id])
-    @review  = @product.reviews.create(review_params.merge(user: current_user, verified: (current_user.sold_items.length > 0 ? current_user.previously_purchased_products.include?@product : false)))
+    @review  = @product.reviews.create(review_params.merge(user: current_user, verified: (current_user.previously_purchased_products.present? ? current_user.previously_purchased_products.include?(@product) : false)))
     if @review.valid?
       redirect_to product_path(@product)
     else

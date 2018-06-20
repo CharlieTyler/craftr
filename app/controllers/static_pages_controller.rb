@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
     @recipes               = Recipe.last(3)
     @featured_distilleries = Distillery.live.last(4)
     @page_description      = "The UK's only marketplace and community dedicated to local, independent craft spirits. Discover new gins, vodkas and other spirits, and buy directly from the distillers."
-    @page_keywords         = "craft, spirits, independent, distilleries, #{category_list.join(', ')}, recipes, cocktails"
+    @page_keywords         = "craft, spirits, independent, distilleries, #{category_list}, recipes, cocktails"
     # @instas              = InstagramApi.user.recent_media
   end
 
