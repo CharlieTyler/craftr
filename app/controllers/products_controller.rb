@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
     @products = Product.live
     # SEO
     @page_description          = "Find and buy craft #{category_list.to_sentence} straight from the distilleries."
-    @page_keywords             = "Craft, spirits, distillery, bottle, #{category_list.join(', ')}"
+    @page_keywords             = "Craft, spirits, distillery, bottle, #{category_list}"
   end
 
   def random
