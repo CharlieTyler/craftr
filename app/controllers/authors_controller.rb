@@ -7,5 +7,6 @@ class AuthorsController < ApplicationController
 
   def index
     @authors = Author.all
+    @featured_articles = Article.where(featured: true)
   end
 end

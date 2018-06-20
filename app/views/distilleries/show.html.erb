@@ -125,18 +125,25 @@
     <div class = "row">
       <div class = "col-md-8 offset-md-2">
         <div class = "row">
-          <div class = "col-6">
-            <%= link_to @distillery.website, :target => "_blank" do %>
-              <i class="fa fa-globe" aria-hidden="true"></i>Visit the website
-            <% end %>
-          </div>
           <% if @distillery.facebook.present? %>
-            <div class = "col-6">
+            <div class = "col-4">
               <%= link_to @distillery.facebook, :target => "_blank" do %>
-                <i class="fa fa-facebook-official" aria-hidden="true"></i>Visit facebook
+                <i class="fa fa-facebook-official fa-2x text-primary px-2" aria-hidden="true"></i>On Facebook
               <% end %>
             </div>
           <% end %>
+          <% if @distillery.instagram_url.present? %>
+            <div class = "col-4">
+              <%= link_to @distillery.instagram_url, :target => "_blank" do %>
+                <i class="fa fa-instagram fa-2x text-primary px-2" aria-hidden="true"></i>On Instagram
+              <% end %>
+            </div>
+          <% end %>
+          <div class = "col-4">
+            <%= link_to @distillery.website, :target => "_blank" do %>
+              <i class="fa fa-globe fa-2x text-primary px-2" aria-hidden="true"></i>The website
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

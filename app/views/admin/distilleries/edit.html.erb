@@ -20,9 +20,10 @@
         <%= f.input :image_2 %>
         <%= f.input :blurb_3, input_html: { class: 'quill_container' } %>
         <%= f.input :image_3 %>
-        <%= f.input :website %>
-        <%= f.input :facebook %>
+        <%= f.input :website, hint: 'Please include https://' %>
+        <%= f.input :facebook, hint: 'Please include https://' %>
         <%= f.input :instagram_user_id, hint: 'Use https://smashballoon.com/instagram-feed/find-instagram-user-id/ to get id from username' %>
+        <%= f.input :instagram_url, hint: "Please include https://" %>
         <%= f.input :latitude, hint: 'first number in google maps url' %>
         <%= f.input :longitude, hint: 'second number, incl - sign, in google maps url' %>
         <br />

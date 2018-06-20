@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180620204902) do
+ActiveRecord::Schema.define(version: 20180620220638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20180620204902) do
     t.string "stripe_id"
     t.boolean "is_test", default: false
     t.boolean "is_live", default: true
+    t.string "instagram_url"
     t.index ["slug"], name: "index_distilleries_on_slug", unique: true
   end
 

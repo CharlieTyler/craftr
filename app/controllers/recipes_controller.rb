@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.order('created_at DESC')
     @tags = Recipe.tag_counts_on(:rtags)
     @featured_recipes = Recipe.where(featured: true)
     @page_description          = "Recipes for beautiful cocktails using craft spirits from CRAFTR. See #{@recipes.length} recipes from craft distilleries, bloggers and enthusiasts."

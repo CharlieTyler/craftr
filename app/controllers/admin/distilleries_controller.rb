@@ -58,7 +58,8 @@ class Admin::DistilleriesController < AdminController
                                        :facebook,
                                        :instagram_user_id,
                                        :longitude,
-                                       :latitude
+                                       :latitude,
+                                       :instagram_url
                                        )
   end
 end

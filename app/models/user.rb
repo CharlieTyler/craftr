@@ -86,7 +86,7 @@ class User < ApplicationRecord
   end
 
   def recently_viewed_products
-    viewed_user_products = user_product_views.where("(created_at > ?)", Time.now.in_time_zone('London') - 5.days)
+    viewed_user_products = user_product_views.where("(created_at > ?)", Time.now.in_time_zone('London') - 5.days).order("created_at DESC")
     recently_viewed_products = []
     viewed_user_products.each do |vup|
       recently_viewed_products.push(vup.product) unless recently_viewed_products.include?(vup.product)
