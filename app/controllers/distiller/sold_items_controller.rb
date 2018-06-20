@@ -13,7 +13,7 @@ class Distiller::SoldItemsController < DistillersController
   end
 
   def mark_as_shipped
-    @sold_item.update_attributes(shipped: true, shipped_at: Time.now)
+    @sold_item.update_attributes(shipped: true, shipped_at: Time.now.in_time_zone('London'))
     respond_to do |format|
       format.js
     end

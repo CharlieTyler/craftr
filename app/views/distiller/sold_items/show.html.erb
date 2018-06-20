@@ -26,7 +26,7 @@
         <%= link_to @scan_form_url do %>
           <h4>Your scan form</h4>
           <p class = "text-muted">Please print this and take to the Post Office to speed up shipment</p>
-          <%= image_tag @scan_form_url, class: "img-fluid" %>
+          <div class = "btn btn-primary my-2">View form</div>
         <% end %>
       <% else %>
         <h4>Please wait - we are creating the scanform for this manifest.</h4>
