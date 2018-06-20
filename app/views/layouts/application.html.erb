@@ -15,6 +15,10 @@
       <% end %>
     <% end %>
 
+    <% if controller_name == "products" && action_name == "show" %>
+      <%= render partial: 'products/structured_data_markup', locals: {product: @product} %>
+    <% end %>
+
     <%= favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png' %>
 
     <%= display_meta_tags site: 'CRAFTR' %>

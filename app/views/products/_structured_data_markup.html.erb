@@ -1,0 +1,23 @@
+<script type="application/ld+json">
+  {
+    "@context" : "http://schema.org",
+    "@type" : "Product",
+    "name" : <%= product.name %>,
+    "image" : <%= product.product_images.first.photo_url(:full).to_s %>,
+    "description" : <%= simple_format(product.description_short) %>
+    "brand" : {
+      "@type" : "Brand",
+      "name" : <%= product.distillery.name %>,
+      "logo" : <%= product.distillery.logo %>
+    },
+    "offers" : {
+      "@type" : "Offer",
+      "price" : <%= render partial: 'price_formatted', locals: {product: product} %>
+    },
+    "aggregateRating" : {
+      "@type" : "AggregateRating",
+      "ratingValue" : <%= product.average_rating %>,
+      "ratingCount" : <%= product.reviews.length %>
+    }
+  }
+</script>
