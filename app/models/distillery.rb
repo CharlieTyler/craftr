@@ -48,7 +48,7 @@ class Distillery < ApplicationRecord
   end
 
   def seo_keywords
-    "#{name}, #{location}, craft, spirits"
+    "#{name}, #{location}, craft, spirits, craftr, crafter"
   end
 
   def is_transactional

@@ -40,7 +40,7 @@ class Article < ApplicationRecord
   end
 
   def seo_keywords
-    "#{title.split(" ").join(", ")}, #{categories.map(&:name).join(", ")}"
+    "#{title.split(" ").join(", ")}, #{categories.map(&:name).join(", ")}, craftr, crafter"
   end
 
   def self.search(params)

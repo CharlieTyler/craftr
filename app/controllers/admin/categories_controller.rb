@@ -40,6 +40,7 @@ class Admin::CategoriesController < AdminController
                                      :icon,
                                      :banner_image,
                                      :featured,
-                                     :instagram_hashtag)
+                                     :instagram_hashtag,
+                                     :row_order_position)
   end
 end

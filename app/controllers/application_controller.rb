@@ -50,16 +50,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :navbar_categories
   def navbar_categories
-    @navbar_categories = Category.all
+    @navbar_categories = Category.rank(:row_order).all
   end
 
   helper_method :category_list
   def category_list
-    @category_list = []
-    navbar_categories.each do |category|
-      @category_list << category.name
-    end
-    @category_list
+    navbar_categories.map(&:name).join(", ")
   end
 
   def authenticate_is_author

@@ -7,6 +7,7 @@
         <%= f.input :instagram_hashtag %>
         <%= f.input :banner_image %>
         <%= f.input :featured %>
+        <%= f.input :row_order_position, hint: "Put n-1 of where you want this to be ranked. E.g. '0' to be ranked first" %>
         <br />
         <%= f.submit "Create", class: "btn btn-primary" %>
       <% end %>

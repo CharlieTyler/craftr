@@ -58,7 +58,7 @@ class Product < ApplicationRecord
   def seo_keywords
     word_array = []
     word_array << category.name
-    word_array << "craft, spirits"
+    word_array << "craft, spirits, craftr, crafter"
     word_array << distillery.name
     word_array << distillery.location
     word_array.join(", ")
