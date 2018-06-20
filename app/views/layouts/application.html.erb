@@ -226,5 +226,10 @@
         </div>
       </div>
     </div>
+    <script>
+      <% if session[:age_verified] != true && user_signed_in? == false && controller_name != "registrations" && controller_name != "sessions" %>
+        $("#ageVerificationModal").modal('show');
+      <% end %>
+    </script>
   </body>
 </html>
