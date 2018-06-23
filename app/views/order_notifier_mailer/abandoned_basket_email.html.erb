@@ -7,7 +7,7 @@
 <p>Here's what awaits:</p>
 <ul>
   <% @order_items.each do |oi| %>
-    <li><%= link_to oi.product.name, product_url(oi.product) %> - <%= number_to_currency((oi.product.price / 100).to_f, unit: '£') %></li>
+    <li><%= link_to oi.product.name, product_url(oi.product) %> - <%= number_to_currency((oi.product.price.to_f / 100), unit: '£') %></li>
   <% end %>
 </ul>
 

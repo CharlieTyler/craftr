@@ -27,7 +27,7 @@
                     <th scope="row"><%= order.created_at.strftime('%B %d, %Y') %></th>
                     <td><%= order.product_summary %></td>
                     <td><%= order.state %></td>
-                    <td><strong><%= number_to_currency((order.total_paid_amount / 100).to_f, unit: "£") %></strong></td>
+                    <td><strong><%= number_to_currency((order.total_paid_amount.to_f / 100), unit: "£") %></strong></td>
                     <td><strong><%= link_to "View order", account_order_path(order), class: "btn btn-secondary" %></strong></td>
                   </tr>
                 <% end %>

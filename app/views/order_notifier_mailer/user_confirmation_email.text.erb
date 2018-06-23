@@ -11,9 +11,9 @@ What did I order again?
 For your records, here's what you went for:
 
   <% @order.sold_items.each do |si| %>
-    <%= "#{si.quantity} * #{si.product.name}, #{number_to_currency((si.total_paid / 100).to_f, unit: '£')}" %>
+    <%= "#{si.quantity} * #{si.product.name}, #{number_to_currency((si.total_paid.to_f / 100), unit: '£')}" %>
   <% end %>
-  Delivery: <%= number_to_currency((@order.paid_shipping_price / 100).to_f, unit: '£') %>
+  Delivery: <%= number_to_currency((@order.paid_shipping_price.to_f / 100), unit: '£') %>
 
 Best wishes,
 The CRAFTR team

@@ -10,7 +10,7 @@
       <p class = "ml-2"><%= "#{oi.product.name} * #{oi.quantity}" %></p>  
     </div>
     <div class = "d-inline-block float-right">
-      <p><strong><%= number_to_currency((oi.subtotal_in_pence / 100).to_f, unit: "£") %></strong></p>
+      <p><strong><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></strong></p>
     </div> 
     <div class = "clear"></div>
   <% end %>
@@ -19,7 +19,7 @@
       <p class = "ml-2"><%= order.shipping_type.name %></p>  
     </div>
     <div class = "d-inline-block float-right">
-      <p><strong><%= number_to_currency((order.total_unpaid_shipping_amount / 100).to_f, unit: "£") %></strong></p>
+      <p><strong><%= number_to_currency((order.total_unpaid_shipping_amount.to_f / 100), unit: "£") %></strong></p>
     </div> 
   <% else %>
     <p>Please select shipping type</p>
@@ -35,7 +35,7 @@
         <p><strong>Total: </strong></p>
       </div>
       <div class = "d-inline-block float-right">
-        <p><strong><%= number_to_currency((order.total_unpaid_amount / 100).to_f, unit: "£") %></strong></p>
+        <p><strong><%= number_to_currency((order.total_unpaid_amount.to_f / 100), unit: "£") %></strong></p>
       </div> 
     </div>
   <% end %>

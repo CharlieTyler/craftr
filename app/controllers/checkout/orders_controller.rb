@@ -87,6 +87,9 @@ class Checkout::OrdersController < ApplicationController
     @order.denormalise_order
     # Uses worker server to send email
     @order.queue_confirmation_email
+    @order.queue_distiller_emails
+    @order.queue_distiller_reminder_emails
+    @order.queue_please_review_email
 
     session[:confirmed_order_id] = @order.id
     @order.update_attributes(paid: true)

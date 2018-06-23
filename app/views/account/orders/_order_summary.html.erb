@@ -11,7 +11,7 @@
       <p class = "ml-2"><%= "#{si.product.name} * #{si.quantity} - #{si.state}" %></p>  
     </div>
     <div class = "d-inline-block">
-      <p><strong><%= number_to_currency((si.total_paid / 100).to_f, unit: "£") %></strong></p>
+      <p><strong><%= number_to_currency((si.total_paid.to_f / 100), unit: "£") %></strong></p>
     </div> 
     <div class = "d-inline-block">
       <%= link_to "Leave a review", product_path(si.product), class: "btn btn-primary" %>
@@ -21,7 +21,7 @@
     <p class = "ml-2"><%= order.shipping_type.name %></p>  
   </div>
   <div class = "d-inline-block float-right">
-    <p><strong><%= number_to_currency((order.paid_shipping_price / 100).to_f, unit: "£") %></strong></p>
+    <p><strong><%= number_to_currency((order.paid_shipping_price.to_f / 100), unit: "£") %></strong></p>
   </div> 
   <div class = "row">
     <div class = "col-12">
@@ -33,7 +33,7 @@
       <p><strong>Total: </strong></p>
     </div>
     <div class = "d-inline-block float-right">
-      <p><strong><%= number_to_currency((order.total_paid_amount / 100).to_f, unit: "£") %></strong></p>
+      <p><strong><%= number_to_currency((order.total_paid_amount.to_f / 100), unit: "£") %></strong></p>
     </div> 
   </div>
   <div class = "row mb-2">

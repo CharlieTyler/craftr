@@ -3,6 +3,7 @@
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- Code taken from https://gist.github.com/esBeee/545653241530f8f2c2e16371bec56f20 -->
+
     <% if Rails.env.production? %>
       <% unless user_signed_in? && current_user.admin %>
         <script type="text/javascript">
@@ -11,6 +12,27 @@
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
           ga('create', 'UA-117259081-1', 'auto');
+          <% if action_name == "confirmation" %>
+            ga('require', 'ecommerce');
+            ga('ecommerce:addTransaction', {
+              'id': '<%= @confirmed_order.id %>',
+              'affiliation': 'CRAFTR', 
+              'revenue':  '<%= @confirmed_order.total_paid_product_amount.to_f / 100 %>',
+              'shipping':'<%= @confirmed_order.paid_shipping_price.to_f / 100 %>'
+            });
+
+            <% @confirmed_order.sold_items.each do |si| %>
+              ga('ecommerce:addItem', {
+                'id': '<%= @confirmed_order.id %>',
+                'name': '<%= si.product.name %>', 
+                'sku': '<%= si.product.id %>',
+                'category': '<%= si.product.category.name %>',
+                'price': '<%= si.item_price.to_f / 100 %>',
+                'quantity': '<%= si.quantity %>'                   // Quantity.
+              });
+            <% end %>
+            ga('ecommerce:send');
+          <% end %>
         </script>
       <% end %>
     <% end %>
@@ -146,7 +168,7 @@
                     <p class = "nav-link py-0 my-0">
                       <%= pluralize(@order.total_unpaid_quantity, 'item') %>
                       <br />
-                      <%= number_to_currency((@order.total_unpaid_product_amount / 100).to_f, unit: "£") %>
+                      <%= number_to_currency((@order.total_unpaid_product_amount.to_f / 100), unit: "£") %>
                     </p>
                   <% end %>
                 </li>
