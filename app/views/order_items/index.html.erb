@@ -10,7 +10,7 @@
       <% if @order.order_items.present? %>
         <div class="basket-header">
           <div class="row">
-            <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
+            <%= simple_form_for @order, url: checkout_update_shipping_method_path, html: { class: "col-12" } do |f| %>
               <table class="table col-12">
                 <thead>
                   <tr>
