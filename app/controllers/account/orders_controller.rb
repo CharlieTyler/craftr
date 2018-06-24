@@ -13,7 +13,7 @@ class Account::OrdersController < ApplicationController
   def index
     @orders = current_user.orders.where(paid: true)
     if current_user.sold_items.length > 0
-      @products = current_user.previously_purchased_products.first(4)
+      @previously_purchased_products = current_user.previously_purchased_products.first(4)
     end
   end
 end

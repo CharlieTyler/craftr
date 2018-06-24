@@ -1,51 +1,54 @@
 <!-- Similar to checkout/orders/order_summary -->
-<div class = "pb-2 my-3 my-md-2">
-  <h4>Order summary</h4>
-  <div class = "row">
-    <div class = "col-12">
-      <hr class = "booyah-line mb-2" />
+<div class = "row">
+  <div class = "pb-2 my-3 my-md-2">
+    <h4>Order summary</h4>
+    <div class = "row">
+      <div class = "col-12">
+        <hr class = "booyah-line mb-2" />
+      </div>
     </div>
-  </div>
-  <% order.sold_items.each do |si| %>
+    <% order.sold_items.each do |si| %>
+      <div class = "d-inline-block">
+        <p class = "ml-2"><%= "#{si.product.name} * #{si.quantity} - #{si.state}" %></p>  
+      </div>
+      <div class = "d-inline-block">
+        <p><strong><%= number_to_currency((si.total_paid.to_f / 100), unit: "£") %></strong></p>
+      </div> 
+      <div class = "d-inline-block">
+        <%= link_to "Leave a review", product_path(si.product), class: "btn btn-secondary" %>
+      </div>
+      <div class = "clear"></div>
+    <% end %>
     <div class = "d-inline-block">
-      <p class = "ml-2"><%= "#{si.product.name} * #{si.quantity} - #{si.state}" %></p>  
-    </div>
-    <div class = "d-inline-block">
-      <p><strong><%= number_to_currency((si.total_paid.to_f / 100), unit: "£") %></strong></p>
-    </div> 
-    <div class = "d-inline-block">
-      <%= link_to "Leave a review", product_path(si.product), class: "btn btn-primary" %>
-    <div class = "clear"></div>
-  <% end %>
-  <div class = "d-inline-block">
-    <p class = "ml-2"><%= order.shipping_type.name %></p>  
-  </div>
-  <div class = "d-inline-block float-right">
-    <p><strong><%= number_to_currency((order.paid_shipping_price.to_f / 100), unit: "£") %></strong></p>
-  </div> 
-  <div class = "row">
-    <div class = "col-12">
-      <hr class = "booyah-line"/>
-    </div>
-  </div>
-  <div class = "mt-1">
-    <div class = "d-inline-block">
-      <p><strong>Total: </strong></p>
+      <p class = "ml-2"><%= order.shipping_type.name %></p>  
     </div>
     <div class = "d-inline-block float-right">
-      <p><strong><%= number_to_currency((order.total_paid_amount.to_f / 100), unit: "£") %></strong></p>
+      <p><strong><%= number_to_currency((order.paid_shipping_price.to_f / 100), unit: "£") %></strong></p>
     </div> 
-  </div>
-  <div class = "row mb-2">
-    <div class = "col-12">
-      <hr class = "booyah-line"/>
+    <div class = "row">
+      <div class = "col-12">
+        <hr class = "booyah-line"/>
+      </div>
     </div>
+    <div class = "mt-1">
+      <div class = "d-inline-block">
+        <p><strong>Total: </strong></p>
+      </div>
+      <div class = "d-inline-block float-right">
+        <p><strong><%= number_to_currency((order.total_paid_amount.to_f / 100), unit: "£") %></strong></p>
+      </div> 
+    </div>
+    <div class = "row mb-2">
+      <div class = "col-12">
+        <hr class = "booyah-line"/>
+      </div>
+    </div>
+    <ul class="no-bullet-list pl-0">
+      <li>
+        <p><strong>Deliver to: &nbsp</strong></p>
+        <p><%= order.shipping_address.full_name %></p>
+        <p><%= order.shipping_address.full_address_no_name %></p>
+      </li>
+    </ul>
   </div>
-  <ul class="no-bullet-list pl-0">
-    <li>
-      <p><strong>Deliver to: &nbsp</strong></p>
-      <p><%= order.shipping_address.full_name %></p>
-      <p><%= order.shipping_address.full_address_no_name %></p>
-    </li>
-  </ul>
 </div>
