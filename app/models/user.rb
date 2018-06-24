@@ -60,10 +60,10 @@ class User < ApplicationRecord
 
   def previously_purchased_products
     products = []
-    sold_items.each do |si|
+    self.sold_items.each do |si|
       products << si.product 
     end
-    products.uniq!
+    products.uniq
   end
 
   def favourited_recipe?(recipe)
