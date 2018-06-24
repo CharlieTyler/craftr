@@ -6,6 +6,6 @@ class ShippingType < ApplicationRecord
   end
 
   def full_shipping_type
-    [name, shipping_time, human_readable_price].join(", ")
+    [name, tag('br'), shipping_time, human_readable_price].join(", ")
   end
 end
