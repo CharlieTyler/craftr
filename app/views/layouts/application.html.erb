@@ -40,6 +40,9 @@
     <% if controller_name == "products" && action_name == "show" %>
       <%= render partial: 'products/structured_data_markup', locals: {product: @product} %>
     <% end %>
+    <% if controller_name == "recipes" && action_name == "show" %>
+      <%= render partial: 'recipes/structured_data_markup', locals: {recipe: @recipe} %>
+    <% end %>
 
     <%= favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png' %>
 

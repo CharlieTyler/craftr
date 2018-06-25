@@ -4,4 +4,8 @@ class RecipeIngredient < ApplicationRecord
 
   include RankedModel
   ranks :row_order, with_same: :recipe_id
+
+  def quantity_and_name
+    "#{quantity} #{ingredient.name}"
+  end
 end

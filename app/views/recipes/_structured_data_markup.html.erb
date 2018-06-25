@@ -1,0 +1,24 @@
+<script type="application/ld+json">
+     {
+        "@context": "http://schema.org/",
+        "@type": "Recipe",
+        "name": "<%= recipe.name %>",
+        "image": "<%= recipe.image_url %>",
+        "author": {
+          "@type": "Person",
+          "name": "<%= recipe.author.name %>"
+        },
+        "datePublished": "<%= recipe.created_at.to_date %>",
+        "description": "<%= recipe.description %>",
+        "keywords": "<%= recipe.seo_keywords %>",
+        "recipeCategory": "Cocktail",
+        "recipeIngredient": [<%= recipe.recipe_ingredients.map{|ri| "#{ri.quantity} #{ri.ingredient.name}"}.join(", ") %>
+         ],
+        "recipeInstructions": [
+            {
+            "@type": "HowToStep",
+            "text": "<%= recipe.method %>"
+            }
+        ]
+      }
+</script>
