@@ -116,12 +116,12 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
-.nav-link.active {
+
+.nav-link.active, .nav-link:hover {
   border-radius: 0px !important;
   color: $primary !important;
   background-color: transparent !important;
   border-bottom: 3px solid $primary;
-
 }
 
 
@@ -449,4 +449,8 @@ a, a:hover {
 
 .hidden {
   display: none;
+}
+
+.dropdown-lister-item:hover {
+  color: $primary;
 }
