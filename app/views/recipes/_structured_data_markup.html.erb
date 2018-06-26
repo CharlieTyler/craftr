@@ -12,12 +12,12 @@
         "description": "<%= recipe.description %>",
         "keywords": "<%= recipe.seo_keywords %>",
         "recipeCategory": "Cocktail",
-        "recipeIngredient": [<%= recipe.recipe_ingredients.map{|ri| "#{ri.quantity} #{ri.ingredient.name}"}.join(", ") %>
-         ],
+        "recipeIngredient": <%= recipe.recipe_ingredients.map{|ri| "#{ri.quantity} #{ri.ingredient.name}"}.to_json.html_safe %>
+         ,
         "recipeInstructions": [
             {
             "@type": "HowToStep",
-            "text": "<%= recipe.method %>"
+            "text": "<%= strip_tags(recipe.method) %>"
             }
         ]
       }
