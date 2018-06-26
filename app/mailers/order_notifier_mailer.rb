@@ -1,12 +1,14 @@
 class OrderNotifierMailer < ApplicationMailer
   default :from => 'orders@craftr.co.uk'
 
+  include ActionView::Helpers::TextHelper
+
   def abandoned_basket_email(order)
     @order = order
     @user = @order.user
     @order_items = @order.order_items
     mail( :to => @user.email,
-      :subject => "#{@order.total_unpaid_quantity} lonely craft spirits await your return")
+      :subject => "Oh no! You've left #{pluralize(@order.total_unpaid_quantity, 'lonely craft spirit')} behind!")
   end
 
   def user_confirmation_email(order)
