@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  self.per_page = 2
   extend FriendlyId
   friendly_id :name, use: :slugged
 
@@ -35,7 +36,6 @@ class Product < ApplicationRecord
   validates :category, presence: true
   validates :product_images, presence: true
   validate :distillery_take_less_than_price_if_present
-
 
   def self.search(params)
     search_scope = Product

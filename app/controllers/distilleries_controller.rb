@@ -1,7 +1,8 @@
 class DistilleriesController < ApplicationController
   def index
-    @distilleries = Distillery.live
-    @page_description          = "Browse and buy craft spirits from #{@distilleries.length} different craft distilleries across the UK."
+    @page_distilleries = Distillery.live.page(params[:page])
+    @all_distilleries = Distillery.live
+    @page_description          = "Browse and buy craft spirits from #{@all_distilleries.length} different craft distilleries across the UK."
     @page_keywords             = "craft, distillery, distilleries, England, English, Scotland, Scottish, Wales, Welsh, Ireland, Irish, #{category_list}"
   end
 

@@ -454,3 +454,11 @@ a, a:hover {
 .dropdown-item:hover {
   color: $primary;
 }
+
+
+.pagination { padding: 3px; margin: 3px; justify-content: center;} 
+.pagination a { padding: 2px 5px 2px 5px; margin: 2px; border: 2px solid $primary; text-decoration: none; color: $primary; border-radius: 5px;} 
+.pagination a:hover, 
+.pagination a:active { border: 2px solid $secondary; color: $secondary; border-radius: 5px;} 
+.pagination span.current { padding: 2px 5px 2px 5px; margin: 2px; border: 2px solid darken($primary, 5%); font-weight: bold; background-color: #000099; color: darken($primary, 5%); } 
+.pagination span.disabled { padding: 2px 5px 2px 5px; margin: 2px; border: 2px solid #eee; color: #ddd; border-radius: 5px;}

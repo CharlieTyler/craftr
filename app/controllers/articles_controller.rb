@@ -9,10 +9,11 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.order('created_at DESC')
+    @articles = Article.page(params[:page]).order('created_at DESC')
+    @all_articles = Article.all
     @featured_articles = Article.where(featured: true)
     @tags = Article.tag_counts_on(:tags)
-    @page_description          = "Read expert articles from CRAFTR's bloggers on everything craft spirit! #{@articles.length} articles ready to read."
+    @page_description          = "Read expert articles from CRAFTR's bloggers on everything craft spirit! #{@all_articles.length} articles ready to read."
     @page_keywords             = "craft, spirits, bloggers, articles, instagram, #{category_list}"
   end
 

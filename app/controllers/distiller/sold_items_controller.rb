@@ -9,7 +9,7 @@ class Distiller::SoldItemsController < DistillersController
   end
 
   def index
-    @fulfilled_sold_items = current_distillery.sold_items.where(shipped: true)
+    @fulfilled_sold_items = current_distillery.sold_items.where(shipped: true).page(params[:page])
   end
 
   def mark_as_shipped

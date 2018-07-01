@@ -121,3 +121,5 @@ gem 'gibbon'
 gem 'sitemap_generator'
 
 gem 'active_link_to'
+
+gem 'will_paginate', '~> 3.1.0'

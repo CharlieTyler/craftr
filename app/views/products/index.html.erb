@@ -5,6 +5,11 @@
       <div class = "row">
         <%= render partial: "lister_item", collection: @products, as: :product %>
       </div>
+      <div class = "row">
+        <div class = "col-12 text-center">
+          <%= will_paginate @posts, :page_links => false %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

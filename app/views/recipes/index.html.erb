@@ -24,6 +24,11 @@
       <div class = "row">
         <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
       </div>
+      <div class = "row">
+        <div class = "col-12 text-center">
+          <%= will_paginate @recipes, :page_links => false %>
+        </div>
+      </div>
     </div>
   </div>
 </div> 

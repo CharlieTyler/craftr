@@ -2,7 +2,7 @@ class Account::AddressesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @addresses = current_user.addresses
+    @addresses = current_user.addresses.page(params[:page])
     @address = Address.new
   end
 

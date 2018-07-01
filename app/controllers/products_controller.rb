@@ -20,9 +20,9 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.live
+    @products = Product.live.page(params[:page])
     # SEO
-    @page_description          = "Find and buy craft #{category_list.to_sentence} straight from the distilleries."
+    @page_description          = "Find and buy craft #{category_list.split(", ").to_sentence} straight from the distilleries."
     @page_keywords             = "Craft, spirits, distillery, bottle, #{category_list}"
   end
 

@@ -12,7 +12,12 @@
     <div class = "col-md-10 offset-md-1">
       <h4>Newest distilleries</h4>
       <div class = "row">
-        <%= render partial: "distilleries/lister_distillery", collection: @distilleries, as: :distillery %>
+        <%= render partial: "distilleries/lister_distillery", collection: @page_distilleries, as: :distillery %>
+      </div>
+      <div class = "row">
+        <div class = "col-12 text-center">
+          <%= will_paginate @page_distilleries, :page_links => false %>
+        </div>
       </div>
     </div>
   </div>
@@ -29,7 +34,7 @@
         center: centralPoint
       });
 
-      <% @distilleries.each do |distillery| %>
+      <% @all_distilleries.each do |distillery| %>
         var distilleryLatLong = {lat: <%= distillery.latitude %>, lng: <%= distillery.longitude %>};
         var <%= escape_javascript distillery.name.delete(' ') + 'marker' %> = new google.maps.Marker({
           position: distilleryLatLong,

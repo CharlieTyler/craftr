@@ -11,6 +11,11 @@
       <div class = "row">
         <%= render partial: "authors/lister_author", collection: @authors, as: :author %>
       </div>
+      <div class = "row">
+        <div class = "col-12 text-center">
+          <%= will_paginate @authors, :page_links => false %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

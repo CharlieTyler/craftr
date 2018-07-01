@@ -24,6 +24,11 @@
       <div class = "row">
         <%= render partial: "articles/lister_article", collection: @articles, as: :article %>
       </div>
+      <div class = "row">
+        <div class = "col-12 text-center">
+          <%= will_paginate @articles, :page_links => false %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
