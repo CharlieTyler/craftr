@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  self.per_page = 2
+  self.per_page = 20
   extend FriendlyId
   friendly_id :name, use: :slugged
 
