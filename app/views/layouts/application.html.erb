@@ -205,7 +205,7 @@
                   <h4>Verify age</h4>
                   <p>I confirm that I am <span class = "text-primary">over the legal drinking age</span> in my country of residence</p>
                   <div class = "row">
-                    <%= link_to  "Verify", age_verification_index_path, class: "btn btn-primary col-10 offset-1 my-1", method: :post, remote: true %>
+                    <%= link_to  "Verify", age_verification_index_path, class: "btn btn-primary col-10 offset-1 my-1", method: :post, remote: true, data: { disable_with: 'Verifying...'} %>
                     <%= link_to "Do not verify", "https://www.drinkaware.co.uk/advice/how-to-reduce-your-drinking/", class: "btn btn-secondary col-10 offset-1 my-1" %>
                   </div>
                 </div>
