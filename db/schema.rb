@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180620220638) do
+ActiveRecord::Schema.define(version: 20180710204621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,17 @@ ActiveRecord::Schema.define(version: 20180620220638) do
     t.string "website_link"
     t.string "slug"
     t.integer "user_id"
+  end
+
+  create_table "batches", force: :cascade do |t|
+    t.string "easypost_batch_id"
+    t.boolean "shipped", default: false
+    t.string "scanform_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "distillery_id"
+    t.datetime "shipped_at"
+    t.datetime "scanform_created_at"
   end
 
   create_table "carousel_features", force: :cascade do |t|
@@ -209,6 +220,7 @@ ActiveRecord::Schema.define(version: 20180620220638) do
     t.integer "sold_item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "easypost_shipment_id"
   end
 
   create_table "product_images", force: :cascade do |t|
@@ -328,11 +340,10 @@ ActiveRecord::Schema.define(version: 20180620220638) do
     t.integer "order_id"
     t.integer "distillery_take"
     t.boolean "shipping_label_created", default: false
+    t.integer "batch_id"
     t.boolean "shipped", default: false
-    t.string "scan_form_id"
-    t.datetime "shipping_created_at"
     t.datetime "shipped_at"
-    t.index ["shipped"], name: "index_sold_items_on_shipped"
+    t.datetime "shipping_label_created_at"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

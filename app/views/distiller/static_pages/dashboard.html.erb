@@ -18,40 +18,44 @@
         <h6 class = "text-primary mt-4">You're not yet transactional.</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
       <% end %>
     </div>
+    <% if @unshipped_batches.length > 0 %>
+      <div class = "col-12 my-4">
+        <h4 class = "d-inline-block">Batches, ready to be shipped</h4>
+        <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
+        <div class = "clear"></div>
+        <div class = "row">
+          <% @unshipped_batches.each do |batch| %>
+            <div class = "col-6">
+              <p><%= batch.description %></p>
+            </div>
+            <div class = "col-6">
+              <div class = "row mt-1 mb-4">
+                <div class = "col-12">
+                  <%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: batch} %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     <div class = "col-12 my-4">
-      <h4 class = "d-inline-block">New Orders</h4>
+      <h4 class = "d-inline-block">New orders, ready to be batched</h4>
       <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
       <div class = "clear"></div>
       <div class = "row">
         <% if @unfulfilled_sold_items.length > 0 %>
           <!-- List out all incomplete orders and allow to mark as complete -->
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Order</th>
-                <th scope="col">Status</th>
-                <th scope="col">Mark as shipped</th>
-                <th scope="col">View</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @unfulfilled_sold_items.each do |usi| %>
-                <tr>
-                  <th scope="row"><%= usi.created_at.strftime('%B %d, %Y at %H:%M') %></th>
-                  <td><%= "#{usi.quantity} * #{usi.product.name}" %></td>
-                  <td><%= usi.state %></td>
-                  <td><%= render partial: 'distiller/sold_items/shipped_toggle', locals: {sold_item: usi} %></td>
-                  <td><%= link_to usi.shipping_label_created ? "View labels" : "View order", distiller_sold_item_path(usi), class: "btn #{usi.shipping_label_created ? 'btn-success' : 'btn-secondary'}" %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          </table>
+          <%= simple_form_for @batch, url: distiller_batches_path, class: "col-12" do |f| %>
+            <%= f.association :sold_items, :collection => @unfulfilled_sold_items, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item" %>
+            <%= f.submit "Create batch", class: "btn btn-primary" %>
+          <% end %>
         <% else %>
           <p>You don't have any new orders :(</p>
         <% end %>
       </div>
+    </div>
+    <div class = "col-12 my-4">
       <h3>Products</h3>
       <div class = "row">
         <table class="table table-striped">

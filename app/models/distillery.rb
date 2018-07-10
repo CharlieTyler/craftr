@@ -17,6 +17,7 @@ class Distillery < ApplicationRecord
   #address
   has_one :address
 
+  has_many :batches
   has_many :sold_items, through: :products
 
 

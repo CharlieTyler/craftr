@@ -1,0 +1,2 @@
+module Distiller::BatchesHelper
+end

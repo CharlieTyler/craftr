@@ -1,8 +1,8 @@
-<div class = <%= "si-#{sold_item.id}" %>>
-  <% if sold_item.shipped %>
+<div class = <%= "batch-#{batch.id}" %>>
+  <% if batch.shipped %>
     <div class = "btn btn-success">Shipped</div>
-  <% elsif sold_item.shipping_label_created %>
-    <%= link_to "Mark as shipped", mark_as_shipped_distiller_sold_item_path(sold_item), class: "btn btn-primary shipped-toggle d-inline", method: :patch, remote: true %>
+  <% elsif batch.scanform_id.present? %>
+    <%= link_to "Mark as shipped", mark_as_shipped_distiller_batch_path(batch), class: "btn btn-primary shipped-toggle d-inline", method: :patch, remote: true %>
   <% else %>
     <div class = "btn btn-secondary">Awaiting label</div>
   <% end %>

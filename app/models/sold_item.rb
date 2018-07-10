@@ -1,6 +1,7 @@
 class SoldItem < ApplicationRecord
   belongs_to :product
   belongs_to :order_item
+  belongs_to :batch, required: false
   has_many :postages
 
   validates :order_id, presence: true
@@ -18,14 +19,18 @@ class SoldItem < ApplicationRecord
     quantity * distillery_take
   end
 
-  def state
-    if shipped
-      return "Shipped"
-    elsif shipping_label_created
-      return "Awaiting shipping"
-    else
-      return "Awaiting shipping label"
-    end
+  # def state
+  #   if shipped
+  #     return "Shipped"
+  #   elsif shipping_label_created
+  #     return "Awaiting shipping"
+  #   else
+  #     return "Awaiting shipping label"
+  #   end
+  # end
+
+  def description
+    "#{quantity} * #{product.name}, from #{created_at.strftime('%B %d, %Y at %H:%M')}"
   end
 
   def queue_shipped_email
