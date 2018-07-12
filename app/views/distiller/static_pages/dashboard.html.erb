@@ -1,5 +1,6 @@
 <div class = "container">
   <div class = "row">
+    <!-- Charts -->
     <% if current_distillery.is_transactional %>
       <div class = "col-12 my-3">
         <h4 class = "d-inline-block">Sales by product</h4>
@@ -9,6 +10,8 @@
         } %>
       </div>
     <% end %>
+
+    <!-- Transactional checklists -->
     <div class = "col-12">
       <% if current_distillery.is_transactional && current_distillery.products.map{|product| product.is_transactional}.all? %>
         <h6 class = "text-muted">You're transactional. <%= link_to "Edit details", distiller_transactional_checklist_path %></h6>
@@ -18,24 +21,19 @@
         <h6 class = "text-primary mt-4">You're not yet transactional.</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
       <% end %>
     </div>
+
+    <!-- Batches -->
     <% if @unshipped_batches.length > 0 %>
       <div class = "col-12 my-4">
         <h4 class = "d-inline-block">Batches, ready to be shipped</h4>
-        <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
+        <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
         <div class = "clear"></div>
         <div class = "row">
-          <% @unshipped_batches.each do |batch| %>
-            <div class = "col-6">
-              <p><%= batch.description %></p>
-            </div>
-            <div class = "col-6">
-              <div class = "row mt-1 mb-4">
-                <div class = "col-12">
-                  <%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: batch} %>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          <ol>
+            <% @unshipped_batches.each do |batch| %>
+              <li><%= batch.description %> <%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: batch} %></li>
+            <% end %>
+          </ol>
         </div>
       </div>
     <% end %>
@@ -44,10 +42,10 @@
       <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
       <div class = "clear"></div>
       <div class = "row">
-        <% if @unfulfilled_sold_items.length > 0 %>
+        <% if @unbatched_sold_items.length > 0 %>
           <!-- List out all incomplete orders and allow to mark as complete -->
           <%= simple_form_for @batch, url: distiller_batches_path, class: "col-12" do |f| %>
-            <%= f.association :sold_items, :collection => @unfulfilled_sold_items, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item" %>
+            <%= f.association :sold_items, :collection => @unbatched_sold_items, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
             <%= f.submit "Create batch", class: "btn btn-primary" %>
           <% end %>
         <% else %>

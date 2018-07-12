@@ -77,7 +77,7 @@ Rails.application.routes.draw do
     get "/reports" => "static_pages#reports"
     get "/transactional_checklist" => "details#transactional_checklist"
     resources :addresses, only: [:new, :create, :edit, :update]
-    resources :batches, only: [:create] do
+    resources :batches, only: [:create, :show, :index] do
       # [TODO] Moved from sold_items, will need to change in controller
       member do
         patch 'mark_as_shipped'

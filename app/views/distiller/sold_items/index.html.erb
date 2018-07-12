@@ -3,26 +3,30 @@
     <div class = "col-12 my-4">
       <h4>Shipped Orders</h4>
       <div class = "row">
-        <% if @fulfilled_sold_items.length > 0 %>
+        <% if @sold_items.length > 0 %>
           <!-- List out all incomplete orders and allow to mark as complete -->
           <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Date</th>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Status</th>
-                <th scope="col">View</th>
+                <th scope="col">Description</th>
+                <th scope="col">State</th>
+                <th scope="col">View batch</th>
+                <th scope="col">View order</th>
               </tr>
             </thead>
             <tbody>
-              <% @fulfilled_sold_items.each do |usi| %>
+              <% @sold_items.each do |si| %>
                 <tr>
-                  <th scope="row"><%= usi.created_at.strftime('%B %d, %Y at %H:%M') %></th>
-                  <td><%= usi.product.name %></td>
-                  <td><%= usi.quantity %></td>
-                  <td><%= usi.state %></td>
-                  <td><%= link_to "View order", distiller_sold_item_path(usi), class: "btn #{usi.shipping_label_created ? 'btn-success' : 'btn-secondary'}" %></td>
+                  <th scope="row"><%= si.created_at.strftime('%B %d, %Y at %H:%M') %></th>
+                  <td><%= si.description %></td>
+                  <td><%= si.state %></td>
+                  <% if si.batch.present? %>
+                    <td><%= link_to "View batch", distiller_batch_path(si.batch), class: "btn btn-primary" %></td>
+                  <% else %>
+                    <td><%= link_to "Please batch", distiller_dashboard_path, class: "text-primary" %></td>
+                  <% end %>
+                  <td><%= link_to "View order", distiller_sold_item_path(si), class: "btn #{si.shipping_label_created ? 'btn-success' : 'btn-secondary'}" %></td>
                 </tr>
               <% end %>
             </tbody>

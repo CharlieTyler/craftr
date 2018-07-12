@@ -7,26 +7,10 @@
       </div>
       <div class = "d-inline-block float-right">
         <p>Status: <%= @sold_item.state %></p>
-      </div>
-    </div>
-  </div>
-  <div class = "row mb-2">
-    <div class = "col-12">
-      <hr class = "booyah-line" />
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col-md-4">
-      <% if @scan_form_url.present? %>
-        <%= link_to @scan_form_url do %>
-          <h4>Your scan form</h4>
-          <p class = "text-muted">Please print this and take to the Post Office to speed up shipment</p>
-          <div class = "btn btn-primary my-2">View form</div>
+        <% if @sold_item.batch.present? %>
+          <%= link_to "View batch", distiller_batch_path(@sold_item.batch), class: "btn btn-success my-2" %>
         <% end %>
-      <% else %>
-        <h4>Please wait - we are creating the scanform for this manifest.</h4>
-        <p class = "text-muted">This is required for posting at a post office - please check back in 5 minutes</p>
-      <% end %>
+      </div>
     </div>
   </div>
   <div class = "row mb-2">

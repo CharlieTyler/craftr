@@ -1,4 +1,7 @@
 class Distiller::BatchesController < DistillersController
+  before_action :find_batch, only: [:mark_as_shipped, :show]
+  before_action :check_batch_belongs_to_distiller, only: [:mark_as_shipped, :show]
+
   def create
     easypost_batch = EasyPost::Batch.create()
     batch = current_distillery.batches.create(easypost_batch_id: easypost_batch.id)
@@ -17,7 +20,6 @@ class Distiller::BatchesController < DistillersController
   end
 
   def mark_as_shipped
-    @batch = Batch.find(params[:id])
     @batch.update_attributes(shipped: true, shipped_at: Time.now.in_time_zone('London'))
     @batch.sold_items.each do |si|
       si.update_attributes(shipped: true, shipped_at: Time.now.in_time_zone('London'))
@@ -28,10 +30,31 @@ class Distiller::BatchesController < DistillersController
     end
   end
 
+  def show
+    @sold_items = @batch.sold_items
+    scanform = EasyPost::ScanForm.retrieve(@batch.scanform_id)
+    @scanform_url = scanform[:form_url]
+  end
+
+  def index
+    @batches = current_distillery.batches.order("created_at DESC").page(params[:page])
+  end
+
   private
 
   # Currently not used - [TODO] how to make this more secure?
   def batches_params
     params.require(:batch).permit(sold_item_ids: [])
+  end
+
+  def find_batch
+    @batch = Batch.find(params[:id])
+  end
+
+  def check_batch_belongs_to_distiller
+    unless @batch.distillery == current_distillery
+      flash[:alert] = "You may only access or alter your own batches"
+      redirect_to distiller_dashboard_path
+    end
   end
 end

@@ -19,18 +19,24 @@ class SoldItem < ApplicationRecord
     quantity * distillery_take
   end
 
-  # def state
-  #   if shipped
-  #     return "Shipped"
-  #   elsif shipping_label_created
-  #     return "Awaiting shipping"
-  #   else
-  #     return "Awaiting shipping label"
-  #   end
-  # end
+  def state
+    if batch_id.present?      
+      if shipped
+        return "Shipped"
+      elsif batch.scanform_id.present?
+        return "Awaiting shipping"
+      else
+        return "Batch awaiting scanform"
+      end
+    elsif shipping_label_created
+      return "Not yet batched"
+    else
+      return "Awaiting shipping label"
+    end
+  end
 
   def description
-    "#{quantity} * #{product.name}, from #{created_at.strftime('%B %d, %Y at %H:%M')}"
+    "#{quantity} * #{product.name}"
   end
 
   def queue_shipped_email

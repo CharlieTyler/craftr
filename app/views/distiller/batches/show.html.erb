@@ -1,0 +1,63 @@
+<div class = "container">
+  <div class = "row mt-3">
+    <div class = "col-12">
+      <div class = "d-inline-block">
+        <h4>Batch of <span class = "text-primary"><%= @batch.description %></span></h4>
+      </div>
+      <div class = "d-inline-block float-right mb-3">
+        <%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: @batch} %>
+      </div>
+    </div>
+  </div>
+  <div class = "row mb-2">
+    <div class = "col-12">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-md-4">
+      <% if @scanform_url.present? %>
+        <%= link_to @scanform_url do %>
+          <h4>Your scan form</h4>
+          <p class = "text-muted">Please print this and take to the Post Office to speed up shipment</p>
+          <div class = "btn btn-primary my-2">View form</div>
+        <% end %>
+      <% else %>
+        <h4>Please wait - we are creating the scanform for this manifest.</h4>
+        <p class = "text-muted">This is required for posting at a post office - please check back in 5 minutes. If this problem persists, please contact support.</p>
+      <% end %>
+    </div>
+  </div>
+  <div class = "row mb-2">
+    <div class = "col-12">
+      <hr class = "booyah-line" />
+    </div>
+  </div>
+  <% if current_distillery.sold_items.where(shipped: true).length < 10 %>
+    <div class = "row">
+      <div class = "col-12">
+        <div class = "alert alert-info">Hint: to print, click the label, then right click <strong>not on the image</strong> in the new tab and click Print</div>
+      </div>
+    </div>
+  <% end %>
+  <div class = "row mb-2">
+    <% @sold_items.each do |si| %>
+      <div class = "col-12">
+        <h6>Order for <%= si.description %></h6>
+        <div class = "row">
+          <% si.postages.each_with_index do |sl, index| %>
+            <div class = "col-6 col-md-3 mb-3">
+              <%= link_to sl.postage_label_url do %>
+                <h6>Shipping label #<%= index + 1 %></h6>
+                <p class = "text-muted">For 1 bottle in a Royal Mail Small Parcel</p>
+                <div id = "divToPrint">
+                  <%= image_tag sl.postage_label_url, class: "img-fluid" %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class = "container">
+  <div class = "row">  
+    <div class = "col-12 my-4">
+      <h4>All batches</h4>
+      <div class = "row">
+        <% if @batches.length > 0 %>
+          <!-- List out all incomplete orders and allow to mark as complete -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Shipping</th>
+                <th scope="col">View</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @batches.each do |batch| %>
+                <tr>
+                  <th scope="row"><%= batch.created_at.strftime('%B %d, %Y at %H:%M') %></th>
+                  <td><%= batch.description %></td>
+                  <td><%= batch.state %></td>
+                  <td><%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: batch} %></td>
+                  <td><%= link_to "View batch", distiller_batch_path(batch), class: "btn btn-primary" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>You haven't created any batches yet :(</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-12 text-center">
+      <%= will_paginate @batches, :page_links => false %>
+    </div>
+  </div>
+</div>

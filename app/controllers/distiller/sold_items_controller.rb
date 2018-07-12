@@ -3,13 +3,11 @@ class Distiller::SoldItemsController < DistillersController
   before_action :verify_order_item_belongs_to_distiller, only: [:show, :mark_as_shipped]
 
   def show
-    scan_form = EasyPost::ScanForm.retrieve(@sold_item.scan_form_id)
-    @scan_form_url = scan_form[:form_url]
     @postages = @sold_item.postages.order("created_at DESC")
   end
 
   def index
-    @fulfilled_sold_items = current_distillery.sold_items.where(shipped: true).page(params[:page])
+    @sold_items = current_distillery.sold_items.order("created_at DESC").page(params[:page])
   end
 
   def mark_as_shipped
