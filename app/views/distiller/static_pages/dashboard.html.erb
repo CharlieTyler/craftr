@@ -42,10 +42,10 @@
       <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
       <div class = "clear"></div>
       <div class = "row">
-        <% if @unbatched_sold_items.length > 0 %>
+        <% if @unbatched_sold_items_with_postage_labels.length > 0 %>
           <!-- List out all incomplete orders and allow to mark as complete -->
           <%= simple_form_for @batch, url: distiller_batches_path, class: "col-12" do |f| %>
-            <%= f.association :sold_items, :collection => @unbatched_sold_items, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
+            <%= f.association :sold_items, :collection => @unbatched_sold_items_with_postage_labels, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
             <%= f.submit "Create batch", class: "btn btn-primary" %>
           <% end %>
         <% else %>
@@ -53,8 +53,20 @@
         <% end %>
       </div>
     </div>
+    <% if @sold_items_without_postage_labels.length > 0 %>
+      <div class = "col-12 my-4">
+        <h4 class = "d-inline-block">New orders awaiting postage labels - please check back in 5 minutes</h4>
+        <div class = "clear"></div>
+        <div class = "row">
+          <ul>
+            <% @sold_items_without_postage_labels.each do |si| %>
+              <li><%= si.description %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     <div class = "col-12 my-4">
-      <h3>Products</h3>
+      <h3>Your products</h3>
       <div class = "row">
         <table class="table table-striped">
           <thead>
