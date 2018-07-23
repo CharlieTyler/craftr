@@ -9,6 +9,9 @@ class Distiller::StaticPagesController < DistillersController
   end
 
   def reports
-    
+    unless current_distillery.orders.length > 50
+      flash[:notice] = "Complete 50 orders to gain access to reporting"
+      redirect_to distiller_dashboard_path
+    end
   end
 end
