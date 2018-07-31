@@ -57,10 +57,15 @@ class Recipe < ApplicationRecord
   end
 
   def ingredient_list
-    count      = ingredients.count
     name_array = []
     ingredients.first(5).each { |i| name_array << i.name }
     name_array.to_sentence
+  end
+
+  def whisk_ingredients_list
+    ingredients_list = []
+    ingredients.each { |i| i.classification == "Spirits" ? nil : ingredients_list << i.name }
+    "'"+ingredients_list.join("', '")+"'"
   end
 
   def tags
