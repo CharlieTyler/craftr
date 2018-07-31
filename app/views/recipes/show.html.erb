@@ -81,13 +81,16 @@
       </div>
       <div class = "btn btn-primary" id="new-shopping-list">Add to shopping list</div>
       <p class = "text-muted mt-2 mb-0"><em>Add to your online shopping baskets at Ocado, Tesco, ASDA, Waitrose and Amazon Fresh. Handy.</em></p>
+      <script async="true" src="//widget.whisk.com/assets/whiskbutton.js" type="text/javascript"></script>
       <script> 
-        var Whisk = Whisk || {};
-        Whisk.cmd = Whisk.cmd || [];
-        Whisk.cmd.push(function () {
-          Whisk.cmd.defineListItems('#new-shopping-list', [
-            <%= @recipe.whisk_ingredients_list.html_safe + "," %>
-          ])
+        $( document ).on('turbolinks:load', function() { 
+          var Whisk = Whisk || {};
+          Whisk.cmd = Whisk.cmd || [];
+          Whisk.cmd.push(function () {
+            Whisk.cmd.defineListItems('#new-shopping-list', [
+              <%= @recipe.whisk_ingredients_list.html_safe + "," %>
+            ])
+          });
         });
       </script>
       <div class = "row">
@@ -237,4 +240,3 @@
   });
 </script>
 
-<script async="true" src="//widget.whisk.com/assets/whiskbutton.js" type="text/javascript"></script>
