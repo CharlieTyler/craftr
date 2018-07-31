@@ -62,6 +62,12 @@
   </head>
 
   <body data-spy="scroll" data-target="#secondary-nav">
+    <!-- Prevents turbolinks on recipe show to allow Whisk to work -->
+    <% content_for(:body_attributes) do %>
+      <% if controller_name == 'recipes' && action_name == 'show' %>
+          data-turbolinks="false"
+      <% end %>
+    <% end %>
     <div id="flex-content-container">
       <% if controller_name == "static_pages" %>
         <div class = "container-fluid">
