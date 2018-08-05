@@ -61,7 +61,10 @@
     <meta name="viewport" content="initial-scale=1">
   </head>
 
-  <body data-spy="scroll" data-target="#secondary-nav">
+  <body data-spy="scroll" data-target="#secondary-nav" 
+  <% if content_for?(:body_attributes) %>
+    <%= yield(:body_attributes) %> 
+  <% end %>>
     <!-- Prevents turbolinks on recipe show to allow Whisk to work -->
     <% content_for(:body_attributes) do %>
       <% if controller_name == 'recipes' && action_name == 'show' %>
