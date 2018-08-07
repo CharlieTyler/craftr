@@ -17,7 +17,12 @@
                 <% end %>
               </div>
               <div class = "col-8 col-md-10">
-                <h4><%= link_to oi.product.name, product_path(oi.product) %></h4>
+                <div class = "d-inline-block">
+                  <h4><%= link_to oi.product.name, product_path(oi.product) %></h4>
+                </div>
+                <div class = "d-inline-block float-right">
+                  <%=link_to "Remove", order_item_path(oi), method: :delete, class: "text-muted" %>
+                </div>
                 <p class = "text-muted"><%= oi.product.size_ml %>ml</p>
                 <% if oi.quantity > 1 %>
                   <p class = "text-muted"><%= oi.quantity %> x <%= number_to_currency((oi.product.price.to_f / 100), unit: "£") %></p>
