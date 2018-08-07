@@ -28,6 +28,7 @@
         <h4 class = "d-inline-block">Batches, ready to be shipped</h4>
         <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
         <div class = "clear"></div>
+        <p class = "text-muted">Click 'view labels', print them and the scanform and take to your nearest Post Office</p>
         <div class = "row">
           <% if @unshipped_batches.length > 0 %>
             <!-- List out all incomplete orders and allow to mark as complete -->

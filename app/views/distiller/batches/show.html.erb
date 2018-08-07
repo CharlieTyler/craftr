@@ -17,7 +17,7 @@
   <div class = "row">
     <div class = "col-md-4">
       <% if @scanform_url.present? %>
-        <%= link_to @scanform_url do %>
+        <%= link_to @scanform_url, :target => "_blank" do %>
           <h4>Your scan form</h4>
           <p class = "text-muted">Please print this and take to the Post Office to speed up shipment</p>
           <div class = "btn btn-primary my-2">View form</div>
