@@ -24,7 +24,8 @@
               <% if @orders.present? %>
                 <% @orders.each do |order| %>
                   <tr>
-                    <th scope="row"><%= order.created_at.strftime('%B %d, %Y') %></th>
+                    <th scope="row"><%= order.updated_at.strftime('%B %d, %Y') %></th>
+                    <!-- Updated at to show time when paid, rather than when order created -->
                     <td><%= order.product_summary %></td>
                     <td><%= order.state %></td>
                     <td><strong><%= number_to_currency((order.total_paid_amount.to_f / 100), unit: "£") %></strong></td>

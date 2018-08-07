@@ -2,21 +2,24 @@
 
 <p>Your CRAFTR order has been successfully placed!</p>
 
-<h6>What happens now?</h6>
-<ul>
-  <li>We get in touch with our partner distilleries and tell them about your order</li>
-  <li>They pick your bottles from their own stock, held at their distillery</li>
-  <li>They send it straight to you!</li>
-</ul>
-
-<h6>What did I order again?</h6>
-<p>For your records, here's what you went for</p>
+<h2>What did I order again?</h2>
+<p>View your order summary, including suggested recipe pairings, <%= link_to "here", account_order_url(@order) %>.</p>
+<p>For your records, here's what you went for:</p>
 <ul>
   <% @order.sold_items.each do |si| %>
     <li><%= "#{si.quantity} * #{si.product.name}, #{number_to_currency((si.total_paid.to_f / 100), unit: '£')}" %></li>
   <% end %>
   <li>Delivery: <%= number_to_currency((@order.paid_shipping_price.to_f / 100), unit: '£') %></li>
 </ul>
+
+<h2>What happens now?</h2>
+<ul>
+  <li>We tell the distilleries about your purchase</li>
+  <li>They pick the bottles straight from the distillery</li>
+  <li>They send it straight to you!</li>
+</ul>
+
+<p>See more details, <%= link_to "here", account_order_url(@order) %>.</p>
 
 <p>Best wishes,</p>
 <p>The CRAFTR team</p>
