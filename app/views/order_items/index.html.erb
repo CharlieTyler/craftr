@@ -18,12 +18,15 @@
               </div>
               <div class = "col-8 col-md-10">
                 <h4><%= link_to oi.product.name, product_path(oi.product) %></h4>
-                <p class = text-muted"><%= oi.product.size_ml %>ml</p>
+                <p class = "text-muted"><%= oi.product.size_ml %>ml</p>
+                <% if oi.quantity > 1 %>
+                  <p class = "text-muted"><%= oi.quantity %> x <%= number_to_currency((oi.product.price.to_f / 100), unit: "£") %></p>
+                <% end %>
                 <% unless oi.product.is_transactional %>
                   <alert class = "alert-danger">We are currently out of stock of <%= oi.product.name %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</alert>
                 <% end %>
                 <p class = "text-muted">Quantity: <%= oi.quantity %></p>
-                <h6 class = "text-primary float-right"><%= number_to_currency((oi.product.price.to_f / 100), unit: "£") %></h6>
+                <h6 class = "text-primary float-right"><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></h6>
               </div>
               <div class = "col-12">
                 <hr class = "booyah-line mt-3"/>
