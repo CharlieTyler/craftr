@@ -29,11 +29,33 @@
         <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
         <div class = "clear"></div>
         <div class = "row">
-          <ol>
-            <% @unshipped_batches.each do |batch| %>
-              <li><%= link_to batch.description, distiller_batch_path(batch) %> <%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: batch} %></li>
-            <% end %>
-          </ol>
+          <% if @unshipped_batches.length > 0 %>
+            <!-- List out all incomplete orders and allow to mark as complete -->
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Shipping</th>
+                  <th scope="col">View</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @unshipped_batches.each do |batch| %>
+                  <tr>
+                    <th scope="row"><%= batch.created_at.strftime('%B %d, %Y at %H:%M') %></th>
+                    <td><%= batch.description %></td>
+                    <td><%= batch.state %></td>
+                    <td><%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: batch} %></td>
+                    <td><%= link_to "View labels", distiller_batch_path(batch), class: "btn btn-primary" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <p>You haven't created any batches yet :(</p>
+          <% end %>
         </div>
       </div>
     <% end %>
