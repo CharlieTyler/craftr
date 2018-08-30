@@ -1,60 +1,64 @@
-<div class = "pb-2 my-3 my-md-2">
-  <h4>Order summary</h4>
-  <div class = "row">
+<div class = "col-12">  
+  <div class = "row pb-2 my-3 my-md-2">
     <div class = "col-12">
-      <hr class = "booyah-line mb-2" />
-    </div>
-  </div>
-  <% order.order_items.each do |oi| %>
-    <div class = "d-inline-block">
-      <p class = "ml-2"><%= "#{oi.product.name} * #{oi.quantity}" %></p>  
-    </div>
-    <div class = "d-inline-block float-right">
-      <p><strong><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></strong></p>
-    </div> 
-    <div class = "clear"></div>
-  <% end %>
-  <% if order.shipping_type.present? %>
-    <div class = "d-inline-block">
-      <p class = "ml-2"><%= order.shipping_type.name %></p>  
-    </div>
-    <div class = "d-inline-block float-right">
-      <p><strong><%= number_to_currency((order.total_unpaid_shipping_amount.to_f / 100), unit: "£") %></strong></p>
-    </div> 
-  <% else %>
-    <p>Please select shipping type</p>
-  <% end %>
-  <% if order.total_unpaid_amount.present? %>
-    <div class = "row">
-      <div class = "col-12">
-        <hr class = "booyah-line"/>
+      <h4>Order summary</h4>
+      <div class = "row">
+        <div class = "col-12">
+          <hr class = "booyah-line mb-2" />
+        </div>
       </div>
-    </div>
-    <div class = "mt-1">
-      <div class = "d-inline-block">
-        <p><strong>Total: </strong></p>
-      </div>
-      <div class = "d-inline-block float-right">
-        <p><strong><%= number_to_currency((order.total_unpaid_amount.to_f / 100), unit: "£") %></strong></p>
-      </div> 
-    </div>
-  <% end %>
-  <div class = "row mb-2">
-    <div class = "col-12">
-      <hr class = "booyah-line"/>
-    </div>
-  </div>
-
-  <ul class="no-bullet-list pl-0">
-    <li>
-      
-      <p><strong>Delivering in <%= order.shipping_type.shipping_time %> (<%= order.shipping_type.name %>) to:</strong></p>
-      <% if order.shipping_address.present? %>
-        <p><%= order.shipping_address.full_name %></p>
-        <p><%= order.shipping_address.full_address_no_name %></p>
-      <% else %>
-        <p>Please select your shipping address</p>
+      <% order.order_items.each do |oi| %>
+        <div class = "d-inline-block">
+          <p class = "ml-2"><%= "#{oi.product.name} * #{oi.quantity}" %></p>  
+        </div>
+        <div class = "d-inline-block float-right">
+          <p><strong><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></strong></p>
+        </div> 
+        <div class = "clear"></div>
       <% end %>
-    </li>
-  </ul>
+      <% if order.shipping_type.present? %>
+        <div class = "d-inline-block">
+          <p class = "ml-2"><%= order.shipping_type.name %></p>  
+        </div>
+        <div class = "d-inline-block float-right">
+          <p><strong><%= number_to_currency((order.total_unpaid_shipping_amount.to_f / 100), unit: "£") %></strong></p>
+        </div> 
+      <% else %>
+        <p>Please select shipping type</p>
+      <% end %>
+      <% if order.total_unpaid_amount.present? %>
+        <div class = "row">
+          <div class = "col-12">
+            <hr class = "booyah-line"/>
+          </div>
+        </div>
+        <div class = "mt-1">
+          <div class = "d-inline-block">
+            <p><strong>Total: </strong></p>
+          </div>
+          <div class = "d-inline-block float-right">
+            <p><strong><%= number_to_currency((order.total_unpaid_amount.to_f / 100), unit: "£") %></strong></p>
+          </div> 
+        </div>
+      <% end %>
+      <div class = "row mb-2">
+        <div class = "col-12">
+          <hr class = "booyah-line"/>
+        </div>
+      </div>
+
+      <ul class="no-bullet-list pl-0">
+        <li>
+          
+          <p><strong>Delivering in <%= order.shipping_type.shipping_time %> (<%= order.shipping_type.name %>) to:</strong></p>
+          <% if order.shipping_address.present? %>
+            <p><%= order.shipping_address.full_name %></p>
+            <p><%= order.shipping_address.full_address_no_name %></p>
+          <% else %>
+            <p>Please select your shipping address</p>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -1,14 +1,16 @@
-<%= simple_form_for order_item, wrapper: :inline_form, html: { class: 'form-inline col-12 mx-0 px-0' } do |f| %>
-  <%= f.input :quantity, :as => :hidden, :input_html => { :value => 1 } %>
-  <%= f.input :product_id, :as => :hidden, :input_html => { :value => product.id } %>
-  <%= f.submit "Add to basket", class: "#{large_button ? 'btn-lg' : 'btn'} btn-primary atb-button col", data: { disable_with: 'Adding...'} %>
-<% end %>
-
-<% if include_go_to_checkout %>
-  <% if @order.order_items.any? {|oi| oi.product_id == product.id } %>
-    <span class = "text-center">
-      <p class = "text-muted pt-3 pb-1"><%= @order.order_items.where(product_id: product.id).first.quantity %> of these in your cart </p>
-      <%= link_to "Go to checkout", cart_path, class: "btn-lg btn-secondary col" %>
-    </span>
+<div class = "col-12">
+  <%= simple_form_for order_item, wrapper: :inline_form, html: { class: 'form-inline col-12 mx-0 px-0' } do |f| %>
+    <%= f.input :quantity, :as => :hidden, :input_html => { :value => 1 } %>
+    <%= f.input :product_id, :as => :hidden, :input_html => { :value => product.id } %>
+    <%= f.submit "Add to basket", class: "#{large_button ? 'btn-lg' : 'btn'} btn-primary atb-button col", data: { disable_with: 'Adding...'} %>
   <% end %>
-<% end %>
+
+  <% if include_go_to_checkout %>
+    <% if @order.order_items.any? {|oi| oi.product_id == product.id } %>
+      <span class = "text-center">
+        <p class = "text-muted pt-3 pb-1"><%= @order.order_items.where(product_id: product.id).first.quantity %> of these in your cart </p>
+        <%= link_to "Go to checkout", cart_path, class: "btn-lg btn-secondary col" %>
+      </span>
+    <% end %>
+  <% end %>
+</div>
