@@ -9,7 +9,9 @@
     <% if @order.order_items.any? {|oi| oi.product_id == product.id } %>
       <span class = "text-center">
         <p class = "text-muted pt-3 pb-1"><%= @order.order_items.where(product_id: product.id).first.quantity %> of these in your cart </p>
-        <%= link_to "Go to checkout", cart_path, class: "btn-lg btn-secondary col" %>
+      </span>
+      <span class = "text-center">
+        <%= link_to "Go to checkout", cart_path, class: "text-primary text-center" %>
       </span>
     <% end %>
   <% end %>
