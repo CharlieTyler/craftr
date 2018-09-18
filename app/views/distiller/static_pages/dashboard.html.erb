@@ -76,13 +76,13 @@
         <% end %>
       </div>
     </div>
-    <% if @sold_items_without_postage_labels.length > 0 %>
+    <% if @unbatched_sold_items_without_postage_labels.length > 0 %>
       <div class = "col-12 my-4">
         <h4 class = "d-inline-block">New orders awaiting postage labels - please check back in 5 minutes</h4>
         <div class = "clear"></div>
         <div class = "row">
           <ul>
-            <% @sold_items_without_postage_labels.each do |si| %>
+            <% @unbatched_sold_items_without_postage_labels.each do |si| %>
               <li><%= si.description %></li>
             <% end %>
           </ul>

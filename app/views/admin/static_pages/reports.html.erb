@@ -1,4 +1,11 @@
 <div class = "container">
+  <!-- User creation -->
+  <h4>User creation</h4>
+  <div class = "row">
+    <div class = "col-12">
+      <%= line_chart User.group_by_day(:created_at).count %>
+    </div>
+  </div>
   <!-- Views -->
   <h4>Views</h4>
   <div class = "row">

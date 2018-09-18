@@ -49,7 +49,7 @@
 
     <%= favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png' %>
 
-    <%= display_meta_tags site: 'CRAFTR' %>
+    <%= display_meta_tags site: 'CRAFTR', reverse: true %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -62,10 +62,11 @@
   </head>
 
   <body data-spy="scroll" data-target="#secondary-nav" 
-  <% if content_for?(:body_attributes) %>
-    <%= yield(:body_attributes) %> 
-  <% end %>>
+    <% if content_for?(:body_attributes) %>
+      <%= yield(:body_attributes) %> 
+    <% end %>>
     <!-- Prevents turbolinks on recipe show to allow Whisk to work -->
+    <!-- Don't think this currently works -->
     <% content_for(:body_attributes) do %>
       <% if controller_name == 'recipes' && action_name == 'show' %>
           data-turbolinks="false"
@@ -94,7 +95,9 @@
         <div class = "container-fluid">
           <div class = "row background-secondary">
             <div class = "col-12 text-center">
-              <p class = "text-white my-1"><%= link_to "Go to distiller portal", distiller_dashboard_path %></p>
+              <%= link_to distiller_dashboard_path do %>
+                <p class = "text-white py-1 my-0">Go to distiller dashboard <span class = "badge badge-primary"><%= current_user.distillery.number_of_notifications %></span></p>
+              <% end %>
             </div>
           </div>
         </div>

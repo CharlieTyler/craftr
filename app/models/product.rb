@@ -4,6 +4,8 @@ class Product < ApplicationRecord
   friendly_id :name, use: :slugged
 
   scope :live, -> { where(is_live: true, is_test: false) }
+  scope :strength, -> (min, max) { where('alcohol_percentage > ? AND alcohol_percentage < ?', min, max) }
+  scope :category, -> (category_id) { where category_id: category_id }
 
   belongs_to :distillery
   belongs_to :category
@@ -44,11 +46,38 @@ class Product < ApplicationRecord
       search_scope = search_scope.where("lower(CONCAT(name,' ', description_short)) LIKE lower(?)", "%#{params[:keyword]}%")
     end
 
-    if params[:category_ids].present?
-      search_scope = search_scope.where(category_id: params[:category_ids])
+    search_scope
+  end
+
+  def self.filter(params)
+    filter_scope = Product
+    
+    if params[:instrument_id].present?
+      params[:instrument_id].reject!{ |id| id.blank? }
+      search_scope = search_scope.where(
+        "user_instruments.instrument_id": params[:instrument_id]
+      )
     end
 
-    search_scope
+    if params[:category_id].present?
+      params[:category_id].reject!{ |id| id.blank? }
+      filter_scope = filter_scope.where(category_id: params[:category_id])
+    end
+
+    if params[:distillery_id].present?
+      params[:distillery_id].reject!{ |id| id.blank? }
+      filter_scope = filter_scope.where(distillery_id: params[:distillery_id])
+    end
+
+    if params[:strength_min].present?
+      filter_scope = filter_scope.where('alcohol_percentage > ?', params[:strength_min])
+    end
+
+    if params[:strength_max].present?
+      filter_scope = filter_scope.where('alcohol_percentage > ?', params[:strength_min])
+    end
+
+    filter_scope
   end
 
   def seo_description

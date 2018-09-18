@@ -59,4 +59,20 @@ class Distillery < ApplicationRecord
   def total_product_views
 
   end
+
+  def unshipped_batches
+    batches.where(shipped: false)
+  end
+
+  def unbatched_sold_items_with_postage_labels
+    sold_items.where(batch_id: nil, shipping_label_created: true)
+  end
+
+  def unbatched_sold_items_without_postage_labels
+    sold_items.where(batch_id: nil, shipping_label_created: false)
+  end
+
+  def number_of_notifications
+    unshipped_batches.length + unbatched_sold_items_without_postage_labels.length
+  end
 end

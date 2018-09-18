@@ -1,54 +1,83 @@
 <div class = "container">
-  <div class = "row">
+  <div class = "row"> 
+    <!-- Links -->
     <div class = "col-12">
       <div class = "row">
-        <%= link_to "Go to reporting dashboard", admin_reports_path, class: "btn btn-secondary col-12 my-2 mx-2" %>
+        <%= link_to "Go to reporting dashboard", admin_reports_path, class: "btn btn-secondary col-12 col-md-6 my-2" %>
+        <%= link_to "Go to control panel", admin_control_panel_path, class: "btn btn-secondary col-12 col-md-6 my-2" %>
       </div>
-      <h4 class = "mt-4">Sales by product</h4>
-      <%= line_chart Product.all.map { |product|
-          {name: product.name, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
-      } %>
-      <h4 class = "mt-4">Cumulative user creation</h4>
-      <%= line_chart User.group_by_day(:created_at).count %>
-      <h6>New stuff</h6>
-      <%= link_to "Category", new_admin_category_path, class: "btn btn-primary my-2 mx-2" %>
-      <%= link_to "Distillery", new_admin_distillery_path, class: "btn btn-primary my-2 mx-2" %>
-      <%= link_to "Product", new_admin_product_path, class: "btn btn-primary my-2 mx-2" %>
-      <%= link_to "Author", new_admin_author_path, class: "btn btn-primary my-2 mx-2" %>
-      <%= link_to "Article", new_admin_article_path, class: "btn btn-primary my-2 mx-2" %>
-      <%= link_to "Recipe", new_admin_recipe_path, class: "btn btn-primary my-2 mx-2" %>
-      <%= link_to "Distillery user", admin_users_path, class: "btn btn-primary my-2 mx-2" %>
+      <hr class = "booyah-line my-2"/>
     </div>
-
-    <div class = "col-12 mt-3">
-      <h6>Homepage carousel creations</h6>
-      <%= link_to "Create", new_admin_carousel_feature_path, class: "btn btn-primary" %>
-      <p>To edit or delete, please use admin controls on homepage</p>
-    </div>
-
-    <div class = "col-12 mt-3">
-      <h6>Featured products and categories</h6>
-      <%= link_to "Edit featured products and categories", admin_edit_features_path, class: "btn btn-primary" %>
-    </div>
-
+  </div>
+  <div class = "row">
+    <!-- Outstanding orders -->
     <div class = "col-12">
-      <h4>Test stuff</h4>
+      <h4>Batches, ready to be shipped</h4>
+      <% if @unshipped_batches.length > 0 %>
+        <!-- List out all incomplete orders and allow to mark as complete -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Distillery</th>
+              <th scope="col">Description</th>
+              <th scope="col">Status</th>
+              <th scope="col">Reminder to</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @unshipped_batches.each do |batch| %>
+              <tr>
+                <th scope="row"><%= batch.created_at.strftime('%B %d, %Y at %H:%M') %></th>
+                <td><%= batch.distillery.name %></td>
+                <td><%= batch.description %></td>
+                <td><%= batch.state %></td>
+                <td><%= mail_to batch.distillery.users.first.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>No batches awaiting shipping</p>
+      <% end %>
     </div>
-    <div class = "col-md-6">
-      <h6>Products</h6>
-      <ul>
-        <% @test_products.each do |product| %>
-          <li><%= link_to product.name, product_path(product) %></li>
-        <% end %>
-      </ul>
+    <div class = "col-12">
+      <h4>Sold items, ready to be batched</h4>
+      <% if @unbatched_sold_items_with_postage_label.length > 0 %>
+        <!-- List out all incomplete orders and allow to mark as complete -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Distillery</th>
+              <th scope="col">Description</th>
+              <th scope="col">Reminder to</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @unbatched_sold_items_with_postage_label.each do |usi| %>
+              <tr>
+                <th scope="row"><%= usi.created_at.strftime('%B %d, %Y at %H:%M') %></th>
+                <td><%= usi.order_item.product.distillery.name %></td>
+                <td><%= usi.description %></td>
+                <td><%= mail_to usi.order_item.product.distillery.users.first.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>No items awaiting batches</p>
+      <% end %>
     </div>
-    <div class = "col-md-6">
-      <h6 class = "mt-3">Distilleries</h6>
-      <ul>
-        <% @test_distilleries.each do |distillery| %>
-          <li><%= link_to distillery.name, distillery_path(distillery) %></li>
-        <% end %>
-      </ul>
+  </div>
+  <div class = "row">
+    <!-- Graphs -->
+    <div class = "col-12">
+      <h4 class = "mt-4">Sales</h4>
+      <h6>Volume</h6>
+      <%= line_chart SoldItem.group_by_day(:created_at).count %>
+      <h6 class = "mt-2">Value</h6>
+      <%= line_chart SoldItem.group_by_day(:created_at).sum(:item_price) %>
     </div>
   </div>
 </div>

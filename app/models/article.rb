@@ -54,9 +54,9 @@ class Article < ApplicationRecord
   end
 
   def read_time
-    all_text = description_first + description_second + description_third
+    all_text = [description_first,description_second,description_third,description_fourth,description_fifth].join(" ")
     word_count = all_text.split.size
     word_count
-    (word_count / 200).to_f.round(0)
+    (word_count.to_f / 200).ceil
   end
 end

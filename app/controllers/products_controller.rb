@@ -20,7 +20,14 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.live.page(params[:page])
+    @categories = Category.all
+    # Filtering doesn't yet work
+    @products = Product.live.filter(filter_params).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
     # SEO
     @page_description          = "Find and buy craft #{category_list.split(", ").to_sentence} straight from the distilleries."
     @page_keywords             = "Craft, spirits, distillery, bottle, #{category_list}"
@@ -31,3 +38,10 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product)
   end
 end
+
+private
+
+def filter_params
+  params.permit(:strength_min, :strength_max, :category_id => [], :distillery_id => [])
+end
+
