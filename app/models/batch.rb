@@ -28,7 +28,7 @@ class Batch < ApplicationRecord
 
   def sold_items_have_shipping_labels_and_belong_to_distiller
     sold_items.each do |si|
-      unless si.shipping_label_created && si.distillery == distillery
+      unless si.shipping_label_created && si.order_item.product.distillery == distillery
         return false
       end
     end
