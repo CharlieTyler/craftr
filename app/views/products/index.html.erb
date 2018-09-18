@@ -4,18 +4,22 @@
   <div class = "row">
     <div class = "col-12">
       <h1><%= title 'All products' %></h1>
-      <%= form_tag(products_path, method: :get, class: "col-12" ) do %>
-        <p class = "mb-0 mt-2 text-white">Instrument: </p>
-        <div class = "col-6 col-md-3 my-2 mx-0">
-          <%= select_tag :category_id, options_from_collection_for_select(@categories, :id, :name, params[:category_id]), multiple: true, class: "multiselect" %>
+      <%= form_tag(products_path, method: :get, remote: true) do %>
+        <div class = "row">
+          <div class = "col-12">
+            <div class = "d-inline-block mx-2">
+              <p class = "mb-0 mt-2">Category: </p>
+              <%= select_tag :category_id, options_from_collection_for_select(@categories, :id, :name, params[:category_id]), multiple: true, class: "multiselect" %>
+            </div>
+            <div class = "d-inline-block mx-2">
+              <p class = "mb-0 mt-2">Distillery: </p>
+              <%= select_tag :distillery_id, options_from_collection_for_select(Distillery.all, :id, :name, params[:distillery_id]), multiple: true, class: "multiselect" %>
+            </div>
+            <%= submit_tag "Search", class: "btn btn-primary col-12 mx-2 mt-2" %>
+          </div>
         </div>
-        <p class = "mb-0 mt-2 text-white">Genre: </p>
-        <div class = "col-6 col-md-3 my-2 mx-0">
-        <%= select_tag :distillery_id, options_from_collection_for_select(Distillery.all, :id, :name, params[:distillery_id]), multiple: true, class: "multiselect" %>
-        </div>
-        <%= submit_tag "Search", class: "btn btn-primary col-12 col-md-2 mt-2" %>
       <% end %>
-      <div class = "row">
+      <div class = "row" id = "products-for-filtering">
         <%= render partial: "lister_item", collection: @products, as: :product %>
       </div>
       <div class = "row">

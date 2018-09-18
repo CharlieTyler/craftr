@@ -37,11 +37,12 @@ class ProductsController < ApplicationController
     @product = Product.order("RANDOM()").first
     redirect_to product_path(@product)
   end
+
+  private
+
+  def filter_params
+    params.permit(:strength_min, :strength_max, :category_id => [], :distillery_id => [])
+  end
 end
 
-private
-
-def filter_params
-  params.permit(:strength_min, :strength_max, :category_id => [], :distillery_id => [])
-end
 
