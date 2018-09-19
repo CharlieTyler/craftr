@@ -12,10 +12,10 @@ class Distiller::SoldItemsController < DistillersController
 
   def mark_as_shipped
     @sold_item.update_attributes(shipped: true, shipped_at: Time.now.in_time_zone('London'))
+    @sold_item.queue_shipped_email
     respond_to do |format|
       format.js
     end
-    @sold_item.queue_shipped_email
   end
 
   private

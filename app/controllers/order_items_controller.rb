@@ -19,17 +19,18 @@ class OrderItemsController < ApplicationController
       current_order_item.quantity += params[:order_item][:quantity].to_i
       # Save the change quantity
       current_order_item.save
+      # For partial rendering
+      @order_item = current_order_item 
       flash[:notice] = "You now have #{current_order_item.quantity} of these in your cart. #{view_context.link_to('Go to cart', cart_path)}.".html_safe
     else
       @order_item = @order.order_items.create(order_item_params)
-      if @order_item.valid?
-        flash[:notice] = "#{pluralize(params[:order_item][:quantity], 'item')}  successfully added to cart. #{view_context.link_to('Go to cart', cart_path)}.".html_safe
-        #Doesn't seems to work for now
-      else
+      unless @order_item.valid?
         flash[:alert] = 'There was an error adding your item to the cart'
       end
     end
-    redirect_to product_path(@product)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy
