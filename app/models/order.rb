@@ -67,6 +67,16 @@ class Order < ApplicationRecord
     OrderNotifierMailer.user_confirmation_email(self).deliver_now    
   end
 
+  def queue_admin_emails
+    AdminOrderEmailWorker.perform_async(id)
+  end
+
+  def send_admin_emails
+    ["mike@craftr.co.uk", "will@craftr.co.uk"].each do |admin|
+      OrderNotifierMailer.admin_email(self, admin).deliver_now
+    end
+  end
+
   def queue_distiller_emails
     DistillerOrderEmailWorker.perform_async(id)
   end

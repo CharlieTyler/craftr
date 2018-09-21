@@ -1,0 +1,16 @@
+<p>Huzzah!</p>
+
+<p>A new order has been placed for: </p>
+
+<ul>
+  <% @order.sold_items.each do |si| %>
+    <li><%= "#{si.quantity} * #{si.product.name}, #{number_to_currency((si.total_paid.to_f / 100), unit: '£')}" %></li>
+  <% end %>
+  <li>And of course, the ubiquitous delivery cost of <%= number_to_currency((@order.paid_shipping_price.to_f / 100), unit: '£').html_safe %></li>
+  <li>Totalling <%= number_to_currency((@order.total_paid_amount.to_f / 100), unit: '£').html_safe %></li>
+</ul>
+
+<p>That's our <%= @orders_in_last_30_days.count.ordinalize %> in the last 30 days, giving a revenue of to <%= number_to_currency((@orders_in_last_30_days.map{|o| o.total_paid_amount}.sum.to_f / 100), unit: '£').html_safe %></p>
+
+<p>Keep pushing.</p>
+

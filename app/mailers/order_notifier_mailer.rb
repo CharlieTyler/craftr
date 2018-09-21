@@ -18,6 +18,13 @@ class OrderNotifierMailer < ApplicationMailer
     :subject => 'Order confirmed - craft spirits inbound!' )
   end
 
+  def admin_email(order, admin)
+    @order = order
+    @orders_in_last_30_days = Order.where("(updated_at < ? AND paid = ?)", Time.zone.today-30.days, true)
+    mail( :to => admin, :subject => "New order")
+    # admin is the argument passed 
+  end
+
   def distiller_confirmation_email(si)
     @sold_item = si
     @distillery = si.product.distillery

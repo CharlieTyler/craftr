@@ -71,6 +71,16 @@
     </div>
   </div>
   <div class = "row">
+    <div class = "col-12">
+      <h4>Distilleries who have linked Stripe</h4>
+      <ul>
+        <% @transactional_distilleries.each do |distillery| %>
+          <li><%= link_to distillery.name, distillery_path(distillery) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class = "row">
     <!-- Graphs -->
     <div class = "col-12">
       <h4 class = "mt-4">Sales</h4>

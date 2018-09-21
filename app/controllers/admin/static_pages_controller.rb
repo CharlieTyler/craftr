@@ -3,6 +3,7 @@ class Admin::StaticPagesController < AdminController
     @unshipped_batches = Batch.where(shipped: false).order("created_at DESC")
     @unbatched_sold_items_with_postage_label = SoldItem.where(batch_id: nil, shipping_label_created: true).order("created_at DESC")
     @unbatched_sold_items_without_postage_label = SoldItem.where(batch_id: nil, shipping_label_created: false).order("created_at DESC")
+    @transactional_distilleries = Distillery.where.not(stripe_id: nil)
   end
 
   def reports

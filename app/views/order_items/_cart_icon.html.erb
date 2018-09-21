@@ -1,8 +1,6 @@
-<li class = "nav-item">
-  <%= link_to cart_path do %>
-    <p class = "nav-link mb-0 pb-0"><i class="fa fa-shopping-cart fa-2x <%= 'text-primary' if @order.order_items.length > 0 %>"></i></p>
-  <% end %>
-</li>
+<%= link_to cart_path do %>
+  <p class = "nav-link mb-0 pb-0"><i class="fa fa-shopping-cart fa-2x <%= 'text-primary' if @order.order_items.length > 0 %>"></i></p>
+<% end %>
 <% if order.total_unpaid_quantity > 0 %>
   <li class = "nav-item">
     <%= link_to cart_path do %>

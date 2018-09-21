@@ -8,11 +8,13 @@
   <% if include_go_to_checkout %>
     <% if @order.order_items.any? {|oi| oi.product_id == product.id } %>
       <span class = "text-center">
-        <p class = "text-muted pt-3 pb-1"><%= @order.order_items.where(product_id: product.id).first.quantity %> of these in your cart </p>
+        <p class = "text-muted my-1"><%= @order.order_items.where(product_id: product.id).first.quantity %> of these in your cart </p>
       </span>
-      <span class = "text-center">
-        <%= link_to "Go to checkout", cart_path, class: "text-primary text-center checkout-button" %>
-      </span>
+      <div class = "col-12">
+        <div class = "row">
+          <%= link_to "Go to checkout", cart_path, class: "text-primary text-center checkout-button btn-lg btn-secondary col-12" %>
+        </div>
+      </div>
     <% end %>
   <% end %>
 </div>

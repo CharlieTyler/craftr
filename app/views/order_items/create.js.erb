@@ -1,3 +1,2 @@
 $(".atb-area").html("<%= escape_javascript(render partial: 'products/add_to_basket_button', locals: {order_item: OrderItem.new, product: @product, include_go_to_checkout: true, large_button: true}) %>");
-$(".cart-product-count").text("<%= escape_javascript(@order_item.order.total_unpaid_quantity.to_s) %>");
-$(".cart-total-price").text("<%= escape_javascript((@order_item.order.total_unpaid_product_amount.to_f / 100).to_s) %>");
+$(".cart-area").html("<%= escape_javascript(render partial: 'order_items/cart_icon', locals: {order: @order}) %>");

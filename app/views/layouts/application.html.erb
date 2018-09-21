@@ -91,6 +91,36 @@
         </div>
       <% end %>
 
+      <!-- Above the dropdown navbar for mobile -->
+      <div class = "xs-up-hidden">
+        <div class = "container-fluid background-secondary py-2">
+          <div class = "row">
+            <div class = "col-4 text-center">
+              <%= link_to me_path, class: "text-white" do %>
+                <i class="fa fa-user" aria-hidden="true"></i> &nbsp Account
+              <% end %>
+            </div>
+            <div class = "col-4 text-center">
+              <%= link_to cart_path, class: "text-white" do %>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp Basket
+                <% if @order.order_items.length > 0 %>
+                  <span class = "badge badge-primary"><%= @order.total_unpaid_quantity %></span>
+                <% end %>
+              <% end %>
+            </div>
+            <div class = "col-4 text-center text-white">
+              <div class = "search-toggle">Search</div>
+            </div>
+            <div class = "search-show-hide">
+              <%= form_tag search_path, method: :get, class: "form-inline mt-1" do %>
+                <%= text_field_tag :keyword, nil, :placeholder => "Search for products, recipes and articles...", class: "form-control search-box mr-sm-2", type: "search" %>
+                <%= submit_tag "Search", class: "btn btn-secondary my-2 my-sm-0" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <% if user_signed_in? && current_user.distillery.present? %>
         <div class = "container-fluid">
           <div class = "row background-secondary">
@@ -175,7 +205,9 @@
                   <% end %>
                 </div>
               </li>
-              <%= render partial: "order_items/cart_icon", locals: { order: @order } %>
+              <li class = "nav-item cart-area">
+                <%= render partial: "order_items/cart_icon", locals: { order: @order } %>
+              </li>
             </ul>
           </div>
         <% else %>

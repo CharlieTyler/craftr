@@ -28,6 +28,8 @@ class OrderItemsController < ApplicationController
         flash[:alert] = 'There was an error adding your item to the cart'
       end
     end
+    # Look into how to reload order so it can render cart icon partial through js
+    @order = @order_item.order
     respond_to do |format|
       format.js
     end
