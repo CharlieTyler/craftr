@@ -90,6 +90,7 @@ class Checkout::OrdersController < ApplicationController
     @order.queue_distiller_emails
     @order.queue_distiller_reminder_emails
     @order.queue_please_review_email
+    @order.queue_admin_emails
 
     session[:confirmed_order_id] = @order.id
     @order.update_attributes(paid: true)

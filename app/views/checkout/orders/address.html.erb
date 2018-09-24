@@ -6,7 +6,7 @@
     <div class = "col-md-9">
       <div class = "row">
         <div class = "col-12 my-3">
-          <h4 class = "mb-3">Select your address</h4>
+          <h4 class = "mb-3">Select delivery address</h4>
           <%= simple_form_for @order, url: checkout_update_address_path do |f| %>
             <%= f.input :shipping_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id, include_blank: false, label: false %>
             <p>Don't have it in your address book?
