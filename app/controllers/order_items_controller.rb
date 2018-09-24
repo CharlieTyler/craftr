@@ -21,15 +21,13 @@ class OrderItemsController < ApplicationController
       current_order_item.save
       # For partial rendering
       @order_item = current_order_item 
-      flash[:notice] = "You now have #{current_order_item.quantity} of these in your cart. #{view_context.link_to('Go to cart', cart_path)}.".html_safe
     else
       @order_item = @order.order_items.create(order_item_params)
       unless @order_item.valid?
-        flash[:alert] = 'There was an error adding your item to the cart'
       end
     end
-    # Look into how to reload order so it can render cart icon partial through js
-    @order = @order_item.order
+    @order = @order_item.order.reload
+    # To allow for create.js.erb to reload partials with updated order
     respond_to do |format|
       format.js
     end

@@ -104,7 +104,7 @@
               <%= link_to cart_path, class: "text-white" do %>
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp Basket
                 <% if @order.order_items.length > 0 %>
-                  <span class = "badge badge-primary"><%= @order.total_unpaid_quantity %></span>
+                  <span class = "badge badge-primary js-number-of-items"><%= @order.total_unpaid_quantity %></span>
                 <% end %>
               <% end %>
             </div>
@@ -205,9 +205,10 @@
                   <% end %>
                 </div>
               </li>
-              <li class = "nav-item cart-area">
+              <ul class = "navbar-nav js-cart-area">
+                <!-- A slight hack - put in an extra ul as the wrapper for the javascript hook on add to basket -->
                 <%= render partial: "order_items/cart_icon", locals: { order: @order } %>
-              </li>
+              </ul>
             </ul>
           </div>
         <% else %>
