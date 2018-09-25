@@ -26,22 +26,35 @@ class ApplicationController < ActionController::Base
   end
 
   # Base of this from https://jedrekdomanski.wordpress.com/2017/02/05/building-a-shopping-cart-in-ruby-on-rails-part-1/ and then altered to deal with Devise
+
   def set_cart
     if user_signed_in?
-      if current_user.orders.where(paid: false).present?  # find non-complete order
-        @order = current_user.orders.where(paid: false).first
-        # Should probably delete others
-      elsif session[:order_id].present? # if built a cart without being logged in and is now logged in
-        @order = Order.find(session[:order_id])
-        if @order.user_id.blank? # if hasn't already updated
-          @order.update_attributes(user_id: current_user.id) # update user
+      # If there was an order before the person signed in and they had one saved
+      if session[:order_id].present? && current_user.unpaid_cart.present?
+        # Merge them
+        @order = current_user.unpaid_cart.merge_with(Order.find(session[:order_id]))
+        # If they both had something in, let the user know we merged them
+        if current_user.unpaid_cart.order_items.length > 0 && Order.find(session[:order_id]).order_items.length > 0
+          flash[:notice] = "We noticed you had a cart saved from before, so we merged it with the one you just made"
         end
-        session[:order_id] = nil # and remove from unassigned carts
+        # Then delete and forget about the one from before
+        Order.find(session[:order_id]).delete
+        session[:order_id] = nil
+      # If they didn't have one saved
+      elsif session[:order_id].present?
+        # Just assign them the one from before they logged in
+        @order = Order.find(session[:order_id])
+        @order.update_attributes(user_id: current_user.id)
+      # If they only had one saved, use that
+      elsif current_user.unpaid_cart.present?
+        @order = current_user.unpaid_cart
       else
+      # Otherwise create them a new one
         @order = Order.create(user_id: current_user.id)
       end
+    # If no-one is signed in 
     elsif session[:order_id].present?
-      @order = Order.find(session[:order_id])
+        @order = Order.find(session[:order_id])
     else
       @order = Order.create
       session[:order_id] = @order.id

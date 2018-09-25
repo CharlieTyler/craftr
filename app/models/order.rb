@@ -160,4 +160,16 @@ class Order < ApplicationRecord
       si.update_attributes(shipping_label_created: true, shipping_label_created_at: Time.now.in_time_zone('London'))
     end
   end
+
+  def merge_with(other_order)
+    other_order.order_items.each do |ooi|
+      if self.order_items.any? {|oi| oi.product_id == ooi.product_id }
+        oi = self.order_items.where(product_id: ooi.product_id).first
+        max_quantity = [oi.quantity, ooi.quantity].max
+        oi.update_attributes(quantity: max_quantity)
+      else
+        self.order_items.create(product_id: oi.product.id, quantity: oi.quantity)
+      end
+    end
+  end
 end

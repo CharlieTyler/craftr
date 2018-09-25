@@ -92,6 +92,10 @@ class User < ApplicationRecord
     recently_viewed_products
   end
 
+  def unpaid_cart
+    orders.where(paid: false).first
+  end
+
   def subscribe_to_mailchimps
     gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
     if distillery_id.present?
