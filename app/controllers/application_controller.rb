@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
         @order = current_user.unpaid_cart.merge_with(Order.find(session[:order_id]))
         # If they both had something in, let the user know we merged them
         if current_user.unpaid_cart.order_items.length > 0 && Order.find(session[:order_id]).order_items.length > 0
-          flash[:notice] = "We noticed you had a cart saved from before, so we merged it with the one you just made"
+          flash[:notice] << ". We noticed you had a cart saved from before, so we merged it with the one you just made"
         end
         # Then delete and forget about the one from before
         Order.find(session[:order_id]).delete

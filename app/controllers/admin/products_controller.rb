@@ -2,8 +2,8 @@ class Admin::ProductsController < AdminController
   def new
     @product      = Product.new
     @product_images = @product.product_images.build
-    @distilleries = Distillery.all
-    @categories   = Category.all
+    @distilleries = Distillery.order("name ASC")
+    @categories   = Category.order("name ASC")
   end
 
   def create
@@ -18,8 +18,8 @@ class Admin::ProductsController < AdminController
   def edit
     @product = Product.friendly.find(params[:id])
     @product_images  = @product.product_images.build
-    @distilleries = Distillery.all
-    @categories = Category.all
+    @distilleries = Distillery.order("name ASC")
+    @categories = Category.order("name ASC")
   end
 
   def update

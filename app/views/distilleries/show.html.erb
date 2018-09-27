@@ -60,9 +60,9 @@
         <div class = "col-md-6 offset-md-3">
           <div class = "row">
             <div class = "col-12">
-              <p class = "article-text">
+              <div class = "article-text">
                 <%= simple_format(@distillery.blurb_1) %>
-              </p>
+              </div>
             </div>
           </div>
           <div class = "row">
@@ -73,9 +73,9 @@
           <div class = "row">
             <div class = "col-12">
               <% if @distillery.blurb_2.present? %>
-                <p class = "article-text">
+                <div class = "article-text">
                   <%= simple_format(@distillery.blurb_2) %>
-                </p>
+                </div>
               <% end %>
             </div>
           </div>
@@ -89,9 +89,9 @@
           <div class = "row">
             <div class = "col-12">
               <% if @distillery.blurb_3.present? %>
-                <p class = "article-text">
+                <div class = "article-text">
                   <%= simple_format(@distillery.blurb_3) %>
-                </p>
+                </div>
               <% end %>
             </div>
             <div class = "row">
@@ -185,7 +185,7 @@
         position: myLatLng,
         map: map,
         animation:google.maps.Animation.BOUNCE,
-        title: '<%= @distillery.name %>'
+        title: '<%= @distillery.name.to_json %>'
       });
     }
   </script>

@@ -5,10 +5,10 @@ class Admin::RecipesController < AdminController
     @recipe.recipe_products.build
     @recipe.recipe_categories.build
 
-    @authors = Author.all
-    @ingredients = Ingredient.all
-    @products = Product.all
-    @categories = Category.all
+    @authors = Author.order("name ASC")
+    @ingredients = Ingredient.order("name ASC")
+    @products = Product.order("name ASC")
+    @categories = Category.order("name ASC")
     @ingredient = Ingredient.new
   end
 
@@ -31,11 +31,11 @@ class Admin::RecipesController < AdminController
     @recipe.recipe_products.build
     @recipe.recipe_categories.build
 
-    @authors = Author.all
+    @authors = Author.order("name ASC")
+    @ingredients = Ingredient.order("name ASC")
+    @products = Product.order("name ASC")
+    @categories = Category.order("name ASC")
     @ingredient = Ingredient.new
-    @ingredients = Ingredient.all
-    @products = Product.all
-    @categories = Category.all
   end
 
   def update

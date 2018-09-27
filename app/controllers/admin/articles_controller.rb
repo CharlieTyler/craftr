@@ -9,11 +9,11 @@ class Admin::ArticlesController < AdminController
     @article.article_recipes.build
     
     #options for joins
-    @authors = Author.all
-    @categories = Category.all
-    @distilleries = Distillery.all
-    @products = Product.all
-    @recipes = Recipe.all
+    @authors = Author.order("name ASC")
+    @categories = Category.order("name ASC")
+    @distilleries = Distillery.order("name ASC")
+    @products = Product.order("name ASC")
+    @recipes = Recipe.order("name ASC")
   end
 
   def create
@@ -35,11 +35,11 @@ class Admin::ArticlesController < AdminController
     @article.article_recipes.build
     
     #options for joins
-    @authors = Author.all
-    @categories = Category.all
-    @distilleries = Distillery.all
-    @products = Product.all
-    @recipes = Recipe.all
+    @authors = Author.order("name ASC")
+    @categories = Category.order("name ASC")
+    @distilleries = Distillery.order("name ASC")
+    @products = Product.order("name ASC")
+    @recipes = Recipe.order("name ASC")
   end
 
   def update

@@ -16,7 +16,7 @@
         <div class = "text-center">
           <h1 class = "mt-2 underline-secondary">The people</h1>
         </div>
-        <p class = "article-text"><%= simple_format(distillery.people_text) %></p>
+        <div class = "article-text"><%= simple_format(distillery.people_text) %></div>
       </div>
       <div class = "col-md-6">
         <%= image_tag distillery.people_image, class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
@@ -33,7 +33,7 @@
         <div class = "text-center">
           <h1 class = "mt-2 underline-primary">The products</h1>
         </div>
-        <p class = "article-text"><%= simple_format(distillery.range_text) %></p>
+        <div class = "article-text"><%= simple_format(distillery.range_text) %></div>
       </div>
     </div>
   <% end %>

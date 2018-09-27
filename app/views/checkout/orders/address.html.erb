@@ -5,19 +5,36 @@
   <div class = "row">
     <div class = "col-md-9">
       <div class = "row">
-        <div class = "col-12 my-3">
-          <h4 class = "mb-3">Select delivery address</h4>
-          <%= simple_form_for @order, url: checkout_update_address_path do |f| %>
-            <%= f.input :shipping_address_id, collection: current_user.addresses, label_method: :full_address_no_name, value_method: :id, include_blank: false, label: false %>
-            <p>Don't have it in your address book?
-              <a href="" class = "text-primary" data-toggle="modal" data-target="#newAddressModal">
-                Add a new one
-              </a>
-            </p>
-            <p class = "text-muted">UK only - please be aware that we do not ship internationally!</p>
-            <%= f.submit "Next: Add payment details", class: "btn btn-primary col-12" %>
-          <% end %>
-          <div class = "row">
+        <div class = "col-12">
+          <h4>Select delivery address</h4>
+          <p class = "text-muted">UK only - please be aware that we do not ship internationally!</p>
+        </div>
+        <% current_user.addresses.each do |address| %>
+          <div class = "col-6 col-md-4 my-2">
+            <div class="card h-100">
+              <div class="card-block">
+                <div class="card-text">
+                  <p><strong><%= address.full_name %></strong></p>
+                  <p><%= address.line_1 %></p>
+                  <p><%= address.line_2 %></p>
+                  <p><%= address.line_3 %></p>
+                  <p><%= address.post_town %></p>
+                  <p><%= address.postcode %></p>
+                </div>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <%= simple_form_for @order, url: checkout_update_address_path do |f| %>
+                    <%= f.input :shipping_address_id, as: :hidden, :input_html => { :value => address.id } %>
+                    <%= f.submit "Select address", class: "btn btn-primary col-12" %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+        <div class = "col-12">
+          <div class = "btn btn-secondary col-12 my-2" data-toggle="modal" data-target="#newAddressModal">Add new address
           </div>
         </div>
       </div>
