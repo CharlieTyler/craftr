@@ -1,29 +1,45 @@
 <div class = "container">
   <div class = "row py-2">
     <div class = "col-md-6 offset-md-3">
-      <div class = "booyah-box nice-padding">
-        <h2><%= title 'Sign up' %></h2>
-
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
-
-          <div class="form-inputs">
-            <%= f.input :email, required: true, autofocus: true %>
-            <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-            <%= f.input :password_confirmation, required: true %>
-            <%= f.input :age_verified, required: true, label: "(Required) Tick if you are older than the legal drinking age in your country of residence" %>
-            <%= link_to "Privacy policy", privacy_policy_path, class: "text-primary", :target => "_blank" %>
-            <%= f.input :privacy_policy_accepted, required: true, label: "(Required) Please read our privacy policy before accepting" %>
-            <%= f.input :newsletter_sign_up, hint: "Revitalise your cocktail repetoire by receiving our weekly email on  our best recipes and articles. No spam, ever." %>
-          </div>
-
-          <div class="form-actions">
-            <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
-          </div>
-        <% end %>
-
-        <%= render "devise/shared/links" %>
+      <div class = "row">
+        <div class = "col-6 login-signin-btn login-header">
+          <h2><%= title 'Log in' %></h2>
+        </div>
+        <div class = "col-6 login-signin-btn signup-header active">
+          <h2>Sign up</h2>
+        </div>
+      </div>
+      <div class = "login-content hidden">
+        <%= render 'devise/shared/login_form' %>
+      </div>
+      <div class = "signup-content">
+        <%= render 'devise/shared/signup_form' %>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  $(function() {
+    $( ".login-header" ).click(function() {
+      $(this).addClass("active");
+      $(".signup-header").removeClass("active");
+      $( ".login-content" ).show( "slow", function() {
+        // Animation complete.
+      });
+      $(".signup-content").hide( "slow", function() {
+
+      });
+    });
+    $( ".signup-header" ).click(function() {
+      $(this).addClass("active");
+      $(".login-header").removeClass("active");
+      $( ".signup-content" ).show( "slow", function() {
+        // Animation complete.
+      });
+      $(".login-content").hide( "slow", function() {
+
+      });
+    });
+  });
+</script>

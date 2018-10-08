@@ -161,6 +161,21 @@ h1, h2, h3, h4, h5, h6 {
   color: white !important;
 }
 
+.login-signin-btn {
+  border-radius: 0px;
+  color: black;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+
+
+.login-signin-btn.active {
+  border-radius: 0px !important;
+  color: $primary !important;
+  border-bottom: 3px solid $primary;
+  font-size: 1.2em;
+}
+
 
 
 /* background colours */
@@ -466,3 +481,4 @@ a, a:hover {
 .pagination a:active { border: 2px solid $secondary; color: $secondary; border-radius: 5px;} 
 .pagination span.current { padding: 2px 5px 2px 5px; margin: 2px; border: 2px solid darken($primary, 5%); font-weight: bold; background-color: #000099; color: darken($primary, 5%); } 
 .pagination span.disabled { padding: 2px 5px 2px 5px; margin: 2px; border: 2px solid #eee; color: #ddd; border-radius: 5px;}
+
