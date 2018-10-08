@@ -168,7 +168,7 @@ class Order < ApplicationRecord
         max_quantity = [oi.quantity, ooi.quantity].max
         oi.update_attributes(quantity: max_quantity)
       else
-        self.order_items.create(product_id: oi.product.id, quantity: oi.quantity)
+        self.order_items.create(product_id: ooi.product.id, quantity: ooi.quantity)
       end
     end
   end
