@@ -23,7 +23,7 @@
             </div>
             <div class = "card-wrapper">
             </div>
-            <button class = "btn btn-primary pay-btn disabled col-12 mt-3">Pay <%= number_to_currency((@order.total_unpaid_amount.to_f / 100), unit: "£") %>
+            <button class = "btn-lg btn-primary pay-btn disabled col-12 mt-3">Pay <%= number_to_currency((@order.total_unpaid_amount.to_f / 100), unit: "£") %>
             </button>
             </div>
           </form>

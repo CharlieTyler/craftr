@@ -1,1 +1,1 @@
-$('#products-for-filtering').html("<%= escape_javascript(render partial: "products/lister_item", collection: @products, as: :product) %>");
+$('#products-for-filtering').html("<%= escape_javascript(render partial: "products/lister_item", collection: @products, as: :product, locals: { include_add_to_basket: false } ) %>");

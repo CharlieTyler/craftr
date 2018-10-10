@@ -37,7 +37,7 @@
   <% unless @results[:products].blank? %>
     <h3 class = "mt-3">Products</h3>
     <div class = "row mb-5" id = "products">
-      <%= render partial: 'products/lister_item', collection: @results[:products], as: :product %>
+      <%= render partial: 'products/lister_item', collection: @results[:products], as: :product, locals: { include_add_to_basket: true } %>
     </div>
   <% end %>
 

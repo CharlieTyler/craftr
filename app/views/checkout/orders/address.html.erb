@@ -23,10 +23,14 @@
                 </div>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">
+                <li class="list-group-item text-center">
                   <%= simple_form_for @order, url: checkout_update_address_path do |f| %>
                     <%= f.input :shipping_address_id, as: :hidden, :input_html => { :value => address.id } %>
-                    <%= f.submit "Select address", class: "btn btn-primary col-12" %>
+                    <% if @order.shipping_address_id.present? && @order.shipping_address == address %>
+                      <%= f.submit "Selected", class: "btn-lg btn-success col-12" %>
+                    <% else %>
+                      <%= f.submit "Select address", class: "btn-lg btn-primary btn-block col-12" %>
+                    <% end %>
                   <% end %>
                 </li>
               </ul>

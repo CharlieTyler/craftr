@@ -82,7 +82,7 @@
       </div>
       <% if @product.is_transactional %> 
         <div class = "row my-4">
-          <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: true, large_button: true} %>
+          <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: true, large_button: true, remote: true} %>
         </div>
       <% end %>
       </div>
@@ -114,7 +114,7 @@
         <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
           <% if @product.is_transactional %>
             <li class="nav-item mid-nav">
-              <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false} %>
+              <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false, remote: true} %>
             </li> 
           <% end %>
           <li class="nav-item mid-nav">
@@ -186,7 +186,7 @@
       <div class = "col-12">
         <h3>Other products by <%= link_to @product.distillery.name, distillery_path(@product.distillery) %></h3>
       </div>
-      <%= render partial: "products/lister_item", collection: @other_distillery_products, as: :product %>
+      <%= render partial: "products/lister_item", collection: @other_distillery_products, as: :product, locals: { include_add_to_basket: true }  %>
     </div>
   <% end %>
 
@@ -196,7 +196,7 @@
       <div class = "col-12">
         <h3>Other popular <%= link_to "#{@product.category.name}s", category_path(@product.category) %></h3>
       </div>
-      <%= render partial: "products/lister_item", collection: @other_popular_products, as: :product %>
+      <%= render partial: "products/lister_item", collection: @other_popular_products, as: :product, locals: { include_add_to_basket: true }  %>
     </div>
   <% end %>
 

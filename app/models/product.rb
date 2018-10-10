@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   friendly_id :name, use: :slugged
 
   scope :live, -> { where(is_live: true, is_test: false) }
+  scope :similar_products, ->(product) { where("id != ? and category_id = ?", product.id, product.category.id) }
   scope :strength, -> (min, max) { where('alcohol_percentage > ? AND alcohol_percentage < ?', min, max) }
   scope :category, -> (category_id) { where category_id: category_id }
 
@@ -148,5 +149,9 @@ class Product < ApplicationRecord
 
   def related_recipes
     recipes + category.recipes.first(3)    
+  end
+
+  def related_products
+
   end
 end

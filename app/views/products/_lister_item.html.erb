@@ -20,5 +20,12 @@
         <h4 class = "text-primary mb-0"><%= render partial: 'products/price_formatted', locals: {product: product} %></h4>
       </div>
     <% end %>
+    <% if include_add_to_basket %>
+      <% if product.is_transactional %>
+        <div class = "mb-2">
+          <%= render partial: 'products/add_to_basket_button', locals: {order_item: OrderItem.new, product: product, include_go_to_checkout: false, large_button: true, remote: true} %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

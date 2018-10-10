@@ -55,9 +55,16 @@
                 <h6 class = "d-inline-block text-primary float-right">
                   <%= number_to_currency(((@order.total_unpaid_product_amount + @default_shipping_type.price.to_f) / 100), unit: "£") %>
                 </h6>
-                <%= f.submit "Next: Add delivery address", class: "btn btn-primary col-12 my-3" %>
+                <%= f.submit "Next: Add delivery address", class: "btn-lg btn-primary col-12 my-3" %>
               <% end %>
             </div>
+            <div class = "col-12">
+              <hr class = "booyah-line my-3">
+            </div>
+            <div class = "col-12">
+              <h4>You may also like...</h4>
+            </div>
+            <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: { include_add_to_basket: true } %>
           </div>
         </div>  
       <% else %>

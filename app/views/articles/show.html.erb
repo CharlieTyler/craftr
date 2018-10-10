@@ -137,7 +137,7 @@
       <% unless @article.products.blank? %>
         <h4>Related products</h4>
         <div class = "row py-2"> 
-          <%= render partial: 'products/lister_item', collection: @article.products.live, as: :product, locals: { md_upwards_col: (@article.products.live.size.between?(2, 4) ? 12/(@article.products.live.size) : 4).to_s } %>
+          <%= render partial: 'products/lister_item', collection: @article.products.live, as: :product, locals: { md_upwards_col: (@article.products.live.size.between?(2, 4) ? 12/(@article.products.live.size) : 4).to_s, include_add_to_basket: true} %>
         </div>
       <% end %>
       <% unless @article.recipes.blank? %>

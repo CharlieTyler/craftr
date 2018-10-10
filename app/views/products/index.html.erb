@@ -29,7 +29,7 @@
         <% end %>
       </div>
       <div class = "row" id = "products-for-filtering">
-        <%= render partial: "lister_item", collection: @products, as: :product %>
+        <%= render partial: "lister_item", collection: @products, as: :product, locals: { include_add_to_basket: false }  %>
       </div>
       <div class = "row">
         <div class = "col-12 text-center">

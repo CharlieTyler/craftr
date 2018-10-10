@@ -115,7 +115,7 @@
           <p><%= @distillery.name %> doesn't have any products to sell yet, but are hard at work getting their first one ready!</p>
         </div>
       <% else %>
-        <%= render partial: 'products/lister_item', collection: @distillery.products.live, as: :product %>
+        <%= render partial: 'products/lister_item', collection: @distillery.products.live, as: :product, locals: { include_add_to_basket: true } %>
       <% end %>
     </div>
   </div>

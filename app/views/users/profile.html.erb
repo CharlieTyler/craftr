@@ -68,7 +68,7 @@
       <h4>Favourite products</h4>
       <div class = "row">
         <% if @user.favourite_products.present? %>
-          <%= render partial: "products/lister_item", collection: @user.favourite_products, as: :product %>
+          <%= render partial: "products/lister_item", collection: @user.favourite_products, as: :product, include_add_to_basket: true %>
         <% else %>
           <div class = "col-12">
             <p class = "text-muted">You haven't favourited any products yet. Check them out <%= link_to "here",products_path, class: "text-primary" %></p>
