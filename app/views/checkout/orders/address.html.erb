@@ -41,6 +41,9 @@
           <div class = "btn btn-secondary col-12 my-2" data-toggle="modal" data-target="#newAddressModal">Add new address
           </div>
         </div>
+        <% if @order.shipping_address_id.present? %>
+          <%= link_to "Continue to secure payment", checkout_payment_path, class: "btn-lg btn-primary text-center col-12 my-2" %>
+        <% end %>
       </div>
     </div>
     <div class = "col-md-3">
