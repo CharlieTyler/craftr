@@ -17,33 +17,37 @@
 <% end %>
 
 <div class = "container-fluid">
-  <div class="row hero-row py-5" style="background-image: url('<%= @recipe.image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
-    <div class = "col-md-8 offset-md-2 text-center">
-      <div class = "background-translucent-grey py-3 mt-5">
-        <div class = "">
-          <h1 class = "my-3"><%= title @recipe.name %></h1>
-          <% if @recipe.author.present? %>
-            <p class = "article-text">by <%= link_to @recipe.author.name, author_path(@recipe.author) %></p>
-          <% end %>
-          <h4 class = ""><%= @recipe.description %></h6>
-        </div>
-        <% @recipe.rtags.each do |tag| %>
-          <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary my-2" %>
-        <% end %>
-        <div class = "favourite-unfavourite my-5"> <!-- This partial is replaced each time it's clicked -->
-          <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
+  <div class="row hero-row py-5 bg-overlay" style="background: linear-gradient(rgba(365,365,365,0.5), rgba(365,365,365,0.9)), url('<%= @recipe.image.url(:full).to_s %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div class = "col-md-6 text-center">
+      <div class = "row">
+        <div class = "col-6 offset-3 col-md-8 offset-md-2">
+            <%= image_tag @recipe.image_url(:full).to_s, class: "img-fluid image-border" %>
         </div>
       </div>
     </div>
+    <div class = "col-md-6 text-center my-md-5 py-md-5">
+      <h1 class = "my-3 display-4"><%= title @recipe.name %></h1>
+      <% if @recipe.author.present? %>
+        <h2>by <%= link_to @recipe.author.name, author_path(@recipe.author), class: "text-primary" %></h2>
+      <% end %>
+      <p class = "article-text"><%= @recipe.description %></p>
+      <% @recipe.rtags.each do |tag| %>
+        <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary my-2" %>
+      <% end %>
+      <div class = "favourite-unfavourite my-5"> <!-- This partial is replaced each time it's clicked -->
+        <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
+      </div>        
+    </div>
   </div>
 </div>
+
 <div class = "container">
   <div class = "row py-3">
     <div class = "col-md-9">
       <!-- Ingredients -->
       <h3 class = "text-center" id="ingredients">Ingredients</h3>
       <div class = "row">
-        <ol>
+        <ol class = "col-12">
           <% @recipe.recipe_ingredients.each do |ri| %>
             <!-- OLD VERSION WITH IMAGE - SAVED FOR IF WE RETURN TO THIS -->
             <!-- <div class = "col-6 col-sm-4 col-lg-3 text-center"> -->
@@ -79,17 +83,12 @@
           <% end %>
         </ol>
       </div>
-      <div class = "btn btn-primary" id="new-shopping-list">Add to shopping list</div>
-      <p class = "text-muted mt-2 mb-0"><em>Add to your online shopping baskets at Ocado, Tesco, ASDA, Waitrose and Amazon Fresh. Handy.</em></p>
-      <script> 
-        var Whisk = Whisk || {};
-        Whisk.cmd = Whisk.cmd || [];
-        Whisk.cmd.push(function () {
-          Whisk.cmd.defineListItems('#new-shopping-list', [
-            <%= @recipe.whisk_ingredients_list.html_safe + "," %>
-          ])
-        });
-      </script>
+      <div class = "row">
+        <div class = "btn btn-primary" id="new-shopping-list">Add to shopping list</div>
+        <div class = "col-12">
+          <p class = "text-muted mt-2 mb-0"><em>Add to your online shopping baskets at Ocado, Tesco, ASDA, Waitrose and Amazon Fresh. Handy.</em></p>
+        </div>
+      </div>
       <div class = "row">
         <div class = "col-6 offset-3">
           <hr class = "booyah-line my-3"/>
@@ -238,3 +237,13 @@
 </script>
 
 <script async="true" src="//widget.whisk.com/assets/whiskbutton.js" type="text/javascript"></script>
+
+<script> 
+  var Whisk = Whisk || {};
+  Whisk.cmd = Whisk.cmd || [];
+  Whisk.cmd.push(function () {
+    Whisk.cmd.defineListItems('#new-shopping-list', [
+      <%= @recipe.whisk_ingredients_list.html_safe + "," %>
+    ])
+  });
+</script>
