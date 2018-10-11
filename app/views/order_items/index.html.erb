@@ -47,7 +47,7 @@
               <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
                 <%= f.input :shipping_type_id, as: :radio_buttons, collection: ShippingType.all.map{ |st| [st.full_shipping_type, st.id] }, label_method: :first, value_method: :last, item_label_class: 'radio', checked: @default_shipping_type.id, label: "" %>
                 <% if @order.total_unpaid_quantity > 1 %>
-                  <p><em><%= number_to_currency(@default_shipping_type.price.to_f / (100 * @order.total_unpaid_quantity), unit: "£") %> shipping per bottle</em></p>
+                  <div class = "alert alert-info text-center"><strong>Free shipping</strong> on every extra bottle</div>
                 <% end %>
                 <hr class = "booyah-line" />
                 <hr class = "booyah-line" />

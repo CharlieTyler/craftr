@@ -1,8 +1,10 @@
 class ShippingType < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
+
   has_many :orders
   
   def human_readable_price
-    "£#{(price.to_f / 100)}"
+    number_to_currency((price.to_f / 100), unit: "£")
   end
 
   def full_shipping_type

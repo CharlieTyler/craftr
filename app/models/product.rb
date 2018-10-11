@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
   self.per_page = 20
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -92,6 +93,11 @@ class Product < ApplicationRecord
     word_array << distillery.name
     word_array << distillery.location
     word_array.join(", ")
+  end
+
+  def human_readable_price
+    precision = price % 100 == 0 ? 0 : 2
+    number_to_currency(price.to_f / 100, unit: "£", precision: precision)
   end
 
   # Custom validations

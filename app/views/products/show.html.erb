@@ -76,7 +76,7 @@
       <blockquote class="blockquote">
         <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
       </blockquote>
-      <h3 class = "text-primary"><%= render partial: 'price_formatted', locals: {product: @product} %></h3>
+      <h3 class = "text-primary"><%= @product.human_readable_price %></h3>
       <div class = "row favourite-unfavourite py-2">
         <%= render partial: 'favourite_button', locals: {product: @product} %>
       </div>
