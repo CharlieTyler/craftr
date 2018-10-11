@@ -34,22 +34,22 @@
         center: centralPoint
       });
 
-      <% @all_distilleries.each do |distillery| %>
+      <% @all_distilleries.each_with_index do |distillery, counter| %>
         var distilleryLatLong = {lat: <%= distillery.latitude %>, lng: <%= distillery.longitude %>};
-        var <%= escape_javascript distillery.name.delete(' ') + 'marker' %> = new google.maps.Marker({
+        var <%= 'marker' + counter.to_s %> = new google.maps.Marker({
           position: distilleryLatLong,
           map: map,
-          title: '<%= distillery.name %>'
+          title: '<%= j distillery.name.html_safe %>'
         });
 
-        windowContent = "<h5><%= escape_javascript distillery.name %></h5><div class=''><%= escape_javascript pluralize(distillery.products.live.length, 'product') %></div><%= escape_javascript link_to 'More about ' + distillery.name, distillery_path(distillery), class: 'btn btn-primary my-2' %>";
+        windowContent = "<h5><%= j distillery.name.html_safe %></h5><div class=''><%= escape_javascript pluralize(distillery.products.live.length, 'product') %></div><%= escape_javascript link_to 'More about ' + distillery.name.html_safe, distillery_path(distillery), class: 'btn btn-primary my-2' %>";
 
         
-        <%= escape_javascript distillery.name.delete(' ') + 'window' %> = new google.maps.InfoWindow({
+        <%= 'window' + counter.to_s %> = new google.maps.InfoWindow({
           content: windowContent
         });
-        <%= escape_javascript distillery.name.delete(' ') + 'marker' %>.addListener('click', function() {
-          <%= escape_javascript distillery.name.delete(' ') + 'window' %>.open(map, <%= escape_javascript distillery.name.delete(' ') + 'marker' %>);
+        <%= 'marker' + counter.to_s %>.addListener('click', function() {
+          <%= 'window' + counter.to_s %>.open(map, <%= 'marker' + counter.to_s %>);
         });
 
       <% end %>

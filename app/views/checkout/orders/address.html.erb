@@ -29,7 +29,7 @@
                     <% if @order.shipping_address_id.present? && @order.shipping_address == address %>
                       <%= f.submit "Selected", class: "btn-lg btn-success col-12" %>
                     <% else %>
-                      <%= f.submit "Select address", class: "btn-lg btn-primary btn-block col-12" %>
+                      <%= f.submit "Select", class: "btn-lg btn-primary btn-block col-12" %>
                     <% end %>
                   <% end %>
                 </li>
@@ -38,12 +38,13 @@
           </div>
         <% end %>
         <div class = "col-12">
-          <div class = "btn btn-secondary col-12 my-2" data-toggle="modal" data-target="#newAddressModal">Add new address
-          </div>
+          <button type="button" class="col-12 btn btn-secondary" data-toggle="modal" data-target="#newAddressModal">
+            Add an address
+          </button>
+          <% if @order.shipping_address_id.present? %>
+            <%= link_to "Continue to secure payment", checkout_payment_path, class: "btn btn-primary text-center col-12 my-2 py-2" %>
+          <% end %>
         </div>
-        <% if @order.shipping_address_id.present? %>
-          <%= link_to "Continue to secure payment", checkout_payment_path, class: "btn-lg btn-primary text-center col-12 my-2" %>
-        <% end %>
       </div>
     </div>
     <div class = "col-md-3">
