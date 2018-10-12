@@ -37,6 +37,9 @@
 </div>
 <div class = ""> <!-- For background colour -->
   <div class = "container">
+    <div class = "row hidden" id = "skipToRecipesRow">
+      <a class="no-click btn btn-primary sticky col-10 offset-1 col-md-4 offset-md-3 my-3" href="#related-recipes"><h6>Jump to recipes</h6></a>
+    </div>
     <div class = "row">
       <div class = "col-md-6 offset-md-3">
         <div class = "row">
@@ -46,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class = "row">
+        <div class = "row" id = "recipeButtonStart">
           <div class = "col-12">
             <%= image_tag @article.image_first_url(:full).to_s, class: "d-block img-fluid" %>
           </div>
@@ -108,7 +111,7 @@
             <% end %>
           </div>
         </div>
-        <div class = "row">
+        <div class = "row" id = "recipeButtonEnd">
           <div class = "col-12">
             <% if @article.image_fifth.present? %>
               <%= image_tag @article.image_fifth_url(:full).to_s, class: "d-block img-fluid" %>
@@ -134,16 +137,18 @@
 <div class = "container" id = "mostReadBottom">
   <div class = "row">
     <div class = "col-md-10 offset-md-1">
+      <div id = "related-recipes">
+        <% unless @article.recipes.blank? %>
+          <h4>Related recipes</h4>
+          <div class = "row py-2">
+            <%= render partial: 'recipes/lister_recipe', collection: @article.recipes, as: :recipe, locals: { md_upwards_col: (@article.recipes.size.between?(2, 4) ? 12/(@article.recipes.size) : 4).to_s } %>
+          </div>
+        <% end %>
+      </div>
       <% unless @article.products.blank? %>
         <h4>Related products</h4>
         <div class = "row py-2"> 
           <%= render partial: 'products/lister_item', collection: @article.products.live, as: :product, locals: { md_upwards_col: (@article.products.live.size.between?(2, 4) ? 12/(@article.products.live.size) : 4).to_s, include_add_to_basket: true} %>
-        </div>
-      <% end %>
-      <% unless @article.recipes.blank? %>
-        <h4>Related recipes</h4>
-        <div class = "row py-2">
-          <%= render partial: 'recipes/lister_recipe', collection: @article.recipes, as: :recipe, locals: { md_upwards_col: (@article.recipes.size.between?(2, 4) ? 12/(@article.recipes.size) : 4).to_s } %>
         </div>
       <% end %>
       <% unless @article.distilleries.blank? %>
@@ -165,25 +170,41 @@
 <script>
   $(function() {
     var mostReadTop = $('#mostRead').offset().top;
-    var mostReadBottom = $('#mostReadBottom').position().top - $('#mostRead').innerHeight();
-      
+    var mostReadBottom = $('#mostReadBottom').offset().top
+    var mostReadHeight = $('#mostRead').innerHeight(); 
+    var recipeButtonStart = $('#recipeButtonStart').offset().top
+    var recipeButtonEnd = $('#recipeButtonEnd').offset().top
+
     // our function that decides weather the navigation bar should have "fixed" css position or not.
-    var sticky = function(){
+    var stickyArticles = function(){
       var scrollTop = $(window).scrollTop(); // our current vertical position from the top
            
       // if we've scrolled more than the navigation, change its position to fixed to stick to top,
       // otherwise change it back to relative
-      if (((scrollTop > mostReadTop) && (scrollTop < mostReadBottom)) && ($( window ).width() > 780)) { 
+      if ((scrollTop > mostReadTop && scrollTop < (mostReadBottom - mostReadHeight)) && ($( window ).width() > 780)) { 
           $('#mostRead').addClass('sticky');
       } else {
           $('#mostRead').removeClass('sticky'); 
       }
     };
 
-    sticky();
+    var recipeButton = function() {
+      var scrollTop = $(window).scrollTop();
+      if ((scrollTop > recipeButtonStart) && (scrollTop < recipeButtonEnd)) {
+        $('#skipToRecipesRow').removeClass("hidden");
+      } else {
+        $('#skipToRecipesRow').addClass("hidden");
+      }
+    };
+
+    stickyArticles();
+    recipeButton();
     // and run it again every time you scroll
     $(window).scroll(function() {
-      sticky();
+      stickyArticles();
+      <% if @article.recipes.present? %>
+        recipeButton();
+      <% end %>
     });
   });
 </script>

@@ -19,6 +19,7 @@
         <%= f.input :dry_to_sweet %>
         <%= f.input :subtle_to_intense %>
         <%= f.input :fresh_to_complex %>
+        <p class = "text-primary">It's preferable if images are png, particularly for the first photo. If unable to find a png, please convert the first photo <%= link_to "here", "https://image.online-convert.com/convert-to-png" %></p>
         <div class = "all_image_fields">
           <%= f.simple_fields_for :product_images do |i| %>
             <div class = "row image_field">
