@@ -13,6 +13,6 @@
     <h2>by <%= link_to product.distillery.name, distillery_path(product.distillery), class: "text-primary" %></h2>
     <h6 class = "my-3 text-muted"><%= "#{product.size_ml}ml - #{product.alcohol_percentage}%" %></h6>
     <h4><%= render partial: "products/star_rating", locals: {product: product} %></h4>
-    <h3 class = "text-primary"><%= render partial: 'products/price_formatted', locals: {product: product} %></h3>
+    <h3 class = "text-primary"><%= product.human_readable_price %></h3>
   </div>
 </div>
