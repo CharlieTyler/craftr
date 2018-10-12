@@ -84,10 +84,10 @@
     <!-- Graphs -->
     <div class = "col-12">
       <h4 class = "mt-4">Sales</h4>
-      <h6>Volume</h6>
-      <%= line_chart SoldItem.group_by_day(:created_at).count %>
-      <h6 class = "mt-2">Value</h6>
-      <%= line_chart SoldItem.group_by_day(:created_at).sum(:item_price) %>
+      <h6>Volume (last 30 days)</h6>
+      <%= line_chart @last_30_days_sales.group_by_day(:created_at).count %>
+      <h6 class = "mt-2">Value (last 30 days)</h6>
+      <%= line_chart @last_30_days_sales.group_by_day(:created_at).sum(:item_price).map{|arr| arr.map { |item| item.to_f / 100 if item.is_a? Numeric } } %>
     </div>
   </div>
 </div>

@@ -96,8 +96,14 @@
         <div class = "container-fluid background-secondary py-2">
           <div class = "row">
             <div class = "col-4 text-center">
-              <%= link_to me_path, class: "text-white" do %>
-                <i class="fa fa-user" aria-hidden="true"></i> &nbsp Account
+              <% if user_signed_in? %>
+                <%= link_to me_path, class: "text-white" do %>
+                  <i class="fa fa-user" aria-hidden="true"></i> &nbsp Account
+                <% end %>
+              <% else %>
+                <%= link_to new_user_registration_path, class: "text-white" do %>
+                  <i class="fa fa-user-plus" aria-hidden="true"></i> &nbsp Sign up
+                <% end %>
               <% end %>
             </div>
             <div class = "col-4 text-center">
@@ -109,7 +115,7 @@
               <% end %>
             </div>
             <div class = "col-4 text-center text-white">
-              <div class = "search-toggle">Search</div>
+              <div class = "search-toggle"><i class="fa fa-search" aria-hidden="true"></i> &nbsp Search</div>
             </div>
             <div class = "search-show-hide">
               <%= form_tag search_path, method: :get, class: "form-inline mt-1" do %>
