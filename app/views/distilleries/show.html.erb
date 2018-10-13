@@ -67,7 +67,7 @@
           </div>
           <div class = "row">
             <div class = "col-12">
-              <%= image_tag @distillery.image_1_url(:full).to_s, class: "d-block img-fluid" %>
+              <%= image_tag @distillery.image_1_url(:full).to_s, class: "d-block img-fluid", lazy: true %>
             </div>
           </div>
           <div class = "row">
@@ -82,7 +82,7 @@
           <div class = "row">
             <div class = "col-12">
               <% if @distillery.image_2.present? %>
-                <%= image_tag @distillery.image_2_url(:full).to_s, class: "d-block img-fluid" %>
+                <%= image_tag @distillery.image_2_url(:full).to_s, class: "d-block img-fluid", lazy: true %>
               <% end %>
             </div>
           </div>
@@ -97,7 +97,7 @@
             <div class = "row">
               <div class = "col-12">
                 <% if @distillery.image_3.present? %>
-                  <%= image_tag @distillery.image_3_url(:full).to_s, class: "d-block img-fluid" %>
+                  <%= image_tag @distillery.image_3_url(:full).to_s, class: "d-block img-fluid", lazy: true %>
                 <% end %>
               </div>
             </div>

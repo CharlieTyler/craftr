@@ -3,7 +3,7 @@
     <div class = "row">
       <div class = "col-12">
         <div class = "insta-image-holder">
-          <%= image_tag insta.images.low_resolution.url, class: "insta-image img-fluid" %>
+          <%= image_tag insta.images.low_resolution.url, class: "insta-image img-fluid", lazy: true %>
         </div>
       </div>
     </div>

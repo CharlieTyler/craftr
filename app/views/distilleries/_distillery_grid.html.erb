@@ -1,7 +1,7 @@
 <div class="row py-5 bg-image" style="background-image: url('<%= distillery.summary_image.url %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
   <div class = "col-md-10 offset-md-1 text-center justify-content-center">
     <% unless distillery.logo.blank? %>
-      <%= image_tag distillery.logo, class: "center-block logo-text img-fluid my-3" %>
+      <%= image_tag distillery.logo, class: "center-block logo-text img-fluid my-3", lazy: true %>
     <% end %>
     <h1 class = "py-5 display-4"><span class = "logo-text px-1"><%= distillery.name %></span></h1>
     <h6 class = "pb-5 text-white"><span class = "background-translucent-black px-3 py-2"><%= distillery.location %></span></h6>
@@ -19,7 +19,7 @@
         <div class = "article-text"><%= simple_format(distillery.people_text) %></div>
       </div>
       <div class = "col-md-6">
-        <%= image_tag distillery.people_image, class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
+        <%= image_tag distillery.people_image, class: "d-block img-fluid distillery-image mt-auto align-self-center", lazy: true %>
       </div>
     </div>
   <% end %>
@@ -27,7 +27,7 @@
   <% if include_range %>
     <div class = "row my-2">
       <div class = "col-md-6 border-primary">
-        <%= image_tag distillery.range_image, class: "d-block img-fluid distillery-image align-self-center" %>
+        <%= image_tag distillery.range_image, class: "d-block img-fluid distillery-image align-self-center", lazy: true %>
       </div>
       <div class = "col-md-6 background-white">
         <div class = "text-center">

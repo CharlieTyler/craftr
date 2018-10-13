@@ -51,7 +51,7 @@
         </div>
         <div class = "row" id = "recipeButtonStart">
           <div class = "col-12">
-            <%= image_tag @article.image_first_url(:full).to_s, class: "d-block img-fluid" %>
+            <%= image_tag @article.image_first_url(:full).to_s, class: "d-block img-fluid", lazy: true %>
           </div>
         </div>
         <div class = "row">
@@ -66,7 +66,7 @@
         <div class = "row">
           <div class = "col-12">
             <% if @article.image_second.present? %>
-              <%= image_tag @article.image_second_url(:full).to_s, class: "d-block img-fluid" %>
+              <%= image_tag @article.image_second_url(:full).to_s, class: "d-block img-fluid", lazy: true %>
             <% end %>
           </div>
         </div>
@@ -82,7 +82,7 @@
         <div class = "row">
           <div class = "col-12">
             <% if @article.image_third.present? %>
-              <%= image_tag @article.image_third_url(:full).to_s, class: "d-block img-fluid" %>
+              <%= image_tag @article.image_third_url(:full).to_s, class: "d-block img-fluid", lazy: true %>
             <% end %>
           </div>
         </div>
@@ -98,7 +98,7 @@
         <div class = "row">
           <div class = "col-12">
             <% if @article.image_fourth.present? %>
-              <%= image_tag @article.image_fourth_url(:full).to_s, class: "d-block img-fluid" %>
+              <%= image_tag @article.image_fourth_url(:full).to_s, class: "d-block img-fluid", lazy: true %>
             <% end %>
           </div>
         </div>
@@ -114,7 +114,7 @@
         <div class = "row" id = "recipeButtonEnd">
           <div class = "col-12">
             <% if @article.image_fifth.present? %>
-              <%= image_tag @article.image_fifth_url(:full).to_s, class: "d-block img-fluid" %>
+              <%= image_tag @article.image_fifth_url(:full).to_s, class: "d-block img-fluid", lazy: true %>
             <% end %>
           </div>
         </div>

@@ -104,3 +104,10 @@ $( document ).on('turbolinks:load', function() {
     }
   })
 });
+
+$(document).on('turbolinks:load', function() { 
+  $("img").lazyload({
+    threshold : 500,
+    effect : "fadeIn"
+   });
+});

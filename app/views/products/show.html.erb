@@ -42,7 +42,7 @@
     <div class = "col-12 col-md-7">
       <div class = "owl-carousel product-image-carousel">
         <% @product.product_images.each do |image| %>
-          <%= image_tag image.photo_url(:full).to_s, class: "product-image-large" %>
+          <%= image_tag image.photo_url(:full).to_s, class: "product-image-large", lazy: true %>
         <% end %>
         <% if @distillery.youtube_video_url.present? %>
           <div class = "container" id = "video">
@@ -150,9 +150,9 @@
         </div>
         <div class = "col-12 justify-content-center">
           <% if @product.product_images.length > 2 %>
-            <%= image_tag @product.product_images.second.photo_url(:full), class: "d-block img-fluid product-page-image" %>
+            <%= image_tag @product.product_images.second.photo_url(:full), class: "d-block img-fluid product-page-image", lazy: true %>
           <% else %>
-            <%= image_tag @product.product_images.first.photo_url(:full), class: "d-block img-fluid product-page-image" %>
+            <%= image_tag @product.product_images.first.photo_url(:full), class: "d-block img-fluid product-page-image", lazy: true %>
           <% end %>
         </div>
         <div class = "col-12">
@@ -161,7 +161,7 @@
           </div>
         </div>
         <div class = "col-12">
-          <%= image_tag @product.product_images.last.photo_url(:full), class: "d-block img-fluid product-page-image" %>
+          <%= image_tag @product.product_images.last.photo_url(:full), class: "d-block img-fluid product-page-image", lazy: true %>
         </div>
       </div>
     </div>

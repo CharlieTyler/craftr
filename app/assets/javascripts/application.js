@@ -24,3 +24,4 @@
 //= require Chart.bundle
 //= require chartkick
 //= require_tree .
+// = require lazyload.js
