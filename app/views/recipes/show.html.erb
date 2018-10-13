@@ -46,49 +46,43 @@
     <div class = "col-md-9">
       <!-- Ingredients -->
       <h3 class = "text-center" id="ingredients">Ingredients</h3>
-      <div class = "row">
-        <ol class = "col-10 offset-1">
-          <% @recipe.recipe_ingredients.each do |ri| %>
-            <!-- OLD VERSION WITH IMAGE - SAVED FOR IF WE RETURN TO THIS -->
-            <!-- <div class = "col-6 col-sm-4 col-lg-3 text-center"> -->
-              <!-- <div class = "">
-                <% if ri.ingredient.image.present? %>
-                  <%= image_tag ri.ingredient.image_url(:full).to_s, class: "img-fluid ingredient-image" %>
-                <% else %>
-                  <%= image_tag "ingredient_placeholder.jpg", class: "img-fluid ingredient-image" %>
-                <% end %>
-              </div> -->
-              <!-- <p class = "article-text">
-                <%= "#{ri.quantity} " %> 
-                <strong>
-                  <% if ri.ingredient.product.present? %>
-                    <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
-                  <% else %>
-                    <%= ri.ingredient.name %>
-                  <% end %>
-                </strong>
-              </p>
-              <% if user_signed_in? && current_user.admin %>
-                <%= link_to "Edit ingredient", edit_ingredient_path(ri.ingredient), class: "btn btn-secondary" %>
+      <ol>
+        <% @recipe.recipe_ingredients.each do |ri| %>
+          <!-- OLD VERSION WITH IMAGE - SAVED FOR IF WE RETURN TO THIS -->
+          <!-- <div class = "col-6 col-sm-4 col-lg-3 text-center"> -->
+            <!-- <div class = "">
+              <% if ri.ingredient.image.present? %>
+                <%= image_tag ri.ingredient.image_url(:full).to_s, class: "img-fluid ingredient-image" %>
+              <% else %>
+                <%= image_tag "ingredient_placeholder.jpg", class: "img-fluid ingredient-image" %>
               <% end %>
             </div> -->
-            <li>
+            <!-- <p class = "article-text">
               <%= "#{ri.quantity} " %> 
-              <% if ri.ingredient.product.present? %>
-                <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
-              <% else %>
-                <%= ri.ingredient.name %>
-              <% end %>
-            </li>
-          <% end %>
-        </ol>
-      </div>
-      <div class = "row">
-        <div class = "btn btn-primary" id="new-shopping-list">Add to shopping list</div>
-        <div class = "col-12">
-          <p class = "text-muted mt-2 mb-0"><em>Add to your online shopping baskets at Ocado, Tesco, ASDA, Waitrose and Amazon Fresh. Handy.</em></p>
-        </div>
-      </div>
+              <strong>
+                <% if ri.ingredient.product.present? %>
+                  <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
+                <% else %>
+                  <%= ri.ingredient.name %>
+                <% end %>
+              </strong>
+            </p>
+            <% if user_signed_in? && current_user.admin %>
+              <%= link_to "Edit ingredient", edit_ingredient_path(ri.ingredient), class: "btn btn-secondary" %>
+            <% end %>
+          </div> -->
+          <li>
+            <%= "#{ri.quantity} " %> 
+            <% if ri.ingredient.product.present? %>
+              <%= link_to ri.ingredient.name, product_path(ri.ingredient.product) %>
+            <% else %>
+              <%= ri.ingredient.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+      <div class = "btn btn-primary col-6" id="new-shopping-list">Add to shopping list</div>
+        <p class = "text-muted mt-2 mb-0"><em>Add to your online shopping baskets at Ocado, Tesco, ASDA, Waitrose and Amazon Fresh. Handy.</em></p>
       <div class = "row">
         <div class = "col-6 offset-3">
           <hr class = "booyah-line my-3"/>
@@ -152,7 +146,7 @@
   <% end %>
   <% unless @recipe.products.live.blank? %>
     <div class = "container mt-3">
-      <h4>Recommended products</h4>
+      <h3 class = "pt-2">Recommended products</h3>
       <div class = "row py-2">
         <%= render partial: 'products/lister_item', collection: @recipe.products.live, as: :product, locals: { md_upwards_col: (@recipe.products.live.size.between?(2, 4) ? 12/(@recipe.products.live.size) : 4).to_s, include_add_to_basket: true } %>
       </div>
@@ -180,7 +174,7 @@
             Add a comment
           </button>
         <% else %>
-          <p class = "text-white">Please <%= link_to "login", new_user_session_path, class: "btn btn-primary" %> or <%= link_to "sign up", new_user_registration_path, class: "btn btn-secondary" %> to add a review</p>
+          <p class = "text-white">Please <%= link_to "login", new_user_session_path, class: "btn btn-primary" %> or <%= link_to "sign up", new_user_registration_path, class: "btn btn-secondary" %> to add a comment</p>
         <% end %>
       </div>
     </div>

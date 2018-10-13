@@ -34,7 +34,7 @@ class OrderItemsController < ApplicationController
     @order_items = @order.order_items
     @shipping_types = ShippingType.all
     @default_shipping_type = ShippingType.first
-    @suggested_products = Product.similar_products(@order_items.sample.product).first(4)
+    @suggested_products = @order_items.present? ? Product.similar_products(@order_items.sample.product).first(4) : nil
   end
 
   private

@@ -1,14 +1,6 @@
 <div class = "container-fluid">
   <div class = "owl-carousel owl-theme hero-carousel">
     <%= render partial: "static_pages/carousel_feature", collection: @carousel_features, as: :carousel_feature %>
-    <div class = "hero-row" style="background: transparent url(<%= image_url('hero_image_1.jpg') %>) no-repeat center center /cover">
-      <div class = "col-10 offset-1 col-md-6 offset-md-3 text-center py-3 py-md-5">
-        <div class = "background-translucent-grey py-3 py-md-5 px-2 px-md-5">
-          <h1 class = "js-animate-me animated">I'm feeling lucky</h1>
-          <h3 class = "js-animate-me2 animated">Pick me a random product</h3>
-          <%= link_to 'Randomise', random_product_path, class: "btn btn-lg btn-primary my-3", method: :post %>
-        </div>
-      </div>
     </div>
   </div> <!-- Owl carousel -->
 </div>
