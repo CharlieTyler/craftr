@@ -36,11 +36,16 @@
     </div>
   </div>
 <% end %>
-
 <div class = "container">
   <div class = "row hidden" id = "atbButtonRow">
-    <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: true, large_button: true, remote: true} %>
+    <div class = "my-3">
+      <div class = "row sticky">
+        <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false, remote: true} %>
+      </div>
+    </div>
   </div>
+</div>
+<div class = "container">
   <div class = "row">
     <div class = "col-12 col-md-7">
       <div class = "owl-carousel product-image-carousel">
