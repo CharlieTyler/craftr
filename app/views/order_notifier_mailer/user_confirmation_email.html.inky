@@ -1,0 +1,91 @@
+<style type="text/css">
+  body,
+  html, 
+  .body {
+    background: #f3f3f3 !important;
+  }
+</style>
+
+<container>
+
+  <spacer size="16"></spacer>
+
+  <row>
+    <columns>
+      <h1>Craft spirits inbound!</h1>
+      <p>Thanks for shopping with us! Our partner distilleries have received your order and will pick and pack it as soon as possible. We will let you know when each distiller has dispatched your spirits.</p>
+
+      <spacer size="16"></spacer>
+
+      <callout class="secondary">
+        <row>
+          <columns large="6">
+            <p>
+              <strong>Shipping</strong><br/>
+              <%= @order.shipping_type.name %>, delivering in <%= @order.shipping_type.shipping_time %><br/>
+            </p>
+          </columns>
+          <columns large="6">
+            <p>
+              <strong>Shipping Address</strong><br/>
+              <%= @order.shipping_address.full_name %><br/>
+              <%= @order.shipping_address.line_1 %><br/>
+              <% if @order.shipping_address.line_2.present? %>
+                <%= @order.shipping_address.line_2 %><br/>
+              <% end %>
+              <% if @order.shipping_address.line_3.present? %>
+                <%= @order.shipping_address.line_3 %><br/>
+              <% end %>
+              <%= @order.shipping_address.post_town %><br/>
+              <%= @order.shipping_address.postcode %><br/>
+            </p>
+          </columns>
+        </row>
+        <row>
+          <columns large = "12">
+            <button class="large expand" href="<%= account_order_url(@order) %>">View order on Craftr</button>
+          </columns>
+        </row>
+      </callout>
+
+      <h4>Order Details</h4>
+
+      <table>
+        <tr><th><b>Item</b></th><th><b>Quantity</b></th><th><b>Price</b></th></tr>
+        <hr/>
+        <% @order.sold_items.each do |si| %>
+          <tr><td><%= si.product.name %></td><td><%= si.quantity %></td><td><%= number_to_currency((si.total_paid.to_f / 100), unit: "£") %></td></tr>
+        <% end %>
+        <tr>
+          <td colspan="2">Delivery</td>
+          <td><%= number_to_currency((@order.paid_shipping_price / 100), unit: "£") %></td>
+        </tr>
+        <tr>
+          <td colspan="2"><b>Total:</b></td>
+          <td><%= number_to_currency((@order.total_paid_amount / 100), unit: "£") %></td>
+        </tr>
+      </table>
+
+      <hr/>
+
+      <h4>What's Next?</h4>
+
+      <p>Our partner distilleries will send your products directly to you. We will send you another email when each product is shipped. Please bear in mind that we work with distilleries from the earliest of stages, where sometimes it is not their main job. In these cases, allow for a little more time than you might expect elsewhere.</p>
+    </columns>
+  </row>
+  <row class="footer text-center">
+    <columns large="3">
+      <%= image_tag "CraftrLogoPNG.png", height: '35', class: "pt-2", alt: "Craftr logo" %>
+    </columns>
+    <columns large="3">
+      <p>
+        Email us at support@craftr.co.uk
+      </p>
+    </columns>
+    <columns large="3">
+      <%= link_to "https://www.drinkaware.co.uk" do %>
+        <%= image_tag "drink_aware_logo.jpg" %>
+      <% end %>
+    </columns>
+  </row>
+</container>

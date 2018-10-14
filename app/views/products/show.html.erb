@@ -38,6 +38,9 @@
 <% end %>
 
 <div class = "container">
+  <div class = "row hidden" id = "atbButtonRow">
+    <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: true, large_button: true, remote: true} %>
+  </div>
   <div class = "row">
     <div class = "col-12 col-md-7">
       <div class = "owl-carousel product-image-carousel">
@@ -107,38 +110,40 @@
 <% end %>
 
 <hr class = "booyah-line"/>
-<div class="nav-wrapper" style="height:50px;">
-  <nav class = "secondary-nav background-white mb-0 pb-0" id = "secondary-nav" style = "height:50px;">
-    <div class = "container-fluid">
-      <div class = "row">
-        <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
-          <% if @product.is_transactional %>
+<div class = "hidden-sm-down">
+  <div class="nav-wrapper" style="height:50px;">
+    <nav class = "secondary-nav background-white mb-0 pb-0" id = "secondary-nav" style = "height:50px;">
+      <div class = "container-fluid">
+        <div class = "row">
+          <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
+            <% if @product.is_transactional %>
+              <li class="nav-item mid-nav">
+                <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false, remote: true} %>
+              </li> 
+            <% end %>
             <li class="nav-item mid-nav">
-              <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false, remote: true} %>
-            </li> 
-          <% end %>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#details"><h6>Product details</h6></a>
-          </li>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#distillery"><h6>The distillery</h6></a>
-          </li>
-          <% unless @recipes.blank? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
+              <a class="nav-link no-click" href="#details"><h6>Product details</h6></a>
             </li>
-          <% end %>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#reviews"><h6>Reviews</h6></a>
-          </li>
-        </ul>
+            <li class="nav-item mid-nav">
+              <a class="nav-link no-click" href="#distillery"><h6>The distillery</h6></a>
+            </li>
+            <% unless @recipes.blank? %>
+              <li class="nav-item mid-nav">
+                <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
+              </li>
+            <% end %>
+            <li class="nav-item mid-nav">
+              <a class="nav-link no-click" href="#reviews"><h6>Reviews</h6></a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <hr class = "booyah-line"/>
-  </nav>
+      <hr class = "booyah-line"/>
+    </nav>
+  </div>
 </div>
 
-<div class = "container">
+<div class = "container" id = "atbButtonStart">
   <!-- Product details -->
   <div class = "row" id = "details">
     <div class = "col-md-8 offset-md-2">
@@ -277,22 +282,38 @@
 </div>
 
 <script>
-  //Owl carousel
-  $('.owl-carousel.product-image-carousel').owlCarousel({
-    loop:true,
-    stagePadding: 0,
-    nav: true,
-    navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>'],
-    responsiveClass:true,
-    responsive:{
-      0:{
-          items:1,
-          nav:true
-      },
-      600:{
-          items:1,
-          nav:true
-      },
-    }
+  $(function() {
+    //Owl carousel
+    $('.owl-carousel.product-image-carousel').owlCarousel({
+      loop:true,
+      stagePadding: 0,
+      nav: true,
+      navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>'],
+      responsiveClass:true,
+      responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:1,
+            nav:true
+        },
+      }
+    });
+
+    var atbButtonStart = $('#atbButtonStart').offset().top;
+
+    var atbButton = function() {
+      var scrollTop = $(window).scrollTop();
+      if (scrollTop > atbButtonStart) {
+        $('#atbButtonRow').removeClass("hidden");
+      } else {
+        $('#atbButtonRow').addClass("hidden");
+      }
+    };
+    $(window).scroll(function() {
+      atbButton();
+    });
   });
 </script>

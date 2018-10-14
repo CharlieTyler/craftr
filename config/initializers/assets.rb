@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # This makes sure the stylesheet that premailer converts into inline is precompiled
-Rails.application.config.assets.precompile += %w( emails.css )
+Rails.application.config.assets.precompile += %w( foundation_emails.css )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

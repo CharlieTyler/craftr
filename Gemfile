@@ -131,4 +131,6 @@ gem 'lazyload-rails'
 
 gem 'nokogiri'
 
+gem 'inky-rb', require: 'inky'
+
 gem 'premailer-rails'
