@@ -50,7 +50,7 @@
     <div class = "col-12 col-md-7">
       <div class = "owl-carousel product-image-carousel">
         <% @product.product_images.each do |image| %>
-          <%= image_tag image.photo_url(:full).to_s, class: "product-image-large", lazy: true %>
+          <%= image_tag image.photo_url(:full).to_s, class: "product-image-large" %>
         <% end %>
         <% if @distillery.youtube_video_url.present? %>
           <div class = "container" id = "video">
@@ -148,6 +148,7 @@
   </div>
 </div>
 
+
 <div class = "container" id = "atbButtonStart">
   <!-- Product details -->
   <div class = "row" id = "details">
@@ -160,9 +161,9 @@
         </div>
         <div class = "col-12 justify-content-center">
           <% if @product.product_images.length > 2 %>
-            <%= image_tag @product.product_images.second.photo_url(:full), class: "d-block img-fluid product-page-image", lazy: true %>
+            <%= image_tag @product.product_images.second.photo_url(:full), class: "d-block img-fluid product-page-image" %>
           <% else %>
-            <%= image_tag @product.product_images.first.photo_url(:full), class: "d-block img-fluid product-page-image", lazy: true %>
+            <%= image_tag @product.product_images.first.photo_url(:full), class: "d-block img-fluid product-page-image" %>
           <% end %>
         </div>
         <div class = "col-12">
@@ -171,7 +172,7 @@
           </div>
         </div>
         <div class = "col-12">
-          <%= image_tag @product.product_images.last.photo_url(:full), class: "d-block img-fluid product-page-image", lazy: true %>
+          <%= image_tag @product.product_images.last.photo_url(:full), class: "d-block img-fluid product-page-image" %>
         </div>
       </div>
     </div>

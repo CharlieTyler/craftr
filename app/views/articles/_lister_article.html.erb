@@ -2,7 +2,7 @@
   <%= link_to article_path(article) do %>
     <div class="card h-100">
       <div class = "card-img-top">
-        <%= image_tag article.banner_image_url(:full), class: "img-fluid", lazy: true %>
+        <%= image_tag article.banner_image_url(:full), class: "img-fluid" %>
       </div>
       <div class="card-block">
         <h4 class="card-title"><%= article.title %></h4>

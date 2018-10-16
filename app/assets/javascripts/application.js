@@ -23,5 +23,5 @@
 //= require bootstrap-multiselect
 //= require Chart.bundle
 //= require chartkick
-//= require_tree .
 // = require lazyload.js
+//= require_tree .
