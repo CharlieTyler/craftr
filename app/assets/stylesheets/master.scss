@@ -23,17 +23,29 @@ html {
   html {
     font-size: 15px;
   }
+  .article-text {
+    line-height: 20px;
+    font-size: 15px;
+  }
 }
 
 @include media-breakpoint-up(md) {
   html {
     font-size: 16px;
   }
+  .article-text {
+    line-height: 25px;
+    font-size: 18px;
+  }
 }
 
 @include media-breakpoint-up(lg) {
   html {
     font-size: 17px;
+  }
+  .article-text {
+    line-height: 32px;
+    font-size: 21px;
   }
 }
 
@@ -406,11 +418,6 @@ a, a:hover {
   box-shadow: inset 400px 0 0 0 #D80286;
 }
 */
-
-.article-text {
-  line-height: 32px;
-  font-size: 21px;
-}
 
 .article-text a{
   color: $primary;
