@@ -27,19 +27,19 @@
 <% if user_signed_in? && (current_user.recently_ordered_products.include?@product) && !current_user.reviews.where(product: @product).present? %>
   <div class = "container">
     <div class = "row">
-      <div class = "col-12">
+      <div class = "col-12 text-center">
         <p class = "article-text">Let us know what you thought of <strong><%= @product.name %></strong> (you recently purchased this).</p>
       </div>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newReviewModal">
+      <button type="button" class="btn btn-primary col-10 offset-1 col-md-6 offset-md-3" data-toggle="modal" data-target="#newReviewModal">
         + Add a review
       </button>
     </div>
   </div>
 <% end %>
-<div class = "container">
-  <div class = "row hidden" id = "atbButtonRow">
-    <div class = "my-3">
-      <div class = "row sticky">
+<div class = "container hidden-md-up">
+  <div class = "row hidden sticky" id = "atbButtonRow">
+    <div class = "col-8 offset-2">
+      <div class = "row pt-2">
         <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false, remote: true} %>
       </div>
     </div>
