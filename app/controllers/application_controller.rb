@@ -45,6 +45,8 @@ class ApplicationController < ActionController::Base
         # Just assign them the one from before they logged in
         @order = Order.find(session[:order_id])
         @order.update_attributes(user_id: current_user.id)
+        # remove session order as now logged in and user owns order
+        session[:order_id] = nil
       # If they only had one saved, use that
       elsif current_user.unpaid_cart.present?
         @order = current_user.unpaid_cart
