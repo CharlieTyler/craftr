@@ -4,7 +4,7 @@ class Checkout::OrdersController < ApplicationController
   before_action :check_all_products_and_distilleries_transactional, except: [:confirmation]
   before_action :check_order_has_shipping_type, except: [:update_shipping, :confirmation]
   before_action :check_order_has_address, only: [:payment, :charge_payment]
-  before_action :check_user_is_beta_tester, only: [:payment, :charge_payment]
+  # before_action :check_user_is_beta_tester, only: [:payment, :charge_payment]
 
   def update_shipping
     @order.update_attributes(order_shipping_params)
