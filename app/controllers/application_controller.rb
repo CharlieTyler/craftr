@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :set_email_sign_up
   before_action :set_cart
+  before_action :set_raven_context
 
   private
   # Its important that the location is NOT stored if:
@@ -21,12 +22,18 @@ class ApplicationController < ActionController::Base
     store_location_for(:user, request.fullpath)
   end
 
+  # TODO this is ugly, surely
   def set_email_sign_up
     @email_sign_up = EmailSignUp.new
   end
 
+  def set_raven_context
+    Raven.user_context(id: current_user.id, email: current_user.email, ip_address: request.ip)
+  end
+
   # Base of this from https://jedrekdomanski.wordpress.com/2017/02/05/building-a-shopping-cart-in-ruby-on-rails-part-1/ and then altered to deal with Devise
 
+  # TODO this no longer feels elegant - should be easier way of doing this
   def set_cart
     if user_signed_in?
       # If there was an order before the person signed in and they had one saved

@@ -19,5 +19,10 @@ module Craftr
 
     # Precompile additional assets
     config.assets.precompile += %w( .svg .eot .woff .ttf emails.css)
+
+    Raven.configure do |config|
+      config.dsn = ENV["SENTRY_DNS"]
+      config.environments = %w[ production ]
+    end
   end
 end
