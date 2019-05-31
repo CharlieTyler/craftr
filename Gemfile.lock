@@ -298,6 +298,8 @@ GEM
     sendgrid-ruby (5.2.0)
       ruby_http_client (~> 3.2)
       sinatra (>= 1.4.7, < 3)
+    sentry-raven (2.9.0)
+      faraday (>= 0.7.6, < 1.0)
     sidekiq (5.0.5)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -403,6 +405,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   sendgrid-ruby
+  sentry-raven
   sidekiq
   simple_form
   sitemap_generator
