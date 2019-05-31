@@ -28,7 +28,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_raven_context
-    Raven.user_context(id: current_user.id, email: current_user.email, ip_address: request.ip)
+    if user_signed_in?
+      Raven.user_context(id: current_user.id, email: current_user.email)
+    else
+      Raven.user_context(ip_address: request.ip)
+    end
   end
 
   # Base of this from https://jedrekdomanski.wordpress.com/2017/02/05/building-a-shopping-cart-in-ruby-on-rails-part-1/ and then altered to deal with Devise
