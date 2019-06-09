@@ -1,2 +1,16 @@
-<h1>Errors#unacceptable</h1>
-<p>Find me in app/views/errors/unacceptable.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-6 offset-md-3 my-3 text-center booyah-box">
+      <h1>Oops!</h1>
+      <h4>We can't find that page</h4>
+      <p>Perhaps you were looking for our top selling products?</p>
+      <div class = "row">
+        <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: {include_add_to_basket: false } %>
+      </div>
+      <p>Otherwise try visiting our <%= link_to "homepage", root_path, class: "text-primary" %> or <%= mail_to "support@craftr.co.uk", "contact support", class: "text-primary" %></p>
+    </div>
+  </div>
+</div>
+
+
+

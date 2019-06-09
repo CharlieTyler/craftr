@@ -1,13 +1,13 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-md-6 booyah-box">
-      <h1>Our bad!</h1>
-      <h4>It looks like something went wrong on our side</h4>
-      <!-- <h6>Perhaps you were looking for our top selling products?</h6>
-      <div class = "row">
-        <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: {include_add_to_basket: true } %>
-      </div> -->
+    <div class = "col-md-6 offset-md-3 my-3 text-center booyah-box">
+      <h1>Oops!</h1>
+      <h4>Our bad. Something went wrong on our side.</h4>
+      <p>We get automatically notified when this type of thing happens. It's a little embarassing, but we'll work on getting it fixed ASAP.</p>
+      <p>In the meantime try visiting our <%= link_to "homepage", root_path, class: "text-primary" %> or <%= mail_to "support@craftr.co.uk", "contact support", class: "text-primary" %></p>
     </div>
   </div>
 </div>
+
+
 
