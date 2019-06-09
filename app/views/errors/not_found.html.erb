@@ -1,0 +1,13 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-6 booyah-box">
+      <h1>Our bad!</h1>
+      <h4>It looks like something went wrong on our side</h4>
+      <h6>Perhaps you were looking for our top selling products?</h6>
+      <div class = "row">
+        <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: {include_add_to_basket: true } %>
+      </div>
+    </div>
+  </div>
+</div>
+

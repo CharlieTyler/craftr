@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+
+  get 'errors/unacceptable'
+
+  get 'errors/internal_server_error'
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   # Use custom registrations_controller.rb file to add sign_up_params etc
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -96,6 +102,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get "/404", to: "errors#not_found"
+  get "/422", to: "errors#unacceptable"
+  get "/500", to: "errors#internal_server_error"
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do

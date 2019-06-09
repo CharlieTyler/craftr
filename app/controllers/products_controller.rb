@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def show
-    @product                   = Product.friendly.find(params[:id])
+    @product                   = Product.includes(:product_images, :reviews, :distillery).friendly.find(params[:id])
     if @product.is_test
       unless user_signed_in? && current_user.admin
         flash[:notice] = "You are not permitted to view test products - please log in to an admin account"
@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     @distillery                = @product.distillery
     @review                    = Review.new
     @recipes                   = @product.recipes
-    @other_distillery_products = @product.distillery.products.live.where.not(id: @product.id)
+    @other_distillery_products = Product.includes(:product_images, :reviews).live.where(distillery_id: @product.distillery.id).where.not(id: @product.id)
     @other_popular_products    = @product.other_popular_products.first(6)
     @order_item                = OrderItem.new
     UserProductView.create(user: user_signed_in? ? current_user : nil, product: @product)

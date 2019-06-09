@@ -53,6 +53,7 @@ group :development do
 
   # For previewing emails in development
   gem 'letter_opener_web', '~> 1.0'
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

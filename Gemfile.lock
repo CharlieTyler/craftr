@@ -64,6 +64,9 @@ GEM
     bootstrap-multiselect-rails (0.9.9)
       rails (>= 4.0.0)
     builder (3.2.3)
+    bullet (6.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (10.0.2)
     capybara (2.18.0)
       addressable
@@ -344,6 +347,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
+    uniform_notifier (1.12.1)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.6.1)
@@ -367,6 +371,7 @@ DEPENDENCIES
   animate-rails
   bootstrap (= 4.0.0.alpha6)
   bootstrap-multiselect-rails
+  bullet
   byebug
   capybara (~> 2.13)
   carrierwave (~> 1.0)

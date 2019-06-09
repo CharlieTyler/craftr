@@ -18,6 +18,7 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+  config.reload_classes_only_on_change = false
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -64,4 +65,10 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.sentry = true
+    Bullet.alert = true
+  end
 end
