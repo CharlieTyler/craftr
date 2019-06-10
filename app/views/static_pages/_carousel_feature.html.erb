@@ -15,8 +15,10 @@ background: linear-gradient(to right, <%= carousel_feature.gradient_from.to_s %>
             <h4 class = "js-animate-me2 animated"><%= simple_format carousel_feature.line_2 %></h4>
             <%= link_to carousel_feature.cta_text, "#{carousel_feature.link_url}", class: "btn btn-lg btn-primary my-3" %>
           <% end %>
-          <%= link_to "Edit", edit_admin_carousel_feature_path(carousel_feature) %>
-          <%= link_to "Delete", admin_carousel_feature_path(carousel_feature), data: { confirm: "Are you sure?" }, method: :delete %>
+          <% if user_signed_in? && current_user.admin %>
+            <%= link_to "Edit", edit_admin_carousel_feature_path(carousel_feature) %>
+            <%= link_to "Delete", admin_carousel_feature_path(carousel_feature), data: { confirm: "Are you sure?" }, method: :delete %>
+          <% end %>
         </div>
       </div>
     </div>
