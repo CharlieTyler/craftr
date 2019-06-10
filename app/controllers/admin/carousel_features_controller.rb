@@ -41,6 +41,8 @@ class Admin::CarouselFeaturesController < AdminController
                                              :cta_text,
                                              :link_url,
                                              :row_order_position,
-                                             :image)
+                                             :image,
+                                             :gradient_from,
+                                             :gradient_to)
   end
 end

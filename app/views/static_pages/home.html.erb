@@ -1,7 +1,6 @@
-<div class = "container-fluid">
+<div class = "container-fluid px-0">
   <div class = "owl-carousel owl-theme hero-carousel">
     <%= render partial: "static_pages/carousel_feature", collection: @carousel_features, as: :carousel_feature %>
-    </div>
   </div> <!-- Owl carousel -->
 </div>
 
@@ -143,7 +142,7 @@
 <script>
   var owl = $('.owl-carousel.hero-carousel'); 
   owl.owlCarousel({
-    stagePadding: 0,
+    stagePadding: -17,
     loop:true,
     dots: true,
     items: 1,

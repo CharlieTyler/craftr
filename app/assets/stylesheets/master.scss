@@ -334,6 +334,12 @@ span.help-block {
   background-size: cover;
 }
 
+.display-v-middle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .lister-product-image {
   min-height: 200px;
   width: auto;
