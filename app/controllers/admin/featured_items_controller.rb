@@ -8,6 +8,8 @@ class Admin::FeaturedItemsController < AdminController
     @featured_recipe_ids = Recipe.where(featured: true).map{|r| r.id}
     @articles = Article.all
     @featured_article_ids = Article.where(featured: true).map{|a| a.id}
+    @distilleries = Distillery.all
+    @featured_distillery_ids = Distillery.where(featured: true).map{|d| d.id}
   end
 
   def update
@@ -23,6 +25,9 @@ class Admin::FeaturedItemsController < AdminController
     elsif params[:article_id].present?
       Article.update_all(featured: false)
       Article.where(:id => params[:article_id]).update_all(featured: true)
+    elsif params[:distillery_id].present?
+      Distillery.update_all(featured: false)
+      Distillery.where(:id => params[:distillery_id]).update_all(featured: true)
     end
 
     redirect_to admin_dashboard_path

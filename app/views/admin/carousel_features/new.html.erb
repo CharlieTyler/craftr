@@ -4,7 +4,7 @@
       <h4>New carousel feature</h4>
       <%= simple_form_for @carousel_feature, url: admin_carousel_features_path do |f| %>
         <%= f.input :line_1 %>
-        <%= f.input :line_2 %>
+        <%= f.input :line_2, input_html: { class: 'quill_container' } %>
         <%= f.input :cta_text %>
         <%= f.input :link_url, hint: "If this is internal, just enter everything after the slash, e.g. products/duck-and-crutch-gin. Make sure you check this link after creation" %>
         <%= f.input :row_order_position %>

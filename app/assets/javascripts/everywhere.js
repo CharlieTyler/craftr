@@ -16,6 +16,13 @@ $( document ).on('turbolinks:load', function() {
   });
 });
 
+$(document).on('turbolinks:load', function() { 
+  $("img").lazyload({
+    threshold : 500,
+    effect : "fadeIn"
+   });
+});
+
 $( document ).on('turbolinks:load', function() { 
   // Scrolling to appropriate area on page
   // Select all links with hashes
@@ -105,9 +112,3 @@ $( document ).on('turbolinks:load', function() {
   })
 });
 
-$(document).on('turbolinks:load', function() { 
-  $("img").lazyload({
-    threshold : 500,
-    effect : "fadeIn"
-   });
-});

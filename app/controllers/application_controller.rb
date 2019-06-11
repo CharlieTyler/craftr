@@ -74,9 +74,30 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Navbar variables
   helper_method :featured_products
   def featured_products
-    @featured_products = Product.where(featured: true).sample(2)
+    @featured_products = Product.where(featured: true).first(4)
+  end
+
+  helper_method :featured_distilleries
+  def featured_distilleries
+    @featured_distilleries = Distillery.where(featured: true).first(4)
+  end
+
+  helper_method :popular_recipes
+  def popular_recipes
+    @popular_recipes = Recipe.all.sort_by{|recipe| -recipe.user_recipe_views.size}.first(5)
+  end
+
+  helper_method :newest_recipes
+  def newest_recipes
+    @newest_recipes = Recipe.limit(5).order('id desc')
+  end
+
+  helper_method :latest_articles
+  def latest_articles
+    @latest_articles = Article.limit(5).order('id desc')
   end
 
   helper_method :navbar_categories

@@ -129,11 +129,13 @@ h1, h2, h3, h4, h5, h6 {
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
+.nav-link {
+  font-family: 'Archivo Black', sans-serif !important;
+  color: $black !important;
+}
+
 .nav-link.active, .nav-link:hover {
-  border-radius: 0px !important;
   color: $primary !important;
-  background-color: transparent !important;
-  border-bottom: 3px solid $primary;
 }
 
 .border-white {
@@ -397,6 +399,7 @@ span.help-block {
 /* lists */
 .no-bullet-list li {
   list-style-type: none;
+  padding: none;
 }
 
 li::before .ingredient-bullet {
@@ -480,13 +483,6 @@ a, a:hover {
   position: absolute;
 }
 
-.search-show-hide {
-  display: none;
-  -webkit-transition: width 0.3s;
-  -moz-transition: width 0.3s;
-  transition: width 0.3s;
-}
-
 .hidden {
   display: none;
 }
@@ -503,3 +499,9 @@ a, a:hover {
 .pagination span.current { padding: 2px 5px 2px 5px; margin: 2px; border: 2px solid darken($primary, 5%); font-weight: bold; background-color: #000099; color: darken($primary, 5%); } 
 .pagination span.disabled { padding: 2px 5px 2px 5px; margin: 2px; border: 2px solid #eee; color: #ddd; border-radius: 5px;}
 
+input[type=search] {
+  border: 2px solid $grey;
+  border-radius: 5px 0px 0px 5px !important;
+
+  -webkit-appearance: none;
+}

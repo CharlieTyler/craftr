@@ -34,6 +34,14 @@
         <%= submit_tag "Edit featured articles", class: "btn btn-primary" %>
       <% end %>
     </div>
+
+    <div class = "col-md-6">
+      <h4>Featured distilleries</h4>
+      <%= form_tag(admin_features_path, method: :patch) do %>
+        <%= select_tag :distillery_id, options_from_collection_for_select(@distilleries, :id, :name, @featured_distillery_ids), multiple: true, class: "multiselect_distilleries" %>
+        <%= submit_tag "Edit featured distilleries", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
 
@@ -61,6 +69,13 @@
 
   $(document).ready(function() {
     $('.multiselect_articles').multiselect({
+      enableFiltering: true,
+      enableCaseInsensitiveFiltering: true
+    });
+  });
+
+  $(document).ready(function() {
+    $('.multiselect_distilleries').multiselect({
       enableFiltering: true,
       enableCaseInsensitiveFiltering: true
     });
