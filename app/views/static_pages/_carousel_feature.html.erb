@@ -8,7 +8,7 @@ background: linear-gradient(to right, <%= carousel_feature.gradient_from.to_s %>
       <div class = "col-5 display-v-middle">
         <%= image_tag carousel_feature.image_url(:square), class: "img-fluid" %>
       </div>
-      <div class = "col-7 display-v-middle text-center py-md-5">
+      <div class = "col-7 display-v-middle text-center py-md-5 pr-5">
         <div>
           <%= link_to "#{carousel_feature.link_url}" do %>
             <h1 class = "display-4 js-animate-me animated logo-text"><span class = ""><%= carousel_feature.line_1 %></span></h1>
