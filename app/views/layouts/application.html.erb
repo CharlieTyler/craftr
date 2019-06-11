@@ -76,29 +76,31 @@
 
       <!-- Above the dropdown navbar for mobile -->
       <div class = "hidden-md-up">
-        <div class = "container-fluid background-secondary py-2">
+        <div class = "container-fluid background-grey py-2">
           <div class = "row">
             <div class = "col-4 text-center">
               <% if user_signed_in? %>
-                <%= link_to me_path, class: "text-white" do %>
-                  <i class="fa fa-user" aria-hidden="true"></i> &nbsp Account
+                <%= link_to me_path do %>
+                  <strong>🙂 Account</strong>
                 <% end %>
               <% else %>
-                <%= link_to new_user_registration_path, class: "text-white" do %>
-                  <i class="fa fa-user-plus" aria-hidden="true"></i> &nbsp Sign up
+                <%= link_to new_user_registration_path do %>
+                  <strong>🤨 Sign up</strong>
                 <% end %>
               <% end %>
             </div>
             <div class = "col-4 text-center">
-              <%= link_to cart_path, class: "text-white" do %>
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp Basket
+              <%= link_to cart_path do %>
+                <strong>🛒 Basket</strong>
                 <% if @order.order_items.length > 0 %>
                   <span class = "badge badge-primary js-number-of-items"><%= @order.total_unpaid_quantity %></span>
                 <% end %>
               <% end %>
             </div>
-            <div class = "col-4 text-center text-white">
-              TBC
+            <div class = "col-4 text-center">
+              <%= link_to "www.instagram.com/craftrspirits" do %>
+                <i class="fa fa-instagram" aria-hidden="true"></i><strong> 21k followers</strong>
+              <% end %>
             </div>
           </div>
         </div>
