@@ -1,19 +1,21 @@
-<div class = "container">
-  <div class = "row py-2">
-    <div class = "col-md-6 offset-md-3">
-      <div class = "row">
-        <div class = "col-6 login-signin-btn login-header">
-          <h2><%= title 'Log in' %></h2>
+<div class = "background-lightgrey">
+  <div class = "container">
+    <div class = "row py-2">
+      <div class = "col-md-6 offset-md-3 lyst-box my-3 px-3 py-3">
+        <div class = "row">
+          <div class = "col-6 login-signin-btn login-header">
+            <h2><%= title 'Log in' %></h2>
+          </div>
+          <div class = "col-6 login-signin-btn signup-header active">
+            <h2>Sign up</h2>
+          </div>
         </div>
-        <div class = "col-6 login-signin-btn signup-header active">
-          <h2>Sign up</h2>
+        <div class = "login-content hidden">
+          <%= render 'devise/shared/login_form' %>
         </div>
-      </div>
-      <div class = "login-content hidden">
-        <%= render 'devise/shared/login_form' %>
-      </div>
-      <div class = "signup-content">
-        <%= render 'devise/shared/signup_form' %>
+        <div class = "signup-content">
+          <%= render 'devise/shared/signup_form' %>
+        </div>
       </div>
     </div>
   </div>
