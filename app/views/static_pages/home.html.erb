@@ -22,7 +22,7 @@
 <% @featured_categories.each do |category| %>
   <% if category.products.where(featured: true).size > 0 %>
     <!-- Products -->
-    <div class = "products-background" id = "products">
+    <div class = "background-lightgrey" id = "products">
       <div class = "container py-3">
         <div class = "d-inline-block">
           <h3>Featured <%= "#{category.name}s" %></h3>

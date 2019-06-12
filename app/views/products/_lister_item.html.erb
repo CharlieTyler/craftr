@@ -7,16 +7,13 @@
       <% else %>
         <%= image_tag "booze_placeholder.jpg", class: "img-fluid" %>
       <% end %>
-      <div class = "lister-product-image-overlay px-3">
-        <%= link_to product_path(product) do %>
-          <p class = "pt-3"><small><%= truncate_html(simple_format(product.description_short), length: 100) %></small></p>
-          <h5 class = "pt-4"><%= render partial: "products/star_rating", locals: {product: product} %></h5>
-        <% end %>
+      <div class = "lister-product-image-overlay px-3 display-v-middle">
+        <%= render partial: 'products/add_to_basket_button', locals: {order_item: OrderItem.new, product: product, include_go_to_checkout: false, large_button: true, remote: true} %>
       </div>
     </div>
     <%= link_to product_path(product) do %>
       <div class="card-block text-left py-2">
-        <h4 class="card-title mb-2"><%= product.name %></h4>
+        <h5 class="card-title mb-2"><%= product.name %></h5>
         <p class = "card-subtitle mb-2 text-muted">from <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
         <h4 class = "text-primary mb-0"><%= product.human_readable_price %></h4>
       </div>
