@@ -4,22 +4,20 @@
   </div> <!-- Owl carousel -->
 </div>
 
-<% unless user_signed_in? %>
-  <div class = "background-secondary"> 
-    <div class = "container">
-      <div class = "row py-2">
-        <div class = "col-12 text-center">
-          <h6 class = "mt-2 text-white">Make the most of Craftr</h6>
-        </div>
-        <div class = "col-12 text-center mb-2">
-          <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
-          <span class = "text-white"> or </span>
-          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-secondary" %>
-        </div>
+<!-- USP banner - 2 versions, one with owl carousel for mobile -->
+<div class = "background-grey">
+  <div class = "container py-3">
+    <h5>3 reasons to pick Craftr</h5>
+    <div class = "row hidden-md-up">
+      <div class = "owl-carousel owl-theme usp-carousel">
+        <%= render partial: "static_pages/usp_banner" %>
       </div>
     </div>
+    <div class = "row hidden-sm-down">
+      <%= render partial: "static_pages/usp_banner" %>
+    </div>
   </div>
-<% end %>
+</div>
 
 <% @featured_categories.each do |category| %>
   <% if category.products.where(featured: true).size > 0 %>
@@ -148,6 +146,16 @@
     items: 1,
     nav: true,
     navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>']
+  });
+
+  var owl = $('.owl-carousel.usp-carousel'); 
+  owl.owlCarousel({
+    stagePadding: -17,
+    loop:true,
+    dots: true,
+    items: 1,
+    nav: true,
+    navText : ['<i class="fa fa-2x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-2x fa-angle-right" aria-hidden="true"></i>']
   });
 
   var animation_end = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';

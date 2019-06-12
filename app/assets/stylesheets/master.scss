@@ -11,7 +11,7 @@ $charcoal: rgba(36, 32, 33, 0.9);
 $primary: #FF6860;
 $secondary: #10304F;
 $black: #050505;
-$grey:#eeeeee;
+$grey:#ebebeb;
 
 /* Text formatting */
 html {
@@ -315,6 +315,15 @@ span.help-block {
 .booyah-box:hover {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.lyst-box {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 2px 10px 0 rgba(0,0,0,.05);
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.05);
+  padding: 10px 0 10px;
 }
 
 .booyah-line {
