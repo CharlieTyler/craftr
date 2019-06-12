@@ -2,7 +2,7 @@
   <%= simple_form_for order_item, wrapper: :inline_form, html: { class: 'form-inline col-12 mx-0 px-0' }, remote: remote, method: :post do |f| %>
     <%= f.input :quantity, :as => :hidden, :input_html => { :value => 1 } %>
     <%= f.input :product_id, :as => :hidden, :input_html => { :value => product.id } %>
-    <%= f.submit "Add to basket", class: "#{large_button ? 'btn-lg' : 'btn'} mx-0 px-0 btn-wrap-text btn-primary atb-button col", data: { disable_with: 'Adding...'} %>
+    <%= f.submit "Add to basket", class: "#{large_button ? 'btn-lg' : 'btn'} mx-0 px-0 btn-wrap-text btn-success atb-button col", data: { disable_with: 'Adding...'} %>
   <% end %>
 
   <% if include_go_to_checkout %>

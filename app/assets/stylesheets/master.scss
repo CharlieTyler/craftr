@@ -13,6 +13,7 @@ $secondary: #10304F;
 $black: #050505;
 $grey:#ebebeb;
 $lightgrey: #f5f5f5;
+$green: #46BA4A;
 
 /* Text formatting */
 html {
@@ -147,7 +148,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Buttons */
 
 .btn {
-  border-radius: 5px;
+  border-radius: 25px;
 }
 
 .btn-primary,
@@ -177,6 +178,21 @@ h1, h2, h3, h4, h5, h6 {
 .btn-secondary:hover {
   background-color: darken($primary, 5%) !important;
   border-color: darken($primary, 5%) !important;
+  color: white !important;
+}
+
+.btn-success,
+.btn-success:active,
+.btn-success:visited,
+.btn-success:focus
+.btn-success.active {
+    background-color: $green !important;
+    border: 2px solid $green !important;
+}
+
+.btn-success:hover {
+  background-color: darken($green, 5%) !important;
+  border-color: darken($green, 5%) !important;
   color: white !important;
 }
 
@@ -348,6 +364,12 @@ span.help-block {
   padding: 10px 0 10px;
 }
 
+.lyst-line-grey {
+  color: $grey;
+  border: 2px solid $grey;
+  border-radius: 2px;
+}
+
 .booyah-line {
   color: #e4e4e4;
   margin: 0px;
@@ -377,6 +399,17 @@ span.help-block {
   min-height: 200px;
   width: auto;
   overflow: hidden;
+}
+
+.indent-dot-lightgrey {
+  height: 0px;
+  width: 0px;
+  border: 0.7143rem solid $lightgrey;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: -0.7143rem;
 }
 
 .lister-product-container {

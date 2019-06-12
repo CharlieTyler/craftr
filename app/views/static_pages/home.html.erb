@@ -37,7 +37,9 @@
               <%= render partial: "products/lister_item", collection: category.products.where(featured: true), as: :product, locals: { md_upwards_col: (category.products.where(featured: true).size.between?(2, 4) ? 12/(category.products.where(featured: true).size) : 4).to_s, include_add_to_basket: false } %>
             </div>
             <div class = "row">
-              <%= link_to "See all our #{category.name}s", category_path(category), class: "btn btn-secondary col-8 offset-2" %>
+              <div class = "col-12 text-center">
+                <%= link_to "See all our #{category.name}s", category_path(category), class: "btn btn-primary" %>
+              </div>
             </div>
           </div>
         </div>

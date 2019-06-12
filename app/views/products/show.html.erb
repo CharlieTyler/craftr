@@ -24,18 +24,23 @@
     </div>
   </div>
 <% end %>
+
+<!-- Leave a review -->
 <% if user_signed_in? && (current_user.recently_ordered_products.include?@product) && !current_user.reviews.where(product: @product).present? %>
-  <div class = "container">
-    <div class = "row">
-      <div class = "col-12 text-center">
-        <p class = "article-text">Let us know what you thought of <strong><%= @product.name %></strong> (you recently purchased this).</p>
+  <div class = "background-lightgrey">
+    <div class = "container">
+      <div class = "row justify-content-center">
+          <div class = "col-auto my-2 pl-2 pl-md-3 text-center lyst-box display-v-middle">
+            <p class = "d-inline-block my-0">Looks like you just bought one of these</p>
+            <button type="button" class="btn btn-primary d-inline-block mx-2" data-toggle="modal" data-target="#newReviewModal">
+              Leave a review
+            </button>
+          </div>
       </div>
-      <button type="button" class="btn btn-primary col-10 offset-1 col-md-6 offset-md-3" data-toggle="modal" data-target="#newReviewModal">
-        + Add a review
-      </button>
     </div>
   </div>
 <% end %>
+
 <div class = "container hidden-md-up">
   <div class = "row hidden sticky" id = "atbButtonRow">
     <div class = "col-8 offset-2">
@@ -45,61 +50,60 @@
     </div>
   </div>
 </div>
-<div class = "container">
-  <div class = "row">
-    <div class = "col-12 col-md-7">
-      <div class = "owl-carousel product-image-carousel">
-        <% @product.product_images.each do |image| %>
-          <%= image_tag image.photo_url(:full).to_s, class: "product-image-large" %>
-        <% end %>
-        <% if @distillery.youtube_video_url.present? %>
-          <div class = "container" id = "video">
-            <div class = "row">
-              <div class = "col-12 text-center">
-                <div class = "embed-responsive embed-responsive-16by9">
-                  <%= raw(youtube_embed(@distillery.youtube_video_url)) %>
+
+<div class = "background-lightgrey pt-3">
+  <div class = "container">
+    <div class = "row pb-3">
+      <div class = "col-12 col-md-6">
+        <div class = "owl-carousel product-image-carousel">
+          <% @product.product_images.each do |image| %>
+            <%= image_tag image.photo_url(:full).to_s, class: "product-image-large" %>
+          <% end %>
+          <% if @distillery.youtube_video_url.present? %>
+            <div class = "container" id = "video">
+              <div class = "row">
+                <div class = "col-12 text-center">
+                  <div class = "embed-responsive embed-responsive-16by9">
+                    <%= raw(youtube_embed(@distillery.youtube_video_url)) %>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <!-- Product descriptions -->
-    <div class = "col-12 col-md-5 pt-3">
-      <h1><%= title @product.name %></h1>
-      <h6 class = "text-muted">by <%= link_to @product.distillery.name, distillery_path(@product.distillery), class: "text-primary" %></h6>
-      <h4><%= render partial: "products/star_rating", locals: {product: @product} %></h4>
-        <h6 class = "my-3 text-muted">
-          <% if @product.size_ml.present? %>
-            <!-- Allow for products not to have size -->
-            <%= "#{@product.size_ml}ml - #{@product.alcohol_percentage}%" %>
-            <!-- Must still have alcohol percentage -->
-          <% else %>
-            <%= "#{@product.alcohol_percentage}%" %>
           <% end %>
-        </h6>
-      <p><strong>We think</strong></p>
-      <blockquote class="blockquote">
-        <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
-      </blockquote>
-      <h3 class = "text-primary"><%= @product.human_readable_price %></h3>
-      <div class = "row favourite-unfavourite py-2">
-        <%= render partial: 'favourite_button', locals: {product: @product} %>
-      </div>
-      <% if @product.is_transactional %> 
-        <div class = "row my-4">
-          <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: true, large_button: true, remote: true} %>
         </div>
-      <% end %>
+      </div>
+
+      <!-- Product descriptions -->
+      <div class = "col-12 col-md-6 ">
+        <div class = "lyst-box px-4 pt-2 pt-md-3 mt-3 mt-md-0">
+          <h2><%= title @product.name %></h2>
+          <h6 class = "text-grey">by <%= link_to @product.distillery.name, distillery_path(@product.distillery), class: "text-primary" %></h6>
+          <hr class = "lyst-line-grey"/>
+          <p class = "article-text mb-1">We think</p>
+          <blockquote class="blockquote mt-0">
+            <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
+          </blockquote>
+          <p class = "my-3 text-muted">
+            <% if @product.size_ml.present? %>
+              <!-- Allow for products not to have size -->
+              <%= "#{@product.size_ml}ml - #{@product.alcohol_percentage}%" %>
+              <!-- Must still have alcohol percentage -->
+            <% else %>
+              <%= "#{@product.alcohol_percentage}%" %>
+            <% end %>
+          <div class = "row favourite-unfavourite py-2">
+            <%= render partial: 'favourite_button', locals: {product: @product} %>
+          </div>
+          <h3 class = "text-primary mt-3"><%= @product.human_readable_price %></h3>
+          </h6>
+          <% if @product.is_transactional %> 
+            <div class = "row my-4">
+              <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: true, large_button: true, remote: true} %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class = "row">
-  <div class = "col-12">
-    <hr class = "booyah-line">
   </div>
 </div>
 
@@ -292,7 +296,7 @@
     //Owl carousel
     $('.owl-carousel.product-image-carousel').owlCarousel({
       loop:true,
-      stagePadding: 0,
+      stagePadding: -5,
       nav: true,
       navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>'],
       responsiveClass:true,

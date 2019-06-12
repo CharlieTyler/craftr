@@ -7,12 +7,12 @@
     <div class = "col-12">
       <p>Craftr will be transactional soon! Favourite a product so we can let you know when you can buy it!</p> 
     </div>
-    <%= link_to product_favourite_products_path(product_id: product.id), class: "btn btn-primary favourite-button col-10 offset-1", method: :post, remote: true do %>
+    <%= link_to product_favourite_products_path(product_id: product.id), class: "btn btn-secondary favourite-button col-10 offset-1", method: :post, remote: true do %>
       <i class="fa fa-heart-o" aria-hidden="true"></i> Favourite
     <% end %>
   <% end %>
 <% else %>
-  <%= link_to "Sign up to favourite", new_user_registration_path, class: "btn btn-primary col-10 offset-1" %>
+  <%= link_to "Sign up to favourite", new_user_registration_path, class: "btn btn-secondary col-10 offset-1" %>
 <% end %>
 
 <script>
