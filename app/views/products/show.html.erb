@@ -79,6 +79,18 @@
           <h2><%= title @product.name %></h2>
           <h6 class = "text-secondary">by <%= link_to @product.distillery.name, distillery_path(@product.distillery), class: "text-primary" %></h6>
           <hr class = "lyst-line-grey"/>
+          <p class = "article-text">
+            <div class = "stock-spinner">
+              <i class="fa fa-circle-o-notch fa-pulse" aria-hidden="true"></i> Checking stock...
+            </div>
+            <div class = "stock-checker hidden">
+              <% if @product.is_in_stock %>
+                <i class="fa fa-check text-green" aria-hidden="true"></i> In stock
+              <% else %>
+                <i class="fa fa-times text-red" aria-hidden="true"></i> Out of stock
+              <% end %>
+            </div>
+          </p>
           <p class = "article-text mb-1">We think</p>
           <blockquote class="blockquote mt-0">
             <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
@@ -332,5 +344,13 @@
     $(window).scroll(function() {
       atbButton();
     });
+  });
+
+  $(document).on('turbolinks:load', function() { 
+    setTimeout(function(){
+      console.log("test");
+      $('.stock-spinner').toggle(500);
+      $('.stock-checker').toggle(500);
+    }, 2000);
   });
 </script>
