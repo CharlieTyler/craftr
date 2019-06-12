@@ -1,4 +1,4 @@
-$secondary: #10304F;
+$dark-grey: #8CA5AD;
 
 html {
   height: 100%;
@@ -18,8 +18,7 @@ body {
   position: relative;
   width: 100%;
   min-height: 100px;
-  background-color: $secondary;
-  color: white;
+  background-color: $dark-grey;
   font-family: "Helvetica Neue", Helvetica;
   padding: 10px 0px;
 }
