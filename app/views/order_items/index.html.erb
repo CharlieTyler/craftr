@@ -1,81 +1,90 @@
 <div class = "background-lightgrey">
   <div class = "container">
     <div class = "row py-3 px-2">
-      <div class = "col-md-8 offset-md-2 lyst-box my-2">
-        <div class = "px-3">
-          <%= render partial: 'checkout/checkout_progress', locals: {order: @order} %>
-        </div>
-        <div class = "indent-dot left background-lightgrey"></div><div class = "indent-dot right  background-lightgrey"></div><hr class = "lyst-line-lightgrey my-2"/>
-        <div class = "px-3">
-        <h4 class = "mt-4">🛒 Your basket</h4>
-        <% if @order_items.present? %>
-          <div class="basket-header">
-            <div class="row">
-              <% @order_items.each do |oi| %>
-                <div class = "col-4 col-md-2">
-                  <%= link_to product_path(oi.product) do %>
-                    <%= image_tag oi.product.product_images.first.photo_url(:full).to_s, class: "img-fluid" %>
-                  <% end %>
-                </div>
-                <div class = "col-8 col-md-10">
-                  <div class = "d-inline-block">
-                    <p class = "article-text no-link-highlight mb-1"><strong><%= link_to oi.product.name, product_path(oi.product) %>, <%= oi.product.size_ml %>ml</strong></p>
+      <% if @order_items.present? %>
+        <div class = "col-md-8 offset-md-2 lyst-box my-2">
+          <div class = "px-3">
+            <%= render partial: 'checkout/checkout_progress', locals: {order: @order} %>
+          </div>
+          <div class = "indent-dot left background-lightgrey"></div><div class = "indent-dot right  background-lightgrey"></div><hr class = "lyst-line-lightgrey my-2"/>
+          <div class = "px-3">
+          <h4 class = "mt-4">🛒 Your basket</h4>
+            <div class="basket-header">
+              <div class="row">
+                <% @order_items.each do |oi| %>
+                  <div class = "col-3 col-md-2">
+                    <%= link_to product_path(oi.product) do %>
+                      <%= image_tag oi.product.product_images.first.photo_url(:full).to_s, class: "img-fluid" %>
+                    <% end %>
                   </div>
-                  <div class = "d-inline-block float-right">
-                    <small><%=link_to "Remove", order_item_path(oi), method: :delete, class: "text-red" %></small>
+                  <div class = "col-9 col-md-10">
+                    <div class = "d-inline-block">
+                      <p class = "article-text no-link-highlight mb-1"><strong><%= link_to oi.product.name, product_path(oi.product) %>, <%= oi.product.size_ml %>ml</strong></p>
+                    </div>
+                    <div class = "d-inline-block float-right">
+                      <small><%=link_to "Remove", order_item_path(oi), method: :delete, class: "text-red" %></small>
+                    </div>
+                    <div class = "clear"></div>
+                    <div class = "d-inline-block float-left">
+                      <p class = "text-muted"><%= oi.quantity %> x <%= number_to_currency((oi.product.price.to_f / 100), unit: "£") %></p>
+                    </div>
+                    <div class = "d-inline-block float-right">
+                      <p class = "float-right"><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></p>
+                    </div>
+                    <% unless oi.product.is_transactional %>
+                      <alert class = "alert-danger">We are currently out of stock of <%= oi.product.name %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</alert>
+                    <% end %>
                   </div>
-                  <div class = "clear"></div>
-                  <div class = "d-inline-block float-left">
-                    <p class = "text-muted"><%= oi.quantity %> x <%= number_to_currency((oi.product.price.to_f / 100), unit: "£") %></p>
+                  <div class = "col-12">
+                    <hr class = "booyah-line my-2"/>
                   </div>
-                  <div class = "d-inline-block float-right">
-                    <p class = "float-right"><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></p>
-                  </div>
-                  <% unless oi.product.is_transactional %>
-                    <alert class = "alert-danger">We are currently out of stock of <%= oi.product.name %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</alert>
-                  <% end %>
-                </div>
-                <div class = "col-12">
-                  <hr class = "booyah-line my-2"/>
-                </div>
-              <% end %>
-              <div class = "col-12">
-                <h6 class = "d-inline-block mt-2">Delivery</h6>
-                <div class = "mt-2 d-inline-block float-right">
-                  <p><%= number_to_currency((@default_shipping_type.price.to_f / 100), unit: "£") %></p>
-                </div>
-                <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
-                  <%= f.input :shipping_type_id, as: :radio_buttons, collection: ShippingType.all.map{ |st| [st.full_shipping_type, st.id] }, label_method: :first, value_method: :last, item_label_class: 'radio', checked: @default_shipping_type.id, label: "" %>
-                  <% if @order.total_unpaid_quantity > 1 %>
-                    <div class = "alert alert-info text-center"><strong>Free shipping</strong> on every extra bottle</div>
-                  <% end %>
-                  <hr class = "booyah-line" />
-                  <hr class = "booyah-line" />
-                  <h6 class = "d-inline-block">Total:</h6>
-                  <h6 class = "d-inline-block text-primary float-right">
-                    <%= number_to_currency(((@order.total_unpaid_product_amount + @default_shipping_type.price.to_f) / 100), unit: "£") %>
-                  </h6>
-                  <%= f.submit "Next: Add delivery address", class: "btn-lg btn-success col-12 my-3" %>
                 <% end %>
+                <div class = "col-12">
+                  <h6 class = "d-inline-block mt-2">Delivery</h6>
+                  <div class = "mt-2 d-inline-block float-right">
+                    <p><%= number_to_currency((@default_shipping_type.price.to_f / 100), unit: "£") %></p>
+                  </div>
+                  <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
+                    <%= f.input :shipping_type_id, as: :radio_buttons, collection: ShippingType.all.map{ |st| [st.full_shipping_type, st.id] }, label_method: :first, value_method: :last, item_label_class: 'radio', checked: @default_shipping_type.id, label: "" %>
+                    <% if @order.total_unpaid_quantity > 1 %>
+                      <div class = "alert alert-info text-center">🚚 Shipping is only ever £2, no matter how many bottles</div>
+                    <% end %>
+                    <hr class = "booyah-line" />
+                    <hr class = "booyah-line" />
+                    <h6 class = "d-inline-block mt-2">Total:</h6>
+                    <h6 class = "d-inline-block float-right mt-2">
+                      <%= number_to_currency(((@order.total_unpaid_product_amount + @default_shipping_type.price.to_f) / 100), unit: "£") %>
+                    </h6>
+                    <%= f.submit "Next: Add delivery address", class: "btn-lg btn-success col-12 my-3" %>
+                  <% end %>
+                </div>
               </div>
-              <div class = "col-12">
-                <hr class = "booyah-line my-3">
-              </div>
+            </div>
+          </div>
+        </div>
+        <div class = "col-md-8 offset-md-2 lyst-box my-2">
+          <div class = "px-3">
+            <div class = "row">
               <div class = "col-12">
                 <h4>You may also like...</h4>
+                <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: { include_add_to_basket: true } %>
               </div>
-              <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: { include_add_to_basket: true } %>
-            </div>
-          </div>  
-        <% else %>
-          <p class = "mt-5 mb-0">Add some <%= link_to "products", products_path, class: "text-primary" %> to your cart to continue. How about some: </p>
-          <ul>
-            <% navbar_categories.each do |category| %>
-              <li><%= link_to category.name, category_path(category), class: "text-primary" %></li>
-            <% end %> 
-          </ul>
-        <% end %>
-      </div>
+            </div>  
+          </div>
+        </div>
+      <% else %>
+        <div class = "col-md-8 offset-md-2 lyst-box my-2">
+          <div class = "px-3">
+            <h3>😕 There's nothing here yet</h3>
+            <p class = "mb-0">Add some <%= link_to "products", products_path, class: "text-primary" %> to your cart to continue. How about some: </p>
+            <ul>
+              <% navbar_categories.each do |category| %>
+                <li><%= link_to category.name, category_path(category), class: "text-primary" %></li>
+              <% end %> 
+            </ul>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
