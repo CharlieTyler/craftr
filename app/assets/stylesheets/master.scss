@@ -377,6 +377,12 @@ span.help-block {
   padding: 10px 0 10px;
 }
 
+.lyst-line-lightgrey {
+  color: $lightgrey;
+  border: 2px solid $grey;
+  border-radius: 2px;
+}
+
 .lyst-line-grey {
   color: $grey;
   border: 2px solid $grey;
@@ -577,4 +583,24 @@ input[type=email] {
   border-radius: 5px 0px 0px 5px !important;
 
   -webkit-appearance: none;
+}
+
+.progress-dot {
+  position:absolute;
+  margin-top:-8px;
+  z-index:1;
+  height:30px;
+  width:30px;
+  border-radius:25px; 
+}
+
+.progress-dot.one {
+  left: 25%;
+}
+.progress-dot.two {
+  left: 50%;
+}
+
+.progress-dot.three {
+  left: 75%;
 }
