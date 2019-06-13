@@ -1,43 +1,41 @@
-<div class = "col-md-8 offset-md-2 lyst-box my-2 mx-2">
-  <div class = "row">
-    <div class = "col-4">
-      <div class = "row my-1">
-        <div class = "col-12 text-center py-1">
-          <h6>1. <%= link_to_if(order.order_items.length > 0, "Basket", cart_path) %></h6>
-          <% if order.order_items.length > 0 %>
-            <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
-          <% else %>
-            <i class="fa fa-2x fa-circle-o text-primary" aria-hidden="true"></i>
-          <% end %>
-        </div>
+<div class = "row">
+  <div class = "col-4">
+    <div class = "row my-1">
+      <div class = "col-12 text-center py-1">
+        <% if order.order_items.length > 0 %>
+          <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
+        <% else %>
+          <i class="fa fa-2x fa-circle-o text-primary" aria-hidden="true"></i>
+        <% end %>
+        <h6>1. <%= link_to_if(order.order_items.length > 0, "Basket", cart_path) %></h6>
       </div>
     </div>
-    <div class = "col-4">
-      <div class = "row my-1">
-        <div class = "col-12 text-center py-1">
-          <h6>2. <%= link_to_if(order.shipping_type.present?, "Address", checkout_address_path) %></h6>
-          <% if order.shipping_address_id.present? %>
-            <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
-          <% else %>
-            <span class = <%= action_name == "address" ? "text-primary" : "text-secondary" %>>
-              <i class="fa fa-2x fa-circle-o" aria-hidden="true"></i>
-            </span>
-          <% end %>
-        </div>
+  </div>
+  <div class = "col-4">
+    <div class = "row my-1">
+      <div class = "col-12 text-center py-1">
+        <% if order.shipping_address_id.present? %>
+          <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
+        <% else %>
+          <span class = <%= action_name == "address" ? "text-primary" : "text-secondary" %>>
+            <i class="fa fa-2x fa-circle-o" aria-hidden="true"></i>
+          </span>
+        <% end %>
+        <h6>2. <%= link_to_if(order.shipping_type.present?, "Address", checkout_address_path) %></h6>
       </div>
     </div>
-    <div class = "col-4">
-      <div class = "row my-1">
-        <div class = "col-12 text-center py-1">
-          <h6>3. <%= link_to_if(order.shipping_address_id.present?, "Payment", checkout_payment_path) %></h6>
-          <% if order.paid %>
-            <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
-          <% else %>
-            <span class = <%= action_name == "payment" ? "text-primary" : "text-secondary" %>>
-              <i class="fa fa-2x fa-circle-o" aria-hidden="true"></i>
-            </span>
-          <% end %>
-        </div>
+  </div>
+  <div class = "col-4">
+    <div class = "row my-1">
+      <div class = "col-12 text-center py-1">
+        <% if order.paid %>
+          <i class="fa fa-2x fa-check-circle text-primary" aria-hidden="true"></i>
+        <% else %>
+          <span class = <%= action_name == "payment" ? "text-primary" : "text-secondary" %>>
+            <i class="fa fa-2x fa-circle-o" aria-hidden="true"></i>
+          </span>
+        <% end %>
+        <h6>3. <%= link_to_if(order.shipping_address_id.present?, "Payment", checkout_payment_path) %></h6>
       </div>
     </div>
   </div>
