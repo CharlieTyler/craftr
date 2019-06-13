@@ -67,7 +67,9 @@
             <div class = "row">
               <div class = "col-12">
                 <h4>You may also like...</h4>
-                <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: { include_add_to_basket: true } %>
+                <div class = "row">
+                  <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: { include_add_to_basket: true } %>
+                </div>
               </div>
             </div>  
           </div>

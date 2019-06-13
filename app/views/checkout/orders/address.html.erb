@@ -12,9 +12,9 @@
             <div class = "col-12">
               <h4>🚚 Select delivery address</h4>
               <p class = "text-muted">UK only - please be aware that we do not ship internationally.</p>
-              <button type="button" class="col-12 btn btn-secondary" data-toggle="modal" data-target="#newAddressModal">
+              <a class="text-primary my-0" data-toggle="modal" data-target="#newAddressModal">
                 + Add an address
-              </button>
+              </a>
             </div>
             <% current_user.addresses.each do |address| %>
               <div class = "col-6 col-md-4 my-2">
@@ -34,9 +34,9 @@
                       <%= simple_form_for @order, url: checkout_update_address_path do |f| %>
                         <%= f.input :shipping_address_id, as: :hidden, :input_html => { :value => address.id } %>
                         <% if @order.shipping_address_id.present? && @order.shipping_address == address %>
-                          <%= f.submit "Selected", class: "btn-lg btn-success col-12" %>
+                          <%= f.submit "Selected", class: "btn btn-primary col-12" %>
                         <% else %>
-                          <%= f.submit "Select", class: "btn-lg btn-secondary col-12" %>
+                          <%= f.submit "Select", class: "btn btn-secondary col-12" %>
                         <% end %>
                       <% end %>
                     </li>
