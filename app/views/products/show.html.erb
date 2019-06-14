@@ -311,7 +311,7 @@
 </div>
 
 <script>
-  $( document ).on('turbolinks:load', function() { 
+  $(function() {
     //Owl carousel
     $('.owl-carousel.product-image-carousel').owlCarousel({
       loop:true,
@@ -330,9 +330,7 @@
         },
       }
     });
-
     var atbButtonStart = $('#atbButtonStart').offset().top;
-
     var atbButton = function() {
       var scrollTop = $(window).scrollTop();
       if (scrollTop > atbButtonStart) {
