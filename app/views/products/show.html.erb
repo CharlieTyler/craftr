@@ -313,22 +313,24 @@
 <script>
   $(function() {
     //Owl carousel
-    $('.owl-carousel.product-image-carousel').owlCarousel({
-      loop:true,
-      stagePadding: -5,
-      nav: true,
-      navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>'],
-      responsiveClass:true,
-      responsive:{
-        0:{
-            items:1,
-            nav:true
-        },
-        600:{
-            items:1,
-            nav:true
-        },
-      }
+    $( document ).on('turbolinks:load', function() { 
+      $('.owl-carousel.product-image-carousel').owlCarousel({
+        loop:true,
+        stagePadding: -5,
+        nav: true,
+        navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>'],
+        responsiveClass:true,
+        responsive:{
+          0:{
+              items:1,
+              nav:true
+          },
+          600:{
+              items:1,
+              nav:true
+          },
+        }
+      });
     });
 
     var atbButtonStart = $('#atbButtonStart').offset().top;

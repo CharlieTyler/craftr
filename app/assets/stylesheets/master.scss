@@ -198,27 +198,40 @@ h1, h2, h3, h4, h5, h6 {
 .btn-success.active {
     background-color: $green !important;
     border: 2px solid $green !important;
+    cursor: pointer;
 }
 
 .btn-success:hover {
   background-color: darken($green, 5%) !important;
   border-color: darken($green, 5%) !important;
   color: white !important;
+  cursor: pointer;
 }
 
-.login-signin-btn {
-  border-radius: 0px;
-  color: black;
-  border-bottom: 1px solid black;
+.btn-green-secondary,
+.btn-green-secondary:active,
+.btn-green-secondary:visited,
+.btn-green-secondary:focus
+.btn-green-secondary.active {
+    background-color: white !important;
+    border: 2px solid $green !important;
+    color: $green !important;
+    cursor: pointer;
+}
+
+.btn-green-secondary:hover {
+  background-color: darken($green, 5%) !important;
+  border-color: darken($green, 5%) !important;
+  color: white !important;
   cursor: pointer;
 }
 
 
+.login-signin-btn {
+  cursor: pointer;
+}
 .login-signin-btn.active {
-  border-radius: 0px !important;
   color: $primary !important;
-  border-bottom: 3px solid $primary;
-  font-size: 1.2em;
 }
 
 .btn-wrap-text {

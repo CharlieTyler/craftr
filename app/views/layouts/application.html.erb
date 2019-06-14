@@ -294,30 +294,15 @@
     <div id="footer" class = "pt-3">
       <div class="container">
         <div class = "row">
-          <div class = "col-md-6 lyst-box px-2 py-2 mb-3 mb-md-1 display-v-middle">
-            <h5>📩 The Craftr newsletter</h5>
-            <p>📚 Sign up for new recipes and other stuff like that...</p>
-            <div class = "input-group">
-              <%= simple_form_for @email_sign_up, url: email_sign_ups_path, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
-                <%= f.input :email, label: "Email sign up: ", :size => 30, placeholder: "ginlover101@hotmail.com", html: { class: "form-control" } %>
-                <span class = "input-group-btn">
-                  <%= f.submit "Sign up", class: "btn btn-primary" %>
-                </span>
-              <% end %>
-            </div>
-          </div>
           <div class = "col-6 col-md-3">
-            <h5>⚡ Quick links</h5>
-            <ul class = "no-bullet-list">
-              <li><%= link_to '🤔 About', about_path %></li>
-              <% if user_signed_in? && current_user.admin %>
-                <li><%= link_to 'Admin dashboard', admin_dashboard_path %></li>
-              <% end %>
-              <li><%= link_to '✉️ Contact us', contact_path %></li>
-              <li><%= link_to '🔒 Privacy policy', privacy_policy_path %></li>
+            <h5 class = "text-white">⚡ Quick links</h5>
+            <ul class = "no-bullet-list pl-0 text-white">
+              <li><%= link_to 'About', about_path %></li>
+              <li><%= link_to 'Contact us', contact_path %></li>
+              <li><%= link_to 'Privacy policy', privacy_policy_path %></li>
             </ul>
           </div>
-          <div class = "col-6 col-md-3 display-v-middle">
+          <div class = "col-6 col-md-3 offset-md-6 display-v-middle">
             <%= link_to "http://www.drinkaware.co.uk" do %>
               <%= image_tag "drink_aware_logo.png", class: "img-fluid drink-aware mt-0" %>
             <% end %>

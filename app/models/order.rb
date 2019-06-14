@@ -38,7 +38,11 @@ class Order < ApplicationRecord
   end
 
   def total_unpaid_amount
-    total_unpaid_product_amount + total_unpaid_shipping_amount
+    if shipping_type.present?
+      total_unpaid_product_amount + total_unpaid_shipping_amount
+    else
+      total_unpaid_product_amount
+    end
   end
 
   # Attribute methods post denormalising
@@ -72,7 +76,7 @@ class Order < ApplicationRecord
   end
 
   def send_admin_emails
-    ["mike@craftr.co.uk", "will@craftr.co.uk"].each do |admin|
+    ["mike@craftr.co.uk"].each do |admin|
       OrderNotifierMailer.admin_email(self, admin).deliver_now
     end
   end

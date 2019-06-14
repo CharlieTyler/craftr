@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :store_user_location!, if: :storable_location?
-  before_action :set_email_sign_up
   before_action :set_cart
   before_action :set_raven_context
+  # before_action :set_email_sign_up
 
   private
   # Its important that the location is NOT stored if:
@@ -22,10 +22,10 @@ class ApplicationController < ActionController::Base
     store_location_for(:user, request.fullpath)
   end
 
-  # TODO this is ugly, surely
-  def set_email_sign_up
-    @email_sign_up = EmailSignUp.new
-  end
+  # # TODO this is ugly, surely
+  # def set_email_sign_up
+  #   @email_sign_up = EmailSignUp.new
+  # end
 
   def set_raven_context
     if user_signed_in?
