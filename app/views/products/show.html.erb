@@ -126,6 +126,65 @@
   </div>
 </div>
 
+<div class = "background-grey py-3">
+  <div class = "container">
+    <div class = "row px-3">
+      <div class = "col-12">
+        <h4>More information</h4>
+      </div>
+      <div class = "col-12 lyst-box">
+        <div class = "px-3 text-center" id = "the-story-banner">  
+          <h5 class = "my-0">The story <i class="fa fa-plus fa-minus text-primary" id = "the-story-toggle-switch" aria-hidden="true"></i></h5>
+        </div>
+        <div id = "the-story-box">
+          <div class = "px-3">
+            <div class = "row">
+              <div class = "col-md-6">
+                <%= simple_format(@product.description_first) %>
+                <%= simple_format(@product.description_second) %>
+              </div>
+              <div class = "col-md-6">
+                <%= image_tag @product.distillery.people_image, class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class = "pt-1">
+          <div class = "indent-dot left background-grey"></div><div class = "indent-dot right  background-grey"></div><hr class = "lyst-line-grey my-2"/>
+        </div>
+        <div class = "px-3 text-center" id = "taste-profile-banner">  
+          <h5 class = "my-0">Taste profile <i class="fa fa-plus text-primary" id = "taste-profile-toggle-switch" aria-hidden="true"></i></h5>
+        </div>
+        <div id = "taste-profile-box" class = "hidden">
+          <div class = "px-3">
+            <div class = "row">
+              <div class = "col-md-6">
+                Some words about the taste
+              </div>
+              <div class = "col-md-6 display-v-middle">
+                <%= render partial: "products/taste_sliders", locals: {product: @product} %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class = "pt-1">
+          <div class = "indent-dot left background-grey"></div><div class = "indent-dot right  background-grey"></div><hr class = "lyst-line-grey my-2"/>
+        </div>
+        <div class = "px-3 text-center" id = "suggested-recipes-banner">  
+          <h5 class = "my-0">Suggested recipes <i class="fa fa-plus text-primary" id = "suggested-recipes-toggle-switch" aria-hidden="true"></i></h5>
+        </div>
+        <div id = "suggested-recipes-box" class = "hidden">
+          <div class = "px-3">
+            <div class = "row">
+              <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <% unless @product.fresh_to_complex.blank? && @product.dry_to_sweet.blank? && @product.subtle_to_intense.blank? %>
   <div class = "container">
     <div class = "row py-3">
@@ -346,9 +405,32 @@
 
   $(function() { 
     setTimeout(function(){
-      console.log("test");
       $('.stock-spinner').addClass("hidden");
       $('.stock-checker').removeClass("hidden");
     }, 2000);
+  });
+
+  $(function() { 
+    $("#the-story-banner").click(function() {
+      console.log("hello");
+      $("#the-story-box").toggleClass("hidden");
+      $("#the-story-toggle-switch").toggleClass("fa-minus");
+    });
+  });
+
+  $(function() { 
+    $("#taste-profile-banner").click(function() {
+      console.log("hello");
+      $("#taste-profile-box").toggleClass("hidden");
+      $("#taste-profile-toggle-switch").toggleClass("fa-minus");
+    });
+  });
+
+  $(function() { 
+    $("#suggested-recipes-banner").click(function() {
+      console.log("hello");
+      $("#suggested-recipes-box").toggleClass("hidden");
+      $("#suggested-recipes-toggle-switch").toggleClass("fa-minus");
+    });
   });
 </script>
