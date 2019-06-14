@@ -349,8 +349,8 @@
   $(document).on('turbolinks:load', function() { 
     setTimeout(function(){
       console.log("test");
-      $('.stock-spinner').toggle(500);
-      $('.stock-checker').toggle(500);
+      $('.stock-spinner').addClass("hidden");
+      $('.stock-checker').removeClass("hidden");
     }, 2000);
   });
 </script>

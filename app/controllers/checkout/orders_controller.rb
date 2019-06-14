@@ -27,10 +27,17 @@ class Checkout::OrdersController < ApplicationController
     if @address.valid?
       # Creates easy_post_address in after_create action
       flash[:notice] = 'Address successfully created'
+      @order.update_attributes(shipping_address_id: @address.id)
+      if @order.valid?
+        redirect_to checkout_payment_path
+      else
+        flash[:alert] = 'There was an error setting your shipping address, please try again'
+        redirect_to checkout_address_path
+      end
     else
       flash[:alert] = 'Invalid address'
+      redirect_to checkout_address_path
     end
-    redirect_to checkout_address_path      
   end
 
   def update_address
