@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     @review                    = Review.new
     @recipes                   = @product.recipes
     @other_distillery_products = Product.includes(:product_images, :reviews).live.where(distillery_id: @product.distillery.id).where.not(id: @product.id)
-    @other_popular_products    = @product.other_popular_products.first(6)
+    @other_popular_products    = @product.other_popular_products.first(3)
     @order_item                = OrderItem.new
     UserProductView.create(user: user_signed_in? ? current_user : nil, product: @product)
     # SEO
