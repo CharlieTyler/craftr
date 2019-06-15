@@ -134,7 +134,7 @@
       </div>
       <div class = "col-12 lyst-box">
         <div class = "px-3 text-center" id = "the-story-banner">  
-          <h5 class = "my-0">The story <i class="fa fa-plus fa-minus text-primary" id = "the-story-toggle-switch" aria-hidden="true"></i></h5>
+          <h5 class = "my-0">The story <i class="fa fa-minus text-primary" id = "the-story-toggle-switch" aria-hidden="true"></i></h5>
         </div>
         <div id = "the-story-box">
           <div class = "px-3">
@@ -158,7 +158,7 @@
           <div class = "indent-dot left background-grey"></div><div class = "indent-dot right  background-grey"></div><hr class = "lyst-line-grey my-2"/>
         </div>
         <div class = "px-3 text-center" id = "taste-profile-banner">  
-          <h5 class = "my-0">Taste profile <i class="fa fa-plus text-primary" id = "taste-profile-toggle-switch" aria-hidden="true"></i></h5>
+          <h5 class = "my-0">Taste profile <i class="fa fa-chevron-down text-primary" id = "taste-profile-toggle-switch" aria-hidden="true"></i></h5>
         </div>
         <div id = "taste-profile-box" class = "hidden">
           <div class = "px-3">
@@ -174,7 +174,7 @@
             <div class = "indent-dot left background-grey"></div><div class = "indent-dot right  background-grey"></div><hr class = "lyst-line-grey my-2"/>
           </div>
           <div class = "px-3 text-center" id = "suggested-recipes-banner">  
-            <h5 class = "my-0">Suggested recipes <i class="fa fa-plus text-primary" id = "suggested-recipes-toggle-switch" aria-hidden="true"></i></h5>
+            <h5 class = "my-0">Suggested recipes <i class="fa fa-chevron-down text-primary" id = "suggested-recipes-toggle-switch" aria-hidden="true"></i></h5>
           </div>
           <div id = "suggested-recipes-box" class = "hidden">
             <div class = "px-3">
@@ -320,6 +320,7 @@
       console.log("hello");
       $("#the-story-box").toggleClass("hidden");
       $("#the-story-toggle-switch").toggleClass("fa-minus");
+      $("#the-story-toggle-switch").toggleClass("fa-chevron-down");
     });
   });
 
@@ -328,6 +329,7 @@
       console.log("hello");
       $("#taste-profile-box").toggleClass("hidden");
       $("#taste-profile-toggle-switch").toggleClass("fa-minus");
+      $("#taste-profile-toggle-switch").toggleClass("fa-chevron-down");
     });
   });
 
@@ -336,6 +338,7 @@
       console.log("hello");
       $("#suggested-recipes-box").toggleClass("hidden");
       $("#suggested-recipes-toggle-switch").toggleClass("fa-minus");
+      $("#suggested-recipes-toggle-switch").toggleClass("fa-chevron-down");
     });
   });
 </script>
