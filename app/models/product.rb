@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   friendly_id :name, use: :slugged
 
   scope :live, -> { where(is_live: true, is_test: false) }
-  scope :transactional, -> { where(is_live: true, is_in_stock: true).where.not(weight: [nil, ''], distillery_take: [nil, '']) }
+  scope :transactional, -> { where(is_live: true, is_in_stock: true, is_test: false).where.not(weight: nil, distillery_take: nil) }
   scope :similar_products, ->(product) { where("id != ? and category_id = ?", product.id, product.category.id) }
   scope :strength, -> (min, max) { where('alcohol_percentage > ? AND alcohol_percentage < ?', min, max) }
   scope :category, -> (category_id) { where category_id: category_id }
