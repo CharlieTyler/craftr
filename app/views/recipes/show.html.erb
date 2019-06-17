@@ -66,11 +66,11 @@
         <p class = "article-text"><%= simple_format @recipe.blurb %></p>
       <% end %>
       <% if @recipe.variants.length > 12 %> <!-- Seemingly has <p><br/></p> tags in as default -->
-        <h3 class = "text-center" id = "method">Variants of <%= @recipe.name %></h3>
+        <h5 class = "text-center" id = "method">Variants of <%= @recipe.name %></h5>
         <p class = "article-text"><%= simple_format @recipe.variants %></p>
       <% end %>
       <% unless @recipe.products.live.blank? %>
-        <h3 class = "pt-2">Recommended products</h3>
+        <h5 class = "pt-2">Recommended products</h5>
         <div class = "row py-2">
           <%= render partial: 'products/lister_item', collection: @recipe.products.live, as: :product, locals: { md_upwards_col: (@recipe.products.live.size.between?(2, 4) ? 12/(@recipe.products.live.size) : 4).to_s, include_add_to_basket: true } %>
         </div>
@@ -78,7 +78,7 @@
     </div>
     <div class = "col-md-3 float-right">
       <div id = "mostRead">
-        <h4>Most read recipes</h4>
+        <h5>Most read recipes</h5>
         <ol>
           <% @most_viewed_recipes.each do |recipe| %>
             <li><%= link_to recipe.name, recipe_path(recipe) %></li>
