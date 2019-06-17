@@ -36,11 +36,14 @@ class Admin::CategoriesController < AdminController
   private
 
   def category_params
-    params.require(:category).permit(:name, 
+    params.require(:category).permit(:name,
+                                     :description,
                                      :icon,
                                      :banner_image,
                                      :featured,
                                      :instagram_hashtag,
+                                     :gradient_from,
+                                     :gradient_to,
                                      :row_order_position)
   end
 end

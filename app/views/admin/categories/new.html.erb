@@ -3,10 +3,13 @@
     <div class = "col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <%= simple_form_for @category, url: admin_categories_path do |f| %>
         <%= f.input :name %>
+        <%= f.input :description, input_html: { class: 'quill_container' } %>
         <%= f.input :icon %>
         <%= f.input :instagram_hashtag %>
         <%= f.input :banner_image %>
         <%= f.input :featured %>
+        <%= f.input :gradient_from, hint: "Use https://uigradients.com/ to select an gradient" %>
+        <%= f.input :gradient_to %>
         <%= f.input :row_order_position, hint: "Put n-1 of where you want this to be ranked. E.g. '0' to be ranked first" %>
         <br />
         <%= f.submit "Create", class: "btn btn-primary" %>

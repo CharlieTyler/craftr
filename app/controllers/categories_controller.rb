@@ -5,10 +5,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.friendly.find(params[:id])
-    @featured_products = @category.products.live.where(featured: true)
-    @featured_recipes = @category.recipes.where(featured: true)
-    @featured_articles = @category.articles.where(featured: true)
-    @products = @category.products.live
+    @products = @category.products.transactional + (@category.products.live - @category.products.transactional)
     @recipes  = @category.recipes
     @articles = @category.articles
 

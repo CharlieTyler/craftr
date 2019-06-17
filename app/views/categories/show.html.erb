@@ -17,53 +17,31 @@
   </div>
 <% end %>
 
-<div class = "container-fluid">
-  <div class = "owl-carousel owl-theme category-carousel">
-    <%= render partial: "products/carousel_product", collection: @featured_products, as: :product %>
-    <%= render partial: "recipes/carousel_recipe", collection: @featured_recipes, as: :recipe %>
-    <%= render partial: "articles/carousel_article", collection: @featured_articles, as: :article %>
+<div class="py-3" style="
+background: #2193b0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, <%= @category.gradient_from %>, <%= @category.gradient_to %>);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, <%= @category.gradient_from %>, <%= @category.gradient_to.to_s %>); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-5 display-v-middle">
+        <%= image_tag @category.banner_image, class: "img-fluid" %>
+      </div>
+      <div class = "col-7 display-v-middle py-md-5 pr-5">
+        <h1 class = "display-4 js-animate-me animated logo-text px-2"><span class = ""><%= @category.name %></span></h1>
+        <p class = "js-animate-me2 animated"><%= simple_format @category.description %></p>
+      </div>
+    </div>
+    <div class = "row py-2">
+      <div class = "col-4 text-center article-text"><a class="no-click text-white" href="#products"><strong>Products</strong></a></div>
+      <div class = "col-4 text-center article-text"><a class="no-click text-white" href="#recipes"><strong>Recipes</strong></a></div>
+      <div class = "col-4 text-center article-text"><a class="no-click text-white" href="#articles"><strong>Articles</strong></a></div>
+    </div>
   </div>
 </div>
 
-<!-- Secondary nav -->
-<div class="nav-wrapper" style="height:50px;">
-  <nav class = "secondary-nav background-white mb-0 pb-0" id = "secondary-nav" style = "height:50px;">
-    <div class = "container-fluid">
-      <div class = "row">
-        <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
-          <% unless @products.blank? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
-            </li>
-          <% end %>
-          <% unless @recipes.blank? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#recipes"><h6>Recipes</h6></a>
-            </li>
-          <% end %>
-          <% unless @articles.blank? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#articles"><h6>Articles</h6></a>
-            </li>
-          <% end %>
-          <% unless @instas.blank? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#social"><h6>Social</h6></a>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <div class = "row">
-        <div class = "col-12">
-          <hr class = "booyah-line">
-        </div>
-      </div>
-    </div>
-  </nav>
-</div>
-
 <% unless @products.blank? %>
-  <div class = "background-grey">
+  <div class = "background-lightgrey">
     <div class = "container py-2">
       <div class = "row" id = "products">
         <div class = "col-md-10 offset-md-1">
@@ -125,13 +103,42 @@
 
 <script>
   $( document ).on('turbolinks:load', function() { 
-    $('.owl-carousel.category-carousel').owlCarousel({
-      stagePadding: 0,
-      loop:true,
-      dots: true,
-      items: 1,
-      nav: true,
-      navText : ['<i class="fa fa-4x fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-4x fa-angle-right" aria-hidden="true"></i>']
-    });
+  // Scrolling to appropriate area on page
+  // Select all links with hashes
+  $('a[href*="#"]')
+    // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
   });
+});
 </script>

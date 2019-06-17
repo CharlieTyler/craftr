@@ -11,7 +11,7 @@
         <% if product.is_transactional %>
           <%= render partial: 'products/add_to_basket_button', locals: {order_item: OrderItem.new, product: product, include_go_to_checkout: false, large_button: true, remote: true} %>
         <% else %>
-          <div class = "btn-lg btn-primary col-12">Learn more</div>
+          <%= link_to "Learn more", product_path(product), class: "col-12 btn-lg btn-primary" %>
         <% end %>
       </div>
     </div>
