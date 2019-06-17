@@ -3,7 +3,6 @@
     <div class = "row">
       <div class = "col-md-6 offset-md-3">
         <h6>Admin functions</h6>
-        <h1><%= title @category.name %></h1>
         <div class = "row">
           <div class = "col-6">
             <%= link_to "Edit", edit_admin_category_path(@category), class: "btn btn-secondary col-10 offset-1" %>
@@ -24,12 +23,16 @@ background: linear-gradient(to right, <%= @category.gradient_from %>, <%= @categ
 ">
   <div class = "container">
     <div class = "row">
-      <div class = "col-5 display-v-middle">
-        <%= image_tag @category.banner_image, class: "img-fluid" %>
-      </div>
-      <div class = "col-7 display-v-middle py-md-5 pr-5">
-        <h1 class = "display-4 js-animate-me animated logo-text px-2"><span class = ""><%= @category.name %></span></h1>
-        <p class = "js-animate-me2 animated"><%= simple_format @category.description %></p>
+      <% if @category.banner_image.present? %>
+        <div class = "col-5 display-v-middle">
+          <%= image_tag @category.banner_image, class: "img-fluid" %>
+        </div>
+      <% end %>
+      <div class = "col display-v-middle py-md-5 pr-5">
+        <h1 class = "display-4 js-animate-me animated logo-text px-2"><span class = ""><%= title @category.name %></span></h1>
+        <% if @category.description.present? %>
+          <p class = "js-animate-me2 animated"><%= simple_format @category.description %></p>
+        <% end %>
       </div>
     </div>
     <div class = "row py-2">
