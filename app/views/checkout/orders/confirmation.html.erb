@@ -1,30 +1,57 @@
-<div class = "container">
-  <div class = "row">
-    <%= render partial: 'checkout/checkout_progress', locals: {order: @confirmed_order} %>
-  </div>
-  <div class = "row">
-    <div class = "col-12">
-      <h4 class = "text-primary my-3"><i class="fa fa-smile-o" aria-hidden="true"></i> Order confirmed</h4>
-      <p class = "text-muted">You will receive an email confirmation shortly. For reference, your order id is <%= @confirmed_order.id %></p>
-    </div>
-  </div>
-  <div class = "row">
-    <%= render partial: 'checkout/orders/order_summary', locals: {order: @confirmed_order} %>
-  </div>
-  <div class = "row">
-    <div class = "col-12">
-      <hr class = "booyah-line my-3" />
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col-12">
-      <h4>In the meantime, here are some recipes you might like to try</h4>
-      <p class = "text-muted">Hint: favourite the ones you want to try so you can find them later!</p>
-    </div>
-    <div class = "col-12">
-      <div class = "row">
-        <%= render partial: 'recipes/lister_recipe', collection: @relevant_recipes, as: :recipe, locals: { md_upwards_col: "3" }  %>
+<% if @confirmed_order.present? %>
+  <div class = "background-lightgrey">
+    <div class = "container">
+      <div class = "row py-3 px-2">
+        <div class = "col-12 lyst-box my-2 mx-2">
+          <div class = "px-3">
+            <%= render partial: 'checkout/checkout_progress', locals: {order: @confirmed_order} %>
+          </div>
+        </div>
+        <div class = "col-md-8 offset-md-2 lyst-box my-2 px-3">
+          <p class = "article-text">You will receive an email confirmation shortly. For reference, your order id is <strong><%= @confirmed_order.id %></strong></p>
+          <p class = "article-text">When you order from Craftr, everything is shipped direct from the distilleries, so the people at <%= @confirmed_order.sold_items.map{|si| si.product.distillery.name}.to_sentence %> will pick, pack and despatch your products to you ASAP</p>
+          <p class = "article-text">You can find a record of your orders in your <%= link_to "account area", account_orders_path %></p>
+        </div>
+        <div class = "col-md-8 offset-md-2">
+          <div class = "row">
+            <%= render partial: 'checkout/orders/order_summary', locals: {order: @confirmed_order} %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <div class = "container">
+    <div class = "row py-3 px-2">
+      <div class = "col-12">
+        <h4>In the meantime, here are some recipes you might like to try</h4>
+        <p class = "text-muted">Hint: favourite the ones you want to try so you can find them later!</p>
+      </div>
+      <div class = "col-12">
+        <div class = "row">
+          <%= render partial: 'recipes/lister_recipe', collection: @relevant_recipes, as: :recipe, locals: { md_upwards_col: "3" }  %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class = "background-lightgrey">
+    <div class = "container">
+      <div class = "row py-3 px-2">
+        <div class = "col-12 lyst-box my-2 mx-2 px-3">
+          <h4>You can view all of your previous orders in your <%= link_to "account area", account_orders_path %></h4>
+          <p class = "article-text">If you have any questions regarding your order, please <%= mail_to "support@craftr.co.uk", "contact support", class: "text-primary" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $(function() {
+    setTimeout(function(){
+      $("#checkout-progress-bar").fadeOut(function() { 
+        $(this).html('<div class = "col-12 py-2 text-center"><h4 class = "my-3"><i class="fa fa-check text-green" aria-hidden="true"></i> Order confirmed</h4></div>').fadeIn();
+      });
+    }, 2000);
+  });
+</script>

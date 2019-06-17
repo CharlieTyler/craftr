@@ -111,8 +111,12 @@ class Checkout::OrdersController < ApplicationController
   end
 
   def confirmation
-    @confirmed_order = Order.find(session[:confirmed_order_id])
-    @relevant_recipes = @confirmed_order.order_items.first.product.related_recipes
+    if session[:confirmed_order_id].present?
+      @confirmed_order = Order.find(session[:confirmed_order_id])
+      @relevant_recipes = @confirmed_order.order_items.first.product.related_recipes
+    else
+      @confirmed_order = ""
+    end
     session[:confirmed_order_id] = nil
   end
 
