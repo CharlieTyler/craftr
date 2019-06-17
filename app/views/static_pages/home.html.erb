@@ -38,14 +38,9 @@
             </div>
             <div class = "row">
               <div class = "col-12 text-center">
-                <%= link_to "See all our #{category.name}s", category_path(category), class: "btn btn-primary" %>
+                <%= link_to "See all our #{category.name}s", category_path(category), class: "btn btn-primary mt-3 mb-1" %>
               </div>
             </div>
-          </div>
-        </div>
-        <div class = "row">
-          <div class = "col-12">
-            <hr class = "booyah-line mt-2" />
           </div>
         </div>
       </div>
@@ -81,12 +76,8 @@
       <p class = "text-primary"><%= link_to "See all", recipes_path %></p>
     </div>
     <div class = "clear"></div>
-    <div class = "row text-center">
-      <div class = "col-12">
-        <div class = "row">
-          <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe, locals: { md_upwards_col: "3" } %>
-        </div>
-      </div>
+    <div class = "row">
+      <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe, locals: { md_upwards_col: "3" } %>
     </div>
   </div>
 </div>
@@ -111,7 +102,7 @@
           <p class = "text-primary"><%= link_to "See all", distilleries_path %></p>
         </div>
         <div class = "clear"></div>
-        <div class = "row py-3 text-center">
+        <div class = "row py-3">
           <%= render partial: "distilleries/lister_distillery", collection: @featured_distilleries, as: :distillery %>
         </div>
       </div>

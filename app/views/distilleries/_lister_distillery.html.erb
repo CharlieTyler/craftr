@@ -10,11 +10,8 @@
       </div>
       <div class="card-block">
         <h4 class="card-title"><%= distillery.name %></h4>
-        <p class="card-text"><%= truncate_html(distillery.summary_text, length: 100) %></p>
+        <p class="card-subtitle"><%= pluralize(distillery.products.live.length, 'product') %> from <%= distillery.location %></p>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted text-left"><%= pluralize(distillery.products.live.length, 'product') %> from <%= distillery.location %></li>
-      </ul>
     </div>
   <% end %>
 </div>
