@@ -33,9 +33,15 @@ background: linear-gradient(to right, <%= @category.gradient_from %>, <%= @categ
       </div>
     </div>
     <div class = "row py-2">
-      <div class = "col-4 text-center article-text"><a class="no-click text-white" href="#products"><strong>Products</strong></a></div>
-      <div class = "col-4 text-center article-text"><a class="no-click text-white" href="#recipes"><strong>Recipes</strong></a></div>
-      <div class = "col-4 text-center article-text"><a class="no-click text-white" href="#articles"><strong>Articles</strong></a></div>
+      <% unless @products.blank? %>
+        <div class = "col text-center article-text"><a class="no-click text-white" href="#products"><strong>Products</strong></a></div>
+      <% end %>
+      <% unless @recipes.blank? %>
+        <div class = "col text-center article-text"><a class="no-click text-white" href="#recipes"><strong>Recipes</strong></a></div>
+      <% end %>
+      <% unless @articles.blank? %>
+        <div class = "col text-center article-text"><a class="no-click text-white" href="#articles"><strong>Articles</strong></a></div>
+      <% end %>
     </div>
   </div>
 </div>
