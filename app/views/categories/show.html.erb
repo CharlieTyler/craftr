@@ -25,7 +25,7 @@ background: linear-gradient(to right, <%= @category.gradient_from %>, <%= @categ
     <div class = "row">
       <% if @category.banner_image.present? %>
         <div class = "col-5 display-v-middle">
-          <%= image_tag @category.banner_image, class: "img-fluid" %>
+          <%= image_tag @category.banner_image_url(:full), class: "img-fluid" %>
         </div>
       <% end %>
       <div class = "col display-v-middle py-md-5 pr-5">
