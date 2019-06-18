@@ -46,6 +46,7 @@ class Admin::AuthorsController < AdminController
                                    :instagram_link,
                                    :website_link,
                                    :slug,
-                                   :user_id)
+                                   :user_id,
+                                   :bio_image)
   end
 end

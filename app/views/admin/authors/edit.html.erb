@@ -8,9 +8,10 @@
         <%= f.input :instagram_link %>
         <%= f.input :website_link %>
         <%= f.input :background_image %>
-        <%= f.input :mugshot %>
+        <%= f.input :mugshot, hint: "this is a legacy field - no need to use, just go for bio_image instead" %>
+        <%= f.input :bio_image, hint: "this is the actual primary image field" %>
         <%= f.input :user_id, collection: @users, value_method: :id, label_method: :email %>
-        <%= f.submit "Create author", class: "btn btn-primary" %>
+        <%= f.submit "Update author", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>

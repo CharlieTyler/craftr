@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190617094125) do
+ActiveRecord::Schema.define(version: 20190618111705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20190617094125) do
     t.string "website_link"
     t.string "slug"
     t.integer "user_id"
+    t.string "bio_image"
   end
 
   create_table "batches", force: :cascade do |t|
