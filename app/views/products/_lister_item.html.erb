@@ -19,7 +19,7 @@
       <div class="card-block text-left py-2">
         <h6 class="card-title mb-2"><%= product.name %></h6>
         <p class = "card-subtitle mb-2 text-muted">from <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
-        <h5 class = "text-primary mb-0"><%= product.human_readable_price %></h5>
+        <h5 class = "mb-0"><%= product.human_readable_price %></h5>
       </div>
     <% end %>
   </div>
