@@ -17,87 +17,90 @@
   </div>
 <% end %>
 
-<div class = "container-fluid">
-  <%= render partial: "distillery_grid", locals: {distillery: @distillery, include_people: true, include_range: true, include_button: false} %>
-</div>
-
-<!-- Secondary nav -->
-<hr class = "booyah-line"/>
-<div class="nav-wrapper" style="height:50px;">
-  <nav class = "secondary-nav background-white mb-0 pb-0" id = "secondary-nav" style = "height:50px;">
-    <div class = "container-fluid">
-      <div class = "row">
-        <ul class="nav nav-pills nav-fill col-md-8 offset-md-2">
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#blurb"><h6>The story</h6></a>
-          </li>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#products"><h6>Products</h6></a>
-          </li>
-          <li class="nav-item mid-nav">
-            <a class="nav-link no-click" href="#social"><h6>Social</h6></a>
-          </li>
-          <% if @distillery.longitude.present? && @distillery.latitude.present? %>
-            <li class="nav-item mid-nav">
-              <a class="nav-link no-click" href="#map"><h6>Map</h6></a>
-            </li>
-          <% end %>
-        </ul>
+<div class = "background-lightgrey pt-3">
+  <div class = "container">
+    <div class = "row pb-3 px-3">
+      <div class = "col-12 col-md-6 my-2 px-0 pr-md-2">
+          <%= image_tag @distillery.summary_image_url(:square), class: "img-fluid" %>
       </div>
-      <div class = "row">
-        <div class = "col-12">
-          <hr class = "booyah-line">
+
+      <div class = "col-12 col-md-6 lyst-box my-2 pl-md-2">
+        <div class = "px-3">
+          <div class = "row">
+            <div class = "col-2">
+              <%= image_tag @distillery.logo, class:"img-fluid" %>
+            </div>
+            <div class = "col-10">
+              <h2 class = "my-0"><%= title @distillery.name %></h2>
+              <h6 class = "text-muted">from <%= @distillery.location %></h6>
+            </div>
+          </div>
+        </div>
+        <div class = "py-1">
+          <div class = "indent-dot left background-lightgrey"></div><div class = "indent-dot right  background-lightgrey"></div><hr class = "lyst-line-lightgrey my-2"/>
+        </div>
+        <div class = "px-3">
+          <h6>📖 About</h6>
+          <p class = "article-text"><%= @distillery.summary_text %></p>
+          <% unless @distillery.products.blank? %>
+            <div class = "col article-text no-link-highlight px-0 my-2">
+              <a class="no-click" href="#products">
+                <%= pluralize(@distillery.products.size, 'products') %>
+              </a>
+            </div>
+          <% end %>
+          <div class = "row">
+          <% if @distillery.instagram_url.present? %>
+            <%= link_to @distillery.instagram_url, class: "btn btn-success col mx-2 text-center" do %>
+              <i class="fa fa-instagram text-white" aria-hidden="true"></i> Follow on Instagram
+            <% end %>
+          <% end %>
+          <% if @distillery.website.present? %>
+            <%= link_to @distillery.website, class: "btn btn-success col mx-2 text-center" do %>
+              <i class="fa fa-globe text-white" aria-hidden="true"></i> Visit website
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
 </div>
 
-<div class = "secondary-nav-content">
-  <div class = ""> <!-- For background colour -->
-    <div class = "container" id = "blurb">
-      <div class = "row">
-        <div class = "col-md-6 offset-md-3">
-          <div class = "row">
-            <div class = "col-12">
-              <div class = "article-text">
-                <%= simple_format(@distillery.blurb_1) %>
+<div class = "background-grey py-3">
+  <div class = "container">
+    <div class = "row px-3">
+      <div class = "col-12">
+        <h4>More about <%= @distillery.name %></h4>
+      </div>
+      <div class = "col-12 lyst-box">
+        <div class = "px-3 text-center" id = "the-distillers-banner">  
+          <h5 class = "my-0">The distillers <i class="fa fa-minus text-primary" id = "the-distillers-toggle-switch" aria-hidden="true"></i></h5>
+        </div>
+        <div id = "the-distillers-box">
+          <div class = "px-3">
+            <div class = "row">
+              <div class = "col-md-6">
+                <%= simple_format(@distillery.people_text) %>
+              </div>
+              <div class = "col-md-6 py-2">
+                <%= image_tag @distillery.people_image, class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
               </div>
             </div>
           </div>
-          <div class = "row">
-            <div class = "col-12">
-              <%= image_tag @distillery.image_1_url(:full).to_s, class: "d-block img-fluid" %>
-            </div>
-          </div>
-          <div class = "row">
-            <div class = "col-12">
-              <% if @distillery.blurb_2.present? %>
-                <div class = "article-text">
-                  <%= simple_format(@distillery.blurb_2) %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div class = "row">
-            <div class = "col-12">
-              <% if @distillery.image_2.present? %>
-                <%= image_tag @distillery.image_2_url(:full).to_s, class: "d-block img-fluid" %>
-              <% end %>
-            </div>
-          </div>
-          <div class = "row">
-            <div class = "col-12">
-              <% if @distillery.blurb_3.present? %>
-                <div class = "article-text">
-                  <%= simple_format(@distillery.blurb_3) %>
-                </div>
-              <% end %>
-            </div>
+        </div>
+        <div class = "pt-1">
+          <div class = "indent-dot left background-grey"></div><div class = "indent-dot right  background-grey"></div><hr class = "lyst-line-grey my-2"/>
+        </div>
+        <div class = "px-3 text-center" id = "further-information-banner">  
+          <h5 class = "my-0">Further information <i class="fa fa-chevron-down text-primary" id = "further-information-toggle-switch" aria-hidden="true"></i></h5>
+        </div>
+        <div id = "further-information-box" class = "hidden">
+          <div class = "px-3">
             <div class = "row">
               <div class = "col-12">
-                <% if @distillery.image_3.present? %>
-                  <%= image_tag @distillery.image_3_url(:full).to_s, class: "d-block img-fluid" %>
+                <%= simple_format(@distillery.blurb_1) %>
+                <% if @distillery.blurb_2.present? %>
+                  <%= simple_format(@distillery.blurb_2) %>
                 <% end %>
               </div>
             </div>
@@ -106,9 +109,11 @@
       </div>
     </div>
   </div>
+</div>
 
-  <div class = "container mt-3" id = "products">
-    <h3><%= "#{@distillery.name}'s products" %></h3>
+<div class = "background-lightgrey">
+  <div class = "container pt-3" id = "products">
+    <h4>Products from <%= @distillery.name %></h4>
     <div class = "row">
       <% if @distillery.products.live.length == 0 %>
         <div class = "col-12">
@@ -120,46 +125,9 @@
     </div>
   </div>
 
-  <div class = "container mt-3" id = "social">
-    <h3>Get social</h3>
-    <div class = "row">
-      <div class = "col-md-8 offset-md-2">
-        <div class = "row">
-          <% if @distillery.facebook.present? %>
-            <div class = "col-4">
-              <%= link_to @distillery.facebook, :target => "_blank" do %>
-                <i class="fa fa-facebook-official fa-2x text-primary px-2" aria-hidden="true"></i>On Facebook
-              <% end %>
-            </div>
-          <% end %>
-          <% if @distillery.instagram_url.present? %>
-            <div class = "col-4">
-              <%= link_to @distillery.instagram_url, :target => "_blank" do %>
-                <i class="fa fa-instagram fa-2x text-primary px-2" aria-hidden="true"></i>On Instagram
-              <% end %>
-            </div>
-          <% end %>
-          <div class = "col-4">
-            <%= link_to @distillery.website, :target => "_blank" do %>
-              <i class="fa fa-globe fa-2x text-primary px-2" aria-hidden="true"></i>The website
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% unless @instas.blank? %>
-      <div class = "row">
-        <div class = "col-12">
-          <h3>Instagram</h3>
-        </div>
-        <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
-      </div>
-    <% end%>
-  </div>
-
   <% if @distillery.latitude.present? && @distillery.longitude.present? %>
     <div class = "container mt-3" id = "map">
-      <h3 class = "my-3">Map</h3>
+      <h4 class = "my-3">Browse other distilleries</h4>
       <div class = "row">
         <div class = "col-12">
           <div id="distillery-map"></div>
@@ -174,22 +142,61 @@
   <script>
 
     function initMap() {
-      var myLatLng = {lat: <%= @distillery.latitude %>, lng: <%= @distillery.longitude %>};
+      
+        var centralPoint = {lat: 54.1962717, lng: -4.4044171};
 
-      var map = new google.maps.Map(document.getElementById('distillery-map'), {
-        zoom: 6,
-        center: myLatLng
-      });
+        var map = new google.maps.Map(document.getElementById('distillery-map'), {
+          zoom: 5.8,
+          center: centralPoint
+        });
 
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        animation:google.maps.Animation.BOUNCE,
-        title: '<%= @distillery.name.to_json %>'
-      });
+        <% @all_other_distilleries.each_with_index do |distillery, counter| %>
+          var distilleryLatLong = {lat: <%= distillery.latitude %>, lng: <%= distillery.longitude %>};
+          var <%= 'marker' + counter.to_s %> = new google.maps.Marker({
+            position: distilleryLatLong,
+            map: map,
+            title: '<%= j distillery.name.html_safe %>'
+          });
+
+          windowContent = "<h5><%= j distillery.name.html_safe %></h5><div class=''><%= escape_javascript pluralize(distillery.products.live.length, 'product') %></div><%= escape_javascript link_to 'More about ' + distillery.name.html_safe, distillery_path(distillery), class: 'btn btn-primary my-2' %>";
+
+          
+          <%= 'window' + counter.to_s %> = new google.maps.InfoWindow({
+            content: windowContent
+          });
+          <%= 'marker' + counter.to_s %>.addListener('click', function() {
+            <%= 'window' + counter.to_s %>.open(map, <%= 'marker' + counter.to_s %>);
+          });
+
+        <% end %>
+
+        var marker = new google.maps.Marker({
+          position: {lat: <%= @distillery.latitude %>, lng: <%= @distillery.longitude %>},
+          map: map,
+          animation:google.maps.Animation.BOUNCE,
+          title: '<%= @distillery.name.to_json %>'
+        });
     }
   </script>
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOgMzuZzpcbkMy3Y1sZYOrW4kZ0lDoKxc&callback=initMap">
   </script>
 <% end %>
+
+<script>
+  $(function() { 
+    $("#the-distillers-banner").click(function() {
+      $("#the-distillers-box").toggleClass("hidden");
+      $("#the-distillers-toggle-switch").toggleClass("fa-minus");
+      $("#the-distillers-toggle-switch").toggleClass("fa-chevron-down");
+    });
+  });
+
+  $(function() { 
+    $("#further-information-banner").click(function() {
+      $("#further-information-box").toggleClass("hidden");
+      $("#further-information-toggle-switch").toggleClass("fa-minus");
+      $("#further-information-toggle-switch").toggleClass("fa-chevron-down");
+    });
+  });
+</script>

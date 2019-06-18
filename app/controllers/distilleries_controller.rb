@@ -8,6 +8,7 @@ class DistilleriesController < ApplicationController
 
   def show
     @distillery = Distillery.friendly.find(params[:id])
+    @all_other_distilleries = Distillery.where(is_live: true).where.not(id: @distillery.id)
 
     @page_description          = @distillery.seo_description
     @page_keywords             = @distillery.seo_keywords
