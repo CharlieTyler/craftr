@@ -11,7 +11,7 @@
           <h4 class="mb-2"><%= recipe.name %></h4>
         <% end %>
         <p class = "text-muted">by <%= link_to recipe.author.name, author_path(recipe.author) %></p>
-        <p class=""><%= truncate_html(recipe.description, length: 100) %></p>
+        <p class= "hidden-xs-down"><%= truncate_html(recipe.description, length: 100) %></p>
       </div>
     </div>
   </div>
