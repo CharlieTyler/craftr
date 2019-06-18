@@ -295,12 +295,30 @@
           </div>
         </div>
       </div>
-      <% if notice.present? %>
-        <p class="alert alert-info"><%= notice.html_safe %></p>
-      <% end %>
-      <% if alert.present? %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
+      <div class = "background-lightgrey">
+        <div class = "container">
+          <% if notice.present? %>
+            <div class = "row py-2">
+              <div class="col-12 pb-0 alert alert-info alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <p><%= notice.html_safe %></p>
+              </div>
+            </div>
+          <% end %>
+          <% if alert.present? %>
+            <div class = "row py-2">
+              <div class="col-12 pb-0 alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <p class = "mb-0"><%= alert.html_safe %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
       <%= yield %>
     </div>
     <div id="footer" class = "pt-3">
