@@ -3,17 +3,24 @@
     <div class = "row py-2">
       <div class = "col-md-6 offset-md-3 lyst-box my-2 px-3 py-3">
         <div class = "row">
-          <div class = "col-6 login-signin-btn login-header active">
-            <h3><%= title 'Log in' %></h3>
-          </div>
-          <div class = "col-6 login-signin-btn signup-header">
-            <h3>Sign up</h3>
+          <div class = "col-12">
+            <h3><%= @order.order_items.length > 0 ? 'Complete your order' : 'Join Craftr' %></h3>
           </div>
         </div>
         <div class = "row">
           <div class = "col-12 px-0">
             <div class = "indent-dot left background-lightgrey"></div><div class = "indent-dot right  background-lightgrey"></div>
             <hr class = "lyst-line-lightgrey my-2"/>
+          </div>
+        </div>
+        <div class = "row">
+          <div class = "col-12">
+            <input type="radio" id="log-in" name="log-in-sign-up" value="already_have_account" checked>
+            <label for="huey"> I already have an account</label>
+          </div>
+          <div class = "col-12">
+            <input type="radio" id="sign-up" name="log-in-sign-up" value="do_not_have_account">
+            <label for="huey"> I do not have a Craftr account</label>
           </div>
         </div>
         <div class = "login-content">
@@ -35,28 +42,16 @@
 </div>
 
 <script>
-  $(function() {
-    $( ".login-header" ).click(function() {
-      $(this).addClass("active");
-      $(".signup-header").removeClass("active");
-      $( ".login-content" ).show( "slow", function() {
-        // Animation complete.
-      });
-      $(".signup-content").hide( "slow", function() {
-
-      });
-      $("html, body").animate({ scrollTop: 0 }, "slow");
-    });
-    $( ".signup-header" ).click(function() {
-      $(this).addClass("active");
-      $(".login-header").removeClass("active");
-      $( ".signup-content" ).show( "slow", function() {
-        // Animation complete.
-      });
-      $(".login-content").hide( "slow", function() {
-
-      });
-      $("html, body").animate({ scrollTop: 0 }, "slow");
+  $(function() { 
+    $('input[type=radio][name=log-in-sign-up]').change(function() {
+      if (this.value == 'already_have_account') {
+        $( ".login-content" ).show();
+        $(".signup-content").hide();
+      }
+      else if (this.value == 'do_not_have_account') {
+        $( ".signup-content" ).show();
+        $(".login-content").hide();
+      }
     });
   });
 </script>
