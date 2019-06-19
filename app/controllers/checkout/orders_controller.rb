@@ -26,7 +26,6 @@ class Checkout::OrdersController < ApplicationController
     @address = current_user.addresses.create(address_params)
     if @address.valid?
       # Creates easy_post_address in after_create action
-      flash[:notice] = 'Address successfully created'
       @order.update_attributes(shipping_address_id: @address.id)
       if @order.valid?
         redirect_to checkout_payment_path

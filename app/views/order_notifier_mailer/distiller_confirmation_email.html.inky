@@ -1,0 +1,64 @@
+<style type="text/css">
+  body,
+  html, 
+  .body {
+    background: #f3f3f3 !important;
+  }
+</style>
+
+<container>
+
+  <spacer size="16"></spacer>
+
+  <row>
+    <columns>
+      <h1>New order of <%= @sold_item.product.name %></h1>
+      <p>Hi <%= @distillery.name %>,</p>
+      <p>You have a new order for <%= "#{@sold_item.quantity} bottles of #{@sold_item.product.name}" %>.</p>
+
+      <spacer size="16"></spacer>
+
+      <callout class="secondary">
+        <row>
+          <columns large="6">
+            <p>
+              <strong>Shipping</strong><br/>
+              We've purchased the shipping label for you, which you can find in the <%= link_to "Distiller portal", distiller_dashboard_url %><br/>
+            </p>
+          </columns>
+          <columns large="6">
+            <p>
+              <strong>The process now</strong><br/>
+              <ul>
+                <li>Batch the order</li>
+                <li>Print off the label and the scanform</li>
+                <li>Drop off at the post office</li>
+                <li>Mark as shipped in the distiller portal</li>
+              </ul>
+            </p>
+          </columns>
+        </row>
+        <row>
+          <columns large = "12">
+            <button class="large expand" href="<%= distiller_dashboard_url(@order) %>">Go to distiller portal</button>
+          </columns>
+        </row>
+      </callout>
+    </columns>
+  </row>
+  <row class="footer text-center">
+    <columns large="3">
+      <%= image_tag "CraftrLogoPNG.png", height: '35', class: "pt-2", alt: "Craftr logo" %>
+    </columns>
+    <columns large="3">
+      <p>
+        Email us at support@craftr.co.uk
+      </p>
+    </columns>
+    <columns large="3">
+      <%= link_to "https://www.drinkaware.co.uk" do %>
+        <%= image_tag "drink_aware_logo.png" %>
+      <% end %>
+    </columns>
+  </row>
+</container>

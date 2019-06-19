@@ -84,7 +84,7 @@
     </columns>
     <columns large="3">
       <%= link_to "https://www.drinkaware.co.uk" do %>
-        <%= image_tag "drink_aware_logo.jpg" %>
+        <%= image_tag "drink_aware_logo.png" %>
       <% end %>
     </columns>
   </row>

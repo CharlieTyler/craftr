@@ -1,5 +1,5 @@
 class OrderNotifierMailer < ApplicationMailer
-  default :from => 'orders@craftr.co.uk'
+  default :from => 'Craftr Orders <orders@craftr.co.uk>'
 
   include ActionView::Helpers::TextHelper
 

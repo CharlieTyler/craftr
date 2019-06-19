@@ -1,0 +1,57 @@
+<style type="text/css">
+  body,
+  html, 
+  .body {
+    background: #f3f3f3 !important;
+  }
+</style>
+
+<container>
+
+  <spacer size="16"></spacer>
+
+  <row>
+    <columns>
+      <h1>Did you forget something?</h1>
+      <p>Hi there,</p>
+      <p>We noticed you left some craft spirits behind. If this was a complete accident, we're not offended - in fact, we're here to help. You can pick up where you left off, <%= link_to "here", root_url %>, or even <%= link_to "go straight to checkout", cart_url %>.</p>
+
+      <spacer size="16"></spacer>
+
+      <callout class="secondary">
+        <row>
+          <columns large="12">
+            <p>
+              <strong>Your order</strong><br/>
+              <ul>
+                <% @order_items.each do |oi| %>
+                  <li><%= link_to oi.product.name, product_url(oi.product) %> - <%= number_to_currency((oi.product.price.to_f / 100), unit: '£') %></li>
+                <% end %>
+              </ul>
+            </p>
+          </columns>
+        </row>
+        <row>
+          <columns large = "12">
+            <button class="large expand" href="<%= cart_url %>">Go to cart</button>
+          </columns>
+        </row>
+      </callout>
+    </columns>
+  </row>
+  <row class="footer text-center">
+    <columns large="3">
+      <%= image_tag "CraftrLogoPNG.png", height: '35', class: "pt-2", alt: "Craftr logo" %>
+    </columns>
+    <columns large="3">
+      <p>
+        Email us at support@craftr.co.uk
+      </p>
+    </columns>
+    <columns large="3">
+      <%= link_to "https://www.drinkaware.co.uk" do %>
+        <%= image_tag "drink_aware_logo.png" %>
+      <% end %>
+    </columns>
+  </row>
+</container>

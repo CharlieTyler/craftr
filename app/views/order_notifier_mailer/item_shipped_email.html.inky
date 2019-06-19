@@ -1,0 +1,41 @@
+<style type="text/css">
+  body,
+  html, 
+  .body {
+    background: #f3f3f3 !important;
+  }
+</style>
+
+<container>
+
+  <spacer size="16"></spacer>
+
+  <row>
+    <columns>
+      <h1>Craft spirits shipped</h1>
+      <p>Dear customer,</p>
+      <p><%= @distillery.name %> have shipped your order of <%= @sold_item.quantity %> bottle(s) of <%= @sold_item.product.name %>.</p><br/>
+      <p>It is being posted 2nd class to <%= @address.full_address_no_name %> and will arrive in the next few days.</p>
+      <row>
+        <columns large = "12">
+          <button class="large expand" href="<%= account_order_url(@order) %>">View order details</button>
+        </columns>
+      </row>
+    </columns>
+  </row>
+  <row class="footer text-center">
+    <columns large="3">
+      <%= image_tag "CraftrLogoPNG.png", height: '35', class: "pt-2", alt: "Craftr logo" %>
+    </columns>
+    <columns large="3">
+      <p>
+        Email us at support@craftr.co.uk
+      </p>
+    </columns>
+    <columns large="3">
+      <%= link_to "https://www.drinkaware.co.uk" do %>
+        <%= image_tag "drink_aware_logo.png" %>
+      <% end %>
+    </columns>
+  </row>
+</container>
