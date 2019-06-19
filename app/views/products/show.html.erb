@@ -41,16 +41,6 @@
   </div>
 <% end %>
 
-<div class = "container hidden-md-up">
-  <div class = "row hidden sticky" id = "atbButtonRow">
-    <div class = "col-8 offset-2">
-      <div class = "row pt-2">
-        <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false, remote: true} %>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class = "background-lightgrey pt-3">
   <div class = "container">
     <div class = "row pb-3">
@@ -95,7 +85,7 @@
           <blockquote class="blockquote mt-0">
             <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
           </blockquote>
-          <div class = "row favourite-unfavourite py-2">
+          <div class = "row px-3 favourite-unfavourite py-2">
             <%= render partial: 'favourite_button', locals: {product: @product} %>
           </div>
           <div class = "row">            
