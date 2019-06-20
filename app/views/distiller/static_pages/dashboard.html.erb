@@ -6,11 +6,9 @@
     <div class = "col-12">
       <% unless current_distillery.is_transactional && current_distillery.products.map{|product| product.is_transactional}.all? %>
         <h6 class = "text-primary mt-4">You and your products aren't fully transactional yet!</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
-      <% else %>
-        <h6 class = "text-primary mt-4">You're not yet transactional.</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
       <% end %>
     </div>
-    
+
     <!-- Create a batch -->
     <div class = "col-12 my-4">
       <h4 class = "d-inline-block">1. Create a batch for products you are ready to ship</h4>
