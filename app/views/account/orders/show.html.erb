@@ -1,19 +1,18 @@
+<div class = "background-lightgrey">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-12">
+        <h4 class = "text-primary my-3">Status: <%= @user_order.state %></h4>
+        <p class = "text-muted">We've got some recipe suggestions for you below.</p>
+      </div>
+    </div>
+    <div class = "row">
+      <%= render partial: 'account/orders/order_summary', locals: {order: @user_order} %>
+    </div>
+  </div>
+</div>
 <div class = "container">
-  <div class = "row">
-    <div class = "col-12">
-      <h4 class = "text-primary my-3"><i class="fa fa-smile-o" aria-hidden="true"></i> Status: <%= @user_order.state %></h4>
-      <p class = "text-muted">We've got some recipe suggestions for you below.</p>
-    </div>
-  </div>
-  <div class = "row">
-    <%= render partial: 'account/orders/order_summary', locals: {order: @user_order} %>
-  </div>
-  <div class = "row">
-    <div class = "col-12">
-      <hr class = "booyah-line my-3" />
-    </div>
-  </div>
-  <div class = "row">
+  <div class = "row mt-3">
     <div class = "col-12">
       <h4>Here are some recipes you might like to try with these products</h4>
       <p class = "text-muted">Hint: favourite the ones you want to try so you can find them later!</p>

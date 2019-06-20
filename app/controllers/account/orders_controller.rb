@@ -11,7 +11,7 @@ class Account::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_user.orders.where(paid: true).page(params[:page])
+    @orders = current_user.orders.where(paid: true).order('updated_at DESC').page(params[:page])
     if current_user.sold_items.length > 0
       @previously_purchased_products = current_user.previously_purchased_products.first(4)
     end

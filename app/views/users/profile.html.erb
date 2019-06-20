@@ -1,46 +1,48 @@
-<div class = "container">
-  <div class = "row my-4">
-    <div class = "col-md-4 mt-2">
-      <div class="booyah-box px-3 py-3 h-100">
-        <div class = "row">
-          <div class = "col-4 text-center">
-            <i class="fa fa-4x text-secondary fa-cube" aria-hidden="true"></i>
-          </div>
-          <div class = "col-8">
-            <%= link_to account_orders_path do %>
-              <h4 class="card-title">Your orders</h4>
-              <h6 class="card-subtitle mb-2 text-muted">View orders or buy things again.</h6>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class = "col-md-4 mt-2">
-      <div class="booyah-box px-3 py-3 h-100">
-        <div class = "row">
-          <div class = "col-4 text-center">
-            <i class="fa fa-4x text-secondary fa-address-book-o" aria-hidden="true"></i>
-          </div>
-          <div class = "col-8">
-            <%= link_to account_addresses_path do %>
-              <h4 class="card-title">Your address book</h4>
-              <h6 class="card-subtitle mb-2 text-muted">Add, edit and delete addresses.</h6>
-            <% end %>
+<div class = "background-lightgrey">
+  <div class = "container">
+    <div class = "row py-4">
+      <div class = "col-md-4 mt-2">
+        <div class="lyst-box px-3 py-3 h-100">
+          <div class = "row">
+            <div class = "col-4 display-v-middle text-center">
+              <h1>🚚</h1>
+            </div>
+            <div class = "col-8">
+              <%= link_to account_orders_path do %>
+                <h5 class="card-title">Your orders</h5>
+                <p class="card-subtitle article-text mb-2 text-muted">View past orders or buy things again.</p>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class = "col-md-4 mt-2">
-      <div class="booyah-box px-3 py-3 h-100">
-        <div class = "row">
-          <div class = "col-4 text-center">
-            <i class="fa fa-4x text-secondary fa-lock" aria-hidden="true"></i>
+      <div class = "col-md-4 mt-2">
+        <div class="lyst-box px-3 py-3 h-100">
+          <div class = "row">
+            <div class = "col-4 display-v-middle text-center">
+              <h1>📒</h1>
+            </div>
+            <div class = "col-8">
+              <%= link_to account_addresses_path do %>
+                <h5 class="card-title">Your address book</h5>
+                <p class="card-subtitle article-text mb-2 text-muted">Add, edit and delete addresses.</p>
+              <% end %>
+            </div>
           </div>
-          <div class = "col-8">
-            <%= link_to edit_user_registration_path do %>
-              <h4 class="card-title">Your profile</h4>
-              <h6 class="card-subtitle mb-2 text-muted">Edit account and login details.</h6>
-            <% end %>
+        </div>
+      </div>
+      <div class = "col-md-4 mt-2">
+        <div class="lyst-box px-3 py-3 h-100">
+          <div class = "row">
+            <div class = "col-4 display-v-middle text-center">
+              <h1>🙂</h1>
+            </div>
+            <div class = "col-8">
+              <%= link_to edit_user_registration_path do %>
+                <h5 class="card-title">Your profile</h5>
+                <p class="card-subtitle article-text mb-2 text-muted">Edit account and login details.</p>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
