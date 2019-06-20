@@ -1,67 +1,19 @@
 <div class = "container">
   <div class = "row">
-    <!-- Charts -->
-    <% if current_distillery.is_transactional %>
-      <div class = "col-12 my-3">
-        <h4 class = "d-inline-block">Sales by product</h4>
-        <p class = "d-inline-block float-right text-primary"><%= link_to "Go to reporting dashboard",distiller_reports_path %></p>
-        <%= line_chart current_distillery.products.map { |product|
-            {name: product.name, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
-        } %>
-      </div>
-    <% end %>
+
 
     <!-- Transactional checklists -->
     <div class = "col-12">
-      <% if current_distillery.is_transactional && current_distillery.products.map{|product| product.is_transactional}.all? %>
-        <h6 class = "text-muted">You're transactional. <%= link_to "Edit details", distiller_transactional_checklist_path %></h6>
-      <% elsif current_distillery.is_transactional %>
-        <h6 class = "text-primary mt-4">Not all of your products are yet transactional.</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
+      <% unless current_distillery.is_transactional && current_distillery.products.map{|product| product.is_transactional}.all? %>
+        <h6 class = "text-primary mt-4">You and your products aren't fully transactional yet!</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
       <% else %>
         <h6 class = "text-primary mt-4">You're not yet transactional.</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
       <% end %>
     </div>
-
-    <!-- Batches -->
-    <% if @unshipped_batches.length > 0 %>
-      <div class = "col-12 my-4">
-        <h4 class = "d-inline-block">Batches, ready to be shipped</h4>
-        <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
-        <div class = "clear"></div>
-        <p class = "text-muted">Click 'view labels', print them and the scanform and take to your nearest Post Office</p>
-        <div class = "row">
-          <% if @unshipped_batches.length > 0 %>
-            <!-- List out all incomplete orders and allow to mark as complete -->
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Shipping</th>
-                  <th scope="col">View</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @unshipped_batches.each do |batch| %>
-                  <tr>
-                    <th scope="row"><%= batch.created_at.strftime('%B %d, %Y at %H:%M') %></th>
-                    <td><%= batch.description %></td>
-                    <td><%= batch.state %></td>
-                    <td><%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: batch} %></td>
-                    <td><%= link_to "View labels", distiller_batch_path(batch), class: "btn btn-primary" %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          <% else %>
-            <p>You haven't created any batches yet :(</p>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+    
+    <!-- Create a batch -->
     <div class = "col-12 my-4">
-      <h4 class = "d-inline-block">New orders, ready to be batched</h4>
+      <h4 class = "d-inline-block">1. Create a batch for products you are ready to ship</h4>
       <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
       <div class = "clear"></div>
       <p class = "text-muted">Select all items that you are ready to post and click "Create batch" to generate all postage labels and scanform</p>
@@ -72,7 +24,7 @@
             <%= f.submit "Create batch", class: "btn btn-primary" %>
           <% end %>
         <% else %>
-          <p>You don't have any new orders :(</p>
+          <p>You're all up to date</p>
         <% end %>
       </div>
     </div>
@@ -86,6 +38,46 @@
               <li><%= si.description %></li>
             <% end %>
           </ul>
+        </div>
+      </div>
+    <% end %>
+
+
+    <!-- Deal with the batch -->
+    <div class = "col-12 my-4">
+      <h4 class = "d-inline-block">2. Print labels and scanform, and mark as shipped</h4>
+      <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
+      <div class = "clear"></div>
+        <% if @unshipped_batches.length > 0 %>
+          <p class = "text-muted">Click 'view labels', print them and the scanform and take to your nearest Post Office</p>
+          <div class = "row">
+            <% if @unshipped_batches.length > 0 %>
+              <!-- List out all incomplete orders and allow to mark as complete -->
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Shipping</th>
+                    <th scope="col">View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @unshipped_batches.each do |batch| %>
+                    <tr>
+                      <th scope="row"><%= batch.created_at.strftime('%B %d, %Y at %H:%M') %></th>
+                      <td><%= batch.description %></td>
+                      <td><%= batch.state %></td>
+                      <td><%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: batch} %></td>
+                      <td><%= link_to "View labels", distiller_batch_path(batch), class: "btn btn-primary" %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p>You haven't created any batches yet :(</p>
+            <% end %>
         </div>
       </div>
     <% end %>
@@ -114,5 +106,18 @@
         </table>
       </div>
     </div>
+  </div>
+  <div class = "row">
+    <!-- Charts -->
+    <% if current_distillery.is_transactional %>
+      <div class = "col-12 my-3">
+        <h4 class = "d-inline-block">Sales by product</h4>
+        <p class = "d-inline-block float-right text-primary"><%= link_to "Go to reporting dashboard",distiller_reports_path %></p>
+        <%= line_chart current_distillery.products.map { |product|
+            {name: product.name, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
+        } %>
+      </div>
+    <% end %>
+
   </div>
 </div>

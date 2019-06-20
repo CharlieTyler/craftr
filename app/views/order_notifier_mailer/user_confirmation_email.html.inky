@@ -14,6 +14,7 @@
     <columns>
       <h1>Craft spirits inbound!</h1>
       <p>Thanks for shopping with us! Our partner distilleries have received your order and will pick and pack it as soon as possible. We will let you know when each distiller has dispatched your spirits.</p>
+      <p><strong>Your order id is <%= @order.id %></strong></p>
 
       <spacer size="16"></spacer>
 
