@@ -6,6 +6,7 @@ class Product < ApplicationRecord
 
   scope :live, -> { where(is_live: true, is_test: false) }
   scope :transactional, -> { where(is_live: true, is_in_stock: true, is_test: false).where.not(weight: nil, distillery_take: nil) }
+  scope :non_transactional, -> { where(is_live: true, is_test: false, weight: nil, distillery_take: nil) }
   scope :similar_products, ->(product) { where("id != ? and category_id = ?", product.id, product.category.id) }
   scope :strength, -> (min, max) { where('alcohol_percentage > ? AND alcohol_percentage < ?', min, max) }
   scope :category, -> (category_id) { where category_id: category_id }
@@ -54,13 +55,6 @@ class Product < ApplicationRecord
 
   def self.filter(params)
     filter_scope = Product
-    
-    if params[:instrument_id].present?
-      params[:instrument_id].reject!{ |id| id.blank? }
-      search_scope = search_scope.where(
-        "user_instruments.instrument_id": params[:instrument_id]
-      )
-    end
 
     if params[:category_id].present?
       params[:category_id].reject!{ |id| id.blank? }
@@ -147,7 +141,7 @@ class Product < ApplicationRecord
   end
 
   def other_popular_products
-    Product.where("(category_id = ?)", category_id).where.not("(id = ?)", id).sort_by{|product| -product.user_product_views.length}
+    Product.transactional.where("(category_id = ?)", category_id).where.not("(id = ?)", id).sort_by{|product| -product.user_product_views.length}
   end
 
   def is_transactional

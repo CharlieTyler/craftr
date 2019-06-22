@@ -21,8 +21,8 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.all
-    # Filtering doesn't yet work
-    @products = Product.live.filter(filter_params).page(params[:page])
+    # order by weight ASC puts those with nil last - bit of a hack, but works
+    @products = Product.filter(filter_params).order('weight ASC').page(params[:page])
 
     respond_to do |format|
       format.html
@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
   end
 
   def random
-    @product = Product.order("RANDOM()").first
+    @product = Product.transactional.order("RANDOM()").first
     redirect_to product_path(@product)
   end
 
