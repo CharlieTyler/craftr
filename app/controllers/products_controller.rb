@@ -21,8 +21,9 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.all
+    
     # order by weight ASC puts those with nil last - bit of a hack, but works
-    @products = Product.filter(filter_params).order('weight ASC').page(params[:page])
+    @products = Product.order('weight ASC').live.filter(filter_params).page(params[:page])
 
     respond_to do |format|
       format.html
