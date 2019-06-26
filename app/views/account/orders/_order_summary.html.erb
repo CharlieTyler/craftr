@@ -25,6 +25,16 @@
     <% else %>
       <p>Please select shipping type</p>
     <% end %>
+    <div class = "clear"></div>
+    <% if order.voucher.present? %>
+      <div class = "d-inline-block float-left">
+        <p class = "ml-2"><%= order.voucher.name %> - <%= order.voucher.code %></p>
+      </div>
+      <div class = "d-inline-block float-right">
+        <p>- <%= order.voucher.human_readable_price %></p>
+      </div>
+    <% end %>
+    <div class = "clear"></div>
     <% if order.total_unpaid_amount.present? %>
       <div class = "row">
         <div class = "col-12">

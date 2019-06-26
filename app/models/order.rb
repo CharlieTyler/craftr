@@ -38,11 +38,19 @@ class Order < ApplicationRecord
     shipping_type.price
   end
 
+  def total_voucher_value
+    if voucher.present?
+      - voucher.value
+    else
+      0
+    end
+  end
+
   def total_unpaid_amount
     if shipping_type.present?
-      total_unpaid_product_amount + total_unpaid_shipping_amount
+      total_unpaid_product_amount + total_unpaid_shipping_amount + total_voucher_value
     else
-      total_unpaid_product_amount
+      total_unpaid_product_amount + total_voucher_value
     end
   end
 
@@ -56,7 +64,7 @@ class Order < ApplicationRecord
   end
 
   def total_paid_amount
-    total_paid_product_amount + paid_shipping_price
+    total_paid_product_amount + paid_shipping_price + total_voucher_value
   end
 
   def product_summary

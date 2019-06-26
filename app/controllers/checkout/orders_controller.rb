@@ -1,10 +1,25 @@
 class Checkout::OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_voucher_is_valid_if_present
   before_action :check_items_in_cart, except: [:confirmation]
   before_action :check_all_products_and_distilleries_transactional, except: [:confirmation]
-  before_action :check_order_has_shipping_type, except: [:update_shipping, :confirmation]
+  before_action :check_order_has_shipping_type, except: [:add_voucher, :update_shipping, :confirmation]
   before_action :check_order_has_address, only: [:payment, :charge_payment]
   # before_action :check_user_is_beta_tester, only: [:payment, :charge_payment]
+
+  def add_voucher
+    @voucher = Voucher.where(code: params[:code]).first
+    if @voucher.present?
+      if @voucher.valid_to > Time.now.in_time_zone('London') && @voucher.valid_from < Time.now.in_time_zone('London') && @voucher.live 
+        @order.update_attributes(voucher_id: @voucher.id)
+      else
+        flash[:alert] = "That voucher is not valid"
+      end
+    else
+      flash[:alert] = "We didn't find a voucher with that code"
+    end
+    redirect_to cart_path
+  end
 
   def update_shipping
     @order.update_attributes(order_shipping_params)
@@ -121,6 +136,17 @@ class Checkout::OrdersController < ApplicationController
 
   private
 
+  def check_voucher_is_valid_if_present
+    if @order.voucher.present?
+      voucher = @order.voucher
+      unless voucher.valid_from < Time.now.in_time_zone('London') && voucher.valid_to > Time.now.in_time_zone('London') && voucher.live
+        @order.update_attributes(voucher_id: nil)
+        flash[:alert] = "You had an invalid voucher attached to your order, so we removed it"
+        redirect_to cart_path
+      end
+    end
+  end
+
   def check_items_in_cart
     unless @order.order_items.length > 0
       flash[:alert] = 'Your cart is empty, please add items before checking out'
@@ -138,7 +164,7 @@ class Checkout::OrdersController < ApplicationController
   def check_order_has_shipping_type
     if @order.shipping_type_id.blank?
       flash[:alert] = 'Please select a shipping type before attempting to pay'
-      redirect_to checkout_addresses_path
+      redirect_to cart_path
     end
   end
 

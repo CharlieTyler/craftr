@@ -30,7 +30,7 @@ class OrderItemsController < ApplicationController
 
   def index
     # This is the basket page
-
+    @possible_vouchers = Voucher.where("(valid_from < ? AND valid_to > ? AND live = ?)", Time.now.in_time_zone('London'), Time.now.in_time_zone('London'), true)
     @order_items = @order.order_items
     @shipping_types = ShippingType.all
     @default_shipping_type = ShippingType.first

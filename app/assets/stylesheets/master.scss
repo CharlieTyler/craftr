@@ -655,9 +655,10 @@ input[type=search] {
   -webkit-appearance: none;
 }
 
-input[type=email] {
+.voucher-code-box {
   border: 2px solid $grey;
-  border-radius: 5px 0px 0px 5px !important;
+  padding: 5px;
+  border-radius: 5px 5px 5px 5px !important;
 
   -webkit-appearance: none;
 }

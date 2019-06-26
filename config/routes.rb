@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   #cart
   get "/cart" => "order_items#index"
   namespace :checkout do
+    patch "/add_voucher" => "orders#add_voucher"
+    put "/add_voucher" => "orders#add_voucher"
     patch "/update_shipping_method" => "orders#update_shipping"
     put "/update_shipping_method" => "orders#update_shipping"
     get "/address" => "orders#address"

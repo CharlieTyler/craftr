@@ -39,6 +39,27 @@
                     <hr class = "booyah-line my-2"/>
                   </div>
                 <% end %>
+                <% if @possible_vouchers.length > 0 %>
+                  <div class = "col-12">
+                    <% unless @order.voucher.present? %>
+                      <%= form_tag(checkout_add_voucher_path, method: :patch) do %>
+                        <%= label_tag(:code, "Have a voucher?") %>
+                        <%= text_field_tag(:code, nil, class: "voucher-code-box") %>
+                        <%= submit_tag("Add", class: "btn btn-secondary") %>
+                      <% end %>
+                    <% else %>
+                      <div class = "d-inline-block float-left">
+                        <p><%= @order.voucher.name %> - <%= @order.voucher.code %></p>
+                      </div>
+                      <div class = "d-inline-block float-right">
+                        <p>- <%= @order.voucher.human_readable_price %></p>
+                      </div>
+                    <% end %>
+                  </div>
+                  <div class = "col-12">
+                    <hr class = "booyah-line my-2">
+                  </div>
+                <% end %>
                 <div class = "col-12">
                   <h6 class = "d-inline-block mt-2">Delivery</h6>
                   <div class = "mt-2 d-inline-block float-right">
@@ -46,14 +67,18 @@
                   </div>
                   <%= simple_form_for @order, url: checkout_update_shipping_method_path do |f| %>
                     <%= f.input :shipping_type_id, as: :radio_buttons, collection: ShippingType.all.map{ |st| [st.full_shipping_type, st.id] }, label_method: :first, value_method: :last, item_label_class: 'radio', checked: @default_shipping_type.id, label: "" %>
-                    <% if @order.total_unpaid_quantity > 1 %>
+                    <% if @order.total_unpaid_quantity > 0 %>
                       <div class = "alert alert-info text-center">🚚 Shipping is only ever £2, no matter how many bottles</div>
                     <% end %>
                     <hr class = "booyah-line" />
                     <hr class = "booyah-line" />
                     <h6 class = "d-inline-block mt-2">Total:</h6>
                     <h6 class = "d-inline-block float-right mt-2">
-                      <%= number_to_currency(((@order.total_unpaid_product_amount + @default_shipping_type.price.to_f) / 100), unit: "£") %>
+                      <% if @order.shipping_type.present? %>
+                        <%= number_to_currency(((@order.total_unpaid_amount) / 100), unit: "£") %>
+                      <% else %>
+                        <%= number_to_currency(((@order.total_unpaid_amount + @default_shipping_type.price.to_f) / 100), unit: "£") %>
+                      <% end %>
                     </h6>
                     <%= f.submit "Next: Add delivery address", class: "btn-lg btn-success col-12 my-3" %>
                   <% end %>
