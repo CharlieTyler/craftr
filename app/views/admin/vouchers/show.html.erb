@@ -1,0 +1,15 @@
+<div class = "background-grey">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-md-8 offset-md-2 lyst-box my-2 px-3 py-3">
+        <h1><%= @voucher.name %> - "<%= @voucher.code %>"</h1>
+        <p><%= @voucher.human_readable_price %> off</p>
+        <p>Used by <%= @voucher_completed_orders.length %> orders</p>
+        <p>Valid from <%= @voucher.valid_from.strftime('%B %d, %Y') %></p>
+        <p>Valid to <%= @voucher.valid_to.strftime('%B %d, %Y') %></p>
+        <p><%= @voucher.live ? "Live" : "Not live" %></p>
+        <%= link_to "Edit voucher", edit_admin_voucher_path(@voucher), class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

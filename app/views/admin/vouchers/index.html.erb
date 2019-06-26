@@ -1,0 +1,33 @@
+<div class = "background-grey">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-md-8 offset-md-2 lyst-box my-2 px-3 py-3">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Code</th>
+              <th scope="col">Value</th>
+              <th scope="col">Valid until</th>
+              <th scope="col">Live?</th>
+              <th scope="col">View</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @vouchers.each do |voucher| %>
+              <tr>
+                <th scope="row"><%= voucher.name %></th>
+                <td><%= voucher.code %></td>
+                <td><%= voucher.human_readable_price %></td>
+                <td><%= voucher.valid_to.strftime('%B %d, %Y') %></td>
+                <td><%= voucher.live ? "Live" : "Not live" %></td>
+                <td><%= link_to "View", admin_voucher_path(voucher), class: "btn btn-secondary" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= link_to "New voucher", new_admin_voucher_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

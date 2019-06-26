@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   has_many :order_items
   has_many :sold_items
+  belongs_to :voucher, required: false
   belongs_to :shipping_type, required: false
   belongs_to :shipping_address, class_name: 'Address', foreign_key: 'shipping_address_id', required: false
   belongs_to :user, required: false

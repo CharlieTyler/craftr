@@ -1,0 +1,17 @@
+<div class = "background-grey">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-md-6 offset-md-3 lyst-box my-2 px-3 py-3">
+        <%= simple_form_for @voucher, url: admin_vouchers_path do |f| %>
+          <%= f.input :name, hint: "E.g. 'Free shipping' - this is what will appear in checkout" %>
+          <%= f.input :code, hint: "E.g. IMBIBE@HOME - this is what the user must enter" %>
+          <%= f.input :value, hint: "IMPORTANT: enter in pence. E.g. 200 for £2.00" %>
+          <%= f.input :valid_from %>
+          <%= f.input :valid_to %>
+          <%= f.input :live, hint: "You can disable codes before expiry by toggling this" %>
+          <%= f.submit "Create", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
