@@ -10,4 +10,8 @@ class Voucher < ApplicationRecord
   def human_readable_price
     number_to_currency((value.to_f / 100), unit: "£")
   end
+
+  def is_in_date_and_live
+    valid_to > Time.now.in_time_zone('London') && valid_from < Time.now.in_time_zone('London') && live 
+  end
 end

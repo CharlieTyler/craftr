@@ -1,5 +1,5 @@
 class Checkout::OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:add_voucher]
   before_action :check_voucher_is_valid_if_present
   before_action :check_items_in_cart, except: [:confirmation]
   before_action :check_all_products_and_distilleries_transactional, except: [:confirmation]
@@ -10,7 +10,7 @@ class Checkout::OrdersController < ApplicationController
   def add_voucher
     @voucher = Voucher.where(code: params[:code]).first
     if @voucher.present?
-      if @voucher.valid_to > Time.now.in_time_zone('London') && @voucher.valid_from < Time.now.in_time_zone('London') && @voucher.live 
+      if @voucher.is_in_date_and_live 
         @order.update_attributes(voucher_id: @voucher.id)
       else
         flash[:alert] = "That voucher is not valid"
@@ -139,7 +139,7 @@ class Checkout::OrdersController < ApplicationController
   def check_voucher_is_valid_if_present
     if @order.voucher.present?
       voucher = @order.voucher
-      unless voucher.valid_from < Time.now.in_time_zone('London') && voucher.valid_to > Time.now.in_time_zone('London') && voucher.live
+      unless voucher.is_in_date_and_live
         @order.update_attributes(voucher_id: nil)
         flash[:alert] = "You had an invalid voucher attached to your order, so we removed it"
         redirect_to cart_path
