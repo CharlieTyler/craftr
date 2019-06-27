@@ -138,8 +138,7 @@ class Checkout::OrdersController < ApplicationController
 
   def check_voucher_is_valid_if_present
     if @order.voucher.present?
-      voucher = @order.voucher
-      unless voucher.is_in_date_and_live
+      unless @order.voucher.is_in_date_and_live
         @order.update_attributes(voucher_id: nil)
         flash[:alert] = "You had an invalid voucher attached to your order, so we removed it"
         redirect_to cart_path

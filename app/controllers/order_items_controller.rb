@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
   before_action :find_product, only: [:create]
   before_action :check_all_products_and_distilleries_transactional, only: [:create]
+  before_action :check_voucher_is_valid_if_present, only: [:index]
 
   include ActionView::Helpers::TextHelper
   # So we can use pluralize method
@@ -63,6 +64,16 @@ class OrderItemsController < ApplicationController
     unless @product.is_transactional
       flash[:alert] = 'This product is currently unavailable, please select another'
       redirect_to request.referrer
+    end
+  end
+
+  def check_voucher_is_valid_if_present
+    if @order.voucher.present?
+      unless @order.voucher.is_in_date_and_live
+        @order.update_attributes(voucher_id: nil)
+        flash[:alert] = "You had an invalid voucher attached to your order, so we removed it"
+        redirect_to cart_path
+      end
     end
   end
 
