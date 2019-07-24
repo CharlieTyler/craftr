@@ -1,12 +1,3 @@
-<% unless @product.is_transactional %>
-  <div class = "container">
-    <div class = "row">
-      <div class = "col-12">
-        <p class="alert alert-info">This product is not yet transactional - favourite it to get notified when it's available</p>
-      </div>
-    </div>
-  </div>
-<% end %>
 <% if user_signed_in? && current_user.admin %>
   <div class = "container py-2">
     <div class = "row">
@@ -81,7 +72,7 @@
               <% end %>
             </div>
           </p>
-          <p class = "article-text mb-1">We think</p>
+          <p class = "article-text mb-1">Craftr says:</p>
           <blockquote class="blockquote mt-0">
             <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
           </blockquote>

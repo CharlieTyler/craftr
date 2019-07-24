@@ -192,11 +192,13 @@
 <script async="true" src="//widget.whisk.com/assets/whiskbutton.js" type="text/javascript"></script>
 
 <script> 
-  var Whisk = Whisk || {};
-  Whisk.cmd = Whisk.cmd || [];
-  Whisk.cmd.push(function () {
-    Whisk.cmd.defineListItems('#new-shopping-list', [
-      <%= @recipe.whisk_ingredients_list.html_safe + "," %>
-    ])
+  $(function() {
+    var Whisk = Whisk || {};
+    Whisk.cmd = Whisk.cmd || [];
+    Whisk.cmd.push(function () {
+      Whisk.cmd.defineListItems('#new-shopping-list', [
+        <%= @recipe.whisk_ingredients_list.html_safe + "," %>
+      ])
+    });
   });
 </script>
