@@ -13,12 +13,18 @@
     "offers" : {
       "@type" : "Offer",
       "price" : "<%= product.price.to_f / 100 %>",
-      "priceCurrency" : "GBP"
-    },
-    "aggregateRating" : {
-      "@type" : "AggregateRating",
-      "ratingValue" : "<%= product.average_rating %>",
-      "ratingCount" : "<%= product.reviews.length %>"
+      "priceCurrency" : "GBP",
+      "availability" : "<%= product.is_in_stock ? 'InStock' : 'OutOfStock' %>",
+      "priceValidUntil" : "<%= 1.year.from_now.to_date.iso8601 %>",
+      "url" : "<%= product_url(product) %>"
     }
+    <% if product.reviews.length > 0 %>
+      ,
+      "aggregateRating" : {
+        "@type" : "AggregateRating",
+        "ratingValue" : "<%= product.average_rating %>",
+        "ratingCount" : "<%= product.reviews.length %>"
+      }
+    <% end %>
   }
 </script>
