@@ -1,0 +1,36 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">description</th>
+            <th scope="col">link</th>
+            <th scope="col">price</th>
+            <th scope="col">availability</th>
+            <th scope="col">image link</th>
+            <th scope="col">google product category</th>
+            <th scope="col">shipping</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <th scope="row"><%= product.id %></th>
+              <td><%= product.name %></td>
+              <td><%= simple_format product.description_short %></td>
+              <td><%= product_url(product) %></td>
+              <td><%= number_to_currency(product.price.to_f / 100, unit: "£") %></td>
+              <td><%= product.is_in_stock ? "InStock" : "OutOfStock" %></td>
+              <td><%= product.product_images.first.photo_url %></td>
+              <td>499676</td>
+              <td>£2.00</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

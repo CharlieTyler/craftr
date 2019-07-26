@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get "/cart" => "order_items#index"
   namespace :checkout do
     patch "/add_voucher" => "orders#add_voucher"
-    put "/add_voucher" => "orders#add_voucher"
+    put "/add_voucher" => "orders#add_vouchers"
     patch "/update_shipping_method" => "orders#update_shipping"
     put "/update_shipping_method" => "orders#update_shipping"
     get "/address" => "orders#address"
@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/dashboard", :controller => "static_pages", :action => "dashboard"
     get "/reports" => "static_pages#reports"
+    get "/product-feed" => "static_pages#product_feed"
     get "/control-panel" => "static_pages#control_panel"
     resources :authors, only: [:new, :create, :edit, :update, :destroy]
     resources :products, only: [:new, :create, :edit, :update, :destroy]
