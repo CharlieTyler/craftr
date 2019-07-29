@@ -91,9 +91,11 @@
 </div>
 
 <script>
-  $( document ).on('turbolinks:load', function() { 
+  $(function() { 
     $('.show-new-address').click(function() {
       $('.address-input').toggleClass("hidden");
+      $('.show-new-address').toggleClass("text-muted");
+      $('.show-new-address').toggleClass("text-primary");
     });
   });
 </script>

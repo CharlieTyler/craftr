@@ -17,7 +17,7 @@
             <th scope="col">availability</th>
             <th scope="col">image link</th>
             <th scope="col">google product category</th>
-            <th scope="col">shipping</th>
+            <th scope="col">shipping(country:region:price)</th>
           </tr>
         </thead>
         <tbody>
@@ -28,10 +28,10 @@
               <td><%= simple_format product.description_short %></td>
               <td><%= product_url(product) %></td>
               <td><%= number_to_currency(product.price.to_f / 100, unit: "£") %></td>
-              <td><%= product.is_in_stock ? "InStock" : "OutOfStock" %></td>
+              <td><%= product.is_in_stock ? "in stock" : "out of stock" %></td>
               <td><%= product.product_images.first.photo_url %></td>
               <td>499676</td>
-              <td>Standard shipping</td>
+              <td>GB::2.00 GBP</td>
             </tr>
           <% end %>
         </tbody>

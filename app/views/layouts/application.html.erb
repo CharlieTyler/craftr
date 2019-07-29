@@ -12,7 +12,16 @@
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
           ga('create', 'UA-117259081-1', 'auto');
+          // Google ads conversion tracking
+          gtag('config', 'AW-734967162');
           <% if action_name == "confirmation" %>
+            // For google ad conversion tracking
+            gtag('event', 'conversion', {
+                'send_to': 'AW-734967162/2zcmCJrK06YBEPrqut4C',
+                'value': 40.0,
+                'currency': 'GBP',
+                'transaction_id': ''
+            });
             ga('require', 'ecommerce');
             ga('ecommerce:addTransaction', {
               'id': '<%= @confirmed_order.id %>',
@@ -30,6 +39,7 @@
                 'price': '<%= si.item_price.to_f / 100 %>',
                 'quantity': '<%= si.quantity %>'                   // Quantity.
               });
+
             <% end %>
             ga('ecommerce:send');
           <% end %>
