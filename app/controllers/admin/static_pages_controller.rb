@@ -16,7 +16,11 @@ class Admin::StaticPagesController < AdminController
     @test_distilleries = Distillery.where(is_test: true)
   end
 
-  def product_feed
+  def product_feed_google
+    @products = Product.transactional
+  end
+
+  def product_feed_facebook
     @products = Product.transactional
   end
 end

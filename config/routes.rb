@@ -67,7 +67,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/dashboard", :controller => "static_pages", :action => "dashboard"
     get "/reports" => "static_pages#reports"
-    get "/product-feed" => "static_pages#product_feed"
+    get "/product-feed-google" => "static_pages#product_feed_google"
+    get "/product-feed-facebook" => "static_pages#product_feed_facebook"
     get "/control-panel" => "static_pages#control_panel"
     resources :authors, only: [:new, :create, :edit, :update, :destroy]
     resources :products, only: [:new, :create, :edit, :update, :destroy]

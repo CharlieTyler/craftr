@@ -1,0 +1,42 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-12">
+      <p>To be pasted in here: https://www.facebook.com/products/catalogs/431661040758859/feeds/new?catalogItemType=product_item</p>
+      <%= link_to "Go to google feed", admin_product_feed_google_path, class: "btn btn-secondary" %>
+    </div>
+    <div class = "col-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">description</th>
+            <th scope="col">availability</th>
+            <th scope="col">condition</th>
+            <th scope="col">price</th>
+            <th scope="col">link</th>
+            <th scope="col">image_link</th>
+            <th scope="col">brand</th>
+            <th scope="col">additional_image_link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <th scope="row"><%= product.id %></th>
+              <td><%= product.name %></td>
+              <td><%= simple_format product.description_short %></td>
+              <td><%= product.is_in_stock ? "in stock" : "out of stock" %></td>
+              <td>new</td>
+              <td><%= number_to_currency(product.price.to_f / 100, unit: "") %> GBP</td>
+              <td><%= product_url(product) %></td>
+              <td><%= product.product_images.first.photo_url %></td>
+              <td><%= product.distillery.name %></td>
+              <td><%= product.product_images.length > 1 ? product.product_images.second.photo_url : "" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
