@@ -38,7 +38,8 @@ class Distiller::ProductsController < DistillersController
                                     :weight,
                                     :dry_to_sweet,
                                     :subtle_to_intense,
-                                    :fresh_to_complex
+                                    :fresh_to_complex,
+                                    :GTIN
                                     )
   end
 end

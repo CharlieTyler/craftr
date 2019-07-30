@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190626093334) do
+ActiveRecord::Schema.define(version: 20190729142830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -262,6 +262,7 @@ ActiveRecord::Schema.define(version: 20190626093334) do
     t.integer "weight"
     t.integer "user_product_views_count"
     t.boolean "is_test", default: false
+    t.string "GTIN"
     t.index ["featured"], name: "index_products_on_featured"
     t.index ["is_live"], name: "index_products_on_is_live"
     t.index ["slug"], name: "index_products_on_slug", unique: true

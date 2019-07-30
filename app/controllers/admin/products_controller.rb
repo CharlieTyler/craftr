@@ -59,6 +59,7 @@ class Admin::ProductsController < AdminController
                                     :dry_to_sweet,
                                     :subtle_to_intense,
                                     :fresh_to_complex,
+                                    :GTIN,
                                     product_images_attributes: [:id, :product_id, :photo])
   end
 end
