@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190729142830) do
+ActiveRecord::Schema.define(version: 20190730153013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -315,6 +315,8 @@ ActiveRecord::Schema.define(version: 20190729142830) do
     t.string "instagram_hashtag"
     t.string "slug"
     t.integer "user_recipe_views_count"
+    t.integer "prep_time_in_minutes"
+    t.string "cuisine"
     t.index ["featured"], name: "index_recipes_on_featured"
     t.index ["slug"], name: "index_recipes_on_slug", unique: true
   end

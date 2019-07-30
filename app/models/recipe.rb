@@ -43,7 +43,7 @@ class Recipe < ApplicationRecord
   end
 
   def seo_keywords
-    "craft, spirits, recipe, recipes, #{categories.map(&:name).join(", ")}, #{ingredient_list}, craftr, crafter"
+    "craft, spirits, cocktail, recipe, recipes, #{categories.map(&:name).join(", ")}, #{ingredient_list}, craftr, crafter"
   end
 
   def self.search(params)

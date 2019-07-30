@@ -8,6 +8,8 @@
           "@type": "Person",
           "name": "<%= recipe.author.name %>"
         },
+        "prepTime": "<%= recipe.prep_time_in_minutes.minutes.iso8601 %>",
+        "recipeCuisine": "<%= recipe.cuisine %>",
         "datePublished": "<%= recipe.created_at.to_date %>",
         "description": "<%= recipe.description %>",
         "keywords": "<%= recipe.seo_keywords %>",
