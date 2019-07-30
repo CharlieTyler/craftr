@@ -18,6 +18,8 @@
             <th scope="col">image link</th>
             <th scope="col">google product category</th>
             <th scope="col">shipping(country:region:price)</th>
+            <th scope="col">brand</th>
+            <th scope="col">gtin</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +34,8 @@
               <td><%= product.product_images.first.photo_url %></td>
               <td>499676</td>
               <td>GB::2.00 GBP</td>
+              <td><%= product.distillery.name %></td>
+              <td><%= product.GTIN.present? ? product.GTIN : "" %></td>
             </tr>
           <% end %>
         </tbody>

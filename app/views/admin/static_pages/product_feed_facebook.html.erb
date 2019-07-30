@@ -18,6 +18,8 @@
             <th scope="col">image_link</th>
             <th scope="col">brand</th>
             <th scope="col">additional_image_link</th>
+            <th scope="col">gtin</th>
+            <th scope="col">shipping(country:region:price)</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +35,8 @@
               <td><%= product.product_images.first.photo_url %></td>
               <td><%= product.distillery.name %></td>
               <td><%= product.product_images.length > 1 ? product.product_images.second.photo_url : "" %></td>
+              <td><%= product.GTIN.present? ? product.GTIN : "" %></td>
+              <td>GB::2.00 GBP</td>
             </tr>
           <% end %>
         </tbody>
