@@ -1,3 +1,11 @@
+<% content_for :other_meta_tags do %>
+  <!-- Open Graph tags -->
+  <meta property="og:title" content="<%= 'Craftr - ' + @page_title %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:description" content="<%= @page_description %>" />
+  <meta property="og:image" content="<%= image_url('all_spirits.png') %>" />
+<% end %> 
 <div class = "container-fluid px-0">
   <div class = "owl-carousel owl-theme hero-carousel">
     <%= render partial: "static_pages/carousel_feature", collection: @carousel_features, as: :carousel_feature %>

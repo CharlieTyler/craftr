@@ -39,7 +39,7 @@ class Recipe < ApplicationRecord
   }
 
   def seo_description
-    "#{description} - a CRAFTR recipe by #{author.name}, using #{ingredient_list}"
+    "#{description} - a cocktail recipe by #{author.name}, using #{ingredient_list}"
   end
 
   def seo_keywords

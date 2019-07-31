@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
     @comments = @recipe.recipe_comments.all
     @page_description          = @recipe.seo_description
     @page_keywords             = @recipe.seo_keywords
+    @page_image_src            = @recipe.image_url
     @same_author_recipes       = Recipe.where(author_id: @recipe.author.id).where.not(id: @recipe.id).first(3)
     # unless @recipe.instagram_hashtag.blank?
     #   @instas   = InstagramApi.tag(@recipe.instagram_hashtag).recent_media

@@ -60,6 +60,7 @@
     <%= favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png' %>
 
     <%= display_meta_tags site: 'CRAFTR', reverse: true %>
+    <%= yield :other_meta_tags %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
