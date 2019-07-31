@@ -11,74 +11,77 @@
           <div class = "row">
             <div class = "col-12">
               <h4>🚚 Select delivery address</h4>
-              <p class = "text-muted">UK only - please be aware that we do not ship internationally.</p>
-              <div class="text-primary my-0 show-new-address">
-                + Add an address
-              </div>
-              <div class = "row address-input hidden">
-                <div class = "col-12 px-3 mt-2">
-                  <%= simple_form_for @address, url: checkout_create_address_path do |f| %>
-                    <div class = "row">
-                      <div class = "col-6">
-                        <%= f.input :first_name %>
-                      </div>
-                      <div class = "col-6">
-                        <%= f.input :last_name %>
-                      </div>
-                    </div>
-                    <%= f.input :line_1 %>
-                    <%= f.input :line_2 %>
-                    <%= f.input :line_3, label: "Line 3 (rarely required)" %>
-                    <div class = "row">
-                      <div class = "col-6">
-                        <%= f.input :post_town, label: "Town / City" %>
-                      </div>
-                      <div class = "col-6">
-                        <%= f.input :postcode %>
-                      </div>
-                      <div class = "col-md-8">
-                        <%= f.input :phone_number, hint: "Royal Mail requires a phone number for delivering parcels" %>
-                      </div>
-                      <div class = "col-md-4">
-                        <%= f.input :country, collection: Address::COUNTRIES, include_blank: false, hint: "We only ship to the UK!" %>
-                      </div>
-                    </div>
-                    <%= f.submit "Deliver to here", class: "btn-lg btn-success col-12" %>
-                  <% end %>
-                </div>
-              </div>
             </div>
-            <% current_user.addresses.each do |address| %>
-              <div class = "col-6 col-md-4 my-2">
-                <div class="card h-100">
-                  <div class="card-block">
-                    <div class="card-text">
-                      <p class = "mb-1"><strong><%= address.full_name %></strong></p>
-                      <p class = "mb-1"><%= address.line_1 %></p>
-                      <p class = "mb-1"><%= address.line_2 %></p>
-                      <p class = "mb-1"><%= address.line_3 %></p>
-                      <p class = "mb-1"><%= address.post_town %></p>
-                      <p class = "mb-1"><%= address.postcode %></p>
-                    </div>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">
-                      <%= simple_form_for @order, url: checkout_update_address_path do |f| %>
-                        <%= f.input :shipping_address_id, as: :hidden, :input_html => { :value => address.id } %>
-                        <% if @order.shipping_address_id.present? && @order.shipping_address == address %>
-                          <%= f.submit "Selected", class: "btn btn-success col-12" %>
-                        <% else %>
-                          <%= f.submit "Select", class: "btn btn-green-secondary col-12" %>
-                        <% end %>
-                      <% end %>
-                    </li>
-                  </ul>
-                </div>
+            <% if current_user.addresses.length > 0 %>
+              <div class = "col-12">
+                <h6>Select from address book</h6>
               </div>
+              <% current_user.addresses.each do |address| %>
+                <div class = "col-6 col-md-4 my-2">
+                  <div class="card h-100">
+                    <div class="card-block">
+                      <div class="card-text">
+                        <p class = "mb-1"><strong><%= address.full_name %></strong></p>
+                        <p class = "mb-1"><%= address.line_1 %></p>
+                        <p class = "mb-1"><%= address.line_2 %></p>
+                        <p class = "mb-1"><%= address.line_3 %></p>
+                        <p class = "mb-1"><%= address.post_town %></p>
+                        <p class = "mb-1"><%= address.postcode %></p>
+                      </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item text-center">
+                        <%= simple_form_for @order, url: checkout_update_address_path do |f| %>
+                          <%= f.input :shipping_address_id, as: :hidden, :input_html => { :value => address.id } %>
+                          <% if @order.shipping_address_id.present? && @order.shipping_address == address %>
+                            <%= f.submit "Selected", class: "btn btn-success col-12" %>
+                          <% else %>
+                            <%= f.submit "Select", class: "btn btn-green-secondary col-12" %>
+                          <% end %>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              <% end %>
             <% end %>
             <div class = "col-12">
               <% if @order.shipping_address_id.present? %>
                 <%= link_to "Continue to secure payment", checkout_payment_path, class: "btn btn-lg btn-success text-center col-12 my-2 py-2" %>
+              <% end %>
+            </div>
+          </div>
+          <div class = "row address-input">
+            <div class = "col-12 px-3 mt-2">
+              <h6>Add a new address</h6>
+              <p class = "text-muted">UK only - please be aware that we do not ship internationally.</p>
+              <%= simple_form_for @address, url: checkout_create_address_path do |f| %>
+                <div class = "row">
+                  <div class = "col-6">
+                    <%= f.input :first_name %>
+                  </div>
+                  <div class = "col-6">
+                    <%= f.input :last_name %>
+                  </div>
+                </div>
+                <%= f.input :line_1 %>
+                <%= f.input :line_2 %>
+                <%= f.input :line_3, label: "Line 3 (rarely required)" %>
+                <div class = "row">
+                  <div class = "col-6">
+                    <%= f.input :post_town, label: "Town / City" %>
+                  </div>
+                  <div class = "col-6">
+                    <%= f.input :postcode %>
+                  </div>
+                  <div class = "col-md-8">
+                    <%= f.input :phone_number, hint: "Royal Mail requires a phone number for delivering parcels" %>
+                  </div>
+                  <div class = "col-md-4">
+                    <%= f.input :country, collection: Address::COUNTRIES, include_blank: false, hint: "We only ship to the UK!" %>
+                  </div>
+                </div>
+                <%= f.submit "Deliver to here", class: "btn-lg btn-success col-12" %>
               <% end %>
             </div>
           </div>
@@ -95,20 +98,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(function() { 
-    $('.show-new-address').click(function() {
-      $('.address-input').toggleClass("hidden");
-      $('.show-new-address').toggleClass("text-muted");
-      $('.show-new-address').toggleClass("text-primary");
-    });
-  });
-  <% if current_user.addresses.length == 0 %>
-    $(function() {
-      $(".address-input").show();
-      $('.show-new-address').addClass("text-muted");
-      $('.show-new-address').removeClass("text-primary");
-    });
-  <% end %>
-</script>
