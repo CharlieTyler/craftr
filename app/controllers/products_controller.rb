@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     @review                    = Review.new
     @recipes                   = @product.recipes
     @other_distillery_products = Product.includes(:product_images, :reviews).live.where(distillery_id: @product.distillery.id).where.not(id: @product.id)
-    @other_popular_products    = @product.other_popular_products.first(3)
+    @other_popular_products    = @product.other_popular_products.sample(3)
     @order_item                = OrderItem.new
     UserProductView.create(user: user_signed_in? ? current_user : nil, product: @product)
     # SEO
@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
     @categories = Category.all
     
     # order by weight ASC puts those with nil last - bit of a hack, but works
-    @products = Product.filter(filter_params).order('featured DESC').live.page(params[:page])
+    @products = Product.transactional.filter(filter_params).order('featured DESC').live.page(params[:page])
 
     respond_to do |format|
       format.html
