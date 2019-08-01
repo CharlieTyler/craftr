@@ -65,7 +65,7 @@
     <div class = "row text-center">
       <div class = "col-12">
         <div class = "row">
-          <%= render partial: "products/lister_item", collection: @other_products, as: :product, locals: { md_upwards_col: (@other_products.size.between?(2, 4) ? 12/(category.products.where(featured: true).size) : 4).to_s, include_add_to_basket: false } %>
+          <%= render partial: "products/lister_item", collection: @other_products, as: :product, locals: { md_upwards_col: 4, include_add_to_basket: false } %>
         </div>
       </div>
     </div>
