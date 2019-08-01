@@ -33,7 +33,7 @@
     <div class = "background-lightgrey" id = "products">
       <div class = "container py-3">
         <div class = "d-inline-block">
-          <h3>Featured <%= "#{category.name}s" %></h3>
+          <h3>Craftr's selected <%= "#{category.name}s" %></h3>
         </div>
         <div class = "d-inline-block float-right">
           <p class = "text-primary"><%= link_to "See all", category_path(category) %></p>
@@ -55,7 +55,22 @@
     </div>
   <% end %>
 <% end %>
-
+<!-- Products -->
+<div class = "background-lightgrey" id = "other-products">
+  <div class = "container py-3">
+    <div class = "d-inline-block">
+      <h3>Featured non-gin spirits</h3>
+    </div>
+    <div class = "clear"></div>
+    <div class = "row text-center">
+      <div class = "col-12">
+        <div class = "row">
+          <%= render partial: "products/lister_item", collection: @other_products, as: :product, locals: { md_upwards_col: (@other_products.size.between?(2, 4) ? 12/(category.products.where(featured: true).size) : 4).to_s, include_add_to_basket: false } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Recently viewed -->
 <% if user_signed_in? && current_user.recently_viewed_products.present? %>
   <div class = "products-background background-grey">

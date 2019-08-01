@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/about" => "static_pages#about"
   get "/contact" => "static_pages#contact"
   get "/privacy-policy" => "static_pages#privacy"
+  get "/deliveries-and-shipping" => "static_pages#deliveries"
 
   get "/search" => "search#search" 
   resources :age_verification, only: [:create]

@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
     @carousel_features     = CarouselFeature.rank(:row_order).all
     @all_categories        = Category.all
     @featured_categories   = Category.where(featured: true).first(4)
+    @other_products        = Product.where.not(category_id: 1).transactional
     @recipes               = Recipe.last(4)
     @featured_distilleries = Distillery.live.last(3)
     @page_title            = "A curated collection of local gins and other artisan spirits"
@@ -21,6 +22,10 @@ class StaticPagesController < ApplicationController
   end
 
   def privacy
+
+  end
+
+  def deliveries
 
   end
 end
