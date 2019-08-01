@@ -28,4 +28,8 @@ class StaticPagesController < ApplicationController
   def deliveries
 
   end
+
+  def returns
+
+  end
 end
