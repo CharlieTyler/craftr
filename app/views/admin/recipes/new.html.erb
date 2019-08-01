@@ -9,6 +9,7 @@
         <%= f.input :description %>
         <%= f.input :author_id, collection: @authors, value_method: :id, label_method: :name %>
         <%= f.input :instagram_hashtag %>
+        <%= f.input :prep_time_in_minutes %>
         <%= f.input :blurb, input_html: { class: 'quill_container' } %>
         <%= f.input :image %>
         <%= f.input :banner_image %>

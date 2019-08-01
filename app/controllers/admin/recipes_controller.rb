@@ -72,6 +72,7 @@ class Admin::RecipesController < AdminController
                                    :method, 
                                    :author_id, 
                                    :instagram_hashtag,
+                                   :prep_time_in_minutes,
                                    recipe_ingredients_attributes: [:id, :quantity, :ingredient_id, :recipe_id],
                                    recipe_categories_attributes: [:id, :category_id, :recipe_id],
                                    recipe_products_attributes: [:id, :product_id, :recipe_id])
