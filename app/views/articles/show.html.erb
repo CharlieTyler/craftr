@@ -1,3 +1,12 @@
+<% content_for :other_meta_tags do %>
+  <!-- Open Graph tags -->
+  <meta property="og:title" content="<%= @article.title %>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="<%= article_url(@article) %>" />
+  <meta property="og:description" content="<%= @page_description %>" />
+  <meta property="og:image" content="<%= @article.banner_image_url %>" />
+  <meta property="og:author" content="<%= @article.author.name %>" />
+<% end %> 
 <% if user_signed_in? && current_user.admin %>
   <div class = "container py-2">
     <div class = "row">

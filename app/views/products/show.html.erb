@@ -1,3 +1,13 @@
+<% content_for :other_meta_tags do %>
+  <!-- Open Graph tags -->
+  <meta property="og:title" content="<%= @recipe.name %>" />
+  <meta property="og:type" content="recipe" />
+  <meta property="og:url" content="<%= recipe_url(@recipe) %>" />
+  <meta property="og:description" content="<%= @page_description %>" />
+  <meta property="og:image" content="<%= @recipe.image_url %>" />
+  <meta property="og:author" content="<%= @recipe.author.name %>" />
+<% end %> 
+
 <% if user_signed_in? && current_user.admin %>
   <div class = "container py-2">
     <div class = "row">

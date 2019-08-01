@@ -5,8 +5,7 @@
   <meta property="og:url" content="<%= recipe_url(@recipe) %>" />
   <meta property="og:description" content="<%= @page_description %>" />
   <meta property="og:image" content="<%= @recipe.image_url %>" />
-  <!-- Twitter card property -->
-  <meta name="twitter:card" content="<%= @recipe.name %>">
+  <meta property="og:author" content="<%= @recipe.author.name %>" />
 <% end %> 
 <% if user_signed_in? && current_user.admin %>
   <div class = "container py-2">
