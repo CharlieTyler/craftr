@@ -12,7 +12,8 @@ class StaticPagesController < ApplicationController
   end
 
   def about
-
+    @recipes               = Recipe.last(4)
+    @distilleries          = Distillery.last(4)
   end
 
   def contact

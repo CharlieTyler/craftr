@@ -1,16 +1,81 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-md-6">
-      <h1><%= title 'About Craftr' %></h1>
-      <p class = "article-text">
-        Craftr is a place to discover craft spirits, recipes and articles, and buy directly from the distilleries.
-        <br />
-        <br />
-        When you purchase on Craftr, we tell the distillery and they ship the products straight to your door. Handy!
-        <br />
-        <br />
-        Keep in touch <%= link_to "on Instagram", "http://www.instagram.com/craftrspirits" %>, or send us <%= mail_to "mike@craftr.co.uk", "an email" %>. We love to hear our customers' thoughts
-      </p>
+  </div>
+</div>
+<div class = "background-lightgrey">
+  <div class = "container">
+    <div class = "row py-2">
+      <div class = "col-md-8 offset-md-2 mt-3 text-center">
+        <h1><%= title 'A marketplace for craft spirits' %></h1>
+      </div>
+    </div>
+    <div class = "row mx-1 my-4 lyst-box">
+      <div class = "col-md-6 display-v-middle">
+        <%= image_tag 'https://craftr-dev.s3.amazonaws.com/uploads/Overall+banner.png', class: "img-fluid" %>
+      </div>
+      <div class = "col-md-6">
+        <h4>1. A curated collection of craft gin and other spirits</h4>
+        <p class = "article-text">
+          Craftr works with only the finest, small distilleries. You won't find anything from the big alcohol players here, just the small guys who have grafted and crafted their way to some brilliant beverages.
+          <div class = "row">
+            <%= link_to "See all our distilleries", distilleries_path, class: "btn btn-primary col-10 offset-1 my-2" %>
+          </div>
+        </p>
+      </div>
+    </div>
+    <div class = "row mx-1 my-4 lyst-box">
+      <div class = "col-md-6 flex-last display-v-middle">
+        <div class = "row">
+          <% @recipes.each do |recipe| %>
+            <div class = "col-6 my-2">
+              <%= link_to recipe_path(recipe) do %>
+                <%= image_tag recipe.image_url(:full).to_s, class: "img-fluid" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class = "col-md-6 flex-first">
+        <h4>2. Cocktail recipes to inspire</h4>
+        <p class = "article-text">
+          Along with our partner distilleries, we've built up a collection of cocktail recipes, both classic cocktails and those that bring out the flavours of the craft spirits.
+          <br/>
+          <br/>
+          We have also opened up our recipe catalogue to the amazingly creative community on Instagram, where mixologists come up with new cocktail creations every day.
+          <br/>
+          <br/>
+          Follow us on Instagram to see more.
+          <div class = "row mx-1">
+            <%= link_to "Follow us on Instagram", "https://www.instagram.com/craftrspirits", class: "btn btn-primary col mx-1" %>
+            <%= link_to "Browse recipes", recipes_path, class: "btn btn-primary col mx-1" %>
+          </div>
+        </p>
+      </div>
+    </div>
+    <div class = "row mx-1 my-4 lyst-box">
+      <div class = "col-md-6 display-v-middle">
+        <div class = "row">
+          <% @distilleries.each do |distillery| %>
+            <div class = "col-6 my-2">
+              <%= link_to distillery_path(distillery) do %>
+                <%= image_tag distillery.summary_image_url(:square).to_s, class: "img-fluid" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class = "col-md-6">
+        <h4>3. Supporting distilleries</h4>
+        <p class = "article-text">
+          When you order on Craftr, your items are shipped to you directly from the distilleries. This means that Craftr aims to give more money per bottle directly to the maker than any other spirits retailer.
+          <br/>
+          <br/>
+          This is also why Craftr offers one of the most competitive shipment costings online - just £2, no matter how many bottles.
+          <div class = "row mx-1">
+            <%= link_to "More about deliveries", root_path, class: "btn btn-primary col mx-1" %>
+          </div>
+        </p>
+      </div>
     </div>
   </div>
 </div>
