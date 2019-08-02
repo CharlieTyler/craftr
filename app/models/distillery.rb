@@ -3,6 +3,7 @@ class Distillery < ApplicationRecord
   friendly_id :name, use: :slugged
 
   scope :live, -> { where(is_live: true, is_test: false) }
+  scope :transactional, -> { where("stripe_id <> ''") }
 
   # distillery portal access
   has_many :users
