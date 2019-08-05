@@ -1,39 +1,35 @@
 <!-- Filtering in progress -->
-
-<div class = "container-fluid">
-  <div class = "row">
-    <div class = "col-12">
-      <h1><%= title 'All products' %></h1>
-      <div class = "filter-toggle text-primary"><strong>Filter <i class="fa fa-angle-down" aria-hidden="true"></i></strong></div>
-      <div class = "filter-form hidden">
-        <%= form_tag(products_path, method: :get, remote: true) do %>
-          <div class = "row">
-            <div class = "col-12">
-              <div class = "d-inline-block mx-2">
-                <p class = "mb-0 mt-2">Category: </p>
-                <%= select_tag :category_id, options_from_collection_for_select(@categories, :id, :name, params[:category_id]), multiple: true, class: "multiselect" %>
+<div class = "background-lightgrey">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-12">
+        <h4 class = "mt-2"><%= title 'All products' %></h4>
+        <p>Browse craft gin, vodka, rum and more from our selected partner distilleries</p>
+        <div class = "filter-toggle text-primary"><strong>Filter <i class="fa fa-angle-down" aria-hidden="true"></i></strong></div>
+        <div class = "filter-form hidden">
+          <%= form_tag(products_path, method: :get, remote: true) do %>
+            <div class = "row">
+              <div class = "col-12">
+                <div class = "d-inline-block mx-2">
+                  <p class = "mb-0 mt-2">Category: </p>
+                  <%= select_tag :category_id, options_from_collection_for_select(@categories, :id, :name, params[:category_id]), multiple: true, class: "multiselect" %>
+                </div>
+                <div class = "d-inline-block mx-2">
+                  <p class = "mb-0 mt-2">Distillery: </p>
+                  <%= select_tag :distillery_id, options_from_collection_for_select(Distillery.all, :id, :name, params[:distillery_id]), multiple: true, class: "multiselect" %>
+                </div>
+                <%= submit_tag "Filter", class: "btn btn-primary col-12 mx-2 mt-2", data: { disable_with: 'Filtering...'} %>
               </div>
-              <div class = "d-inline-block mx-2">
-                <p class = "mb-0 mt-2">Distillery: </p>
-                <%= select_tag :distillery_id, options_from_collection_for_select(Distillery.all, :id, :name, params[:distillery_id]), multiple: true, class: "multiselect" %>
-              </div>
-              <div class = "d-inline-block mx-2">
-                <!-- Make into slider, and make default values dynamic based on @products -->
-                <p class = "mb-0 mt-2">Strength:
-                <%= select_tag :strength_min, options_for_select(40..60) %>
-                <%= select_tag :strength_max, options_for_select(40..60) %>
-              </div>
-              <%= submit_tag "Filter", class: "btn btn-primary col-12 mx-2 mt-2", data: { disable_with: 'Filtering...'} %>
             </div>
+          <% end %>
+        </div>
+        <div class = "row" id = "products-for-filtering">
+          <%= render partial: "lister_item", collection: @products, as: :product, locals: { include_add_to_basket: false }  %>
+        </div>
+        <div class = "row">
+          <div class = "col-12 text-center">
+            <%= will_paginate @products, :page_links => false %>
           </div>
-        <% end %>
-      </div>
-      <div class = "row" id = "products-for-filtering">
-        <%= render partial: "lister_item", collection: @products, as: :product, locals: { include_add_to_basket: false }  %>
-      </div>
-      <div class = "row">
-        <div class = "col-12 text-center">
-          <%= will_paginate @products, :page_links => false %>
         </div>
       </div>
     </div>
