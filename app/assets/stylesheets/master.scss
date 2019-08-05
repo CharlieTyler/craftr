@@ -270,6 +270,24 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
+.btn-search,
+.btn-search:active,
+.btn-search:visited,
+.btn-search:focus
+.btn-search.active {
+    border-radius: 0px 5px 5px 0px !important;
+    background-color: darken($green, 5%) !important;
+    border: 2px solid darken($green, 5%) !important;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-search:hover {
+  background-color: white !important;
+  border-color: black !important;
+  color: $black;
+}
+
 .btn-green-secondary,
 .btn-green-secondary:active,
 .btn-green-secondary:visited,
@@ -680,4 +698,20 @@ input[type=search] {
 }
 .indent-dot.right {
   left: 100%;
+}
+
+.border-right-grey {
+  border-right: 2px solid $lightgrey;
+}
+
+.border-below-black {
+  border-bottom: 1px solid $lightgrey; 
+}
+
+.dropdown-menu {
+  border-radius: 0px !important;
+  border-top: 5px solid $primary !important;
+  border-bottom: 5px solid $lightgrey !important;
+  border-left: 2px solid $lightgrey !important;
+  border-right: 2px solid $lightgrey !important;
 }

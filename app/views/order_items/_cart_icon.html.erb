@@ -1,5 +1,7 @@
 <li class = "nav-item">  
-  <h5><%= link_to "🛒", cart_path, class: "nav-link" %></h5>
+  <%= link_to cart_path, class: "nav-link" do %>
+    <i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i>
+  <% end %>
 </li>
 <% if order.total_unpaid_quantity > 0 %>
   <li class = "nav-item">
