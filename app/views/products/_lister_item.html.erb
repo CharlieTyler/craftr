@@ -1,26 +1,26 @@
 <!-- Note: for additional classes, they must be preceded by a space e.g. ' hidden-sm-down' -->
 <div class = "<%= ['my-2 col-6 col-md-', md_upwards_col ||= 4.to_s, additional_class ||= ''].join('') %>" >
-  <div class="card h-100">
-    <div class = "card-img-top lister-product-container text-center">
-      <% if product.product_images.present? %>
-        <%= image_tag product.product_images.first.photo_url(:full).to_s, class: "img-fluid" %>
-      <% else %>
-        <%= image_tag "booze_placeholder.jpg", class: "img-fluid" %>
-      <% end %>
-      <div class = "lister-product-image-overlay px-3 display-v-middle">
-        <% if product.is_transactional %>
-          <%= render partial: 'products/add_to_basket_button', locals: {order_item: OrderItem.new, product: product, include_go_to_checkout: false, large_button: true, remote: true} %>
+  <%= link_to product_path(product) do %>
+    <div class="card h-100">
+      <div class = "card-img-top lister-product-container text-center">
+        <% if product.product_images.present? %>
+          <%= image_tag product.product_images.first.photo_url(:full).to_s, class: "img-fluid" %>
         <% else %>
-          <%= link_to "Learn more", product_path(product), class: "col-12 btn-lg btn-primary" %>
+          <%= image_tag "booze_placeholder.jpg", class: "img-fluid" %>
         <% end %>
+        <div class = "lister-product-image-overlay px-3 display-v-middle">
+          <% if product.is_transactional %>
+            <%= render partial: 'products/add_to_basket_button', locals: {order_item: OrderItem.new, product: product, include_go_to_checkout: false, large_button: false, remote: true} %>
+          <% else %>
+            <%= link_to "Learn more", product_path(product), class: "col-12 btn-lg btn-green-secondary" %>
+          <% end %>
+        </div>
       </div>
+        <div class="card-block text-left py-2">
+          <h6 class="card-title mb-2"><%= product.name %></h6>
+          <p class = "card-subtitle mb-2 text-muted">from <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
+          <h5 class = "mb-0"><%= product.human_readable_price %></h5>
+        </div>
     </div>
-    <%= link_to product_path(product) do %>
-      <div class="card-block text-left py-2">
-        <h6 class="card-title mb-2"><%= product.name %></h6>
-        <p class = "card-subtitle mb-2 text-muted">from <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
-        <h5 class = "mb-0"><%= product.human_readable_price %></h5>
-      </div>
-    <% end %>
-  </div>
+  <% end %>
 </div>
