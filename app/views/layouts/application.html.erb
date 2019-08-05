@@ -132,23 +132,23 @@
             <div class = "col-4 text-center border-right-grey px-0 align-middle">
               <% if user_signed_in? %>
                 <%= link_to me_path do %>
-                  <h6 class = "mb-0"><i class="fa fa-2x fa-user" aria-hidden="true"></i> &nbsp Account</h6>
+                  <h6 class = "mb-0"><i class="fa fa-lg fa-user-o" aria-hidden="true"></i></h6>
                 <% end %>
               <% else %>
                 <%= link_to new_user_registration_path do %>
-                  <h6 class = "mb-0"><i class="fa fa-2x fa-user-plus" aria-hidden="true"></i> &nbsp Sign up</h6>
+                  <h6 class = "mb-0"><i class="fa fa-lg fa-user-plus" aria-hidden="true"></i></h6>
                 <% end %>
               <% end %>
             </div>
             <div class = "col-4 text-center border-right-grey px-0 align-top">
               <%= link_to cart_path do %>
-                <h6 class = "mb-0"><i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i> &nbsp Basket
-                  <span class = "badge badge-success js-number-of-items"><%= @order.total_unpaid_quantity %></span></h6>
+                <h6 class = "mb-0"><i class="fa fa-lg fa-shopping-cart" aria-hidden="true"></i>
+                  <span class = "badge badge-success js-number-of-items mb-1"><%= @order.total_unpaid_quantity %></span></h6>
               <% end %>
             </div>
             <div class = "col-4 text-center px-0 align-top">
               <%= link_to "https://www.instagram.com/craftrspirits" do %>
-                <h6 class = "mb-0"><i class="fa fa-2x fa-instagram" aria-hidden="true"></i> &nbsp 21k</h6>
+                <h6 class = "mb-0"><i class="fa fa-lg fa-instagram" aria-hidden="true"></i> 21k</h6>
               <% end %>
             </div>
           </div>
@@ -250,26 +250,28 @@
                 </div>
               </li>
             </ul>
-            <ul class = "navbar-nav float-right">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-2x fa-user" aria-hidden="true"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <% if user_signed_in? %>
-                    <%= link_to 'My account', me_path, class: 'dropdown-item' %>
-                    <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-                  <% else %>
-                    <%= link_to 'Sign in', new_user_session_path, class: 'dropdown-item' %>
-                    <%= link_to 'Sign up', new_user_registration_path, class: 'dropdown-item' %>
-                  <% end %>
-                </div>
-              </li>
-              <ul class = "navbar-nav js-cart-area">
-                <!-- A slight hack - put in an extra ul as the wrapper for the javascript hook on add to basket -->
-                <%= render partial: "order_items/cart_icon", locals: { order: @order } %>
+            <div class = "hidden-sm-down">
+              <ul class = "navbar-nav float-right">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-lg fa-user-o" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <% if user_signed_in? %>
+                      <%= link_to 'My account', me_path, class: 'dropdown-item' %>
+                      <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+                    <% else %>
+                      <%= link_to 'Sign in', new_user_session_path, class: 'dropdown-item' %>
+                      <%= link_to 'Sign up', new_user_registration_path, class: 'dropdown-item' %>
+                    <% end %>
+                  </div>
+                </li>
+                <ul class = "navbar-nav js-cart-area">
+                  <!-- A slight hack - put in an extra ul as the wrapper for the javascript hook on add to basket -->
+                  <%= render partial: "order_items/cart_icon", locals: { order: @order } %>
+                </ul>
               </ul>
-            </ul>
+            </div>
           </div>
         <% else %>
           <ul class="navbar-nav mr-auto ml-auto">
