@@ -6,10 +6,8 @@
   <meta property="og:description" content="<%= @page_description %>" />
   <meta property="og:image" content="https://craftr-dev.s3.amazonaws.com/uploads/Overall+banner.png" />
 <% end %> 
-<div class = "container-fluid px-0">
-  <div class = "hero-carousel">
-    <%= render partial: "static_pages/carousel_feature", collection: @carousel_features, as: :carousel_feature %>
-  </div> <!-- Owl carousel -->
+<div class = "container-fluid px-0 hero-carousel">
+  <%= render partial: "static_pages/carousel_feature", collection: @carousel_features, as: :carousel_feature %>
 </div>
 
 <!-- USP banner - 2 versions, one with owl carousel for mobile -->
@@ -157,7 +155,6 @@
   $( document ).on('turbolinks:load', function() { 
     var owl = $('.owl-carousel.hero-carousel'); 
     owl.owlCarousel({
-      stagePadding: -17,
       loop:true,
       dots: true,
       items: 1,
