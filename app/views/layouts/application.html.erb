@@ -187,7 +187,7 @@
                           <% featured_products.each do |product| %>
                             <li><%= link_to product.name, product_path(product), class: "dropdown-item" %></li>
                           <% end %>
-                          <li><strong><%= link_to "See all", products_path, class: "text-muted dropdown-item" %></strong></li>
+                          <li><strong><%= link_to "See all", products_path, class: "text-primary dropdown-item" %></strong></li>
                         </ul>
                       </div>
                       <div class = "col-md-4">
@@ -196,7 +196,7 @@
                           <% featured_distilleries.each do |distillery| %>
                             <li><%= link_to distillery.name, distillery_path(distillery), class: "dropdown-item" %></li>
                           <% end %>
-                          <li><strong><%= link_to "See all", distilleries_path, class: "text-muted dropdown-item" %></strong></li>
+                          <li><strong><%= link_to "See all", distilleries_path, class: "text-primary dropdown-item" %></strong></li>
                         </ul>
                       </div>
                     </div>
@@ -214,7 +214,7 @@
                           <% popular_recipes.each do |recipe| %>
                             <li><%= link_to recipe.name, recipe_path(recipe), class: "dropdown-item" %></li>
                           <% end %>
-                          <li><strong><%= link_to "See all", recipes_path, class: "text-muted dropdown-item" %></strong></li>
+                          <li><strong><%= link_to "See all", recipes_path, class: "text-primary dropdown-item" %></strong></li>
                         </ul>
                       </div>
                       <div class = "col-md-4">
@@ -223,6 +223,7 @@
                           <% newest_recipes.each do |recipe| %>
                             <li><%= link_to recipe.name, recipe_path(recipe), class: "dropdown-item" %></li>
                           <% end %>
+                          <li><strong><%= link_to "See all", recipes_path, class: "text-primary dropdown-item" %></strong></li>
                         </ul>
                       </div>
                       <div class = "col-md-4">
@@ -231,7 +232,7 @@
                           <% latest_articles.each do |article| %>
                             <li><%= link_to article.title, article_path(article), class: "dropdown-item" %></li>
                           <% end %>
-                          <li><strong><%= link_to "See all", articles_path, class: "text-muted dropdown-item" %></strong></li>
+                          <li><strong><%= link_to "See all", articles_path, class: "text-primary dropdown-item" %></strong></li>
                         </ul>
                     </div>
                   </div>
