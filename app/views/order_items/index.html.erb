@@ -87,17 +87,19 @@
             </div>
           </div>
         </div>
-        <div class = "col-md-8 offset-md-2 lyst-box my-2">
-          <div class = "px-3">
-            <div class = "row">
-              <div class = "col-12">
-                <h4>You may also like...</h4>
-                <div class = "row">
-                  <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: { include_add_to_basket: true } %>
+        <% if @suggested_products.length > 0 %>
+          <div class = "col-md-8 offset-md-2 lyst-box my-2">
+            <div class = "px-3">
+              <div class = "row">
+                <div class = "col-12">
+                  <h4>You may also like...</h4>
+                  <div class = "row">
+                    <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: { include_add_to_basket: true } %>
+                  </div>
                 </div>
-              </div>
-            </div>  
-          </div>
+              </div>  
+            </div>
+          <% end %>
         </div>
       <% else %>
         <div class = "col-md-8 offset-md-2 lyst-box my-2">
