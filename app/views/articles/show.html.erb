@@ -56,10 +56,12 @@
     <div class = "col-md-8 offset-md-2">
       <h1 class = "mt-1 display-4"><%= title @article.title %></h1>
       <p class = "text-muted">by <%= link_to @article.author.name, author_path(@article.author) %></p>
-      <%= image_tag @article.banner_image.url(:square).to_s, class: "img-fluid" %>
-      <% @article.tags.each do |tag| %>
-        <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary mt-1" %>
-      <% end %>
+      <%= image_tag @article.banner_image.url(:full).to_s, class: "img-fluid" %>
+      <div class = "justify-content-center">
+        <% @article.tags.each do |tag| %>
+          <%= link_to tag.name.capitalize, article_tag_path(tag.slug), class: "btn btn-secondary mt-1" %>
+        <% end %>
+      </div>
       <hr class = "lyst-line-grey"/>
     </div>
   </div>
