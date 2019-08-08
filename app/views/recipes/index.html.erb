@@ -1,37 +1,31 @@
-<div class = "container-fluid">
-  <div class = "owl-carousel owl-theme recipe-carousel">
-    <%= render partial: "recipes/carousel_recipe", collection: @featured_recipes, as: :recipe %>
-  </div>
-</div>
-
-<% if @tags.length > 0 %>
-  <div class = "container-fluid background-secondary">
-    <div class = "row py-2">
-      <div class = "col-12 text-center">
-        <h5 class = "text-white py-3">Top collections</h5>
-        <% @tags.each do |tag| %>
-          <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary" %>
+<div class = "background-lightgrey">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-12">
+        <h4 class = "mt-3"><%= title 'Latest recipes' %></h4>
+        <div class = "row">
+          <%= render partial: "recipes/lister_recipe", collection: @recipes.first(2), as: :recipe %>
+        </div>
+        <% if @tags.length > 0 %>
+          <div class = "col-12 lyst-box px-2 py-2">
+            <h5 class = "">Top collections</h5>
+            <% @tags.each do |tag| %>
+              <%= link_to tag.name.capitalize, recipe_tag_path(tag.slug), class: "btn btn-secondary mt-2" %>
+            <% end %>
+          </div>
         <% end %>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<div class = "container-fluid">
-  <div class = "row background-grey">
-    <div class = "col-md-10 offset-md-1">
-      <h4 class = "mt-3"><%= title 'Latest recipes' %></h4>
-      <div class = "row">
-        <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
-      </div>
-      <div class = "row">
-        <div class = "col-12 text-center">
-          <%= will_paginate @recipes, :page_links => false %>
+        <div class = "row">
+          <%= render partial: "recipes/lister_recipe", collection: @recipes.drop(2), as: :recipe %>
+        </div>
+        <div class = "row">
+          <div class = "col-12 text-center">
+            <%= will_paginate @recipes, :page_links => false %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div> 
+  </div> 
+</div>
 
 <script>
   $( document ).on('turbolinks:load', function() { 
