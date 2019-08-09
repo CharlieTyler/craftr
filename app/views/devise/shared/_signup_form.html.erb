@@ -6,13 +6,8 @@
   <div class="form-inputs">
     <%= f.input :email, required: true, :input_html => { :class => 'signup-email-field' } %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
-    <h5>😴 T&Cs</h5>
     <%= f.input :age_verified, required: true, label: "I confirm I am older than the legal drinking age in my country of residence" %>
-    
     <%= f.input :privacy_policy_accepted, required: true, label: "I have read and agree to the #{(link_to "privacy policy", privacy_policy_path, class: "text-primary", :target => "_blank")}".html_safe %>
-    <h5>📧 Our brilliant Craftr Club newsletter</h5>
-    <%= f.input :newsletter_sign_up, label: "Yes please, I like cocktail recipes!" %>
   </div>
 
   <div class="form-actions">
