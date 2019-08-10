@@ -12,9 +12,9 @@
 
   <row>
     <columns>
-      <h1>New order of <%= @sold_item.product.name %></h1>
+      <h1>New order of <%= @sold_item.product.name.titleize %></h1>
       <p>Hi <%= @distillery.name %>,</p>
-      <p>You have a new order for <%= "#{@sold_item.quantity} bottles of #{@sold_item.product.name}" %>.</p>
+      <p>You have a new order for <%= "#{@sold_item.quantity} bottles of #{@sold_item.product.name.titleize}" %>.</p>
 
       <spacer size="16"></spacer>
 

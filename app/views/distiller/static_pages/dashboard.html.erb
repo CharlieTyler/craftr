@@ -94,7 +94,7 @@
           <tbody>
             <% @products.each do |product| %>
               <tr>
-                <th scope="row"><%= link_to product.name, product_path(product) %><%= render partial: 'products/star_rating', locals: {product: product}, class: "float-right" %></th>
+                <th scope="row"><%= link_to product.name.titleize, product_path(product) %><%= render partial: 'products/star_rating', locals: {product: product}, class: "float-right" %></th>
                 <td><%= product.is_in_stock ? "In stock" : "Out of stock" %></td>
                 <td><%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %></td>
                 <td><%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary d-inline" %></td>
@@ -112,7 +112,7 @@
         <h4 class = "d-inline-block">Sales by product</h4>
         <p class = "d-inline-block float-right text-primary"><%= link_to "Go to reporting dashboard",distiller_reports_path %></p>
         <%= line_chart current_distillery.products.map { |product|
-            {name: product.name, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
+            {name: product.name.titleize, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
         } %>
       </div>
     <% end %>

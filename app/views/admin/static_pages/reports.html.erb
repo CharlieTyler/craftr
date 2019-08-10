@@ -12,7 +12,7 @@
     <div class = "col-md-6 mt-2">
       <h6 class = "my-3">By week</h6>
       <%= line_chart Product.order("user_product_views_count DESC").map { |product|
-          {name: product.name, data: product.user_product_views.group_by_week(:created_at).count}
+          {name: product.name.titleize, data: product.user_product_views.group_by_week(:created_at).count}
       } %>
     </div>
     <div class = "col-md-6 mt-2">

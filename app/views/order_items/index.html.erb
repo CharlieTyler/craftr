@@ -19,7 +19,7 @@
                   </div>
                   <div class = "col-9 col-md-10">
                     <div class = "d-inline-block">
-                      <p class = "article-text no-link-highlight mb-1"><strong><%= link_to oi.product.name, product_path(oi.product) %>, <%= oi.product.size_ml %>ml</strong></p>
+                      <p class = "article-text no-link-highlight mb-1"><strong><%= link_to oi.product.name.titleize, product_path(oi.product) %>, <%= oi.product.size_ml %>ml</strong></p>
                     </div>
                     <div class = "d-inline-block float-right">
                       <small><%=link_to "Remove", order_item_path(oi), method: :delete, class: "text-red" %></small>
@@ -32,7 +32,7 @@
                       <p class = "float-right"><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></p>
                     </div>
                     <% unless oi.product.is_transactional %>
-                      <alert class = "alert-danger">We are currently out of stock of <%= oi.product.name %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</alert>
+                      <alert class = "alert-danger">We are currently out of stock of <%= oi.product.name.titleize %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</alert>
                     <% end %>
                   </div>
                   <div class = "col-12">

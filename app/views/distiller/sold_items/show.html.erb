@@ -2,7 +2,7 @@
   <div class = "row mt-3">
     <div class = "col-12">
       <div class = "d-inline-block">
-        <h4>Order of <span class = "text-primary"><%= "#{@sold_item.quantity} x #{@sold_item.product.name}" %></span></h4>
+        <h4>Order of <span class = "text-primary"><%= "#{@sold_item.quantity} x #{@sold_item.product.name.titleize}" %></span></h4>
         <p class = "text-muted">We've paid you <%= number_to_currency((@sold_item.total_distillery_received.to_f / 100), unit: "£") %> and <%= @sold_item.shipping_label_created ? "have sorted your shipping" : "are sorting your shipping - please check back in 5 minutes. If this persists, please contact support@craftr.co.uk" %></p>
       </div>
       <div class = "d-inline-block float-right">

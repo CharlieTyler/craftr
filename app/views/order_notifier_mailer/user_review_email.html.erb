@@ -8,7 +8,7 @@
 <p>Let us know what you think about the spirits you bought:</p>
 <ul>
   <% @order.sold_items.each do |si| %>
-    <li><%= link_to si.product.name, product_url(si.product) %></li>
+    <li><%= link_to si.product.name.titleize, product_url(si.product) %></li>
   <% end %>
 </ul>
 
@@ -16,7 +16,7 @@
 <h6>Something for you</h6>
 <p>We've pulled together a load of great recipes for you, so you can make the most of your purchases</p>
 <% @order.sold_items.each do |si| %>
-  <h6>For <%= si.product.name %></h6>
+  <h6>For <%= si.product.name.titleize %></h6>
   <ol>
     <% si.product.related_recipes.each do |recipe| %>
       <li><%= link_to recipe.name, recipe_url(recipe) %></li>

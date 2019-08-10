@@ -2,7 +2,7 @@
   {
     "@context" : "http://schema.org",
     "@type" : "Product",
-    "name" : "<%= product.name %>",
+    "name" : "<%= product.name.titleize %>",
     "image" : "<%= product.product_images.first.photo_url(:full).to_s %>",
     "description" : "<%= strip_tags(product.description_short) %>",
     "brand" : {

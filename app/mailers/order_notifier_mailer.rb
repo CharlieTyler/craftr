@@ -30,7 +30,7 @@ class OrderNotifierMailer < ApplicationMailer
     @distillery = si.product.distillery
     @user = @distillery.users.first
     mail( :to => @user.email,
-      :subject => "#{si.quantity} * #{si.product.name} ordered on Craftr")
+      :subject => "#{si.quantity} * #{si.product.name.titleize} ordered on Craftr")
   end
 
   def item_shipped_email(si)
@@ -40,7 +40,7 @@ class OrderNotifierMailer < ApplicationMailer
     @address = @order.shipping_address
     @recipient = @order.user
     mail( :to => @recipient.email,
-      :subject => "#{@distillery.name} have shipped #{si.quantity} * #{si.product.name} to you!")
+      :subject => "#{@distillery.name} have shipped #{si.quantity} * #{si.product.name.titleize} to you!")
   end
 
   def distiller_reminder_email(si)
@@ -48,7 +48,7 @@ class OrderNotifierMailer < ApplicationMailer
     @distillery = si.product.distillery
     @user = @distillery.users.first
     mail( :to => @user.email,
-      :subject => "REMINDER: Please ship #{si.quantity} * #{si.product.name} soon!")
+      :subject => "REMINDER: Please ship #{si.quantity} * #{si.product.name.titleize} soon!")
   end
 
   def user_review_email(order)

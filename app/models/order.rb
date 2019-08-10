@@ -68,7 +68,7 @@ class Order < ApplicationRecord
   end
 
   def product_summary
-    sold_items.map { |si| "#{si.quantity} * #{si.product.name}"}.join(", ")
+    sold_items.map { |si| "#{si.quantity} * #{si.product.name.titleize}"}.join(", ")
   end
 
   # Emails

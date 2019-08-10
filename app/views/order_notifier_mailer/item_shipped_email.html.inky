@@ -14,7 +14,7 @@
     <columns>
       <h1>Craft spirits shipped</h1>
       <p>Dear customer,</p>
-      <p><%= @distillery.name %> have shipped your order of <%= @sold_item.quantity %> bottle(s) of <%= @sold_item.product.name %>.</p><br/>
+      <p><%= @distillery.name %> have shipped your order of <%= @sold_item.quantity %> bottle(s) of <%= @sold_item.product.name.titleize %>.</p><br/>
       <p>It is being posted 2nd class to <%= @address.full_address_no_name %> and will arrive in the next few days.</p>
       <row>
         <columns large = "12">

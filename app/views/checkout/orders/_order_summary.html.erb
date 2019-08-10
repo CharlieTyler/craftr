@@ -8,7 +8,7 @@
   <div class = "px-3">
     <% order.order_items.each do |oi| %>
       <div class = "d-inline-block">
-        <p class = "ml-2"><%= "#{oi.product.name} x #{oi.quantity}" %></p>  
+        <p class = "ml-2"><%= "#{oi.product.name.titleize} x #{oi.quantity}" %></p>  
       </div>
       <div class = "d-inline-block float-right">
         <p><strong><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></strong></p>

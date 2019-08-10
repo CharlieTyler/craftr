@@ -1,6 +1,6 @@
 <p>Hi <%= @distillery.name %>,</p>
 
-<p>An order of <%= @sold_item.quantity %> * <%= @sold_item.product.name %> was placed 2 days ago, but you have not yet marker it as shipped.</p>
+<p>An order of <%= @sold_item.quantity %> * <%= @sold_item.product.name.titleize %> was placed 2 days ago, but you have not yet marker it as shipped.</p>
 
 <br />
 

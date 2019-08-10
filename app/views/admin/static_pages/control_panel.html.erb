@@ -33,7 +33,7 @@
       <h6>Products</h6>
       <ul>
         <% @test_products.each do |product| %>
-          <li><%= link_to product.name, product_path(product) %></li>
+          <li><%= link_to product.name.titleize, product_path(product) %></li>
         <% end %>
       </ul>
     </div>

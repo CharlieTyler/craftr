@@ -18,8 +18,8 @@
 
 <div class="py-3" style="
 background: #2193b0;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, <%= @category.gradient_from %>, <%= @category.gradient_to %>);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, <%= @category.gradient_from %>, <%= @category.gradient_to.to_s %>); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: -webkit-linear-gradient(to right, <%= "#ffffff" %>, <%= "#ffffff" %>);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, <%= "#ffffff" %>, <%= "#ffffff" %>); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 ">
   <div class = "container">
     <div class = "row">
@@ -37,13 +37,13 @@ background: linear-gradient(to right, <%= @category.gradient_from %>, <%= @categ
     </div>
     <div class = "row py-2">
       <% unless @products.blank? %>
-        <div class = "col text-center article-text"><a class="no-click text-white" href="#products"><strong>Products</strong></a></div>
+        <div class = "col text-center"><a class="no-click" href="#products"><strong>Products</strong></a></div>
       <% end %>
       <% unless @recipes.blank? %>
-        <div class = "col text-center article-text"><a class="no-click text-white" href="#recipes"><strong>Recipes</strong></a></div>
+        <div class = "col text-center"><a class="no-click" href="#recipes"><strong>Recipes</strong></a></div>
       <% end %>
       <% unless @articles.blank? %>
-        <div class = "col text-center article-text"><a class="no-click text-white" href="#articles"><strong>Articles</strong></a></div>
+        <div class = "col text-center"><a class="no-click" href="#articles"><strong>Articles</strong></a></div>
       <% end %>
     </div>
   </div>
@@ -65,7 +65,7 @@ background: linear-gradient(to right, <%= @category.gradient_from %>, <%= @categ
 <% end %>
 
 <% unless @recipes.blank? %>
-  <div class = "">
+  <div class = "background-grey">
     <div class = "container py-2">
       <div class = "row" id = "recipes">
         <div class = "col-md-10 offset-md-1">
@@ -80,7 +80,7 @@ background: linear-gradient(to right, <%= @category.gradient_from %>, <%= @categ
 <% end %>
 
 <% unless @articles.blank? %>
-  <div class = "background-grey">
+  <div class = "background-lightgrey">
     <div class = "container py-2">
       <div class = "row" id = "articles">
         <div class = "col-md-10 offset-md-1">

@@ -26,7 +26,7 @@
           <% @products.each do |product| %>
             <tr>
               <th scope="row"><%= product.id %></th>
-              <td><%= product.name %></td>
+              <td><%= product.name.titleize %></td>
               <td><%= simple_format product.description_short %></td>
               <td><%= product_url(product) %></td>
               <td><%= number_to_currency(product.price.to_f / 100, unit: "£") %></td>

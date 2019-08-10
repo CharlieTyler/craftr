@@ -36,7 +36,7 @@ class SoldItem < ApplicationRecord
   end
 
   def description
-    "#{quantity} * #{product.name}"
+    "#{quantity} * #{product.name.titleize}"
   end
 
   def queue_shipped_email

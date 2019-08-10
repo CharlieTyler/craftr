@@ -55,7 +55,7 @@
         <tr><th><b>Item</b></th><th><b>Quantity</b></th><th><b>Price</b></th></tr>
         <hr/>
         <% @order.sold_items.each do |si| %>
-          <tr><td><%= si.product.name %></td><td><%= si.quantity %></td><td><%= number_to_currency((si.total_paid.to_f / 100), unit: "£") %></td></tr>
+          <tr><td><%= si.product.name.titleize %></td><td><%= si.quantity %></td><td><%= number_to_currency((si.total_paid.to_f / 100), unit: "£") %></td></tr>
         <% end %>
         <tr>
           <td colspan="2">Delivery</td>

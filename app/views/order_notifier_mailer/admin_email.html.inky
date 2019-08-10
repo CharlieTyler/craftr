@@ -24,7 +24,7 @@
               <strong>The order</strong><br/>
               <ul>
                 <% @order.sold_items.each do |si| %>
-                  <li><%= "#{si.quantity} x #{si.product.name}, #{number_to_currency((si.total_paid.to_f / 100), unit: '£')}" %></li>
+                  <li><%= "#{si.quantity} x #{si.product.name.titleize}, #{number_to_currency((si.total_paid.to_f / 100), unit: '£')}" %></li>
                 <% end %>
               </ul>
             </p>

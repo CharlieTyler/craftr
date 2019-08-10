@@ -722,3 +722,10 @@ input[type=search] {
     margin-right: auto !important;
     margin-left: auto !important;
 }
+
+.card {
+    overflow: hidden;
+}
+.card-text {
+    word-wrap: break-word;
+}

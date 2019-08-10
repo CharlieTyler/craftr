@@ -57,7 +57,7 @@
       <!-- Product descriptions -->
       <div class = "col-12 col-md-6 ">
         <div class = "lyst-box px-4 pt-2 pt-md-3 mt-3 mt-md-0">
-          <h2><%= title @product.name %></h2>
+          <h2><%= title @product.name.titleize %></h2>
           <h6 class = "text-secondary">by <%= link_to @product.distillery.name, distillery_path(@product.distillery), class: "text-primary" %></h6>
           <hr class = "lyst-line-grey"/>
           <p class = "article-text">

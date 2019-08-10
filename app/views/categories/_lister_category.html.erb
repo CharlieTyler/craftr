@@ -8,7 +8,7 @@
         <h4 class="card-title"><%= category.name %></h4>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><em><%= pluralize(category.products.size, 'product') %></em></li>
+        <li class="list-group-item text-muted"><em><%= pluralize(category.products.transactional.size, 'product') %></em></li>
         <li class="list-group-item text-muted"><em><%= pluralize(category.recipes.size, 'recipe') %></em></li>
         <li class="list-group-item text-muted"><em><%= pluralize(category.articles.size, 'article') %></em></li>
       </ul>

@@ -170,7 +170,7 @@ class Checkout::OrdersController < ApplicationController
   def check_all_products_and_distilleries_transactional
     @order.order_items.each do |oi|
       unless oi.product.is_transactional
-        flash[:alert] = "#{oi.product.name} is currently not available, please remove from basket before proceeding"
+        flash[:alert] = "#{oi.product.name.titleize} is currently not available, please remove from basket before proceeding"
         redirect_to cart_path
       end
     end

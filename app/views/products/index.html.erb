@@ -16,7 +16,7 @@
                 </div>
                 <div class = "d-inline-block mx-2">
                   <p class = "mb-0 mt-2">Distillery: </p>
-                  <%= select_tag :distillery_id, options_from_collection_for_select(Distillery.all, :id, :name, params[:distillery_id]), multiple: true, class: "multiselect" %>
+                  <%= select_tag :distillery_id, options_from_collection_for_select(@filterable_distilleries, :id, :name, params[:distillery_id]), multiple: true, class: "multiselect" %>
                 </div>
                 <%= submit_tag "Filter", class: "btn btn-primary col-12 mx-2 mt-2", data: { disable_with: 'Filtering...'} %>
               </div>
