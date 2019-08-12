@@ -13,7 +13,7 @@
 <!-- USP banner - 2 versions, one with owl carousel for mobile -->
 <div class = "background-grey">
   <div class = "container py-3">
-    <h5 class = "mt-1 mb-2">Why Craftr?</h5>
+    <h3 class = "mt-1 mb-2">Why Craftr?</h3>
     <div class = "row hidden-md-up">
       <div class = "owl-carousel owl-theme usp-carousel">
         <%= render partial: "static_pages/usp_banner" %>
@@ -166,12 +166,12 @@
   $( document ).on('turbolinks:load', function() { 
     var owl = $('.owl-carousel.usp-carousel'); 
     owl.owlCarousel({
-      stagePadding: -17,
+      stagePadding: 70,
+      margin: 10,
       loop:true,
-      dots: true,
       items: 1,
-      nav: true,
-      navText : ['<i class="fa fa-3x pb-2 mt-0 pt-0 mb-3 fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-3x mt-0 pt-0 mb-3 pb-2 fa-angle-right" aria-hidden="true"></i>']
+      dots: true
+      // navText : ['<i class="fa fa-3x pb-2 mt-0 pt-0 mb-3 fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-3x mt-0 pt-0 mb-3 pb-2 fa-angle-right" aria-hidden="true"></i>']
     });
   });
 
