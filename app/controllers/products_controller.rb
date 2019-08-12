@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
     
     # order by weight ASC puts those with nil last - bit of a hack, but works
     @products = Product.filter(filter_params).order('featured DESC').transactional.page(params[:page])
-    @filterable_distilleries = Distillery.transactional
+    @filterable_distilleries = Distillery.transactional.live
     respond_to do |format|
       format.html
       format.js

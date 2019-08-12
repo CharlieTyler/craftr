@@ -11,8 +11,8 @@ background: linear-gradient(to right, <%= carousel_feature.gradient_from.to_s %>
       <div class = "col-7 justify-content-center text-center display-v-middle">
         <div>
           <%= link_to "#{carousel_feature.link_url}" do %>
-            <h1 class = "display-4 js-animate-me animated logo-text"><span class = ""><%= carousel_feature.line_1 %></span></h1>
-            <h4 class = "js-animate-me2 animated mb-2"><%= simple_format carousel_feature.line_2 %></h4>
+            <h1 class = "display-4 animated logo-text-white"><span class = ""><%= carousel_feature.line_1 %></span></h1>
+            <h4 class = "mb-2 text-white"><%= simple_format carousel_feature.line_2 %></h4>
             <div class = "pt-3 pt-md-5">
               <%= link_to carousel_feature.cta_text, "#{carousel_feature.link_url}", class: "btn-lg btn-success mt-3" %>
             </div>
