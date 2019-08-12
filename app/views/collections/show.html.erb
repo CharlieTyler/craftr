@@ -1,0 +1,45 @@
+<div class = "background-lightgrey">
+  <% if user_signed_in? && current_user.admin %>
+    <div class = "container py-2">
+      <div class = "row">
+        <div class = "col-md-6 offset-md-3">
+          <h6>Admin functions</h6>
+          <div class = "row">
+            <div class = "col-6">
+              <%= link_to "Edit", edit_admin_collection_path(@collection), class: "btn btn-secondary col-10 offset-1" %>
+            </div>
+            <div class = "col-6">
+              <%= link_to "Delete", admin_collection_path(@collection), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger col-10 offset-1" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Products in collection -->
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-12">
+        <h1><%= title @collection.name %></h1>
+        <p><%= @collection.description %></p>
+      </div>
+      <%= render partial: "products/lister_item", collection: @products, as: :product, locals: { md_upwards_col: 4, include_add_to_basket: false } %>
+    </div>
+  </div>
+
+  <!-- Other collections -->
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-12">
+        <hr class = "lyst-line-grey" />
+      </div>
+      <div class = "col-12 lyst-box my-2 px-3 py-3">
+        <h4>Explore other collections</h4>
+        <% @all_collections.each do |collection| %>
+          <%= link_to collection.name, collection_path(collection), class: "btn btn-secondary mt-2" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

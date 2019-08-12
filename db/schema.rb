@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190812212700) do
+ActiveRecord::Schema.define(version: 20190812220105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,14 @@ ActiveRecord::Schema.define(version: 20190812212700) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
+  create_table "collection_products", force: :cascade do |t|
+    t.integer "collection_id"
+    t.integer "product_id"
+    t.boolean "featured"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "collections", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -149,6 +157,8 @@ ActiveRecord::Schema.define(version: 20190812212700) do
     t.boolean "featured"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_collections_on_slug", unique: true
   end
 
   create_table "distilleries", force: :cascade do |t|

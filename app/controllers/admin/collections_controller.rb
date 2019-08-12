@@ -1,8 +1,10 @@
 class Admin::CollectionsController < ApplicationController
   def new
-    @products = Product.all
-    @categories = Category.all
+    @products = Product.order("name ASC")
+    @categories = Category.order("name ASC")
     @collection = Collection.new
+
+    @collection.collection_products.build
   end
 
   def create
@@ -15,9 +17,11 @@ class Admin::CollectionsController < ApplicationController
   end
 
   def edit
-    @products = Product.all
-    @categories = Category.all
+    @products = Product.order("name ASC")
+    @categories = Category.order("name ASC")
     @collection = Collection.friendly.find(params[:id])
+
+    @collection.collection_products.build
   end
 
   def update
@@ -43,7 +47,8 @@ class Admin::CollectionsController < ApplicationController
     params.require(:collection).permit(:name,
                                        :description,
                                        :image,
-                                       :category_id
+                                       :category_id,
+                                       collection_products_attributes: [:id, :collection_id, :product_id]
                                        )
   end
 end

@@ -2,6 +2,7 @@
   <div class = "container">
     <div class = "row">
       <div class = "col-md-6 offset-md-3 lyst-box my-2 px-3 py-3">
+        <h3 class = "my-2">New collection</h3>
         <%= simple_form_for @collection, url: admin_collections_path do |f| %>
           <%= f.input :name, hint: "Keep it brief - this will is what will appear clickable" %>
           <%= f.input :description, hint: "SEO friendly stuff is important here" %>
@@ -11,12 +12,13 @@
             <%= f.simple_fields_for :collection_products do |cp| %>
               <div class = "row product_field">
                 <div class = "col-6">
-                  <%= ap.input :product_id, collection: @products, value_method: :id  %>
+                  <%= cp.input :product_id, collection: @products, value_method: :id  %>
                 </div>
                 <hr />
               </div>
             <% end %>
           </div>
+          <p><a href="#" class="add_product_field">+ add another</a></p>
           <%= f.submit "Create", class: "btn btn-primary" %>
         <% end %>
       </div>
