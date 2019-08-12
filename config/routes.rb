@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :update, :destroy]
     resources :favourite_products, only: [:create, :destroy]
   end
+  resources :collections, only: [:show]
   resources :distilleries, only: [:show, :index]
   resources :articles, only: [:show, :index]
   resources :authors, only: [:show, :index]
@@ -81,6 +82,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:new, :create, :edit, :update, :destroy]
     resources :carousel_features, only: [:new, :create, :edit, :update, :destroy]
     resources :vouchers
+    resources :collections, only: [:new, :create, :edit, :update, :destroy]
     get "/edit_features", :controller => "featured_items", :action => "edit"
     patch "/features", :controller => "featured_items", :action => "update"
     put "/features", :controller => "featured_items", :action => "update"
