@@ -132,7 +132,7 @@
             <div class = "col-4 text-center border-right-grey px-0 align-middle">
               <% if user_signed_in? %>
                 <%= link_to me_path do %>
-                  <h6 class = "mb-0"><i class="fa fa-lg fa-user-o" aria-hidden="true"></i></h6>
+                  <h6 class = "mb-0"><i class="fa fa-lg fa-user" aria-hidden="true"></i></h6>
                 <% end %>
               <% else %>
                 <%= link_to new_user_registration_path do %>
@@ -255,7 +255,7 @@
               <ul class = "navbar-nav float-right">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-lg fa-user-o" aria-hidden="true"></i>
+                    <i class="fa fa-lg fa-user" aria-hidden="true"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <% if user_signed_in? %>
