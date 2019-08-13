@@ -166,7 +166,7 @@
 
 
 <script>
-  $( document ).on('turbolinks:load', function() { 
+  $(function(){
     var owl = $('.owl-carousel.collections-carousel'); 
     owl.owlCarousel({
       stagePadding: 50,
@@ -189,7 +189,7 @@
 </script>
 
 <script>
-  $( document ).on('turbolinks:load', function() { 
+  $(function(){
     var owl = $('.owl-carousel.hero-carousel'); 
     owl.owlCarousel({
       loop:true,
@@ -200,7 +200,7 @@
     });
   });
 
-  $( document ).on('turbolinks:load', function() { 
+  $(function(){
     var owl = $('.owl-carousel.usp-carousel'); 
     owl.owlCarousel({
       stagePadding: 50,
@@ -212,7 +212,7 @@
     });
   });
 
-  $( document ).on('turbolinks:load', function() { 
+  $(function(){
     var animation_end = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
     owl.on('initialized.owl.carousel changed.owl.carousel', function(e) {
       owl.find(".js-animate-me").addClass("fadeInLeft")
