@@ -35,7 +35,7 @@
           <% end %>
           <div class = "row">
           <% if @author.instagram_link.present? %>
-            <%= link_to @author.instagram_link, class: "btn btn-success col mx-2 text-center" do %>
+            <%= link_to @author.instagram_link, class: "btn btn-primary col mx-2 text-center" do %>
               <i class="fa fa-instagram text-white" aria-hidden="true"></i> Follow on Instagram
             <% end %>
           <% end %>
@@ -53,19 +53,23 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-12">
-      <h3>Recipes</h3>
-      <div class = "row" id = "recipes">
-        <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
-      </div>
+      <% if @recipes.length > 0 %>
+        <h3>Recipes</h3>
+        <div class = "row" id = "recipes">
+          <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+        </div>
+      <% end %>
       <div class = "row">
         <div class = "col-12">
-          <hr class = "booyah-line my-2" />
+          <hr class = "lyst-line-grey my-2" />
         </div>
       </div>
-      <h3>Articles</h3>
-      <div class = "row" id = "articles">
-        <%= render partial: "articles/lister_article", collection: @articles, as: :article %>
-      </div>
+      <% if @articles.length > 0 %>
+        <h3>Articles</h3>
+        <div class = "row" id = "articles">
+          <%= render partial: "articles/lister_article", collection: @articles, as: :article %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
