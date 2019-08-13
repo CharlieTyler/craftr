@@ -1,0 +1,30 @@
+<% if owl_carousel %>
+  <div class = "col-12">
+<% else %>
+  <div class = "col-md-6 my-2">
+<% end %>
+  <div class = "row lyst-box card py-0 mx-1">
+    <div class = "col-12">
+      <div class = "row">
+        <div class = "col-5">
+          <div class = "row">
+            <% collection.products.first(4).each do |product| %>
+              <% if product.product_images.present? %>
+                <div class = "col-6 px-1 py-1">
+                  <%= image_tag product.product_images.first.photo_url(:preview).to_s, class: "img-fluid" %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class = "col-7 pl-1 pr-md-3 py-3">
+          <%= link_to collection_path(collection) do %>
+            <h4 class="mb-2"><%= collection.full_name %></h4>
+          <% end %>
+          <p class = "text-muted card-text"><%= collection.products.length %> <%= collection.category_id.present? ? "#{collection.category.name.downcase}s" : products %></p>
+          <p class= "hidden-xs-down card-text"><%= truncate_html(collection.description, length: 100) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

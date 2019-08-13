@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
     @other_distillery_products = Product.includes(:product_images, :reviews).live.where(distillery_id: @product.distillery.id).where.not(id: @product.id)
     @other_popular_products    = @product.other_popular_products.sample(3)
     @order_item                = OrderItem.new
+    @collections               = @product.collections
     UserProductView.create(user: user_signed_in? ? current_user : nil, product: @product)
     # SEO
     @page_description          = @product.seo_description

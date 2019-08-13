@@ -42,11 +42,24 @@
             <div class = "row">
               <%= render partial: "products/lister_item", collection: category.products.where(featured: true), as: :product, locals: { md_upwards_col: (category.products.where(featured: true).size.between?(2, 4) ? 12/(category.products.where(featured: true).size) : 4).to_s, include_add_to_basket: false } %>
             </div>
+          </div>
+        </div>
+        <% if category.collections.length > 0 %>
+          <div class = "col-12">
+            <hr class = "lyst-line-grey" />
+          </div>
+          <div class = "col-12 pb-3 px-3">
+            <h4>Explore our <%= category.name.downcase %> collections</h4>
             <div class = "row">
-              <div class = "col-12 text-center">
-                <%= link_to "See all our #{category.name}s", category_path(category), class: "btn btn-primary mt-3 mb-1" %>
+              <div class = "owl-carousel owl-theme collections-carousel">
+                <%= render partial: "collections/lister_collection", collection: category.collections, as: :collection, locals: { owl_carousel: true } %>
               </div>
             </div>
+          </div>
+        <% end %>
+        <div class = "row">
+          <div class = "col-12 text-center">
+            <%= link_to "See all our #{category.name}s", category_path(category), class: "btn btn-primary mt-3 mb-1" %>
           </div>
         </div>
       </div>
@@ -150,6 +163,29 @@
     </div>
   </div>
 <% end %>
+
+
+<script>
+  $( document ).on('turbolinks:load', function() { 
+    var owl = $('.owl-carousel.collections-carousel'); 
+    owl.owlCarousel({
+      stagePadding: 50,
+      margin: 5,
+      dots: true,
+      responsive : {
+        // breakpoint from 0 up
+        0 : {
+            items : 1
+        },
+        // breakpoint from 480 up
+        960 : {
+            items : 2
+        }
+      }
+      // navText : ['<i class="fa fa-3x pb-2 mt-0 pt-0 mb-3 fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-3x mt-0 pt-0 mb-3 pb-2 fa-angle-right" aria-hidden="true"></i>']
+    });
+  });
+</script>
 
 <script>
   $( document ).on('turbolinks:load', function() { 

@@ -1,6 +1,6 @@
 class Collection < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :full_name, use: :slugged
 
   has_many :collection_products, dependent: :destroy
   has_many :products, through: :collection_products
@@ -11,4 +11,12 @@ class Collection < ApplicationRecord
   accepts_nested_attributes_for :collection_products, reject_if: proc { |attributes| attributes['product_id'].blank? }
 
   mount_uploader :image, ProductImageUploader
+
+  def full_name
+    if category_id.present?
+      "#{name} #{category.name}s"
+    else
+      name
+    end
+  end
 end

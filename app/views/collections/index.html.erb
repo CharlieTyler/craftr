@@ -1,0 +1,11 @@
+<div class = "background-lightgrey">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-12">
+        <h1 class = "mt-4"><%= title "Craftr's collections" %></h1>
+        <p>Browse our collections to help you choose the right craft spirit for you, whether you're looking for a gift or something for your own drinks cabinet, we can help you pick the best craft spirit.</p>
+      </div>
+      <%= render partial: "collections/lister_collection", collection: @collections, as: :collection %>
+    </div>
+  </div>
+</div>

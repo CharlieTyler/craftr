@@ -17,6 +17,8 @@ class Product < ApplicationRecord
   has_many :product_images, dependent: :destroy
   has_many :recipe_products, dependent: :destroy
   has_many :recipes, through: :recipe_products
+  has_many :collection_products, dependent: :destroy
+  has_many :collections, through: :collection_products
 
   has_many :sold_items
 

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :update, :destroy]
     resources :favourite_products, only: [:create, :destroy]
   end
-  resources :collections, only: [:show]
+  resources :collections, only: [:show, :index]
   resources :distilleries, only: [:show, :index]
   resources :articles, only: [:show, :index]
   resources :authors, only: [:show, :index]

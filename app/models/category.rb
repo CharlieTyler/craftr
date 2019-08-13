@@ -11,6 +11,8 @@ class Category < ApplicationRecord
   has_many :recipe_categories
   has_many :recipes, through: :recipe_categories
 
+  has_many :collections
+
   #articles
   has_many :article_categories
   has_many :articles, through: :article_categories
