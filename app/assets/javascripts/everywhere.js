@@ -1,4 +1,4 @@
-$( document ).on('turbolinks:load', function() { 
+$(document).ready(function(){
   $('.search-toggle').click(function() {
     $('.search-show-hide').toggle();
     $('.search-box').focus();
@@ -6,7 +6,7 @@ $( document ).on('turbolinks:load', function() {
   });
 });
 
-$( document ).on('turbolinks:load', function() { 
+$(document).ready(function(){
   //Dropdowns for navbar
   $('body').on('mouseenter mouseleave','.dropdown',function(e){
     var _d=$(e.target).closest('.dropdown');_d.addClass('show');
@@ -16,14 +16,14 @@ $( document ).on('turbolinks:load', function() {
   });
 });
 
-$(document).on('turbolinks:load', function() { 
+$(document).ready(function(){ 
   $("img").lazyload({
     threshold : 500,
     effect : "fadeIn"
    });
 });
 
-// $( document ).on('turbolinks:load', function() { 
+// $(document).ready(function(){
 //   // Scrolling to appropriate area on page
 //   // Select all links with hashes
 //   $('a[href*="#"]')
@@ -64,7 +64,7 @@ $(document).on('turbolinks:load', function() {
 // });
 
 
-$(document).on('turbolinks:load', function() { 
+$(document).ready(function(){ 
 
   /*! Fades in page on load */
   $('body').css('display', 'none');
@@ -72,7 +72,7 @@ $(document).on('turbolinks:load', function() {
 
 });
 
-// $(document).on('turbolinks:load', function() { 
+// $(document).ready(function(){ 
 //   var stickyNavTop = $('.secondary-nav').offset().top;
     
 //   // our function that decides weather the navigation bar should have "fixed" css position or not.

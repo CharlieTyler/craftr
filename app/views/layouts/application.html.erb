@@ -63,10 +63,10 @@
     <%= yield :other_meta_tags %>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
     <script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
     <link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
     <script src="https://js.stripe.com/v3/"></script>
     <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <meta name="viewport" content="initial-scale=1">
