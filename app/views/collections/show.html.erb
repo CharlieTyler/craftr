@@ -21,7 +21,7 @@
   <div class = "container">
     <div class = "row">
       <div class = "col-12">
-        <h1><%= title @collection.full_name %></h1>
+        <h1 class = "mt-2"><%= title @collection.full_name %></h1>
         <p><%= @collection.description %></p>
       </div>
       <%= render partial: "products/lister_item", collection: @products, as: :product, locals: { md_upwards_col: 4, include_add_to_basket: false } %>
@@ -51,8 +51,9 @@
     var owl = $('.owl-carousel.other-collections-carousel'); 
     owl.owlCarousel({
       stagePadding: 50,
-      margin: 5,
+      margin: 0,
       dots: true,
+      loop: true,
       responsive : {
         // breakpoint from 0 up
         0 : {
