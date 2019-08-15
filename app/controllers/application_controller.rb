@@ -102,7 +102,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navbar_categories
   def navbar_categories
-    @navbar_categories = Category.rank(:row_order).all
+    @navbar_categories = Category.rank(:row_order)
   end
 
   helper_method :category_list
