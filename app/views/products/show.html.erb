@@ -72,6 +72,18 @@
               <% end %>
             </div>
           </p>
+
+          <!-- Try this instead box fades in if out of stock -->
+          <% unless @product.is_in_stock %>
+            <div class = "hidden upwards-speech-bubble px-2 py-2 mt-1">
+              <div class = "row">
+                <div class = "col-12">
+                  <h6>Try these instead</h6>
+                </div>
+                <%= render partial: "products/lister_item", collection: @other_popular_products.first(2), as: :product, locals: { include_add_to_basket: true, md_upwards_col: 6 }  %>
+              </div>
+            </div>
+          <% end %>
           <p class = "article-text mb-1">Craftr says:</p>
           <blockquote class="blockquote mt-0">
             <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
@@ -331,8 +343,13 @@
   });
 
   $(function() { 
+    setTimeout(function(){
+      $('.upwards-speech-bubble').slideDown();
+    }, 3000);
+  });
+
+  $(function() { 
     $("#the-story-banner").click(function() {
-      console.log("hello");
       $("#the-story-box").toggleClass("hidden");
       $("#the-story-toggle-switch").toggleClass("fa-minus");
       $("#the-story-toggle-switch").toggleClass("fa-chevron-down");
@@ -341,7 +358,6 @@
 
   $(function() { 
     $("#taste-profile-banner").click(function() {
-      console.log("hello");
       $("#taste-profile-box").toggleClass("hidden");
       $("#taste-profile-toggle-switch").toggleClass("fa-minus");
       $("#taste-profile-toggle-switch").toggleClass("fa-chevron-down");
@@ -350,7 +366,6 @@
 
   $(function() { 
     $("#suggested-recipes-banner").click(function() {
-      console.log("hello");
       $("#suggested-recipes-box").toggleClass("hidden");
       $("#suggested-recipes-toggle-switch").toggleClass("fa-minus");
       $("#suggested-recipes-toggle-switch").toggleClass("fa-chevron-down");
