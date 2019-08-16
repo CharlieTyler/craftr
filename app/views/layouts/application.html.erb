@@ -26,7 +26,7 @@
             ga('require', 'ecommerce');
             ga('ecommerce:addTransaction', {
               'id': '<%= @confirmed_order.id %>',
-              'affiliation': 'CRAFTR', 
+              'affiliation': 'Craftr', 
               'revenue':  '<%= @confirmed_order.total_paid_product_amount.to_f / 100 %>',
               'shipping':'<%= @confirmed_order.paid_shipping_price.to_f / 100 %>'
             });
@@ -60,7 +60,7 @@
 
     <%= favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png' %>
 
-    <%= display_meta_tags site: 'CRAFTR', reverse: true %>
+    <%= display_meta_tags site: 'Craftr', reverse: true, separator: "&ndash;".html_safe %>
     <%= yield :other_meta_tags %>
     <%= csrf_meta_tags %>
 
