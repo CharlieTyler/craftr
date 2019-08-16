@@ -46,11 +46,11 @@ class Checkout::OrdersController < ApplicationController
         redirect_to checkout_payment_path
       else
         flash[:alert] = 'There was an error setting your shipping address, please try again'
-        redirect_to checkout_address_path
+        render :address, status: :unprocessable_entity
       end
     else
       flash[:alert] = 'Invalid address'
-      redirect_to checkout_address_path
+      render :address, status: :unprocessable_entity
     end
   end
 
