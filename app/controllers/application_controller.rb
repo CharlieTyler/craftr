@@ -80,9 +80,9 @@ class ApplicationController < ActionController::Base
     @featured_products = Product.where(featured: true).first(4)
   end
 
-  helper_method :featured_distilleries
-  def featured_distilleries
-    @featured_distilleries = Distillery.where(featured: true).first(4)
+  helper_method :navbar_collections
+  def navbar_collections
+    @navbar_collections = Collection.last(4)
   end
 
   helper_method :popular_recipes
@@ -102,7 +102,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :navbar_categories
   def navbar_categories
-    @navbar_categories = Category.rank(:row_order)
+    @navbar_categories = Category.where.not(name: "Whisky").rank(:row_order)
   end
 
   helper_method :category_list
