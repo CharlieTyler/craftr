@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.friendly.find(params[:id])
+    @collections = @category.collections
     @products = @category.products.transactional.order('featured DESC').live
     @recipes  = @category.recipes
     @articles = @category.articles

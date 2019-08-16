@@ -1,28 +1,30 @@
-<div class = "container-fluid mt-3" id = "map">
-  <h1 class = "my-3"><%= title 'Our partner distilleries' %></h1>
-  <p>Craftr works with the best UK craft distilleries, curating a range of the finest craft gins, vodkas, rums and other spirits. Browse by distillery below, or check out or full range of <%= link_to "products", products_path %> or <%= link_to "collections", collections_path %></p>
-  <div class = "row">
-    <div class = "col-12">
-      <div id="distillery-map"></div>
+<div class = "background-lightgrey">
+  <div class = "container pt-3" id = "map">
+    <h1 class = "my-3"><%= title 'Our partner distilleries' %></h1>
+    <p>Craftr works with the best UK craft distilleries, curating a range of the finest craft gins, vodkas, rums and other spirits. Browse by distillery below, or check out or full range of <%= link_to "products", products_path %> or <%= link_to "collections", collections_path %></p>
+    <div class = "row">
+      <div class = "col-12">
+        <div id="distillery-map"></div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class = "container-fluid">
-  <div class = "row background-grey">
-    <div class = "col-md-10 offset-md-1">
-      <h4 class = "mt-4">Newest distilleries</h4>
-      <div class = "row">
-        <%= render partial: "distilleries/lister_distillery", collection: @page_distilleries, as: :distillery %>
-      </div>
-      <div class = "row">
-        <div class = "col-12 text-center">
-          <%= will_paginate @page_distilleries, :page_links => false %>
+  <div class = "container">
+    <div class = "row">
+      <div class = "col">
+        <h4 class = "mt-4">Newest distilleries</h4>
+        <div class = "row">
+          <%= render partial: "distilleries/lister_distillery", collection: @page_distilleries, as: :distillery %>
+        </div>
+        <div class = "row">
+          <div class = "col-12 text-center">
+            <%= will_paginate @page_distilleries, :page_links => false %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div> 
+  </div> 
+</div>
 
 <script>
 
@@ -31,7 +33,7 @@
       var centralPoint = {lat: 54.1962717, lng: -4.4044171};
 
       var map = new google.maps.Map(document.getElementById('distillery-map'), {
-        zoom: 5.8,
+        zoom: 5.5,
         center: centralPoint
       });
 

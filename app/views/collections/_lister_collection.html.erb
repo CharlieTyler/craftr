@@ -22,7 +22,7 @@
             <h6 class="mb-2"><%= collection.full_name %></h6>
           <% end %>
           <p class = "mb-0 text-muted card-text"><%= collection.products.length %> <%= collection.category_id.present? ? "#{collection.category.name.downcase}s" : products %></p>
-          <p class= "mb-0 hidden-xs-down card-text"><%= truncate_html(collection.description, length: 100) %></p>
+          <p class= "mb-0 mt-1 hidden-xs-down card-text"><%= truncate_html(collection.description, length: 100) %></p>
         </div>
       </div>
     </div>

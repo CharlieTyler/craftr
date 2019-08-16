@@ -1,114 +1,130 @@
-<% if user_signed_in? && current_user.admin %>
-  <div class = "container py-2">
-    <div class = "row">
-      <div class = "col-md-6 offset-md-3">
-        <h6>Admin functions</h6>
-        <div class = "row">
-          <div class = "col-6">
-            <%= link_to "Edit", edit_admin_category_path(@category), class: "btn btn-secondary col-10 offset-1" %>
-          </div>
-          <div class = "col-6">
-            <%= link_to "Delete", admin_category_path(@category), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger col-10 offset-1" %>
+<div class = "background-lightgrey">
+  <% if user_signed_in? && current_user.admin %>
+    <div class = "container py-2">
+      <div class = "row">
+        <div class = "col-md-6 offset-md-3">
+          <h6>Admin functions</h6>
+          <div class = "row">
+            <div class = "col-6">
+              <%= link_to "Edit", edit_admin_category_path(@category), class: "btn btn-secondary col-10 offset-1" %>
+            </div>
+            <div class = "col-6">
+              <%= link_to "Delete", admin_category_path(@category), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger col-10 offset-1" %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 
-<div class="py-3" style="
-background: #2193b0;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, <%= "#ffffff" %>, <%= "#ffffff" %>);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, <%= "#ffffff" %>, <%= "#ffffff" %>); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-">
+  <!-- Category intro -->
   <div class = "container">
     <div class = "row">
-      <% if @category.banner_image.present? %>
-        <div class = "col-5 display-v-middle">
-          <%= image_tag @category.banner_image_url(:full), class: "img-fluid" %>
-        </div>
-      <% end %>
-      <div class = "col display-v-middle py-md-5 pr-5">
-        <h1 class = "display-4 js-animate-me animated logo-text px-2"><span class = ""><%= title @category.name %></span></h1>
-        <% if @category.description.present? %>
-          <p class = "js-animate-me2 animated"><%= simple_format @category.description %></p>
-        <% end %>
+      <div class = "col-12 text-center">
+        <h1 class = "mt-2 display-4"><%= title @category.name %></h1>
       </div>
     </div>
-    <div class = "row py-2">
-      <% unless @products.blank? %>
-        <div class = "col text-center"><a class="no-click" href="#products"><strong>Products</strong></a></div>
-      <% end %>
-      <% unless @recipes.blank? %>
-        <div class = "col text-center"><a class="no-click" href="#recipes"><strong>Recipes</strong></a></div>
-      <% end %>
-      <% unless @articles.blank? %>
-        <div class = "col text-center"><a class="no-click" href="#articles"><strong>Articles</strong></a></div>
-      <% end %>
-    </div>
   </div>
+
+  <!-- Category collections collections -->
+  <% if @collections.present? %>
+    <div class = "container-fluid">
+      <div class = "row">
+        <div class = "col-12 pb-3 px-3">
+          <div class = "row">
+            <div class = "owl-carousel owl-theme category-collections-carousel">
+              <%= render partial: "collections/lister_collection", collection: @collections, as: :collection, locals: { owl_carousel: true } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% unless @products.blank? %>
+    <div class = "background-lightgrey">
+      <div class = "container py-2">
+        <div class = "row" id = "products">
+          <div class = "col-md-10 offset-md-1">
+            <h3>Products</h3>
+            <div class = "row">
+              <%= render partial: 'products/lister_item', collection: @products, as: :product, locals: { include_add_to_basket: true } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% unless @recipes.blank? %>
+    <div class = "background-lightgrey">
+      <div class = "container py-2">
+        <div class = "row" id = "recipes">
+          <div class = "col-md-10 offset-md-1">
+            <h3>Recipes</h3>
+            <div class = "row">
+              <%= render partial: 'recipes/lister_recipe', collection: @recipes, as: :recipe %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% unless @articles.blank? %>
+    <div class = "background-lightgrey">
+      <div class = "container py-2">
+        <div class = "row" id = "articles">
+          <div class = "col-md-10 offset-md-1">
+            <h3>Articles</h3>
+            <div class = "row">
+              <%= render partial: 'articles/lister_article', collection: @articles, as: :article %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% unless @instas.blank? %>
+    <div class = "background-lightgrey">
+      <div class = "container py-2">
+        <div class = "row" id = "social">
+          <div class = "col-md-10 offset-md-1">
+            <h3>Recent instagrams</h3>
+            <h6 class = "text-muted"><%= link_to "##{@category.instagram_hashtag}", "http://instagram.com/tags/#{@category.instagram_hashtag}", :target => "_blank" %></h6>
+            <div class = "row">
+              <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
-<% unless @products.blank? %>
-  <div class = "background-lightgrey">
-    <div class = "container py-2">
-      <div class = "row" id = "products">
-        <div class = "col-md-10 offset-md-1">
-          <h3>Products</h3>
-          <div class = "row">
-            <%= render partial: 'products/lister_item', collection: @products, as: :product, locals: { include_add_to_basket: true } %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<% unless @recipes.blank? %>
-  <div class = "background-grey">
-    <div class = "container py-2">
-      <div class = "row" id = "recipes">
-        <div class = "col-md-10 offset-md-1">
-          <h3>Recipes</h3>
-          <div class = "row">
-            <%= render partial: 'recipes/lister_recipe', collection: @recipes, as: :recipe %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<% unless @articles.blank? %>
-  <div class = "background-lightgrey">
-    <div class = "container py-2">
-      <div class = "row" id = "articles">
-        <div class = "col-md-10 offset-md-1">
-          <h3>Articles</h3>
-          <div class = "row">
-            <%= render partial: 'articles/lister_article', collection: @articles, as: :article %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<% unless @instas.blank? %>
-  <div class = "background-grey">
-    <div class = "container py-2">
-      <div class = "row" id = "social">
-        <div class = "col-md-10 offset-md-1">
-          <h3>Recent instagrams</h3>
-          <h6 class = "text-muted"><%= link_to "##{@category.instagram_hashtag}", "http://instagram.com/tags/#{@category.instagram_hashtag}", :target => "_blank" %></h6>
-          <div class = "row">
-            <%= render partial: "static_pages/instagram_tile", collection: @instas.data, as: :insta %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+<script>
+  $(function(){
+    var owl = $('.owl-carousel.category-collections-carousel'); 
+    owl.owlCarousel({
+      stagePadding: 50,
+      margin: 0,
+      dots: true,
+      loop: true,
+      responsive : {
+        // breakpoint from 0 up
+        0 : {
+            items : 1
+        },
+        // breakpoint from 480 up
+        960 : {
+            items : 2
+        }
+      }
+      // navText : ['<i class="fa fa-3x pb-2 mt-0 pt-0 mb-3 fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-3x mt-0 pt-0 mb-3 pb-2 fa-angle-right" aria-hidden="true"></i>']
+    });
+  });
+</script>
 
 <script>
   $(function(){
