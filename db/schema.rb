@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190812220105) do
+ActiveRecord::Schema.define(version: 20190819112433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20190812220105) do
   create_table "authors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.string "name"
     t.string "location"
     t.text "bio"
@@ -95,14 +96,13 @@ ActiveRecord::Schema.define(version: 20190812220105) do
     t.string "instagram_link"
     t.string "website_link"
     t.string "slug"
-    t.integer "user_id"
     t.string "bio_image"
   end
 
   create_table "batches", force: :cascade do |t|
     t.string "easypost_batch_id"
-    t.boolean "shipped", default: false
     t.string "scanform_id"
+    t.boolean "shipped", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "distillery_id"
@@ -283,6 +283,7 @@ ActiveRecord::Schema.define(version: 20190812220105) do
     t.integer "user_product_views_count"
     t.boolean "is_test", default: false
     t.string "GTIN"
+    t.integer "original_price"
     t.index ["featured"], name: "index_products_on_featured"
     t.index ["is_live"], name: "index_products_on_is_live"
     t.index ["slug"], name: "index_products_on_slug", unique: true
@@ -377,7 +378,7 @@ ActiveRecord::Schema.define(version: 20190812220105) do
     t.datetime "shipping_label_created_at"
   end
 
-  create_table "taggings", id: :serial, force: :cascade do |t|
+  create_table "taggings", id: :integer, default: nil, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
     t.integer "taggable_id"
@@ -396,7 +397,7 @@ ActiveRecord::Schema.define(version: 20190812220105) do
     t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
-  create_table "tags", id: :serial, force: :cascade do |t|
+  create_table "tags", id: :integer, default: nil, force: :cascade do |t|
     t.string "name"
     t.integer "taggings_count", default: 0
     t.string "slug"

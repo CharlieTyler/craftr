@@ -44,6 +44,7 @@ class Product < ApplicationRecord
   validates :category, presence: true
   validates :product_images, presence: true
   validate :distillery_take_less_than_price_if_present
+  validate :original_price_is_more_than_price_if_present
 
   def self.search(params)
     search_scope = Product
@@ -97,10 +98,27 @@ class Product < ApplicationRecord
     number_to_currency(price.to_f / 100, unit: "£", precision: precision)
   end
 
+  def human_readable_original_price
+    precision = original_price % 100 == 0 ? 0 : 2
+    number_to_currency(original_price.to_f / 100, unit: "£", precision: precision)
+  end
+
   # Custom validations
   def distillery_take_less_than_price_if_present
     if distillery_take.present?
-      distillery_take < (price - 200)
+      unless distillery_take < (price - 200)
+        errors.add(:distillery_take, "Distillery take must be at least £2 lower than price")
+      end
+    else
+      return true
+    end
+  end
+
+  def original_price_is_more_than_price_if_present
+    if original_price.present?
+      unless original_price > price
+        errors.add(:original_price, "Original price must be higher than sale price")
+      end
     else
       return true
     end

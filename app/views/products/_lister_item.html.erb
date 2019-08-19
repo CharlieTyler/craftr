@@ -21,7 +21,10 @@
     <div class="card-block text-left py-2">
       <h6 class="card-title mb-2"><%= link_to product.name.titleize, product_path(product) %></h6>
       <p class = "card-subtitle mb-2 text-muted">from <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
-      <h5 class = "mb-0"><%= product.human_readable_price %></h5>
+      <% if product.original_price.present? %>
+        <h5 class = "text-strikethrough d-inline-block"><%= product.human_readable_original_price %></h5>
+      <% end %>
+      <h5 class = "<%= 'd-inline-block text-red' if product.original_price.present? %>"><%= product.human_readable_price %></h5>
     </div>
   </div>
 </div>

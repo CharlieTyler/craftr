@@ -81,9 +81,8 @@ h1, h2, h3, h4, h5, h6 {
   color: $red !important;
 }
 
-.text-blend {
-  color: white;
-  mix-blend-mode: difference;
+.text-strikethrough {
+  text-decoration: line-through;
 }
 
 .logo-text {
