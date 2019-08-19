@@ -104,7 +104,10 @@
               </p>
             </div>
             <div class = "col">
-              <h3 class = "mt-2 mb-0 float-right"><%= @product.human_readable_price %></h3>
+              <h3 class = "<%= 'd-inline-block text-red mt-2 mb-0 float-right' if @product.original_price.present? %>"><%= @product.human_readable_price %></h3>
+              <% if @product.original_price.present? %>
+                <h3 class = "d-inline-block mt-2 mb-0 float-right"><span class = "text-strikethrough"><%= @product.human_readable_original_price %></span>&nbsp</h3>
+              <% end %>
             </div>
           </div>
           </h6>

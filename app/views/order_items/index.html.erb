@@ -30,6 +30,9 @@
                     </div>
                     <div class = "d-inline-block float-right">
                       <p class = "float-right"><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></p>
+                      <% if oi.product.original_price.present? %>
+                        <p class = "float-right"><span class = "text-strikethrough"><%= number_to_currency((oi.original_subtotal_in_pence.to_f / 100), unit: "£") %></span>&nbsp</p>
+                      <% end %>
                     </div>
                     <% unless oi.product.is_transactional %>
                       <alert class = "alert-danger">We are currently out of stock of <%= oi.product.name.titleize %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</alert>

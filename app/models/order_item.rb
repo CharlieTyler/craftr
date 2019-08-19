@@ -11,6 +11,12 @@ class OrderItem < ApplicationRecord
     quantity * product.price
   end
 
+  def original_subtotal_in_pence
+    if product.original_price.present?
+      quantity * product.original_price
+    end
+  end
+
   def product_in_stock_and_live?
     
   end
