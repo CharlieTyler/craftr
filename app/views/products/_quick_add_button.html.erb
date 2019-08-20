@@ -1,4 +1,4 @@
-<div class = "<%= 'col-12 quick-add-area-product-' + product.id.to_s %>">
+<div class = "<%= 'col-12 no-gutters quick-add-area-product-' + product.id.to_s %>">
   <%= simple_form_for order_item, wrapper: :inline_form, url: quick_add_path, html: { class: 'form-inline col-12 mx-0 px-0' }, remote: remote, method: :post do |f| %>
     <%= f.input :quantity, :as => :hidden, :input_html => { :value => 1 } %>
     <%= f.input :product_id, :as => :hidden, :input_html => { :value => product.id } %>

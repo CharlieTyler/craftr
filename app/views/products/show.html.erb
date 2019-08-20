@@ -38,13 +38,15 @@
       <div class = "col-2 display-v-middle">
         <%= image_tag @product.product_images.first.photo_url(:preview).to_s, class: "product-atb-navbar-image rounded" %> 
       </div>
-      <div class = "col-6 col-md-8">
+      <div class = "col-5 col-md-8">
         <h6 class = "mt-2"><%= @product.name %> - <%= @product.human_readable_price %></h6>
         <!-- Need sale price -->
         <p>by <%= @product.distillery.name %></p>
       </div>
-      <div class = "col-4 col-md-2 display-v-middle text-center">
-        <%= render partial: 'quick_add_button', locals: {order_item: @order_item, product: @product, remote: true} %>
+      <div class = "col-5 col-md-2 display-v-middle text-center">
+        <% if @product.is_transactional %>
+          <%= render partial: 'quick_add_button', locals: {order_item: @order_item, product: @product, remote: true} %>
+        <% end %>
       </div>
     </div>
   </div>
