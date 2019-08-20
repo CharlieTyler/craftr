@@ -1,5 +1,5 @@
 class OrderItemsController < ApplicationController
-  before_action :find_product, only: [:create]
+  before_action :find_product, only: [:create, :quick_add]
   before_action :check_all_products_and_distilleries_transactional, only: [:create]
   before_action :check_voucher_is_valid_if_present, only: [:index]
 
@@ -7,6 +7,26 @@ class OrderItemsController < ApplicationController
   # So we can use pluralize method
   # @order set in application controller, giving us use of the @order variable
   def create
+    # Queue abandoned basket email to be sent if this is the first item being added (only queue once)
+    # Note: if they keep adding and removing the first item, this will queue multiple.
+    unless @order.order_items.length > 0
+      @order.queue_abandoned_basket_email
+    end
+    # Product found in before_action
+    # Check if this product is already in the cart
+    add_product_to_order(@product, params[:order_item][:quantity].to_i, @order)
+    @order = @order_item.order.reload
+    # To allow for create.js.erb to reload partials with updated order
+    respond_to do |format|
+      format.js
+      format.html { redirect_to cart_path }
+    end
+  end
+
+  def quick_add
+    # Note, this is a copy of create, but triggering a different js view to just replace with cart link
+    # Used for navbar dropdown on product page and on listers
+    # TODO: should probably pass a param through from view to controller to js view
     # Queue abandoned basket email to be sent if this is the first item being added (only queue once)
     # Note: if they keep adding and removing the first item, this will queue multiple.
     unless @order.order_items.length > 0

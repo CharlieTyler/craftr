@@ -12,7 +12,7 @@
       <div class = "lister-product-image-overlay px-3 display-v-middle">
         <% if product.is_transactional %>
           <%= link_to "Learn more", product_path(product), class: "col-12 btn-lg btn-secondary mt-3" %>
-          <%= render partial: 'products/add_to_basket_button', locals: {order_item: OrderItem.new, product: product, include_go_to_checkout: false, large_button: false, remote: true} %>
+          <%= render partial: 'products/quick_add_button', locals: {order_item: OrderItem.new, product: product, remote: true} %>
         <% else %>
           <%= link_to "Learn more", product_path(product), class: "col-12 btn-lg btn-green-secondary" %>
         <% end %>

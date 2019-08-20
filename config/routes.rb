@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   #checkout routes
   #cart
   get "/cart" => "order_items#index"
+  post "/quick-add" => "order_items#quick_add"
   namespace :checkout do
     patch "/add_voucher" => "orders#add_voucher"
     put "/add_voucher" => "orders#add_vouchers"

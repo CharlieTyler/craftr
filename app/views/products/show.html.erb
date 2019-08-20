@@ -43,8 +43,8 @@
         <!-- Need sale price -->
         <p>by <%= @product.distillery.name %></p>
       </div>
-      <div class = "col-4 col-md-2 display-v-middle text-center replace-with-cart">
-        <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false, remote: true} %>
+      <div class = "col-4 col-md-2 display-v-middle text-center">
+        <%= render partial: 'quick_add_button', locals: {order_item: @order_item, product: @product, remote: true} %>
       </div>
     </div>
   </div>
@@ -121,7 +121,7 @@
                 <% end %>
               </p>
             </div>
-            <div class = "col">
+            <div class = "col text-right">
               <h3 class = "<%= 'd-inline-block text-red mt-2 mb-0 float-right' if @product.original_price.present? %>"><%= @product.human_readable_price %></h3>
               <% if @product.original_price.present? %>
                 <h3 class = "d-inline-block mt-2 mb-0 float-right"><span class = "text-strikethrough"><%= @product.human_readable_original_price %></span>&nbsp</h3>
