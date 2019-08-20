@@ -513,6 +513,15 @@ span.help-block {
   background-size: cover;
 }
 
+.product-atb-navbar-image {
+  height: 75px;
+  width: auto;
+}
+
+.atb-navbar {
+  border-bottom: 3px solid $lightgrey;
+}
+
 .display-v-middle {
   display: flex;
   align-items: center;

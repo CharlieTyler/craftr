@@ -64,13 +64,14 @@ $(function(){
 // });
 
 
-$(function(){ 
+// Get rid of flash on load - doesn't need it now we don't have turbolinks
+// $(function(){ 
 
-  /*! Fades in page on load */
-  $('body').css('display', 'none');
-  $('body').fadeIn(500);
+//   /*! Fades in page on load */
+//   $('body').css('display', 'none');
+//   $('body').fadeIn(500);
 
-});
+// });
 
 // $(function(){ 
 //   var stickyNavTop = $('.secondary-nav').offset().top;

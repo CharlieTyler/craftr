@@ -32,6 +32,24 @@
   </div>
 <% end %>
 
+<div class = "atb-navbar hidden background-white">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-2 display-v-middle">
+        <%= image_tag @product.product_images.first.photo_url(:preview).to_s, class: "product-atb-navbar-image rounded" %> 
+      </div>
+      <div class = "col-6 col-md-8">
+        <h6 class = "mt-2"><%= @product.name %> - <%= @product.human_readable_price %></h6>
+        <!-- Need sale price -->
+        <p>by <%= @product.distillery.name %></p>
+      </div>
+      <div class = "col-4 col-md-2 display-v-middle text-center replace-with-cart">
+        <%= render partial: 'add_to_basket_button', locals: {order_item: @order_item, product: @product, include_go_to_checkout: false, large_button: false, remote: true} %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class = "background-lightgrey pt-3">
   <div class = "container">
     <div class = "row pb-3">
@@ -55,9 +73,9 @@
       </div>
 
       <!-- Product descriptions -->
-      <div class = "col-12 col-md-6 ">
+      <div class = "col-12 col-md-6" id = "product-description-box">
         <div class = "lyst-box px-4 pt-2 pt-md-3 mt-3 mt-md-0">
-          <h2><%= title @product.name.titleize %></h2>
+          <h2><%= title "#{@product.name.titleize}, by #{@product.distillery.name}. #{@product.size_ml}ml, #{@product.human_readable_price}, max. £2 postage", @product.name.titleize %></h2>
           <h6 class = "text-secondary">by <%= link_to @product.distillery.name, distillery_path(@product.distillery), class: "text-primary" %></h6>
           <hr class = "lyst-line-grey"/>
           <p class = "article-text">
@@ -349,6 +367,20 @@
     setTimeout(function(){
       $('.upwards-speech-bubble').slideDown();
     }, 3000);
+  });
+
+  // Show atb navbar when scrolling past product description
+  var topofDiv = $("#product-description-box").offset().top; //gets offset of header
+  var height = $("#product-description-box").outerHeight(); //gets height of header
+
+  $(window).scroll(function(){
+      if($(window).scrollTop() > (topofDiv + height)){
+         $(".atb-navbar").slideDown(200);
+         $(".atb-navbar").addClass("sticky");
+      }
+      else{
+         $(".atb-navbar").slideUp(200);
+      }
   });
 
   $(function() { 
