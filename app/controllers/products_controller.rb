@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
     end
     @distillery                = @product.distillery
     @review                    = Review.new
+    @reviews                   = @product.reviews
     @recipes                   = @product.recipes
     @other_distillery_products = Product.includes(:product_images, :reviews).live.where(distillery_id: @product.distillery.id).where.not(id: @product.id)
     @other_popular_products    = @product.other_popular_products.sample(3)

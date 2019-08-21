@@ -5,7 +5,8 @@ class ReviewsController < ApplicationController
     if @review.valid?
       redirect_to product_path(@product)
     else
-      return render text: 'Invalid review', status: :unprocessable_entity
+      flash[:alert] = "Please fill in both parts of the review form"
+      redirect_to product_path(@product)
     end
   end
 
