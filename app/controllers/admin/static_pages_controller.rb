@@ -5,6 +5,9 @@ class Admin::StaticPagesController < AdminController
     @unbatched_sold_items_without_postage_label = SoldItem.where(batch_id: nil, shipping_label_created: false).order("created_at DESC")
     @transactional_distilleries = Distillery.where.not(stripe_id: nil)
     @last_30_days_sales = SoldItem.where("(created_at > ?)", Time.now.in_time_zone('London') - 30.days)
+
+    # Nil for done, because not given option when created
+    @feedbacks = Feedback.where(done: nil)
   end
 
   def reports

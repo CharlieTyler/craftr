@@ -355,7 +355,7 @@
     <div id="footer" class = "pt-3">
       <div class="container">
         <div class = "row">
-          <div class = "col-6 col-md-3">
+          <div class = "col-4 col-md-3">
             <h5 class = "text-white">Quick links</h5>
             <ul class = "no-bullet-list pl-0 text-white">
               <li><%= link_to 'About', about_path %></li>
@@ -365,7 +365,10 @@
               <li><%= link_to 'Returns and refunds', returns_and_refunds_path %></li>
             </ul>
           </div>
-          <div class = "col-6 col-md-3 offset-md-6 display-v-middle">
+          <div class = "col-4 col-md-3 display-v-middle text-center">
+            <%= link_to "Leave feedback", new_feedback_path, class: "btn btn-primary" %>
+          </div>
+          <div class = "col-4 col-md-3 offset-md-3 display-v-middle">
             <%= link_to "http://www.drinkaware.co.uk" do %>
               <%= image_tag "drink_aware_logo.png", class: "img-fluid drink-aware mt-0" %>
             <% end %>

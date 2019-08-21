@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:new, :create, :edit, :update, :destroy]
     resources :carousel_features, only: [:new, :create, :edit, :update, :destroy]
     resources :vouchers
+    resources :feedbacks, only: [:update]
     resources :collections, only: [:new, :create, :edit, :update, :destroy]
     get "/edit_features", :controller => "featured_items", :action => "edit"
     patch "/features", :controller => "featured_items", :action => "update"

@@ -1,15 +1,51 @@
-<div class = "container">
-  <div class = "row"> 
-    <!-- Links -->
-    <div class = "col-12">
-      <div class = "row">
-        <%= link_to "Go to reporting dashboard", admin_reports_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
-        <%= link_to "Go to control panel", admin_control_panel_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
-        <%= link_to "Go to product feed", admin_product_feed_google_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
+<div class = "background-lightgrey mb-2">
+  <div class = "container">
+    <div class = "row"> 
+      <!-- Links -->
+      <div class = "col-12">
+        <div class = "row">
+          <%= link_to "Go to reporting dashboard", admin_reports_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
+          <%= link_to "Go to control panel", admin_control_panel_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
+          <%= link_to "Go to product feed", admin_product_feed_google_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
+        </div>
       </div>
-      <hr class = "booyah-line my-2"/>
     </div>
   </div>
+
+
+  <div class = "container">
+  <!-- Display recent feedbacks -->
+    <% if @feedbacks.length > 0 %>
+      <div class = "row">
+        <div class = "col-12">
+          <h5>Recent feedback</h5>
+        </div>
+        <% @feedbacks.each do |feedback| %>
+          <div class = "col-md-6">
+            <div class = "lyst-box px-2 py-2 mx-1 my-1">
+              <p class = "mb-0">"<%= feedback.description %>"</p>
+              <% if feedback.url.present? %>
+                <p class = "mb-0"><%= feedback.url %></p>
+              <% end %>
+              <% if feedback.user.present? %>
+                <p class = "mb-0"><%= feedback.user.email %></p>
+              <% end %>
+              <% if feedback.email.present? %>
+                <p class = "mb-0"><%= feedback.email %></p>
+              <% end %>
+              <%= simple_form_for feedback, url: admin_feedback_url(feedback) do |f| %>
+                <%= f.input :done, as: :hidden, :input_html => { :value => true } %>
+                <%= f.submit "Mark as done", class: "btn btn-success" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class = "container">
   <div class = "row">
     <!-- Outstanding orders -->
     <div class = "col-12">
