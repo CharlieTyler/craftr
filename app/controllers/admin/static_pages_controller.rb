@@ -20,10 +20,10 @@ class Admin::StaticPagesController < AdminController
   end
 
   def product_feed_google
-    @products = Product.transactional
+    @products = Product.transactional.where.not(GTIN: [nil, ""])
   end
 
   def product_feed_facebook
-    @products = Product.transactional
+    @products = Product.transactional.where.not(GTIN: [nil, ""])
   end
 end
