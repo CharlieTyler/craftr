@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
   resources :collections, only: [:show, :index]
   resources :distilleries, only: [:show, :index]
+  resources :feedbacks, only: [:new, :create, :destroy]
   resources :articles, only: [:show, :index]
   resources :authors, only: [:show, :index]
   get 'articles/collections/:tag', to: 'articles#tag', as: :article_tag

@@ -1,0 +1,23 @@
+<div class = "background-lightgrey">
+  <div class = "container">
+    <div class = "row py-2 px-1">
+      <div class = "col-md-6 offset-md-3 lyst-box my-2 px-3 py-3">
+        <div class = "row">
+          <div class = "col-12">
+            <h4>Tell us about your experience</h4>
+            <%= simple_form_for @feedback do |f| %>
+              <%= f.input :description, label: "What would you like to tell us?" %>
+              <% if user_signed_in? %>
+                <%= f.input :user_id, as: :hidden, :input_html => { :value => current_user.id } %>
+              <% else %>
+                <%= f.input :email, label: "Your email (not required)" %>
+              <% end %>
+              <%= f.input :url, label: "If this is about a particular page, please paste the URL in here (not required)", :input_html => { :value => request.referrer } %>
+              <%= f.submit "Share feedback", class: "btn-lg btn-success col-12" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
