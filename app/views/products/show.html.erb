@@ -357,6 +357,8 @@
     }, 2000);
   });
 
+  // If out of stock, suggested products slide down after a bit
+  // 1 second after stock spinner says out of stock
   $(function() { 
     setTimeout(function(){
       $('.upwards-speech-bubble').slideDown();
@@ -395,7 +397,7 @@
 
   $(function() { 
     $("#the-story-banner").click(function() {
-      $("#the-story-box").toggleClass("hidden");
+      $("#the-story-box").slideToggle();
       $("#the-story-toggle-switch").toggleClass("fa-minus");
       $("#the-story-toggle-switch").toggleClass("fa-chevron-down");
     });
@@ -403,7 +405,7 @@
 
   $(function() { 
     $("#taste-profile-banner").click(function() {
-      $("#taste-profile-box").toggleClass("hidden");
+      $("#taste-profile-box").slideToggle();
       $("#taste-profile-toggle-switch").toggleClass("fa-minus");
       $("#taste-profile-toggle-switch").toggleClass("fa-chevron-down");
     });
@@ -411,7 +413,7 @@
 
   $(function() { 
     $("#suggested-recipes-banner").click(function() {
-      $("#suggested-recipes-box").toggleClass("hidden");
+      $("#suggested-recipes-box").slideToggle();
       $("#suggested-recipes-toggle-switch").toggleClass("fa-minus");
       $("#suggested-recipes-toggle-switch").toggleClass("fa-chevron-down");
     });
