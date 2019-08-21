@@ -107,6 +107,7 @@
           <p class = "article-text mb-1">Craftr says:</p>
           <blockquote class="blockquote mt-0">
             <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
+            <a href = "#more-info">+ Read more</a>
           </blockquote>
           <div class = "row px-3 favourite-unfavourite py-2">
             <%= render partial: 'favourite_button', locals: {product: @product} %>
@@ -142,7 +143,7 @@
   </div>
 </div>
 
-<div class = "background-grey py-3">
+<div class = "background-grey py-3" id = "more-info">
   <div class = "container">
     <div class = "row px-3">
       <div class = "col-12">
@@ -370,6 +371,22 @@
       $('.upwards-speech-bubble').slideDown();
     }, 3000);
   });
+
+  // Scroll to anchor link - 75 pixels for the atb navbar at top
+  $(function() {
+      $('a[href*="#"]:not([href="#"])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html, body').animate({
+              scrollTop: target.offset().top - 75
+            }, 1000);
+            return false;
+          }
+        }
+      });
+    });
 
   // Show atb navbar when scrolling past product description
   var topofDiv = $("#product-description-box").offset().top; //gets offset of header
