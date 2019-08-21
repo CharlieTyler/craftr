@@ -133,7 +133,7 @@
             <div class = "col-4 text-center border-right-grey px-0 align-middle">
               <% if user_signed_in? %>
                 <%= link_to me_path do %>
-                  <h6 class = "mb-0"><i class="fa fa-lg fa-user-o" aria-hidden="true"></i></h6>
+                  <h6 class = "mb-0"><i class="fa fa-lg fa-user" aria-hidden="true"></i></h6>
                 <% end %>
               <% else %>
                 <%= link_to new_user_registration_path do %>
@@ -178,7 +178,7 @@
                         <h6 class = "mt-3 mt-md-0">By spirit</h6>
                         <ul class = "no-bullet-list mx-0 px-0">
                           <% navbar_categories.each do |category| %>
-                            <li><%= link_to category.name.pluralize, category_path(category), class: "dropdown-item" %></li>
+                            <li><%= link_to category.name.pluralize, category_path(category), class: "dropdown-item p-0" %></li>
                           <% end %>
                         </ul>
                       </div>
@@ -213,7 +213,7 @@
                         <h6 class = "mt-3 mt-md-0">Most popular</h6>
                         <ul class = "no-bullet-list mx-0 px-0">
                           <% popular_recipes.each do |recipe| %>
-                            <li><%= link_to recipe.name, recipe_path(recipe), class: "dropdown-item" %></li>
+                            <li><%= link_to recipe.name, recipe_path(recipe), class: "dropdown-item p-0" %></li>
                           <% end %>
                           <li><strong><%= link_to "See all", recipes_path, class: "text-primary dropdown-item bold-text" %></strong></li>
                         </ul>
@@ -222,7 +222,7 @@
                         <h6 class = "mt-3 mt-md-0">Newest</h6>
                         <ul class = "no-bullet-list mx-0 px-0">
                           <% newest_recipes.each do |recipe| %>
-                            <li><%= link_to recipe.name, recipe_path(recipe), class: "dropdown-item" %></li>
+                            <li><%= link_to recipe.name, recipe_path(recipe), class: "dropdown-item p-0" %></li>
                           <% end %>
                           <li><strong><%= link_to "See all", recipes_path, class: "text-primary dropdown-item bold-text" %></strong></li>
                         </ul>
@@ -231,7 +231,7 @@
                         <h6 class = "mt-3 mt-md-0">Latest articles</h6>
                         <ul class = "no-bullet-list mx-0 px-0">
                           <% latest_articles.each do |article| %>
-                            <li><%= link_to article.title, article_path(article), class: "dropdown-item" %></li>
+                            <li><%= link_to article.title, article_path(article), class: "dropdown-item p-0" %></li>
                           <% end %>
                           <li><strong><%= link_to "See all", articles_path, class: "text-primary dropdown-item bold-text" %></strong></li>
                         </ul>
@@ -256,7 +256,7 @@
               <ul class = "navbar-nav float-right">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-lg fa-user-o" aria-hidden="true"></i>
+                    <i class="fa fa-lg fa-user" aria-hidden="true"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <% if user_signed_in? %>
@@ -356,7 +356,7 @@
       <div class="container">
         <div class = "row">
           <div class = "col-6 col-md-3">
-            <h5 class = "text-white">⚡ Quick links</h5>
+            <h5 class = "text-white">Quick links</h5>
             <ul class = "no-bullet-list pl-0 text-white">
               <li><%= link_to 'About', about_path %></li>
               <li><%= link_to 'Contact us', contact_path %></li>
@@ -373,7 +373,7 @@
         </div>
         <div class = "row">
           <div class = "col-12 text-center">
-            <p class = "my-2 article-text">© Craftr ltd, <%= Date.today.year %></p>
+            <p class = "my-2 small">© Craftr Ltd, <%= Date.today.year %></p>
           </div>
         </div>
       </div>

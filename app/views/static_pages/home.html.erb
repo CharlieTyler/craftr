@@ -34,7 +34,7 @@
           <h3>Craftr's selected <%= "#{category.name}s" %></h3>
         </div>
         <div class = "d-inline-block float-right">
-          <p class = "text-primary"><%= link_to "See all", category_path(category) %></p>
+          <p class = "text-primary d-none d-sm-block"><%= link_to "See all", category_path(category) %></p>
         </div>
         <div class = "clear"></div>
         <div class = "row text-center">
@@ -45,12 +45,14 @@
           </div>
         </div>
         <% if category.collections.length > 0 %>
-          <div class = "col-12">
-            <hr class = "lyst-line-grey" />
+          <div class="row">
+            <div class = "col-12">
+              <hr class = "lyst-line-grey" />
+            </div>
           </div>
-          <div class = "col-12 pb-3 px-3">
-            <h4>Explore our <%= category.name.downcase %> collections</h4>
-            <div class = "row">
+          <div class="row">
+            <div class = "col-12 pb-3 px-3">
+              <h4>Explore our <%= category.name.downcase %> collections</h4>
               <div class = "owl-carousel owl-theme collections-carousel">
                 <%= render partial: "collections/lister_collection", collection: category.collections, as: :collection, locals: { owl_carousel: true } %>
               </div>
@@ -107,7 +109,7 @@
       <h3>Latest recipes</h3>
     </div>
     <div class = "d-inline-block float-right">
-      <p class = "text-primary"><%= link_to "See all", recipes_path %></p>
+      <p class = "text-primary d-none d-sm-block"><%= link_to "See all", recipes_path %></p>
     </div>
     <div class = "clear"></div>
     <div class = "row">
@@ -119,7 +121,7 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-12">
-      <hr class = "booyah-line" />
+      <hr class = "lyst-line-grey" />
     </div>
   </div>
 </div>
@@ -133,7 +135,7 @@
           <h3>Newest distilleries</h3>
         </div>
         <div class = "d-inline-block float-right">
-          <p class = "text-primary"><%= link_to "See all", distilleries_path %></p>
+          <p class = "text-primary d-none d-sm-block"><%= link_to "See all", distilleries_path %></p>
         </div>
         <div class = "clear"></div>
         <div class = "row py-3">
