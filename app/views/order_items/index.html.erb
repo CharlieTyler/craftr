@@ -10,8 +10,8 @@
           <div class = "px-3">
           <h4 class = "my-4">Your basket</h4>
             <div class="basket-header">
-              <div class="row">
-                <% @order_items.each do |oi| %>
+              <% @order_items.each do |oi| %>
+                <div class = "row mt-4">
                   <div class = "col-3 col-md-2">
                     <%= link_to product_path(oi.product) do %>
                       <%= image_tag oi.product.product_images.first.photo_url(:full).to_s, class: "img-fluid" %>
@@ -38,8 +38,10 @@
                       <alert class = "alert-danger">We are currently out of stock of <%= oi.product.name.titleize %>, please <%=link_to "remove from cart", order_item_path(oi), method: :delete %> to continue</alert>
                     <% end %>
                   </div>
-                <% end %>
-                <% if @possible_vouchers.length > 0 %>
+                </div>
+              <% end %>
+              <% if @possible_vouchers.length > 0 %>
+                <div class = "row">
                   <div class = "col-12 mt-4">
                     <% unless @order.voucher.present? %>
                       <%= form_tag(checkout_add_voucher_path, method: :patch) do %>
@@ -59,7 +61,9 @@
                   <div class = "col-12">
                     <hr class = "lyst-line-lightgrey mb-1" />
                   </div>
-                <% end %>
+                </div>
+              <% end %>
+              <div class = "row">
                 <div class = "col-12">
                   <h6 class = "d-inline-block mt-2">Delivery</h6>
                   <div class = "mt-2 d-inline-block float-right">
