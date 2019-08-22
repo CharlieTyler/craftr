@@ -191,12 +191,18 @@
             <div class = "indent-dot left background-grey"></div><div class = "indent-dot right  background-grey"></div><hr class = "lyst-line-grey my-2"/>
           </div>
           <div class = "px-3 text-center" id = "suggested-recipes-banner">  
-            <h5 class = "my-0">Suggested recipes <i class="fa fa-chevron-down text-primary" id = "suggested-recipes-toggle-switch" aria-hidden="true"></i></h5>
+            <h5 class = "my-0">Suggested recipes</h5>
           </div>
-          <div id = "suggested-recipes-box" class = "hidden">
+          <div id = "first-recipes-box">
             <div class = "px-3">
               <div class = "row">
-                <%= render partial: "recipes/lister_recipe", collection: @recipes, as: :recipe %>
+                <%= render partial: "recipes/lister_recipe", collection: @recipes.first(2), as: :recipe %>
+                <% if @recipes.length > 2 %>
+                  <span class = "hidden" id = "more-recipes-box">
+                    <%= render partial: "recipes/lister_recipe", collection: @recipes.drop(2), as: :recipe %>
+                  </span>
+                  <a class = "col-6 offset-3 btn btn-primary text-white" id = "toggle-more-recipes">See more</a>
+                <% end %>
               </div>
             </div>
           </div>
@@ -414,12 +420,15 @@
       $("#taste-profile-toggle-switch").toggleClass("fa-chevron-down");
     });
   });
+</script>
 
+<script>
   $(function() { 
-    $("#suggested-recipes-banner").click(function() {
-      $("#suggested-recipes-box").slideToggle();
-      $("#suggested-recipes-toggle-switch").toggleClass("fa-minus");
-      $("#suggested-recipes-toggle-switch").toggleClass("fa-chevron-down");
+    $("#toggle-more-recipes").click(function() {
+      event.preventDefault();
+      var text = $(this).text();
+      $(this).text(text == "See more" ? "See less" : "See more");
+      $("#more-recipes-box").slideToggle();
     });
   });
 </script>
