@@ -282,6 +282,11 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
+.btn-success[disabled], .btn-success.disabled {
+  cursor: not-allowed;
+  opacity: .65;
+}
+
 .btn-search,
 .btn-search:active,
 .btn-search:visited,

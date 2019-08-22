@@ -1,6 +1,6 @@
 class ErrorsController < ApplicationController
   def not_found
-    @suggested_products = Product.all.sample(4)
+    @suggested_products = Product.transactional.sample(4)
     render status: 404
   end
 

@@ -31,12 +31,12 @@
                 <%= f.input :password, required: true, label: "Type a password (you can change it later)" %>
                 <%= f.input :age_verified, required: true, label: "I am older than the legal drinking age in my country of residence", :input_html => { :checked => true } %>
                 <%= f.input :privacy_policy_accepted, required: true, :input_html => { :checked => true }, label: "I have read and agree to the #{(link_to "privacy policy", privacy_policy_path, class: "text-primary", :target => "_blank")}".html_safe %>
-                <% if @order.order_items.length > 0 %>
-                  <%= f.button :submit, "Next: Delivery address", class: "btn-lg btn-success col-12" %>
-                <% else %>
-                  <%= f.button :submit, "Sign up", class: "btn-lg btn-success col-12" %>
-                <% end %>
               </span>
+              <% if @order.order_items.length > 0 %>
+                <%= f.submit "Next: Delivery address", class: "btn-lg btn-success col-12", disabled: true %>
+              <% else %>
+                <%= f.submit "Sign up", class: "btn-lg btn-success col-12", disabled: true  %>
+              <% end %>
           <% end %>
         </div>
       </div>
@@ -53,21 +53,20 @@
 
 <script>
   $(function() { 
-    //setup before functions
-    var typingTimer;                //timer identifier
-    var doneTypingInterval = 500;  //time in ms (1 second)
-
-    //on keyup, start the countdown
+    // Reveal the password + booleans after user starts typing email
     $('#user_email').keyup(function(){
-        clearTimeout(typingTimer);
-        if ($('#user_email').val()) {
-            typingTimer = setTimeout(doneTyping, doneTypingInterval);
-        }
+      setTimeout(function(){
+        $("#password-etc").slideDown();
+      },400);
     });
 
-    //user is "finished typing," reveal rest of form
-    function doneTyping () {
-        $("#password-etc").slideDown();
-    }
+    // Enable form submssion once password is 6 chars long
+    $('#user_password').keyup(function(){
+       var value = $(this).val();
+       var len = value.length;
+       if (len === 6) {
+          $(".btn-lg").removeAttr("disabled");
+       } 
+    });
   });
 </script>
