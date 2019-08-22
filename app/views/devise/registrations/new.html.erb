@@ -1,10 +1,19 @@
+<!-- Note: should only get here from checkout path, otherwise toggles show in sign in -->
+
 <div class = "background-lightgrey">
   <div class = "container">
-    <div class = "row py-2 px-1">
-      <div class = "col-md-6 offset-md-3 lyst-box my-2 px-3 py-3">
+    <div class = "row py-3 px-2">
+      <% if @order.order_items.length > 0 %>
+        <div class = "col-12 lyst-box my-2">
+          <div class = "px-3">
+            <%= render partial: 'checkout/checkout_progress', locals: {order: @order} %>
+          </div>
+        </div>
+      <% end %>
+      <div class = "col-md-7 lyst-box my-2 px-3 py-3">
         <div class = "row">
           <div class = "col-12">
-            <h3><%= @order.order_items.length > 0 ? 'Complete your order' : 'Join Craftr' %></h3>
+            <h3><%= @order.order_items.length > 0 ? 'Your email address' : 'Join Craftr' %></h3>
           </div>
         </div>
         <div class = "row">
@@ -13,25 +22,26 @@
             <hr class = "lyst-line-lightgrey my-2"/>
           </div>
         </div>
-        <div class = "row">
-          <div class = "col-12">
-            <input type="radio" id="log-in" name="log-in-sign-up" value="already_have_account">
-            <label for="huey"> I already have an account</label>
-          </div>
-          <div class = "col-12">
-            <input type="radio" id="sign-up" name="log-in-sign-up" value="do_not_have_account" checked>
-            <label for="huey"> Use a new email address</label>
-          </div>
-        </div>
-        <div class = "login-content hidden">
-          <%= render 'devise/shared/login_form' %>
-        </div>
         <div class = "signup-content">
-          <%= render 'devise/shared/signup_form' %>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+
+              <%= f.input :email, required: true, hint: "We'll send your order confirmation here", :input_html => { :class => 'signup-email-field' } %>
+              <span class = "hidden" id = "password-etc">
+                <%= f.input :password, required: true, label: "Type a password (you can change it later)" %>
+                <%= f.input :age_verified, required: true, label: "I am older than the legal drinking age in my country of residence", :input_html => { :checked => true } %>
+                <%= f.input :privacy_policy_accepted, required: true, :input_html => { :checked => true }, label: "I have read and agree to the #{(link_to "privacy policy", privacy_policy_path, class: "text-primary", :target => "_blank")}".html_safe %>
+                <% if @order.order_items.length > 0 %>
+                  <%= f.button :submit, "Next: Delivery address", class: "btn-lg btn-success col-12" %>
+                <% else %>
+                  <%= f.button :submit, "Sign up", class: "btn-lg btn-success col-12" %>
+                <% end %>
+              </span>
+          <% end %>
         </div>
       </div>
       <% if @order.order_items.length > 0 %>
-        <div class = "col-md-3">
+        <div class = "col-md-5">
           <div class = "row px-2 pr-md-0">
             <%= render partial: "checkout/orders/order_summary", locals: {order: @order} %>
           </div>
@@ -43,15 +53,21 @@
 
 <script>
   $(function() { 
-    $('input[type=radio][name=log-in-sign-up]').change(function() {
-      if (this.value == 'already_have_account') {
-        $( ".login-content" ).show();
-        $(".signup-content").hide();
-      }
-      else if (this.value == 'do_not_have_account') {
-        $( ".signup-content" ).show();
-        $(".login-content").hide();
-      }
+    //setup before functions
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 500;  //time in ms (1 second)
+
+    //on keyup, start the countdown
+    $('#user_email').keyup(function(){
+        clearTimeout(typingTimer);
+        if ($('#user_email').val()) {
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        }
     });
+
+    //user is "finished typing," reveal rest of form
+    function doneTyping () {
+        $("#password-etc").slideDown();
+    }
   });
 </script>

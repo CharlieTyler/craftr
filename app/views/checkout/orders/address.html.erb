@@ -6,47 +6,49 @@
           <%= render partial: 'checkout/checkout_progress', locals: {order: @order} %>
         </div>
       </div>
-      <div class = "col-md-8 lyst-box my-2">
+      <div class = "col-md-7 lyst-box my-2">
         <div class = "px-3">
           <div class = "row">
             <div class = "col-12">
-              <h4>🚚 Select delivery address</h4>
+              <h4>Delivery address</h4>
             </div>
             <% if current_user.addresses.length > 0 %>
               <div class = "col-12">
                 <h6>Select from address book</h6>
               </div>
               <% current_user.addresses.each do |address| %>
-                <div class = "col-6 col-md-4 my-2">
-                  <div class="card h-100">
-                    <div class="card-block">
-                      <div class="card-text">
-                        <p class = "mb-1"><strong><%= address.full_name %></strong></p>
-                        <p class = "mb-1"><%= address.line_1 %></p>
-                        <p class = "mb-1"><%= address.line_2 %></p>
-                        <p class = "mb-1"><%= address.line_3 %></p>
-                        <p class = "mb-1"><%= address.post_town %></p>
-                        <p class = "mb-1"><%= address.postcode %></p>
+                <% if address.valid? %>
+                  <div class = "col-6 col-md-4 my-2">
+                    <div class="card h-100">
+                      <div class="card-block">
+                        <div class="card-text">
+                          <p class = "mb-1"><strong><%= address.full_name %></strong></p>
+                          <p class = "mb-1"><%= address.line_1 %></p>
+                          <p class = "mb-1"><%= address.line_2 %></p>
+                          <p class = "mb-1"><%= address.line_3 %></p>
+                          <p class = "mb-1"><%= address.post_town %></p>
+                          <p class = "mb-1"><%= address.postcode %></p>
+                        </div>
                       </div>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item text-center">
-                        <%= simple_form_for @order, url: checkout_update_address_path do |f| %>
-                          <%= f.input :shipping_address_id, as: :hidden, :input_html => { :value => address.id } %>
-                          <% if @order.shipping_address_id.present? && @order.shipping_address == address %>
-                            <%= f.submit "Selected", class: "btn btn-success col-12" %>
-                          <% else %>
-                            <%= f.submit "Select", class: "btn btn-green-secondary col-12" %>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-center">
+                          <%= simple_form_for @order, url: checkout_update_address_path do |f| %>
+                            <%= f.input :shipping_address_id, as: :hidden, :input_html => { :value => address.id } %>
+                            <% if @order.shipping_address_id.present? && @order.shipping_address == address %>
+                              <%= f.submit "Selected", class: "btn btn-success col-12" %>
+                            <% else %>
+                              <%= f.submit "Select", class: "btn btn-green-secondary col-12" %>
+                            <% end %>
                           <% end %>
-                        <% end %>
-                      </li>
-                    </ul>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                <% end %>
               <% end %>
             <% end %>
             <div class = "col-12">
-              <% if @order.shipping_address_id.present? %>
+              <% if @order.shipping_address.present? %>
                 <%= link_to "Continue to secure payment", checkout_payment_path, class: "btn btn-lg btn-success text-center col-12 my-2 py-2" %>
               <% end %>
             </div>
@@ -81,13 +83,13 @@
                     <%= f.input :country, collection: Address::COUNTRIES, include_blank: false, hint: "We only ship to the UK!" %>
                   </div>
                 </div>
-                <%= f.submit "Deliver to here", class: "btn-lg btn-success col-12" %>
+                <%= f.submit "Next: Payment", class: "btn-lg btn-success col-12", data: { disable_with: 'Planning delivery...'} %>
               <% end %>
             </div>
           </div>
         </div>
       </div>
-      <div class = "col-md-4">
+      <div class = "col-md-5">
         <div class = "row">
           <%= render partial: 'order_summary', locals: {order: @order} %>
         </div>
@@ -98,3 +100,27 @@
     </div>
   </div>
 </div>
+
+<script>
+  // TODO: update order summary with address as they type
+  $(function() { 
+    //setup before functions
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 500;  //time in ms (1 second)
+    var address;
+    //on keyup, start the countdown
+    $('#address_line_1').keyup(function(){
+        clearTimeout(typingTimer);
+        if ($('#address_line_1').val()) {
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            address = $('#address_line_1').val();
+        }
+    });
+
+    //user is "finished typing," populate submit with details
+    function doneTyping () {
+      console.log(address);
+      $('input.btn-lg').val("Deliver to " + address + "...");
+    }
+  });
+</script>

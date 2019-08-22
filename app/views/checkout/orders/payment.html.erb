@@ -9,7 +9,7 @@
       <div class = "col-md-8 my-2 pl-0 pr-0 pr-md-2">
         <div class = "lyst-box">
           <div class = "px-3">
-            <h4 class = "mt-3 mb-1">💳 Add payment details</h4>
+            <h4 class = "mt-3 mb-1">Payment details</h4>
             <form action="/checkout/charge_payment" method="post" id="payment-form">
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
               <div class="form-row">
@@ -84,6 +84,12 @@
       }
     });
 
+    card.on('ready', function(){
+      setTimeout(function(){
+          card.focus();
+      },400);
+    });
+
     card.addEventListener('change', function(event) {
       if (event.complete) {
         $(".pay-btn").removeClass("disabled");
@@ -105,6 +111,7 @@
           stripeTokenHandler(result.token);
         }
       });
+
     });
 
     function stripeTokenHandler(token) {
@@ -122,16 +129,4 @@
   });
 
   // Create a token or display an error when the form is submitted.
-</script>
-
-<script>
-  var paybtn = $(".pay-btn");
-  paybtn.click(function() {
-    if (paybtn.hasClass("disabled")) {
-
-    } else {
-      $(this).html('<i class="fa fa-spinner fa-pulse" aria-hidden="true"></i> Processing');
-      $(this).addClass("disabled")
-    }
-  });
 </script>

@@ -1,5 +1,9 @@
 class Checkout::OrdersController < ApplicationController
-  before_action :authenticate_user!, except: [:add_voucher]
+  # Make sure they're signed in for everything beyond address stage
+  # Custom one for address to take to sign up first, without flash
+  # Update shipping not required, otherwise will send back to cart page
+  before_action :authenticate_user!, except: [:add_voucher, :address, :update_shipping]
+  before_action :send_to_sign_up_if_not_signed_in, only: [:address]
   before_action :check_voucher_is_valid_if_present
   before_action :check_items_in_cart, except: [:confirmation]
   before_action :check_all_products_and_distilleries_transactional, except: [:confirmation]
@@ -34,7 +38,6 @@ class Checkout::OrdersController < ApplicationController
   def address
     # This is first page of checkout process
     @address = Address.new
-    @shipping_types = ShippingType.all
   end
 
   def create_address
@@ -135,6 +138,12 @@ class Checkout::OrdersController < ApplicationController
   end
 
   private
+
+  def send_to_sign_up_if_not_signed_in
+    unless user_signed_in?
+      redirect_to new_user_registration_path
+    end
+  end
 
   def check_voucher_is_valid_if_present
     if @order.voucher.present?
