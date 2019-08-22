@@ -25,6 +25,13 @@
         <p><%= @collection.description %></p>
       </div>
       <%= render partial: "products/lister_item", collection: @products, as: :product, locals: { md_upwards_col: 4, include_add_to_basket: false } %>
+      <div class = "col-12 my-3 text-center">
+        <% if @collection.category.present? %>
+          <%= link_to "See all our #{@collection.category.name}s", category_path(@collection.category), class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "See all our craft spirits", products_path, class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -34,8 +41,10 @@
       <div class = "col-12">
         <hr class = "lyst-line-grey" />
       </div>
-      <div class = "col-12 pb-3 px-3">
+      <div class = "col-12 pb-3 px-3 text-center">
         <h4>Explore other collections</h4>
+      </div>
+      <div class = "col-12 pb-3 px-3">
         <div class = "row">
           <div class = "owl-carousel owl-theme other-collections-carousel">
             <%= render partial: "collections/lister_collection", collection: @other_collections, as: :collection, locals: { owl_carousel: true } %>
