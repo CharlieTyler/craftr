@@ -17,13 +17,13 @@
 <% end %>
 
 <!-- Leave a review -->
-<% if user_signed_in? && (current_user.recently_ordered_products.include?@product) && !current_user.reviews.where(product: @product).present? %>
+<% if user_signed_in? && (current_user.ordered_products.include?@product) && !current_user.reviews.where(product: @product).present? %>
   <div class = "background-lightgrey">
     <div class = "container">
-      <div class = "row justify-content-center">
+      <div class = "row justify-content-center mt-2">
           <div class = "col-auto my-2 pl-2 pl-md-3 text-center lyst-box display-v-middle">
-            <p class = "d-inline-block my-0">Looks like you just bought one of these</p>
-            <button type="button" class="btn btn-primary d-inline-block mx-2" data-toggle="modal" data-target="#newReviewModal">
+            <p class = "d-inline-block my-0">How was <%= @product.name %>?</p>
+            <button type="button" class="btn btn-primary d-inline-block mx-4" data-toggle="modal" data-target="#newReviewModal">
               Leave a review
             </button>
           </div>
@@ -238,32 +238,36 @@
   <% end %>
 </div>
 
-<!-- Reviews -->
-<div class = "background-lightgrey">
-  <div class = "container">
-    <div class = "row py-3" id = "reviews">
-      <div class = "col-12">
-        <h4>Reviews</h4>
-        <h6><%= render partial: "products/star_rating", locals: {product: @product} %></h6>
-        <div class = "row">
-        </div>
-        <% if user_signed_in? %>
-          <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#newReviewModal">
-            + Add a review
-          </button>
-        <% else %>
-          <p>Please <%= link_to "login", new_user_session_path, class: "btn btn-primary" %> or <%= link_to "sign up", new_user_registration_path, class: "btn btn-secondary" %> to add a review</p>
-        <% end %>
-        <div class = "row">
-          <% if @reviews.length > 0 %>
-            <%= render partial: "review", collection: @reviews %>
+<!-- TODO: Only show reviews if their are some or user has ever bought it -->
+<% if @reviews.length > 0 || (user_signed_in? && (current_user.ordered_products.include?@product)) %>
+  <!-- Reviews -->
+  <div class = "background-lightgrey">
+    <div class = "container">
+      <div class = "row py-3" id = "reviews">
+        <div class = "col-12 mt-2">
+          <h4>Reviews</h4>
+          <h6><%= render partial: "products/star_rating", locals: {product: @product} %></h6>
+          <div class = "row">
+          </div>
+          <% if (user_signed_in? && (current_user.ordered_products.include?@product)) %>
+            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#newReviewModal">
+              + Add a review
+            </button>
+          <% else %>
+            <p>Only users who have purchased <%= @product.name %> may review it. If you have, please <%= link_to "login", new_user_session_path, class: "btn btn-primary" %></p>
           <% end %>
+          <div class = "row">
+            <% if @reviews.length > 0 %>
+              <%= render partial: "review", collection: @reviews %>
+            <% end %>
+          </div>
+          <div class = "clear"></div>
         </div>
-        <div class = "clear"></div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
+
 
 <!-- Button trigger modal -->
 
