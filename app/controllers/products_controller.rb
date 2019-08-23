@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
         redirect_to distilleries_path
       end
     end
+    @product_images            = @product.product_images.rank(:row_order)
     @distillery                = @product.distillery
     @review                    = Review.new
     @reviews                   = @product.reviews
