@@ -24,7 +24,7 @@
         <h1 class = "mt-2"><%= title @collection.full_name %></h1>
         <p><%= @collection.description %></p>
       </div>
-      <%= render partial: "products/lister_item", collection: @products, as: :product, locals: { md_upwards_col: 4, include_add_to_basket: false } %>
+      <%= render partial: "products/product_collection_lister", collection: @products, as: :product %>
       <div class = "col-12 my-3 text-center">
         <% if @collection.category.present? %>
           <%= link_to "See all our #{@collection.category.name}s", category_path(@collection.category), class: "btn btn-primary" %>

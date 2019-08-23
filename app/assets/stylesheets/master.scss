@@ -781,3 +781,9 @@ input[type=search] {
 .bold-text {
   font-weight: bold !important;
 }
+
+.image-fill-height {
+    max-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
