@@ -549,13 +549,10 @@ span.help-block {
 }
 
 .lister-product-image-overlay {
+  z-index: 100;
+  width: 100%;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.2);
-  overflow: hidden;
+  background: white;
 }
 
 .distillery-image {
@@ -730,6 +727,10 @@ input[type=search] {
 
 .border-below-black {
   border-bottom: 1px solid $charcoal; 
+}
+
+.border-below-lightgrey {
+  border-bottom: 3px solid $lightgrey;
 }
 
 .dropdown-menu {

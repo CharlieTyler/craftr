@@ -2,16 +2,16 @@
 <div class = "<%= ['my-3 col-6 col-md-', md_upwards_col ||= 4.to_s, additional_class ||= ''].join('') %>" >
   <div class="card h-100">
     <div class = "card-img-top lister-product-container text-center">
+      <% if product.is_transactional %>
+        <div class = "hidden lister-product-image-overlay border-below-lightgrey pt-3 pb-1 px-3">
+          <%= render partial: 'products/quick_add_button', locals: {order_item: OrderItem.new, product: product, remote: true} %>
+        </div>
+      <% end %>
       <%= link_to product_path(product) do %>
         <% if product.product_images.present? %>
           <%= image_tag product.product_images.first.photo_url(:full).to_s, class: "img-fluid" %>
         <% else %>
           <%= image_tag "booze_placeholder.jpg", class: "img-fluid" %>
-        <% end %>
-        <% if product.is_transactional %>
-          <div class = "hidden lister-product-image-overlay px-3 pt-4 display-v-middle">
-            <%= render partial: 'products/quick_add_button', locals: {order_item: OrderItem.new, product: product, remote: true} %>
-          </div>
         <% end %>
       <% end %>
     </div>

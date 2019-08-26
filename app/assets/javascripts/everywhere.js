@@ -20,9 +20,9 @@ $(function(){
   //Atb on product lister items
   $(".lister-product-container").hover(
     function() {
-      $(".lister-product-image-overlay", this).show(0);        
+      $(".lister-product-image-overlay", this).first().fadeIn(200);        
     }, function() {
-      $(".lister-product-image-overlay", this).hide(0); 
+      $(".lister-product-image-overlay", this).first().fadeOut(200); 
     }
   );
 });
