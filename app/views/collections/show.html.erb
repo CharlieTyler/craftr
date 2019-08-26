@@ -25,11 +25,11 @@
         <p><%= @collection.description %></p>
       </div>
       <%= render partial: "products/product_collection_lister", collection: @products, as: :product %>
-      <div class = "col-12 my-3 text-center">
+      <div class = "col-12 my-3 text-center my-5">
         <% if @collection.category.present? %>
-          <%= link_to "See all our #{@collection.category.name}s", category_path(@collection.category), class: "btn btn-primary" %>
+          <%= link_to "See all our #{@collection.category.name}s", category_path(@collection.category), class: "btn-lg btn-primary" %>
         <% else %>
-          <%= link_to "See all our craft spirits", products_path, class: "btn btn-primary" %>
+          <%= link_to "See all our craft spirits", products_path, class: "btn-lg btn-primary" %>
         <% end %>
       </div>
     </div>

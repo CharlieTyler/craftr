@@ -19,16 +19,17 @@
             // For google ad conversion tracking
             gtag('event', 'conversion', {
                 'send_to': 'AW-734967162/2zcmCJrK06YBEPrqut4C',
-                'value': 40.0,
+                'value': '<%= @confirmed_order.total_paid_amount %>',
                 'currency': 'GBP',
-                'transaction_id': ''
+                'transaction_id': '<%= @confirmed_order.id %>'
             });
             ga('require', 'ecommerce');
             ga('ecommerce:addTransaction', {
               'id': '<%= @confirmed_order.id %>',
               'affiliation': 'Craftr', 
               'revenue':  '<%= @confirmed_order.total_paid_product_amount.to_f / 100 %>',
-              'shipping':'<%= @confirmed_order.paid_shipping_price.to_f / 100 %>'
+              'shipping':'<%= @confirmed_order.paid_shipping_price.to_f / 100 %>',
+              'currency':'GBP'
             });
 
             <% @confirmed_order.sold_items.each do |si| %>

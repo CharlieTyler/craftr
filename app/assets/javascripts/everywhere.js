@@ -16,6 +16,19 @@ $(function(){
   });
 });
 
+$(function(){
+  //Atb on product lister items
+  $(".lister-product-container").hover(
+    function() {
+      $(".lister-product-image-overlay", this).show(0);        
+    }, function() {
+      $(".lister-product-image-overlay", this).hide(0); 
+    }
+  );
+});
+
+
+
 $(function(){ 
   $("img").lazyload({
     threshold : 500,

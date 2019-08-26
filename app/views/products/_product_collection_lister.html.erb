@@ -1,5 +1,5 @@
 <div class = "col-md-6 my-2">
-  <div class = "lyst-box card py-0">
+  <div class = "lyst-box card py-0 h-100">
     <div class = "row">
       <div class = "col-5">
         <%= link_to product_path(product) do %>
@@ -11,9 +11,9 @@
           <%= link_to product_path(product) do %>
             <h4 class="mb-2"><%= product.name %></h4>
           <% end %>
-          <p class = "text-muted card-text mb-2">by <%= link_to product.distillery.name, distillery_path(product.distillery) %></p>
+          <p class = "text-muted card-text mb-2">by <%= link_to product.distillery.name, distillery_path(product.distillery) %><span class = "float-right"><%= product.human_readable_price %></span></p>
           <p class = "text-muted card-text mb-0"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= product.distillery.location %></p>
-          <p class= "card-text"><%= truncate_html(product.description_short, length: 100) %></p>
+          <p class= "card-text"><%= truncate_html(product.description_short, length: 125) %></p>
           <%= link_to "Learn more", product_path(product), class: "btn btn-primary col-12" %>
         </div>
       </div>
