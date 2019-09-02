@@ -143,11 +143,73 @@
   </div>
 </div>
 
-<div class = "background-grey py-3" id = "more-info">
+<div class = "background-gradient-blue">
+  <div class = "container py-3">
+    <div class = "row" id = "more-info">
+      <div class = "col-12 text-center">
+        <h3 class = "text-white mt-3 mb-0">About <%= @product.name %></h3>
+      </div> 
+      <div class = "col-md-6 px-4 px-md-0">
+        <div class = "text-white">
+          <%= simple_format(@product.description_first) %>
+          <%= simple_format(@product.description_second) %>
+        </div>
+      </div>
+      <div class = "col-md-6">
+        <%= image_tag @product.distillery.summary_image, class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "background-white">
+  <div class = "container py-3">
+    <div class = "row" id = "suggested-recipe">
+      <div class = "col-12 text-center">
+        <h3>Suggested recipe: <%= @suggested_recipe.name %></h3>
+      </div>
+      <div class = "col-md-6 hidden-xs-down">
+        <%= image_tag @suggested_recipe.image_url(:full).to_s, class: "img-fluid" %>
+      </div>
+      <div class = "col-md-6">
+        <div class = "px-3">
+          <h6>📖 Ingredients</h6>
+          <ul>
+            <% @suggested_recipe.recipe_ingredients.each do |ri| %>
+              <li>
+                <%= "#{ri.quantity} " %> 
+                <% if ri.ingredient.category.present? && ri.ingredient.category == @product.category %>
+                  <%= @product.name %>
+                <% else %>
+                  <%= ri.ingredient.name %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <h6 class = "mt-3 mb-0">🍸 Method</h6>
+          <p class = "article-text mt-2"><%= simple_format @suggested_recipe.method %></p>
+          <div class = "favourite-unfavourite my-3"> <!-- This partial is replaced each time it's clicked -->
+            <%= render partial: 'favourite_button', locals: {recipe: @suggested_recipe} %>
+          </div> 
+          <% if @other_recipes.length > 0 %>
+            <h5>Other recipes</h5>
+            <div class = "row">
+              <div class = "owl-carousel owl-theme other-collections-carousel">
+                <%= render partial: "recipes/lister_recipe", collection: @other_recipes, as: :recipe %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class = "background-grey py-3" id = "more-info">
   <div class = "container">
     <div class = "row px-3">
       <div class = "col-12">
-        <h4>More information</h4>
+        <h4>About <%= @product.name %></h4>
       </div>
       <div class = "col-12 lyst-box">
         <div class = "px-3 text-center" id = "the-story-banner">  
@@ -220,7 +282,7 @@
       <% end %>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class = "container">
   <% unless @other_distillery_products.blank? %>
@@ -344,16 +406,7 @@
       margin: 5,
       dots: true,
       loop: true,
-      responsive : {
-        // breakpoint from 0 up
-        0 : {
-            items : 1
-        },
-        // breakpoint from 480 up
-        960 : {
-            items : 2
-        }
-      }
+      items: 1
       // navText : ['<i class="fa fa-3x pb-2 mt-0 pt-0 mb-3 fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-3x mt-0 pt-0 mb-3 pb-2 fa-angle-right" aria-hidden="true"></i>']
     });
   });
@@ -403,22 +456,6 @@
       else{
          $(".atb-navbar").slideUp(200);
       }
-  });
-
-  $(function() { 
-    $("#the-story-banner").click(function() {
-      $("#the-story-box").slideToggle();
-      $("#the-story-toggle-switch").toggleClass("fa-minus");
-      $("#the-story-toggle-switch").toggleClass("fa-chevron-down");
-    });
-  });
-
-  $(function() { 
-    $("#taste-profile-banner").click(function() {
-      $("#taste-profile-box").slideToggle();
-      $("#taste-profile-toggle-switch").toggleClass("fa-minus");
-      $("#taste-profile-toggle-switch").toggleClass("fa-chevron-down");
-    });
   });
 </script>
 
