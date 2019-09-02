@@ -160,6 +160,19 @@ class Product < ApplicationRecord
     end
   end
 
+  # Profitability calcs
+  def gross_profit(shipping_price)
+    price + shipping_price - distillery_take
+  end
+
+  def payment_cost(shipping_price)
+    (price + shipping_price) * 0.014 + 20
+  end
+
+  def net_profit(shipping_price, shipping_cost)
+    price + shipping_price - distillery_take - shipping_cost - payment_cost(shipping_price)
+  end
+
   def other_popular_products
     Product.transactional.where("(category_id = ?)", category_id).where.not("(id = ?)", id).sort_by{|product| -product.user_product_views.length}
   end

@@ -1,17 +1,44 @@
-<div class = "background-lightgrey mb-2">
+<div class = "mb-2">
   <div class = "container">
     <div class = "row"> 
       <!-- Links -->
       <div class = "col-12">
         <div class = "row">
-          <%= link_to "Go to reporting dashboard", admin_reports_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
-          <%= link_to "Go to control panel", admin_control_panel_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
-          <%= link_to "Go to product feed", admin_product_feed_google_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
+          <%= link_to "Reporting", admin_reports_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
+          <%= link_to "New stuff", admin_control_panel_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
+          <%= link_to "Product feed", admin_product_feed_google_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Key stats on shipping -->
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-12">
+        <h3>Order tracker</h3>
+      </div>
+      <div class = "col-4">
+        <div class = "lyst-box px-2 py-2 mx-1 my-1">
+          <h6>Sales (30 days)</h6>
+          <p><%= @last_30_days_sales.sum(&:price) %></p>
+        </div>
+      </div>
+      <div class = "col-4">
+        <div class = "lyst-box px-2 py-2 mx-1 my-1">
+          <h6>Unshipped batches</h6>
+          <p><%= @unshipped_batches.length %></p>
+        </div>
+      </div>
+      <div class = "col-4">
+        <div class = "lyst-box px-2 py-2 mx-1 my-1">
+          <h6>Unbatched items</h6>
+          <p><%= @unbatched_sold_items_with_postage_label.length %></p>
+         
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class = "container">
   <!-- Display recent feedbacks -->
@@ -47,69 +74,43 @@
 
 <div class = "container">
   <div class = "row">
-    <!-- Outstanding orders -->
     <div class = "col-12">
-      <h4>Batches, ready to be shipped</h4>
-      <% if @unshipped_batches.length > 0 %>
-        <!-- List out all incomplete orders and allow to mark as complete -->
-        <table class="table table-striped">
-          <thead>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Current price</th>
+            <th scope="col">Shipping</th>
+            <th scope="col">Distillery take</th>
+            <th scope="col">Gross profit</th>
+            <th scope="col">Postage</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Net profit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @transactional_products.each do |product| %>
             <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Distillery</th>
-              <th scope="col">Description</th>
-              <th scope="col">Status</th>
-              <th scope="col">Reminder to</th>
+              <th scope="row"><%= product.name %></th>
+              <td><%= product.human_readable_price %></td>
+              <td><%= number_to_currency(@default_shipping_price.to_f / 100, unit: "£") %></td>
+              <td><%= number_to_currency(product.distillery_take.to_f / 100, unit: "£") %></td>
+              <td><%= number_to_currency(product.gross_profit(@default_shipping_price).to_f / 100, unit: "£") %></td>
+              <td>£2.90</td>
+              <td><%= number_to_currency(product.payment_cost(@default_shipping_price).to_f / 100, unit: "£") %></td>
+              <td><%= number_to_currency(product.net_profit(@default_shipping_price, 290).to_f / 100, unit: "£") %></td>
             </tr>
-          </thead>
-          <tbody>
-            <% @unshipped_batches.each do |batch| %>
-              <tr>
-                <th scope="row"><%= batch.created_at.strftime('%B %d, %Y at %H:%M') %></th>
-                <td><%= batch.distillery.name %></td>
-                <td><%= batch.description %></td>
-                <td><%= batch.state %></td>
-                <td><%= mail_to batch.distillery.users.first.email %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <p>No batches awaiting shipping</p>
-      <% end %>
-    </div>
-    <div class = "col-12">
-      <h4>Sold items, ready to be batched</h4>
-      <% if @unbatched_sold_items_with_postage_label.length > 0 %>
-        <!-- List out all incomplete orders and allow to mark as complete -->
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Distillery</th>
-              <th scope="col">Description</th>
-              <th scope="col">Reminder to</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @unbatched_sold_items_with_postage_label.each do |usi| %>
-              <tr>
-                <th scope="row"><%= usi.created_at.strftime('%B %d, %Y at %H:%M') %></th>
-                <td><%= usi.order_item.product.distillery.name %></td>
-                <td><%= usi.description %></td>
-                <td><%= mail_to usi.order_item.product.distillery.users.first.email %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <p>No items awaiting batches</p>
-      <% end %>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
+
+<div class = "container">
   <div class = "row">
     <div class = "col-12">
-      <h4>Distilleries who have linked Stripe</h4>
+      <h4>Distilleries who have linked Stripe (<%= @transactional_distilleries.length %>)</h4>
       <ul>
         <% @transactional_distilleries.each do |distillery| %>
           <li><%= link_to distillery.name, distillery_path(distillery) %></li>
@@ -123,8 +124,6 @@
       <h4 class = "mt-4">Sales</h4>
       <h6>Volume (last 30 days)</h6>
       <%= line_chart @last_30_days_sales.group_by_day(:created_at).count %>
-      <h6 class = "mt-2">Value (last 30 days)</h6>
-      <%= line_chart @last_30_days_sales.group_by_day(:created_at).sum(:item_price).map{|arr| arr.map { |item| item.to_f / 100 if item.is_a? Numeric } } %>
     </div>
   </div>
 </div>

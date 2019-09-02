@@ -3,8 +3,10 @@ class Admin::StaticPagesController < AdminController
     @unshipped_batches = Batch.where(shipped: false).order("created_at DESC")
     @unbatched_sold_items_with_postage_label = SoldItem.where(batch_id: nil, shipping_label_created: true).order("created_at DESC")
     @unbatched_sold_items_without_postage_label = SoldItem.where(batch_id: nil, shipping_label_created: false).order("created_at DESC")
-    @transactional_distilleries = Distillery.where.not(stripe_id: nil)
+    @transactional_distilleries = Distillery.transactional
     @last_30_days_sales = SoldItem.where("(created_at > ?)", Time.now.in_time_zone('London') - 30.days)
+    @transactional_products = Product.transactional
+    @default_shipping_price = ShippingType.first.price
 
     # Nil for done, because not given option when created
     @feedbacks = Feedback.where(done: nil)
