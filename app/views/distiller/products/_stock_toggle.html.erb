@@ -1,10 +1,8 @@
-<div class = "product-<%= product.id %>">
-  <% if product.is_in_stock %>
-    <%= link_to "Mark as out of stock", mark_as_out_of_stock_distiller_product_path(product), class: "btn btn-danger stock-toggle d-inline", method: :patch, remote: true %>
-  <% else %>
-    <%= link_to "Mark as in stock", mark_as_in_stock_distiller_product_path(product), class: "btn btn-success stock-toggle d-inline", method: :patch, remote: true %>
-  <% end %>
-</div>
+<% if product.is_in_stock %>
+  <%= link_to "Mark as out of stock", mark_as_out_of_stock_distiller_product_path(product), class: "btn btn-danger stock-toggle d-inline", method: :patch, remote: true %>
+<% else %>
+  <%= link_to "Mark as in stock", mark_as_in_stock_distiller_product_path(product), class: "btn btn-success stock-toggle d-inline", method: :patch, remote: true %>
+<% end %>
 
 <script>
   $('.stock-toggle').click(function() {

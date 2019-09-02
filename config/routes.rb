@@ -75,6 +75,8 @@ Rails.application.routes.draw do
     get "/product-feed-google" => "static_pages#product_feed_google"
     get "/product-feed-facebook" => "static_pages#product_feed_facebook"
     get "/control-panel" => "static_pages#control_panel"
+    patch "/change-distillery", :controller => "static_pages", :action => "change_distillery"
+    put "/change-distillery", :controller => "static_pages", :action => "change_distillery"
     resources :authors, only: [:new, :create, :edit, :update, :destroy]
     resources :products, only: [:new, :create, :edit, :update, :destroy]
     resources :articles, only: [:new, :create, :edit, :update, :destroy]

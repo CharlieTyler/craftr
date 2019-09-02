@@ -28,4 +28,15 @@ class Admin::StaticPagesController < AdminController
   def product_feed_facebook
     @products = Product.transactional.where.not(GTIN: [nil, ""])
   end
+
+  def change_distillery
+    current_user.update_attributes(change_distillery_params)
+    redirect_to distiller_dashboard_path
+  end
+
+  private
+
+  def change_distillery_params
+    params.require(:user).permit(:distillery_id)
+  end
 end

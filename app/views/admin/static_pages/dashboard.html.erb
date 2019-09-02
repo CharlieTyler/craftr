@@ -9,6 +9,13 @@
           <%= link_to "Product feed", admin_product_feed_google_path, class: "btn btn-secondary col-12 col-md-4 my-2" %>
         </div>
       </div>
+      <div class = "col-12">
+        <p>Change distillery to view distiller dashboard</p>
+        <%= simple_form_for current_user, url: admin_change_distillery_path do |f| %>
+          <%= f.input :distillery_id, collection: @transactional_distilleries, value_method: :id, label_method: :name %>
+          <%= f.submit "View as this distillery", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
 

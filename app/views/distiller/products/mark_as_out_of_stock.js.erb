@@ -1,1 +1,2 @@
-$(".product-<%= @product.id %>").html('<%= j render partial: 'distiller/products/stock_toggle', locals: {product: @product} %>');
+$(".toggle-product-<%= @product.id %>").html('<%= j render partial: 'distiller/products/stock_toggle', locals: {product: @product} %>');
+$(".stock-product-<%= @product.id %>").html('<%= j @product.is_in_stock ? "In stock" : "Out of stock" %>');
