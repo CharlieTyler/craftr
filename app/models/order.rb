@@ -21,6 +21,10 @@ class Order < ApplicationRecord
     end
   end
 
+  def fully_shipped?
+    sold_items.all? { |si| si.shipped }
+  end
+
   def shipped_sold_items_length
     sold_items.where(shipped: true).sum(&:quantity)
   end
@@ -166,7 +170,6 @@ class Order < ApplicationRecord
                        )
         shipment.buy(
           rate: shipment.lowest_rate(carrier_accounts = ['RoyalMail'], service = ['RoyalMail2ndClass'])
-          #  leaving until Royal Mail account present
         )
         si.postages.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, easypost_shipment_id: shipment.id)
       end

@@ -1,30 +1,26 @@
 <div class = "col-12 lyst-box my-2">
   <div class = "px-3 text-center">  
-    <h4 class = "my-0">🛒 Order id:<%= order.id %> - placed on <%= order.updated_at.strftime('%B %d, %Y') %></h4>
+    <h4 class = "my-0">🛒 Order id: <%= order.id %> - placed on <%= order.updated_at.strftime('%B %d, %Y') %></h4>
   </div>
   <div class = "py-1">
     <div class = "indent-dot left background-lightgrey"></div><div class = "indent-dot right  background-lightgrey"></div><hr class = "lyst-line-lightgrey my-2"/>
   </div>
   <div class = "px-3">
-    <% order.order_items.each do |oi| %>
+    <% order.sold_items.each do |si| %>
       <div class = "d-inline-block">
-        <p class = "ml-2"><%= "#{oi.product.name.titleize} x #{oi.quantity}" %> - <%= link_to "Leave a review", product_path(oi.product), class: "text-green" %></p>  
+        <p class = "ml-2"><%= "#{si.product.name.titleize} x #{si.quantity}, #{si.state}" %> - <%= link_to "Leave a review", product_path(si.product), class: "text-green" %></p>  
       </div>
       <div class = "d-inline-block float-right">
-        <p><strong><%= number_to_currency((oi.subtotal_in_pence.to_f / 100), unit: "£") %></strong></p>
+        <p><strong><%= number_to_currency((si.total_paid.to_f / 100), unit: "£") %></strong></p>
       </div> 
       <div class = "clear"></div>
     <% end %>
-    <% if order.shipping_type.present? %>
-      <div class = "d-inline-block">
-        <p class = "ml-2"><%= order.shipping_type.name %></p>  
-      </div>
-      <div class = "d-inline-block float-right">
-        <p><strong><%= number_to_currency((order.total_unpaid_shipping_amount.to_f / 100), unit: "£") %></strong></p>
-      </div> 
-    <% else %>
-      <p>Please select shipping type</p>
-    <% end %>
+    <div class = "d-inline-block">
+      <p class = "ml-2"><%= order.shipping_type.name %></p>  
+    </div>
+    <div class = "d-inline-block float-right">
+      <p><strong><%= order.paid_shipping_price == 0 ? "FREE" : number_to_currency((order.paid_shipping_price.to_f / 100), unit: "£") %></strong></p>
+    </div> 
     <div class = "clear"></div>
     <% if order.voucher.present? %>
       <div class = "d-inline-block float-left">
@@ -35,38 +31,43 @@
       </div>
     <% end %>
     <div class = "clear"></div>
-    <% if order.total_unpaid_amount.present? %>
-      <div class = "row">
-        <div class = "col-12">
-          <hr class = "booyah-line"/>
-        </div>
+    <div class = "row">
+      <div class = "col-12">
+        <hr class = "booyah-line"/>
       </div>
-      <div class = "mt-2 mb-0">
-        <div class = "d-inline-block">
-          <p class = "ml-2 article-text"><strong>Total: </strong></p>
-        </div>
-        <div class = "d-inline-block float-right">
-          <p class = "article-text"><strong><%= number_to_currency((order.total_unpaid_amount.to_f / 100), unit: "£") %></strong></p>
-        </div> 
+    </div>
+    <div class = "mt-2 mb-0">
+      <div class = "d-inline-block">
+        <p class = "ml-2 article-text"><strong>Total: </strong></p>
       </div>
-    <% end %>
+      <div class = "d-inline-block float-right">
+        <p class = "article-text"><strong><%= number_to_currency((order.total_paid_amount.to_f / 100), unit: "£") %></strong></p>
+      </div> 
+    </div>
     <div class = "row mb-2">
       <div class = "col-12">
         <hr class = "booyah-line"/>
       </div>
     </div>
-    <% if order.shipping_type.present? %>
-      <ul class="no-bullet-list pl-0">
-        <li>
-          <p><strong>🚚 Deliver to <%= order.shipping_type.shipping_time %> to:</strong></p>
-          <% if order.shipping_address.present? %>
-            <p class = "mb-0"><%= order.shipping_address.full_name %></p>
-            <p class = "mb-0"><%= order.shipping_address.full_address_no_name %></p>
-          <% else %>
-            <p>Please select your shipping address</p>
-          <% end %>
-        </li>
-      </ul>
-    <% end %>
+    <ul class="no-bullet-list pl-0">
+      <li>
+        <% if order.fully_shipped? %>
+          <p><strong>🚚 Delivered to:</strong></p>
+        <% else %>
+          <p><strong>🚚 <%= order.state %> to:</strong></p>
+        <% end %>
+        <% if order.shipping_address.present? %>
+          <p class = "mb-0"><%= order.shipping_address.full_name %></p>
+          <p class = "mb-0"><%= order.shipping_address.full_address_no_name %></p>
+        <% else %>
+          <p class = "mb-0">Shipping address deleted from contact book</p>
+        <% end %>
+      </li>
+    </ul>
+    <div class = "row">
+      <div class = "col-12">
+        <p><i class="fa fa-question-circle text-muted" aria-hidden="true"></i>&nbsp Need help? <%= mail_to "support@craftr.co.uk", "Contact support" %></p>
+      </div>
+    </div>
   </div>
 </div>

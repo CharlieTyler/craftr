@@ -81,7 +81,7 @@ class Product < ApplicationRecord
   end
 
   def seo_description
-    "#{name}, from #{distillery.name} in #{distillery.location}. #{description_short}."
+    "#{name}, made by #{distillery.name} in #{distillery.location}. #{description_short}."
   end
 
   def seo_keywords

@@ -77,21 +77,24 @@
       <!-- Product descriptions -->
       <div class = "col-12 col-md-6" id = "product-description-box">
         <div class = "lyst-box px-4 pt-2 pt-md-3 mt-3 mt-md-0">
-          <h2><%= title "#{@product.name.titleize}, by #{@product.distillery.name}. #{@product.size_ml}ml, #{@product.human_readable_price}, max. £2 postage", @product.name.titleize %></h2>
+          <h2><%= title "#{@product.name.titleize}, #{@product.size_ml}ml | FREE shipping", @product.name.titleize %></h2>
           <h6 class = "text-secondary">by <%= link_to @product.distillery.name, distillery_path(@product.distillery), class: "text-primary" %></h6>
           <hr class = "lyst-line-grey"/>
-          <p class = "article-text">
-            <div class = "stock-spinner">
-              <i class="fa fa-circle-o-notch fa-pulse" aria-hidden="true"></i> Checking stock...
+          <div class = "stock-spinner">
+            <i class="fa fa-circle-o-notch fa-pulse" aria-hidden="true"></i> Checking stock...
+          </div>
+          <div class = "stock-checker hidden">
+            <% if @product.is_transactional %>
+              <i class="fa fa-check text-green" aria-hidden="true"></i> <span data-toggle="tooltip" title="Shipped from <%= @distillery.name %>">In stock</span>
+            <% else %>
+              <i class="fa fa-times text-red" aria-hidden="true"></i> Out of stock
+            <% end %>
+          </div>
+          <% if @product.is_transactional %>
+            <div class = "delivery-checker hidden mt-1">
+              <i class="fa fa-truck text-green" aria-hidden="true"></i> <span data-toggle="tooltip" title="No minimum order"><strong>Free delivery</strong></span> when bought today
             </div>
-            <div class = "stock-checker hidden">
-              <% if @product.is_in_stock %>
-                <i class="fa fa-check text-green" aria-hidden="true"></i> In stock
-              <% else %>
-                <i class="fa fa-times text-red" aria-hidden="true"></i> Out of stock
-              <% end %>
-            </div>
-          </p>
+          <% end %>
 
           <!-- Try this instead box fades in if out of stock -->
           <% unless @product.is_in_stock %>
@@ -104,7 +107,7 @@
               </div>
             </div>
           <% end %>
-          <p class = "article-text mb-1">Craftr says:</p>
+          <p class = "article-text mb-1 mt-3">Craftr says:</p>
           <blockquote class="blockquote mt-0">
             <p class="mb-0"><em><%= simple_format(@product.description_short) %></em></p>
             <a href = "#more-info">+ Read more</a>
@@ -176,7 +179,7 @@
                 <% end %>
               </div>
               <div class = "col-md-6 mt-2 mt-md-0">
-                <%= image_tag @distillery.summary_image_url, class: "d-block img-fluid mt-auto align-self-center" %>
+                <%= image_tag @distillery.people_image_url(:square), class: "d-block img-fluid mt-auto align-self-center" %>
               </div>
               <%= link_to "Explore #{@distillery.name}", distillery_path(@product.distillery), class: "btn btn-primary col-10 offset-1 mt-3" %>
             </div>
@@ -212,7 +215,7 @@
                   <span class = "hidden" id = "more-recipes-box">
                     <%= render partial: "recipes/lister_recipe", collection: @recipes.drop(2), as: :recipe %>
                   </span>
-                  <a class = "col-6 offset-3 btn btn-primary text-white" id = "toggle-more-recipes">See more</a>
+                  <a class = "col-6 offset-3 btn btn-primary text-white my-2" id = "toggle-more-recipes">See more</a>
                 <% end %>
               </div>
             </div>
@@ -376,6 +379,12 @@
       $('.stock-spinner').addClass("hidden");
       $('.stock-checker').fadeIn();
     }, 2000);
+  });
+
+  $(function() { 
+    setTimeout(function(){
+      $('.delivery-checker').slideDown();
+    }, 2500);
   });
   // If out of stock, suggested products slide down after a bit
   // 1 second after stock spinner says out of stock
