@@ -143,93 +143,42 @@
   </div>
 </div>
 
-<div class = "background-gradient-blue">
-  <div class = "container py-3">
-    <div class = "row" id = "more-info">
-      <div class = "col-12 text-center">
-        <h3 class = "text-white mt-3 mb-0">About <%= @product.name %></h3>
-      </div> 
-      <div class = "col-md-6 px-4 px-md-0">
-        <div class = "text-white">
-          <%= simple_format(@product.description_first) %>
-          <%= simple_format(@product.description_second) %>
-        </div>
-      </div>
-      <div class = "col-md-6">
-        <%= image_tag @product.distillery.summary_image, class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class = "background-white">
-  <div class = "container py-3">
-    <div class = "row" id = "suggested-recipe">
-      <div class = "col-12 text-center">
-        <h3>Suggested recipe: <%= @suggested_recipe.name %></h3>
-      </div>
-      <div class = "col-md-6 hidden-xs-down">
-        <%= image_tag @suggested_recipe.image_url(:full).to_s, class: "img-fluid" %>
-      </div>
-      <div class = "col-md-6">
-        <div class = "px-3">
-          <h6>📖 Ingredients</h6>
-          <ul>
-            <% @suggested_recipe.recipe_ingredients.each do |ri| %>
-              <li>
-                <%= "#{ri.quantity} " %> 
-                <% if ri.ingredient.category.present? && ri.ingredient.category == @product.category %>
-                  <%= @product.name %>
-                <% else %>
-                  <%= ri.ingredient.name %>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-          <h6 class = "mt-3 mb-0">🍸 Method</h6>
-          <p class = "article-text mt-2"><%= simple_format @suggested_recipe.method %></p>
-          <div class = "favourite-unfavourite my-3"> <!-- This partial is replaced each time it's clicked -->
-            <%= render partial: 'favourite_button', locals: {recipe: @suggested_recipe} %>
-          </div> 
-          <% if @other_recipes.length > 0 %>
-            <h5>Other recipes</h5>
-            <div class = "row">
-              <div class = "owl-carousel owl-theme other-collections-carousel">
-                <%= render partial: "recipes/lister_recipe", collection: @other_recipes, as: :recipe %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- <div class = "background-grey py-3" id = "more-info">
+<div class = "background-grey py-3" id = "more-info">
   <div class = "container">
     <div class = "row px-3">
       <div class = "col-12">
-        <h4>About <%= @product.name %></h4>
+        <h4>More information</h4>
       </div>
       <div class = "col-12 lyst-box">
         <div class = "px-3 text-center" id = "the-story-banner">  
-          <h5 class = "my-0">The story <i class="fa fa-minus text-primary" id = "the-story-toggle-switch" aria-hidden="true"></i></h5>
+          <h5 class = "my-0">About <%= @product.name %> <i class="fa fa-minus text-primary" id = "the-story-toggle-switch" aria-hidden="true"></i></h5>
         </div>
         <div id = "the-story-box">
           <div class = "px-3">
             <div class = "row">
+              <!-- Product -->
               <div class = "col-md-6">
                 <%= simple_format(@product.description_first) %>
                 <%= simple_format(@product.description_second) %>
               </div>
               <div class = "col-md-6 py-2">
-                <%= image_tag @product.distillery.people_image, class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
+                <%= image_tag @product.product_images.second.photo, class: "d-block img-fluid mt-auto align-self-center" %>
               </div>
-              <div class = "col-12">
-                <div class = "row my-2 px-3">
-                  <%= link_to "More about the distillery", distillery_path(@product.distillery), class: "btn btn-primary col-12 col-md-8 offset-md-2" %>
-                </div>
+            </div>
+            <div class = "row">
+              <!-- Distillery -->
+              <div class = "col-12 text-center">
+                <h5 class = "my-3">The makers: <%= @distillery.name %></h5>
               </div>
+              <div class = "col-md-6 pr-md-0">
+                <% if @distillery.latitude.present? && @distillery.longitude.present? %>
+                  <div id="distillery-map"></div>
+                <% end %>
+              </div>
+              <div class = "col-md-6 mt-2 mt-md-0">
+                <%= image_tag @distillery.summary_image_url, class: "d-block img-fluid mt-auto align-self-center" %>
+              </div>
+              <%= link_to "Explore #{@distillery.name}", distillery_path(@product.distillery), class: "btn btn-primary col-10 offset-1 mt-3" %>
             </div>
           </div>
         </div>
@@ -252,10 +201,10 @@
           <div class = "pt-1">
             <div class = "indent-dot left background-grey"></div><div class = "indent-dot right  background-grey"></div><hr class = "lyst-line-grey my-2"/>
           </div>
-          <div class = "px-3 text-center" id = "suggested-recipes-banner">  
-            <h5 class = "my-0">Suggested recipes</h5>
+          <div class = "px-3 text-center" id = "recipes-banner">  
+            <h5 class = "my-0">Suggested recipes <i class="fa fa-minus text-primary" id = "recipes-toggle-switch" aria-hidden="true"></i></h5>
           </div>
-          <div id = "first-recipes-box">
+          <div id = "recipes-box">
             <div class = "px-3">
               <div class = "row">
                 <%= render partial: "recipes/lister_recipe", collection: @recipes.first(2), as: :recipe %>
@@ -282,7 +231,7 @@
       <% end %>
     </div>
   </div>
-</div> -->
+</div>
 
 <div class = "container">
   <% unless @other_distillery_products.blank? %>
@@ -406,7 +355,16 @@
       margin: 5,
       dots: true,
       loop: true,
-      items: 1
+      responsive : {
+        // breakpoint from 0 up
+        0 : {
+            items : 1
+        },
+        // breakpoint from 480 up
+        960 : {
+            items : 2
+        }
+      }
       // navText : ['<i class="fa fa-3x pb-2 mt-0 pt-0 mb-3 fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-3x mt-0 pt-0 mb-3 pb-2 fa-angle-right" aria-hidden="true"></i>']
     });
   });
@@ -419,7 +377,6 @@
       $('.stock-checker').fadeIn();
     }, 2000);
   });
-
   // If out of stock, suggested products slide down after a bit
   // 1 second after stock spinner says out of stock
   $(function() { 
@@ -427,7 +384,6 @@
       $('.upwards-speech-bubble').slideDown();
     }, 3000);
   });
-
   // Scroll to anchor link - 75 pixels for the atb navbar at top
   $(function() {
       $('a[href*="#"]:not([href="#"])').click(function() {
@@ -443,11 +399,9 @@
         }
       });
     });
-
   // Show atb navbar when scrolling past product description
   var topofDiv = $("#product-description-box").offset().top; //gets offset of header
   var height = $("#product-description-box").outerHeight(); //gets height of header
-
   $(window).scroll(function(){
       if($(window).scrollTop() > (topofDiv + height)){
          $(".atb-navbar").slideDown(200);
@@ -456,6 +410,27 @@
       else{
          $(".atb-navbar").slideUp(200);
       }
+  });
+  $(function() { 
+    $("#the-story-banner").click(function() {
+      $("#the-story-box").slideToggle();
+      $("#the-story-toggle-switch").toggleClass("fa-minus");
+      $("#the-story-toggle-switch").toggleClass("fa-chevron-down");
+    });
+  });
+  $(function() { 
+    $("#taste-profile-banner").click(function() {
+      $("#taste-profile-box").slideToggle();
+      $("#taste-profile-toggle-switch").toggleClass("fa-minus");
+      $("#taste-profile-toggle-switch").toggleClass("fa-chevron-down");
+    });
+  });
+  $(function() { 
+    $("#recipes-banner").click(function() {
+      $("#recipes-box").slideToggle();
+      $("#recipes-toggle-switch").toggleClass("fa-minus");
+      $("#recipes-toggle-switch").toggleClass("fa-chevron-down");
+    });
   });
 </script>
 
@@ -469,3 +444,28 @@
     });
   });
 </script>
+
+<% if @distillery.latitude.present? && @distillery.longitude.present? %>
+  <script>
+
+    function initMap() {
+      
+        var centralPoint = {lat: 54.1962717, lng: -4.4044171};
+
+        var map = new google.maps.Map(document.getElementById('distillery-map'), {
+          zoom: 5.8,
+          center: centralPoint
+        });
+
+        var marker = new google.maps.Marker({
+          position: {lat: <%= @distillery.latitude %>, lng: <%= @distillery.longitude %>},
+          map: map,
+          animation:google.maps.Animation.BOUNCE,
+          title: '<%= @distillery.name.to_json %>'
+        });
+    }
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOgMzuZzpcbkMy3Y1sZYOrW4kZ0lDoKxc&callback=initMap">
+  </script>
+<% end %>

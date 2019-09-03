@@ -11,8 +11,7 @@ class ProductsController < ApplicationController
     @distillery                = @product.distillery
     @review                    = Review.new
     @reviews                   = @product.reviews
-    @suggested_recipe          = @product.recipes.first
-    @other_recipes             = @product.recipes.drop(1)
+    @recipes                   = @product.recipes
     @other_distillery_products = Product.includes(:product_images, :reviews).live.where(distillery_id: @product.distillery.id).where.not(id: @product.id)
     @other_popular_products    = @product.other_popular_products.sample(3)
     @order_item                = OrderItem.new
