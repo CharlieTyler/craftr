@@ -94,8 +94,8 @@
           <tbody>
             <% @products.each do |product| %>
               <tr>
-                <th scope="row"><%= link_to product.name.titleize, product_path(product) %><%= render partial: 'products/star_rating', locals: {product: product}, class: "float-right" %></th>
-                <td class = "stock-product-<%= product.id %>"><%= product.is_in_stock ? "In stock" : "Out of stock" %></td>
+                <th scope="row"><%= link_to product.name.titleize, product_path(product) %></th>
+                <td class = "stock-product-<%= product.id %>"><%= product.is_in_stock ? "✔️ In stock" : "❌ Out of stock" %></td>
                 <td class = "toggle-product-<%=product.id %>"><%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %></td>
                 <td><%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary d-inline" %></td>
               </tr>

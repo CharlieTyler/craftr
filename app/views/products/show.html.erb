@@ -154,7 +154,7 @@
       </div>
       <div class = "col-12 lyst-box">
         <div class = "px-3 text-center" id = "the-story-banner">  
-          <h5 class = "my-0">About <%= @product.name %> <i class="fa fa-minus text-primary" id = "the-story-toggle-switch" aria-hidden="true"></i></h5>
+          <h4 class = "my-0">About <%= @product.name %> <i class="fa fa-minus text-primary" id = "the-story-toggle-switch" aria-hidden="true"></i></h4>
         </div>
         <div id = "the-story-box">
           <div class = "px-3">
@@ -165,23 +165,34 @@
                 <%= simple_format(@product.description_second) %>
               </div>
               <div class = "col-md-6 py-2">
-                <%= image_tag @product.product_images.second.photo, class: "d-block img-fluid mt-auto align-self-center" %>
+                <%= image_tag @product.product_images.second.photo_url(:full), class: "d-block img-fluid mt-auto align-self-center" %>
               </div>
             </div>
             <div class = "row">
               <!-- Distillery -->
               <div class = "col-12 text-center">
-                <h5 class = "my-3">The makers: <%= @distillery.name %></h5>
+                <h4 class = "my-3">The makers: <%= @distillery.name %></h4>
               </div>
               <div class = "col-md-6 pr-md-0">
                 <% if @distillery.latitude.present? && @distillery.longitude.present? %>
-                  <div id="distillery-map"></div>
+                  <div id="300px-distillery-map" class = "smaller-distillery-map"></div>
                 <% end %>
               </div>
               <div class = "col-md-6 mt-2 mt-md-0">
-                <%= image_tag @distillery.people_image_url(:square), class: "d-block img-fluid mt-auto align-self-center" %>
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @distillery.location %></p>
+                <% if @other_distillery_products.length > 0 %>
+                  <p>
+                    <a href = "#distillery-products">
+                      <i class="fa fa-tag" aria-hidden="true"></i> <%= pluralize(@other_distillery_products.length, 'other product') %> available
+                    </a>
+                  </p>
+                <% end %>
+                <p class="mb-0"><%= simple_format @distillery.summary_text %></p>
+                <% if @distillery.summary_text.chars.size < 100 %>
+                  <p class="mb-0"><%= simple_format @distillery.people_text %></p>
+                <% end %>
+                <%= link_to "More about #{@distillery.name}", distillery_path(@product.distillery), class: "btn btn-primary col-12 mt-3" %>
               </div>
-              <%= link_to "Explore #{@distillery.name}", distillery_path(@product.distillery), class: "btn btn-primary col-10 offset-1 mt-3" %>
             </div>
           </div>
         </div>
@@ -236,7 +247,7 @@
   </div>
 </div>
 
-<div class = "container">
+<div class = "container" name = "distillery-products">
   <% unless @other_distillery_products.blank? %>
   <!-- Other products from same distillery -->
     <div class = "row">
@@ -461,8 +472,8 @@
       
         var centralPoint = {lat: 54.1962717, lng: -4.4044171};
 
-        var map = new google.maps.Map(document.getElementById('distillery-map'), {
-          zoom: 5.8,
+        var map = new google.maps.Map(document.getElementById('300px-distillery-map'), {
+          zoom: 5.0,
           center: centralPoint
         });
 
