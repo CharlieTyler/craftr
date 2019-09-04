@@ -12,6 +12,7 @@ class Search
       products: Product.transactional.search(@params).all,
       recipes: Recipe.search(@params).all,
       articles: Article.search(@params).all,
+      distilleries: Distillery.transactional.search(@params).all,
     }
 
   end

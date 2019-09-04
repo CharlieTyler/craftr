@@ -45,6 +45,16 @@ class Distillery < ApplicationRecord
   mount_uploader :image_2, ArticleImageUploader
   mount_uploader :image_3, ArticleImageUploader
 
+  def self.search(params)
+    search_scope = Distillery
+
+    if params[:keyword].present?
+      search_scope = search_scope.where("lower(CONCAT(name,' ', location,' ',summary_text)) LIKE lower(?)", "%#{params[:keyword]}%")
+    end
+
+    search_scope
+  end
+
   def seo_description
     "Craft spirits from #{location}. Buy #{products.all.sample(3).map(&:name).to_sentence} - shipped direct from #{name}."
   end
