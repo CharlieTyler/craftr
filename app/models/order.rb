@@ -155,7 +155,7 @@ class Order < ApplicationRecord
 
   def create_shipments
     sold_items.each do |si|
-      unless si.manual_shipping
+      unless si.manual_shipping == true
         si.quantity.times do
           parcel       = EasyPost::Parcel.create(
                           predefined_package: 'SMALLPARCEL',

@@ -1,11 +1,16 @@
 class Distiller::StaticPagesController < DistillersController
   def dashboard
     @products                                    = current_distillery.products
-    @unshipped_batches                           = current_distillery.unshipped_batches.order("created_at DESC")
-    @unbatched_sold_items_with_postage_labels    = current_distillery.unbatched_sold_items_with_postage_labels.order("created_at DESC")
-    @unbatched_sold_items_without_postage_labels = current_distillery.unbatched_sold_items_without_postage_labels.order("created_at DESC")
+
+    # Auto-ship
+    @unshipped_auto_batches                           = current_distillery.unshipped_batches.order("created_at DESC")
+    @unbatched_sold_items_auto_with_postage_labels    = current_distillery.unbatched_sold_items_with_postage_labels.order("created_at DESC")
+    @unbatched_sold_items_auto_without_postage_labels = current_distillery.unbatched_sold_items_without_postage_labels.order("created_at DESC")
     @batch                                       = Batch.new
     @batch.sold_items.build
+
+    # Manual ship
+    @unshipped_manual_sold_items                      = current_distillery.unshipped_manual_sold_items.order("created_at DESC")
   end
 
   def reports

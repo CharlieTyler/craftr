@@ -1,6 +1,7 @@
 class SoldItem < ApplicationRecord
   belongs_to :product
   belongs_to :order_item
+  belongs_to :order
   belongs_to :batch, required: false
   has_many :postages
 
