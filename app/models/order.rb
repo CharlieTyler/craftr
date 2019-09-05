@@ -143,7 +143,8 @@ class Order < ApplicationRecord
                              order_item_id: oi.id, 
                              quantity: oi.quantity, 
                              item_price: oi.product.price, 
-                             distillery_take: oi.product.distillery_take
+                             distillery_take: oi.product.distillery_take,
+                             manual_shipping: oi.product.manual_shipping
                              )
     end
   end
@@ -154,26 +155,28 @@ class Order < ApplicationRecord
 
   def create_shipments
     sold_items.each do |si|
-      si.quantity.times do
-        parcel       = EasyPost::Parcel.create(
-                        predefined_package: 'SMALLPARCEL',
-                        weight: si.product.weight
-                       )
-        toAddress   = EasyPost::Address.retrieve(shipping_address.easypost_address_id)
-        fromAddress = EasyPost::Address.retrieve(si.product.distillery.address.easypost_address_id)
-        shipment    = EasyPost::Shipment.create(
-                        to_address: toAddress,
-                        from_address: fromAddress,
-                        parcel: parcel,
-                        carrier_account_id: "ca_c3a3178260c54bac8e41f01df1340b14",
-                        options: {alcohol: true}
-                       )
-        shipment.buy(
-          rate: shipment.lowest_rate(carrier_accounts = ['RoyalMail'], service = ['RoyalMail2ndClass'])
-        )
-        si.postages.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, easypost_shipment_id: shipment.id)
+      unless si.manual_shipping
+        si.quantity.times do
+          parcel       = EasyPost::Parcel.create(
+                          predefined_package: 'SMALLPARCEL',
+                          weight: si.product.weight
+                         )
+          toAddress   = EasyPost::Address.retrieve(shipping_address.easypost_address_id)
+          fromAddress = EasyPost::Address.retrieve(si.product.distillery.address.easypost_address_id)
+          shipment    = EasyPost::Shipment.create(
+                          to_address: toAddress,
+                          from_address: fromAddress,
+                          parcel: parcel,
+                          carrier_account_id: "ca_c3a3178260c54bac8e41f01df1340b14",
+                          options: {alcohol: true}
+                         )
+          shipment.buy(
+            rate: shipment.lowest_rate(carrier_accounts = ['RoyalMail'], service = ['RoyalMail2ndClass'])
+          )
+          si.postages.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, easypost_shipment_id: shipment.id)
+        end
+        si.update_attributes(shipping_label_created: true, shipping_label_created_at: Time.now.in_time_zone('London'))
       end
-      si.update_attributes(shipping_label_created: true, shipping_label_created_at: Time.now.in_time_zone('London'))
     end
   end
 

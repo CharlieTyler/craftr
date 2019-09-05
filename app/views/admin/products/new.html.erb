@@ -12,6 +12,7 @@
         <%= f.input :price, hint: "*Enter in pennies* This is super important, and won't let you enter anything less than 100" %>
         <%= f.input :original_price, hint: "Only enter this if you want the product to appear as on sale - leave blank otherwise" %>
         <%= f.input :distillery_take, hint: "*Enter in pennies* This must be less than the price" %>
+        <%= f.input :manual_shipping, hint: "Tick if distillery does NOT want automated Royal Mail shipping. Distillery take should reflect this." %>
         <%= f.input :description_short, input_html: { class: 'quill_container' }, hint: 'Surfaces as "What we say"' %>
         <%= f.input :description_first, input_html: { class: 'quill_container' } %>
         <%= f.input :description_second, input_html: { class: 'quill_container' } %>

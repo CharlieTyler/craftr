@@ -61,6 +61,7 @@ class Admin::ProductsController < AdminController
                                     :subtle_to_intense,
                                     :fresh_to_complex,
                                     :GTIN,
+                                    :manual_shipping,
                                     product_images_attributes: [:id, :product_id, :photo, :row_order_position])
   end
 end

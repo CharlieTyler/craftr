@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190823114625) do
+ActiveRecord::Schema.define(version: 20190905101843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -295,6 +295,7 @@ ActiveRecord::Schema.define(version: 20190823114625) do
     t.boolean "is_test", default: false
     t.string "GTIN"
     t.integer "original_price"
+    t.boolean "manual_shipping"
     t.index ["featured"], name: "index_products_on_featured"
     t.index ["is_live"], name: "index_products_on_is_live"
     t.index ["slug"], name: "index_products_on_slug", unique: true
@@ -387,6 +388,7 @@ ActiveRecord::Schema.define(version: 20190823114625) do
     t.boolean "shipped", default: false
     t.datetime "shipped_at"
     t.datetime "shipping_label_created_at"
+    t.boolean "manual_shipping"
   end
 
   create_table "taggings", id: :integer, default: nil, force: :cascade do |t|
