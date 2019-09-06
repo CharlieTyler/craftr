@@ -1,51 +1,52 @@
-<div class = "container">
-  <div class = "row">
+<div class = "background-lightgrey">
+  <div class = "container">
+    <div class = "row">
 
 
-    <!-- Transactional checklists -->
-    <div class = "col-12">
-      <% unless current_distillery.is_transactional && current_distillery.products.map{|product| product.is_transactional}.all? %>
-        <h6 class = "text-primary mt-4">You and your products aren't fully transactional yet!</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
-      <% end %>
-    </div>
-
-    <!-- Create a batch -->
-    <div class = "col-12 my-4">
-      <h4 class = "d-inline-block">1. Create a batch for products you are ready to ship</h4>
-      <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
-      <div class = "clear"></div>
-      <p class = "text-muted">Select all items that you are ready to post and click "Create batch" to generate all postage labels and scanform</p>
-      <div class = "row">
-        <% if @unbatched_sold_items_auto_with_postage_labels.length > 0 %>
-          <%= simple_form_for @batch, url: distiller_batches_path, class: "col-12" do |f| %>
-            <%= f.association :sold_items, :collection => @unbatched_sold_items_auto_with_postage_labels, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
-            <%= f.submit "Create batch", class: "btn btn-primary" %>
-          <% end %>
-        <% else %>
-          <p>You're all up to date</p>
+      <!-- Transactional checklists -->
+      <div class = "col-12">
+        <% unless current_distillery.is_transactional && current_distillery.products.map{|product| product.is_transactional}.all? %>
+          <h6 class = "text-primary mt-4">You and your products aren't fully transactional yet!</h6> <%= link_to "Get transactional", distiller_transactional_checklist_path, class: "btn btn-primary mt-2" %>
         <% end %>
       </div>
-    </div>
-    <% if @unbatched_sold_items_auto_without_postage_labels.length > 0 %>
+
+      <!-- Create a batch -->
       <div class = "col-12 my-4">
-        <h4 class = "d-inline-block">New orders awaiting postage labels - please check back in 5 minutes</h4>
+        <h4 class = "d-inline-block">1. Create a batch for products you are ready to ship</h4>
+        <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
         <div class = "clear"></div>
+        <p class = "text-muted">Select all items that you are ready to post and click "Create batch" to generate all postage labels and scanform</p>
         <div class = "row">
-          <ul>
-            <% @unbatched_sold_items_auto_without_postage_labels.each do |si| %>
-              <li><%= si.description %></li>
+          <% if @unbatched_sold_items_auto_with_postage_labels.length > 0 %>
+            <%= simple_form_for @batch, url: distiller_batches_path, class: "col-12" do |f| %>
+              <%= f.association :sold_items, :collection => @unbatched_sold_items_auto_with_postage_labels, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
+              <%= f.submit "Create batch", class: "btn btn-primary" %>
             <% end %>
-          </ul>
+          <% else %>
+            <p>You're all up to date</p>
+          <% end %>
         </div>
       </div>
-    <% end %>
+      <% if @unbatched_sold_items_auto_without_postage_labels.length > 0 %>
+        <div class = "col-12 my-4">
+          <h4 class = "d-inline-block">New orders awaiting postage labels - please check back in 5 minutes</h4>
+          <div class = "clear"></div>
+          <div class = "row">
+            <ul>
+              <% @unbatched_sold_items_auto_without_postage_labels.each do |si| %>
+                <li><%= si.description %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
 
 
-    <!-- Deal with the batch -->
-    <div class = "col-12 my-4">
-      <h4 class = "d-inline-block">2. Print labels and scanform, and mark as shipped</h4>
-      <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
-      <div class = "clear"></div>
+      <!-- Deal with the batch -->
+      <div class = "col-12 my-4">
+        <h4 class = "d-inline-block">2. Print labels and scanform, and mark as shipped</h4>
+        <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
+        <div class = "clear"></div>
         <% if @unshipped_auto_batches.length > 0 %>
           <p class = "text-muted">Click 'view labels', print them and the scanform and take to your nearest Post Office</p>
           <div class = "row">
@@ -79,71 +80,81 @@
           </div>
         <% end %>
       </div>
-    </div>
 
-    <!-- Manual postage -->
-    <% if @unshipped_manual_sold_items.length > 0 %>
-      <div class = "col-12">
-        <h3>Manual postage</h3>
-        <h6>Prepare products, buy postage and mark as shipped</h6>
+      <!-- Manual postage -->
+      <% if @unshipped_manual_sold_items.length > 0 %>
+        <div class = "col-12">
+          <h3>Manual postage - <%= pluralize(@unshipped_manual_sold_items.sum(&:quantity), 'product') %> to ship</h3>
+          <h6>Prepare products, buy postage and mark as shipped</h6>
+          <div class = "row">
+            <% @unshipped_manual_sold_items.each do |si| %>
+              <div class = "col-6 col-md-4 my-2">
+                <div class="card h-100">
+                  <div class="card-block">
+                    <div class="card-text">
+                      <p><strong><%= "#{si.quantity} x #{si.product.name}" %></strong></p>
+                      <p class = "mb-0"><%= si.order.shipping_address.full_name %></p>
+                      <p class = "mb-0"><%= si.order.shipping_address.line_1 %></p>
+                      <% if si.order.shipping_address.line_2.present? %>
+                        <p class = "mb-0"><%= si.order.shipping_address.line_2 %></p>
+                      <% end %>
+                      <% if si.order.shipping_address.line_3.present? %>
+                        <p class = "mb-0"><%= si.order.shipping_address.line_3 %></p>
+                      <% end %>
+                      <p class = "mb-0"><%= si.order.shipping_address.post_town %></p>
+                      <p class = "mb-0"><%= si.order.shipping_address.postcode %></p>
+                      <p class = "mb-0"><%= si.order.shipping_address.phone_number %></p>
+                      <%= link_to "Mark as shipped", mark_as_shipped_distiller_sold_item_path(si), class: "mt-2 mb-0 btn btn-success", method: :patch %>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <p class = "mb-0"><%= number_to_currency((si.distillery_take.to_f / 100), unit: "£") %> paid into your Stripe account</p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Products -->
+      <div class = "col-12 my-4">
+        <h3>Your products</h3>
         <div class = "row">
-          <% @unshipped_manual_sold_items.each do |si| %>
-            <div class = "col-md-6 offset-md-3 lyst-box my-2 px-3 py-3">
-              <p><%= "#{si.quantity} x #{si.product.name}" %></p>
-              <p><%= si.order.shipping_address.full_name %></p>
-              <p><%= si.order.shipping_address.line_1 %></p>
-              <% if si.order.shipping_address.line_2.present? %>
-                <p><%= si.order.shipping_address.line_2 %></p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Stock status</th>
+                <th scope="col">Change stock status</th>
+                <th scope="col">Edit product details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @products.each do |product| %>
+                <tr>
+                  <th scope="row"><%= link_to product.name.titleize, product_path(product) %></th>
+                  <td class = "stock-product-<%= product.id %>"><%= product.is_in_stock ? "✔️ In stock" : "❌ Out of stock" %></td>
+                  <td class = "toggle-product-<%=product.id %>"><%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %></td>
+                  <td><%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary d-inline" %></td>
+                </tr>
               <% end %>
-              <% if si.order.shipping_address.line_3.present? %>
-                <p><%= si.order.shipping_address.line_3 %></p>
-              <% end %>
-              <p><%= si.order.shipping_address.post_town %></p>
-              <p><%= si.order.shipping_address.postcode %></p>
-              <p><%= si.order.shipping_address.phone_number %></p>
-            </div>
-          <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
-    <% end %>
-
-    <!-- Products -->
-    <div class = "col-12 my-4">
-      <h3>Your products</h3>
-      <div class = "row">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Stock status</th>
-              <th scope="col">Change stock status</th>
-              <th scope="col">Edit product details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @products.each do |product| %>
-              <tr>
-                <th scope="row"><%= link_to product.name.titleize, product_path(product) %></th>
-                <td class = "stock-product-<%= product.id %>"><%= product.is_in_stock ? "✔️ In stock" : "❌ Out of stock" %></td>
-                <td class = "toggle-product-<%=product.id %>"><%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %></td>
-                <td><%= link_to "Edit", edit_distiller_product_path(product), class: "btn btn-primary d-inline" %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
     </div>
-  </div>
-  <div class = "row">
-    <!-- Charts -->
-    <% if current_distillery.is_transactional %>
-      <div class = "col-12 my-3">
-        <h4 class = "d-inline-block">Sales by product</h4>
-        <p class = "d-inline-block float-right text-primary"><%= link_to "Go to reporting dashboard",distiller_reports_path %></p>
-        <%= line_chart current_distillery.products.map { |product|
-            {name: product.name.titleize, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
-        } %>
-      </div>
-    <% end %>
+    <div class = "row">
+      <!-- Charts -->
+      <% if current_distillery.is_transactional %>
+        <div class = "col-12 my-3">
+          <h4 class = "d-inline-block">Sales by product</h4>
+          <p class = "d-inline-block float-right text-primary"><%= link_to "Go to reporting dashboard",distiller_reports_path %></p>
+          <%= line_chart current_distillery.products.map { |product|
+              {name: product.name.titleize, data: product.sold_items.group_by_week(:created_at).sum(:quantity)}
+          } %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

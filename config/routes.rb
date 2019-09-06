@@ -98,14 +98,21 @@ Rails.application.routes.draw do
     get "/reports" => "static_pages#reports"
     get "/transactional_checklist" => "details#transactional_checklist"
     resources :addresses, only: [:new, :create, :edit, :update]
+
+
     resources :batches, only: [:create, :show, :index] do
-      # [TODO] Moved from sold_items, will need to change in controller
+      # For marking auto shipments as shipped
       member do
         patch 'mark_as_shipped'
         put 'mark_as_shipped'
       end
     end
-    resources :sold_items, only: [:show, :index]
+    resources :sold_items, only: [:show, :index] do
+      member do
+        patch 'mark_as_shipped'
+        put 'mark_as_shipped'
+      end
+    end
     get "/register-stripe-key", :controller => "details", :action => "register_stripe_key"
     resources :products, only: [:edit, :update] do
       member do
