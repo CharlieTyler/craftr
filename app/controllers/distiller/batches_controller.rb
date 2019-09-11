@@ -18,6 +18,7 @@ class Distiller::BatchesController < DistillersController
     redirect_to distiller_batch_path(batch)
   end
 
+  # This is for auto postage only. Manual postages happen in the sold_items controller
   def mark_as_shipped
     @batch.update_attributes(shipped: true, shipped_at: Time.now.in_time_zone('London'))
     @batch.sold_items.each do |si|
@@ -26,6 +27,10 @@ class Distiller::BatchesController < DistillersController
     end
     respond_to do |format|
       format.js
+      format.html {
+        flash[:notice] = "Order shipped email sent to customer"
+        redirect_to distiller_dashboard_path
+      }
     end
   end
 

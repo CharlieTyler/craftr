@@ -60,7 +60,7 @@
 
       <!-- If you've got unshipped manual items, show manual part -->
       <% if @unshipped_manual_sold_items.length > 0 %>
-        <div class = "col-12">
+        <div class = "col-12 mt-2">
           <h3>Manual postage - <%= pluralize(@unshipped_manual_sold_items.sum(&:quantity), 'product') %> to ship</h3>
           <h6>Prepare products, buy postage and mark as shipped</h6>
           <div class = "row">
@@ -85,7 +85,7 @@
                     </div>
                   </div>
                   <div class="card-footer">
-                    <p class = "mb-0"><%= number_to_currency((si.distillery_take.to_f / 100), unit: "£") %> paid into your Stripe account</p>
+                    <p class = "mb-0"><%= number_to_currency(((si.distillery_take.to_f * si.quantity) / 100), unit: "£") %> paid into your Stripe account</p>
                   </div>
                 </div>
               </div>

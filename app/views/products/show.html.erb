@@ -269,7 +269,7 @@
   <% end %>
 </div>
 
-<!-- TODO: Only show reviews if their are some or user has ever bought it -->
+<!-- Only show reviews if their are some or user has ever bought it -->
 <% if @reviews.length > 0 || (user_signed_in? && (current_user.ordered_products.include?@product)) %>
   <!-- Reviews -->
   <div class = "background-lightgrey">
@@ -298,10 +298,6 @@
     </div>
   </div>
 <% end %>
-
-
-<!-- Button trigger modal -->
-
 
 <!-- Modal -->
 <div class="modal fade mt-5" id="newReviewModal" tabindex="-1" role="dialog" aria-labelledby="newReviewModalLabel" aria-hidden="true">
