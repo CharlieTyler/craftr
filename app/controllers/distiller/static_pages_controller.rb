@@ -2,7 +2,7 @@ class Distiller::StaticPagesController < DistillersController
   def dashboard
     @products                                         = current_distillery.products
 
-    @unbatched_sold_items                              = current_distillery.sold_items.where.not(manual_shipping: true).where(batch_id: nil)
+    @unbatched_sold_items                             = current_distillery.sold_items.where(manual_shipping: [nil, false], batch_id: nil)
     @unbatched_sold_items_auto_with_postage_labels    = @unbatched_sold_items.where(shipping_label_created: true)
     @unbatched_sold_items_auto_without_postage_labels = @unbatched_sold_items.where(shipping_label_created: false)
     @unshipped_auto_batches                           = current_distillery.batches.where(shipped: false).order("created_at DESC")
