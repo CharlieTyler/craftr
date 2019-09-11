@@ -25,17 +25,21 @@
                   <td><%= link_to "View labels", distiller_batch_path(batch), class: "btn btn-primary" %></td>
                 </tr>
               <% end %>
+              <% @manual_shipments.each do |si| %>
+                <tr>
+                  <th scope="row"><%= si.created_at.strftime('%B %d, %Y at %H:%M') %></th>
+                  <td><%= "Manual shipment" %></td>
+                  <td><%= si.shipped ? "Shipped" : "Awaiting shipping" %></td>
+                  <td>N/A</td>
+                  <td>N/A</td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         <% else %>
           <p>You haven't created any batches yet :(</p>
         <% end %>
       </div>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col-12 text-center">
-      <%= will_paginate @batches, :page_links => false %>
     </div>
   </div>
 </div>

@@ -3,16 +3,21 @@ class Distiller::BatchesController < DistillersController
   before_action :check_batch_belongs_to_distiller, only: [:mark_as_shipped, :show]
 
   def create
+    # Create the batch in easypost
     easypost_batch = EasyPost::Batch.create()
+
+    # Mimic it in local database, with the easypost_batch_id saved
     batch = current_distillery.batches.create(easypost_batch_id: easypost_batch.id)
+
     # Find the sold_item, then for each postage, retrieve the easypost shipment and add it to the batch
-    params[:batch][:sold_item_ids].reject(&:empty?).each {
-      |si| SoldItem.find(si).postages.map{
-        |p| easypost_batch.add_shipments({shipments: [{id: p.easypost_shipment_id}]})
-      }
-      # Mimic this association in internal database
-      SoldItem.find(si).update_attributes(batch_id: batch.id)
-    }
+    params[:batch][:sold_item_ids].reject(&:empty?).each do |si_id|
+      si = SoldItem.find(si_id)
+      si.postages.each do |postage|
+        easypost_batch.add_shipments({shipments: [{id: postage.easypost_shipment_id}]})
+      end
+      si.update_attributes(batch_id: batch.id)
+    end
+
     scan_form = easypost_batch.create_scan_form()
     batch.update_attributes(scanform_created_at: Time.now.in_time_zone('London'), scanform_id: scan_form[:scan_form][:id])
     redirect_to distiller_batch_path(batch)
@@ -35,13 +40,17 @@ class Distiller::BatchesController < DistillersController
   end
 
   def show
+    # Batch found in before action
     @sold_items = @batch.sold_items
+
+    # Scanform retrieved each time as allows time for scanform_url to generate
     scanform = EasyPost::ScanForm.retrieve(@batch.scanform_id)
     @scanform_url = scanform[:form_url]
   end
 
   def index
-    @batches = current_distillery.batches.order("created_at DESC").page(params[:page])
+    @batches = current_distillery.batches.order("created_at DESC")
+    @manual_shipments = current_distillery.sold_items.where(manual_shipping: true)
   end
 
   private
