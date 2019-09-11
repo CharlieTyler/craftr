@@ -13,6 +13,7 @@ class Distiller::SoldItemsController < DistillersController
   def mark_as_shipped
     @sold_item.update_attributes(shipped: true, shipped_at: Time.now.in_time_zone('London'))
     @sold_item.queue_shipped_email
+    flash[:notice] = "Order shipped email sent to customer"
     redirect_to distiller_dashboard_path
   end
 

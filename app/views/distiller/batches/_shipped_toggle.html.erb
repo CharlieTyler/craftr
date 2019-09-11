@@ -2,7 +2,7 @@
   <% if batch.shipped %>
     <div class = "btn btn-success">Shipped</div>
   <% elsif batch.scanform_id.present? %>
-    <%= link_to "Mark as shipped", mark_as_shipped_distiller_batch_path(batch), class: "btn btn-primary shipped-toggle d-inline", method: :patch, remote: true %>
+    <%= link_to "Mark as shipped", mark_as_shipped_distiller_batch_path(batch), class: "btn btn-success shipped-toggle d-inline", method: :patch, remote: true %>
   <% else %>
     <div class = "btn btn-secondary">Awaiting label</div>
   <% end %>

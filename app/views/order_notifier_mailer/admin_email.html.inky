@@ -13,7 +13,7 @@
   <row>
     <columns>
       <h1>Huzzah! A new order</h1>
-      <p>A new order has been placed</p>
+      <p>A new order has been placed by <%= @user_email %></p>
 
       <spacer size="16"></spacer>
 

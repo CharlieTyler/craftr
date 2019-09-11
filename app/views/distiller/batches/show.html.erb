@@ -2,7 +2,10 @@
   <div class = "row mt-3">
     <div class = "col-12">
       <div class = "d-inline-block">
-        <h4>Batch of <span class = "text-primary"><%= @batch.description %></span></h4>
+        <% if @batch.created_at < 2.days.ago && @batch.shipped != true %>
+          <div class = "alert alert-danger">This batch should have been posted. Please post and mark as shipped today.</div>
+        <% end %>
+        <h4>Batch of <span class = "text-primary"><%= @batch.sold_items.map{|si| si.description }.to_sentence %></span></h4>
       </div>
       <div class = "d-inline-block float-right mb-3">
         <%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: @batch} %>
@@ -15,18 +18,20 @@
     </div>
   </div>
   <div class = "row">
-    <div class = "col-md-4">
-      <% if @scanform_url.present? %>
+    <% if @scanform_url.present? %>
+      <div class = "col-md-4">
         <%= link_to @scanform_url, :target => "_blank" do %>
           <h4>Your scan form</h4>
           <p class = "text-muted">Please print this and take to the Post Office to speed up shipment</p>
           <div class = "btn btn-primary my-2">View form</div>
         <% end %>
-      <% else %>
-        <h4>Please wait - we are creating the scanform for this manifest.</h4>
-        <p class = "text-muted">This is required for posting at a post office - please check back in 5 minutes. If this problem persists, please contact support.</p>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+      <div class = "col-12">
+        <h4>Scanform being created - refresh the page in a few minutes</h4>
+        <p class = "text-muted">In the meantime, please print and attach the postage labels below to the parcels</p>
+      </div>
+    <% end %>
   </div>
   <div class = "row mb-2">
     <div class = "col-12">
@@ -44,20 +49,18 @@
     <% @sold_items.each do |si| %>
       <div class = "col-12">
         <h6>Order for <%= si.description %></h6>
-        <div class = "row">
-          <% si.postages.each_with_index do |sl, index| %>
-            <div class = "col-6 col-md-3 mb-3">
-              <%= link_to sl.postage_label_url do %>
-                <h6>Shipping label #<%= index + 1 %></h6>
-                <p class = "text-muted">For 1 bottle in a Royal Mail Small Parcel</p>
-                <div id = "divToPrint">
-                  <%= image_tag sl.postage_label_url, class: "img-fluid" %>
-                </div>
-              <% end %>
+      </div>
+      <% si.postages.each_with_index do |sl, index| %>
+        <div class = "col-6 col-md-4 mb-3">
+          <%= link_to sl.postage_label_url do %>
+            <h6>Shipping label #<%= index + 1 %></h6>
+            <p class = "text-muted">For 1 bottle in a Royal Mail Small Parcel</p>
+            <div id = "divToPrint">
+              <%= image_tag sl.postage_label_url, class: "img-fluid" %>
             </div>
           <% end %>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

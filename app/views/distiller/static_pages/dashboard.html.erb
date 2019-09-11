@@ -10,78 +10,55 @@
         <% end %>
       </div>
 
-      <!-- Create a batch -->
-      <div class = "col-12 my-4">
-        <h4 class = "d-inline-block">1. Create a batch for products you are ready to ship</h4>
-        <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
-        <div class = "clear"></div>
-        <p class = "text-muted">Select all items that you are ready to post and click "Create batch" to generate all postage labels and scanform</p>
-        <div class = "row">
-          <% if @unbatched_sold_items_auto_with_postage_labels.length > 0 %>
-            <%= simple_form_for @batch, url: distiller_batches_path, class: "col-12" do |f| %>
-              <%= f.association :sold_items, :collection => @unbatched_sold_items_auto_with_postage_labels, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
-              <%= f.submit "Create batch", class: "btn btn-primary" %>
-            <% end %>
-          <% else %>
-            <p>You're all up to date</p>
-          <% end %>
+      <!-- If you've got neither auto orders or manual orders, show advice on how to get more -->
+      <% if @unbatched_sold_items.length == 0 && @unshipped_auto_batches.length == 0 && @unshipped_manual_sold_items.length == 0 %>
+        <div class = "col-12 my-3 py-3 px-3 lyst-box">
+          <h4>You have no new orders. Here's some advice on how to get more</h4>
         </div>
-      </div>
-      <% if @unbatched_sold_items_auto_without_postage_labels.length > 0 %>
-        <div class = "col-12 my-4">
-          <h4 class = "d-inline-block">New orders awaiting postage labels - please check back in 5 minutes</h4>
-          <div class = "clear"></div>
+      <% end %>
+
+      <!-- If you've got auto orders, batched of unbatched, show auto orders bit -->
+      <% if @unbatched_sold_items.length > 0 || @unshipped_auto_batches.length > 0 %>
+        <!-- Auto postage -->
+        <div class = "col-12 my-3 py-3 px-3 lyst-box">
           <div class = "row">
-            <ul>
-              <% @unbatched_sold_items_auto_without_postage_labels.each do |si| %>
-                <li><%= si.description %></li>
+            <div class = "col-12">
+              <!-- If no auto orders, hide -->
+              <!-- If products to batch, show form, otherwise say hold on a sec if awaiting postage labels -->
+              <% if @unbatched_sold_items_auto_with_postage_labels.length > 0 %>
+                <h4 class = "d-inline-block">1. Create a batch for products you are ready to ship</h4>
+                <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
+                <div class = "clear"></div>
+                <p class = "text-muted">Select all items that you are ready to post and click "Create batch" to generate all postage labels and scanform</p>
+                <%= simple_form_for @batch, url: distiller_batches_path do |f| %>
+                  <%= f.association :sold_items, :collection => @unbatched_sold_items_auto_with_postage_labels, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
+                  <%= f.submit "Create batch", class: "btn btn-primary" %>
+                <% end %>
               <% end %>
-            </ul>
+              <% if @unbatched_sold_items_auto_without_postage_labels.length > 0 %>
+                <h4>1. Hold tight, we're currently purchasing your shipping labels for <%= pluralize(@unbatched_sold_items_auto_without_postage_labels.length, 'order') %>.</h4>
+                <p>Please reload the page shortly. In the meantime, you can prepare the parcels for <%= @unbatched_sold_items_auto_without_postage_labels.map{|si| si.description }.to_sentence %></p>
+              <% end %>
+            </div>
+
+            <!-- Deal with the batch -->
+            <% if @unshipped_auto_batches.length > 0 %>
+              <div class = "col-12">
+                <h4>1. <i class="fa fa-check text-green" aria-hidden="true"></i> Batched</h4>
+                <hr class = "lyst-line-lightgrey"/>
+                <h4 class = "d-inline-block">2. Print labels and scanform, and mark as shipped</h4>
+                <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
+                <div class = "clear"></div>
+                <% @unshipped_auto_batches.each_with_index do |batch, index| %>
+                  <%= link_to "View postage labels and mark as shipped", distiller_batch_path(batch), :target => "_blank", class: "btn btn-success" %>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
       <% end %>
 
-
-      <!-- Deal with the batch -->
-      <div class = "col-12 my-4">
-        <h4 class = "d-inline-block">2. Print labels and scanform, and mark as shipped</h4>
-        <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
-        <div class = "clear"></div>
-        <% if @unshipped_auto_batches.length > 0 %>
-          <p class = "text-muted">Click 'view labels', print them and the scanform and take to your nearest Post Office</p>
-          <div class = "row">
-            <% if @unshipped_auto_batches.length > 0 %>
-              <!-- List out all incomplete orders and allow to mark as complete -->
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Shipping</th>
-                    <th scope="col">View</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @unshipped_auto_batches.each do |batch| %>
-                    <tr>
-                      <th scope="row"><%= batch.created_at.strftime('%B %d, %Y at %H:%M') %></th>
-                      <td><%= batch.description %></td>
-                      <td><%= batch.state %></td>
-                      <td><%= render partial: 'distiller/batches/shipped_toggle', locals: {batch: batch} %></td>
-                      <td><%= link_to "View labels", distiller_batch_path(batch), class: "btn btn-primary" %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            <% else %>
-              <p>You haven't created any batches yet :(</p>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-
-      <!-- Manual postage -->
+      <!-- If you've got unshipped manual items, show manual part -->
       <% if @unshipped_manual_sold_items.length > 0 %>
         <div class = "col-12">
           <h3>Manual postage - <%= pluralize(@unshipped_manual_sold_items.sum(&:quantity), 'product') %> to ship</h3>
@@ -118,7 +95,7 @@
       <% end %>
 
       <!-- Products -->
-      <div class = "col-12 my-4">
+      <div class = "col-12 lyst-box py-3 px-3 my-4">
         <h3>Your products</h3>
         <div class = "row">
           <table class="table table-striped">

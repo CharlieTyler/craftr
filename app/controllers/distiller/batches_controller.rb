@@ -15,8 +15,7 @@ class Distiller::BatchesController < DistillersController
     }
     scan_form = easypost_batch.create_scan_form()
     batch.update_attributes(scanform_created_at: Time.now.in_time_zone('London'), scanform_id: scan_form[:scan_form][:id])
-    flash[:notice] = "Batch successfully created"
-    redirect_to distiller_dashboard_path
+    redirect_to distiller_batch_path(batch)
   end
 
   def mark_as_shipped

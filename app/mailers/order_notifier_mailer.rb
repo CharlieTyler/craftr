@@ -20,6 +20,7 @@ class OrderNotifierMailer < ApplicationMailer
 
   def admin_email(order, admin)
     @order = order
+    @user_email = order.user.email
     @orders_in_last_30_days = Order.where("(updated_at > ? AND paid = ?)", Time.zone.today-30.days, true)
     mail( :to => admin, :subject => "New order")
     # admin is the argument passed 
@@ -27,6 +28,7 @@ class OrderNotifierMailer < ApplicationMailer
 
   def distiller_confirmation_email(si)
     @sold_item = si
+    @address = si.order.shipping_address
     @distillery = si.product.distillery
     @user = @distillery.users.first
     mail( :to => @user.email,

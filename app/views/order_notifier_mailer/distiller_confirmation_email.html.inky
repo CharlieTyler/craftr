@@ -14,28 +14,53 @@
     <columns>
       <h1>New order of <%= @sold_item.product.name.titleize %></h1>
       <p>Hi <%= @distillery.name %>,</p>
-      <p>You have a new order for <%= "#{@sold_item.quantity} bottles of #{@sold_item.product.name.titleize}" %>.</p>
+      <p>You have a new order for <strong><%= "#{@sold_item.quantity} bottle(s) of #{@sold_item.product.name.titleize}" %>.</strong></p>
 
       <spacer size="16"></spacer>
 
       <callout class="secondary">
         <row>
           <columns large="6">
-            <p>
-              <strong>Shipping</strong><br/>
-              We've purchased the shipping label for you, which you can find in the <%= link_to "Distiller portal", distiller_dashboard_url %><br/>
-            </p>
+            <% if @sold_item.manual_shipping %>
+              <p><strong>To be shipped to</strong></p>
+              <p><%= @address.full_name %></p>
+              <p><%= @address.line_1 %></p>
+              <% if @address.line_2.present? %>
+                <p><%= @address.line_2 %></p>
+              <% end %>
+              <% if @address.line_3.present? %>
+                <p><%= @address.line_3 %></p>
+              <% end %>
+              <p><%= @address.post_town %></p>
+              <p><%= @address.postcode %></p>
+              <p><%= @address.phone_number %></p>
+            <% else %>
+              <p>
+                <strong>Shipping</strong><br/>
+                We've purchased the shipping label for you, which you can find in the <%= link_to "Distiller portal", distiller_dashboard_url %><br/>
+              </p>
+            <% end %>
           </columns>
           <columns large="6">
             <p>
               <strong>The process now</strong><br/>
               <ul>
-                <li>Batch the order</li>
-                <li>Print off the label and the scanform</li>
-                <li>Drop off at the post office</li>
-                <li>Mark as shipped in the distiller portal</li>
+                <% if @sold_item.manual_shipping %>
+                  <li>Sort your postage to this address</li>
+                  <li>Mark item as shipped in the distiller portal</li>
+                <% else %>
+                  <li>Batch the order</li>
+                  <li>Print off the label and the scanform</li>
+                  <li>Drop off at the post office</li>
+                  <li>Mark as shipped in the distiller portal</li>
+                <% end %>
               </ul>
             </p>
+          </columns>
+        </row>
+        <row>
+          <columns large = "12">
+            <p><strong>You must mark the item as shipped when it's posted!</strong></p>
           </columns>
         </row>
         <row>
