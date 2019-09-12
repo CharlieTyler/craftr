@@ -77,11 +77,11 @@ class Distillery < ApplicationRecord
   end
 
   def unbatched_sold_items_with_postage_labels
-    sold_items.where.not(manual_shipping: true).where(batch_id: nil, shipping_label_created: true)
+    sold_items.where(manual_shipping: [false, nil], batch_id: nil, shipping_label_created: true)
   end
 
   def unbatched_sold_items_without_postage_labels
-    sold_items.where.not(manual_shipping: true).where(batch_id: nil, shipping_label_created: false)
+    sold_items.where(manual_shipping: [false, nil], batch_id: nil, shipping_label_created: false)
   end
 
   # Manual shipping
@@ -90,6 +90,6 @@ class Distillery < ApplicationRecord
   end
 
   def number_of_notifications
-    unshipped_batches.length + unbatched_sold_items_without_postage_labels.length
+    unshipped_batches.length + unbatched_sold_items_without_postage_labels.length + unshipped_manual_sold_items.length
   end
 end

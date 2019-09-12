@@ -41,9 +41,33 @@
         <div class = "lyst-box px-2 py-2 mx-1 my-1">
           <h6>Unbatched items</h6>
           <p><%= @unbatched_sold_items_with_postage_label.length %></p>
-         
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class = "container">
+    <div class = "row">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Postage</th>
+            <th scope="col">Shipped?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @most_recent_sold_items.each do |si| %>
+            <tr>
+              <th scope="row"><%= si.product.name %></th>
+              <td><%= si.quantity %></td>
+              <td><%= si.manual_shipping == true ? "Manual shipping" : "Auto shipping" %></td>
+              <td><%= si.shipped == true ? "Shipped" : "Not shipped" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 

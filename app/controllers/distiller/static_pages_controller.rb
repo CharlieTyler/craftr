@@ -20,20 +20,3 @@ class Distiller::StaticPagesController < DistillersController
     end
   end
 end
-
-  def unshipped_batches
-    batches.where(shipped: false)
-  end
-
-  def unbatched_sold_items_with_postage_labels
-    sold_items.where.not(manual_shipping: true).where(batch_id: nil, shipping_label_created: true)
-  end
-
-  def unbatched_sold_items_without_postage_labels
-    sold_items.where.not(manual_shipping: true).where(batch_id: nil, shipping_label_created: false)
-  end
-
-  # Manual shipping
-  def unshipped_manual_sold_items
-    sold_items.where(manual_shipping: true, shipped: false)
-  end
