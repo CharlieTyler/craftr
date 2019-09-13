@@ -8,19 +8,36 @@ class Distiller::BatchesController < DistillersController
 
     # Mimic it in local database, with the easypost_batch_id saved
     batch = current_distillery.batches.create(easypost_batch_id: easypost_batch.id)
+    batch_counter = 0
 
-    # Find the sold_item, then for each postage, retrieve the easypost shipment and add it to the batch
+    # Find the sold_item, then for each postage
     params[:batch][:sold_item_ids].reject(&:empty?).each do |si_id|
       si = SoldItem.find(si_id)
       si.postages.each do |postage|
-        easypost_batch.add_shipments({shipments: [{id: postage.easypost_shipment_id}]})
+        # check if it's been batched on easypost (shouldn't have been)
+        shipment = EasyPost::Shipment.retrieve(postage.easypost_shipment_id)
+        if shipment.batch_id.present?
+          # reflect locally if has been batched
+          postage.batch_locally_if_batched_on_easypost
+          flash[:notice] = "Some of these items had already been batched. Check back on distiller dashboard for these forms and manifest"
+        else
+          easypost_batch.add_shipments({shipments: [{id: postage.easypost_shipment_id}]})
+          batch_counter += 1
+          si.update_attributes(batch_id: batch.id)
+        end
       end
-      si.update_attributes(batch_id: batch.id)
     end
 
-    scan_form = easypost_batch.create_scan_form()
-    batch.update_attributes(scanform_created_at: Time.now.in_time_zone('London'), scanform_id: scan_form[:scan_form][:id])
-    redirect_to distiller_batch_path(batch)
+    # If stuff has been added, create the bloody scanform and save it. Send to that path.
+    if batch_counter > 0
+      scan_form = easypost_batch.create_scan_form()
+      batch.update_attributes(scanform_created_at: Time.now.in_time_zone('London'), scanform_id: scan_form[:scan_form][:id])
+      redirect_to distiller_batch_path(batch)
+    # Otherwise delete it and send back to dashboard - nothing to see here
+    else
+      batch.delete
+      redirect_to distiller_dashboard_path
+    end
   end
 
   # This is for auto postage only. Manual postages happen in the sold_items controller

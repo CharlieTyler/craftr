@@ -26,13 +26,13 @@
               <!-- If no auto orders, hide -->
               <!-- If products to batch, show form, otherwise say hold on a sec if awaiting postage labels -->
               <% if @unbatched_sold_items_auto_with_postage_labels.length > 0 %>
-                <h4 class = "d-inline-block">1. Create a batch for products you are ready to ship</h4>
+                <h4 class = "d-inline-block">1. You have unbatched items ready to ship</h4>
                 <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
                 <div class = "clear"></div>
                 <p class = "text-muted">Select all items that you are ready to post and click "Create batch" to generate all postage labels and scanform</p>
                 <%= simple_form_for @batch, url: distiller_batches_path do |f| %>
                   <%= f.association :sold_items, :collection => @unbatched_sold_items_auto_with_postage_labels, as: :check_boxes, value_method: :id, label: false, label_method: :description, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
-                  <%= f.submit "Create batch", class: "btn btn-primary" %>
+                  <%= f.submit "Create batch", class: "btn btn-primary mb-3" %>
                 <% end %>
               <% end %>
               <% if @unbatched_sold_items_auto_without_postage_labels.length > 0 %>
@@ -50,7 +50,7 @@
                 <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
                 <div class = "clear"></div>
                 <% @unshipped_auto_batches.each_with_index do |batch, index| %>
-                  <%= link_to "View postage labels and mark as shipped", distiller_batch_path(batch), :target => "_blank", class: "btn btn-success" %>
+                  <%= link_to "Batch from " + time_ago_in_words(batch.created_at) + " ago", distiller_batch_path(batch), :target => "_blank", class: "btn btn-success" %>
                 <% end %>
               </div>
             <% end %>
