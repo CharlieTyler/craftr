@@ -26,11 +26,11 @@ class OrderNotifierMailer < ApplicationMailer
     # admin is the argument passed 
   end
 
-  def distiller_confirmation_email(si)
+  def distiller_confirmation_email(si, user)
     @sold_item = si
     @address = si.order.shipping_address
     @distillery = si.product.distillery
-    @user = @distillery.users.first
+    @user = user
     mail( :to => @user.email,
       :subject => "#{si.quantity} * #{si.product.name.titleize} ordered on Craftr")
   end

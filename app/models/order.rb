@@ -100,7 +100,9 @@ class Order < ApplicationRecord
 
   def send_distiller_emails
     sold_items.each do |si|
-      OrderNotifierMailer.distiller_confirmation_email(si).deliver_now
+      si.product.distillery.users.each do |user|
+        OrderNotifierMailer.distiller_confirmation_email(si, user).deliver_now
+      end
     end
   end
 
