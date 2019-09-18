@@ -1,16 +1,3 @@
-<p>Hi <%= @distillery.name %>,</p>
-
-<p>An order of <%= @sold_item.quantity %> * <%= @sold_item.product.name.titleize %> was placed 2 days ago, but you have not yet marker it as shipped.</p>
-
-<br />
-
-<p>If you have shipped this item, please click <%= link_to "here", distiller_sold_item_url(@sold_item) %> and mark it as shipped.</p>
-
-<p>If you have not yet shipped this item, please be sure to do so today.</p>
-
-<p>Best wishes,</p>
-<p>CRAFTR team</p>
-
 <style type="text/css">
   body,
   html, 
@@ -61,7 +48,7 @@
   </row>
   <row class="footer text-center">
     <columns large="3">
-      <%= image_tag "CraftrLogoPNG.png", height: '35', class: "pt-2", alt: "Craftr logo" %>
+      <%= image_tag "https://www.craftr.co.uk/assets/CraftrLogoPNG-a845bce75fd347bc39189152cc52e248af06ea52e2036f48bc1375dba1025a55.png", height: '35', class: "pt-2", alt: "Craftr logo" %>
     </columns>
     <columns large="3">
       <p>
@@ -70,7 +57,7 @@
     </columns>
     <columns large="3">
       <%= link_to "https://www.drinkaware.co.uk" do %>
-        <%= image_tag "drink_aware_logo.png" %>
+        <%= image_tag "https://www.craftr.co.uk/assets/drink_aware_logo-37f2f4a17cc14c2581661674c9e9b317ea368459c4418134cac3349f32ff1311.png" %>
       <% end %>
     </columns>
   </row>

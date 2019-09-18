@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @product = Product.friendly.find(params[:product_id])
     @review  = @product.reviews.create(review_params.merge(user: current_user, verified: (current_user.previously_purchased_products.present? ? current_user.previously_purchased_products.include?(@product) : false)))
