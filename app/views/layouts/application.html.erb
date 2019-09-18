@@ -4,49 +4,55 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- Code taken from https://gist.github.com/esBeee/545653241530f8f2c2e16371bec56f20 -->
 
-    <% if Rails.env.production? %>
-      <% unless user_signed_in? && current_user.admin %>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <% unless user_signed_in? && current_user.admin %>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <% if Rails.env.production? %>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117259081-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'UA-117259081-1');
-
-          <% if action_name == "confirmation" %>
-            // For google ad conversion tracking
-            gtag('event', 'conversion', {
-                'send_to': 'AW-734967162/2zcmCJrK06YBEPrqut4C',
-                'value': '<%= @confirmed_order.total_paid_amount %>',
-                'currency': 'GBP',
-                'transaction_id': '<%= @confirmed_order.id %>'
-            });
-            ga('require', 'ecommerce');
-            ga('ecommerce:addTransaction', {
-              'id': '<%= @confirmed_order.id %>',
-              'affiliation': 'Craftr', 
-              'revenue':  '<%= @confirmed_order.total_paid_product_amount.to_f / 100 %>',
-              'shipping':'<%= @confirmed_order.paid_shipping_price.to_f / 100 %>',
-              'currency':'GBP'
-            });
-
-            <% @confirmed_order.sold_items.each do |si| %>
-              ga('ecommerce:addItem', {
-                'id': '<%= @confirmed_order.id %>',
-                'name': '<%= si.product.name.titleize %>', 
-                'sku': '<%= si.product.id %>',
-                'category': '<%= si.product.category.name %>',
-                'price': '<%= si.item_price.to_f / 100 %>',
-                'quantity': '<%= si.quantity %>'                   // Quantity.
-              });
-
-            <% end %>
-            ga('ecommerce:send');
-          <% end %>
-        </script>
+      <% else %>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148074644-1"></script>
       <% end %>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        <% if Rails.env.production? %>
+          gtag('config', 'UA-117259081-1');
+        <% else %>
+          gtag('config', 'UA-148074644-1');
+        <% end %>
+
+        <% if action_name == "confirmation" %>
+          // For google ad conversion tracking
+          gtag('event', 'conversion', {
+              'send_to': 'AW-734967162/2zcmCJrK06YBEPrqut4C',
+              'value': '<%= @confirmed_order.total_paid_amount %>',
+              'currency': 'GBP',
+              'transaction_id': '<%= @confirmed_order.id %>'
+          });
+          ga('require', 'ecommerce');
+          ga('ecommerce:addTransaction', {
+            'id': '<%= @confirmed_order.id %>',
+            'affiliation': 'Craftr', 
+            'revenue':  '<%= @confirmed_order.total_paid_product_amount.to_f / 100 %>',
+            'shipping':'<%= @confirmed_order.paid_shipping_price.to_f / 100 %>',
+            'currency':'GBP'
+          });
+
+          <% @confirmed_order.sold_items.each do |si| %>
+            ga('ecommerce:addItem', {
+              'id': '<%= @confirmed_order.id %>',
+              'name': '<%= si.product.name.titleize %>', 
+              'sku': '<%= si.product.id %>',
+              'category': '<%= si.product.category.name %>',
+              'price': '<%= si.item_price.to_f / 100 %>',
+              'quantity': '<%= si.quantity %>'                   // Quantity.
+            });
+
+          <% end %>
+          ga('ecommerce:send');
+        <% end %>
+      </script>
     <% end %>
 
     <% if controller_name == "products" && action_name == "show" %>

@@ -13,7 +13,32 @@
       <!-- If you've got neither auto orders or manual orders, show advice on how to get more -->
       <% if @unbatched_sold_items.length == 0 && @unshipped_auto_batches.length == 0 && @unshipped_manual_sold_items.length == 0 %>
         <div class = "col-12 my-3 py-3 px-3 lyst-box">
-          <h4>You have no new orders. Here's some advice on how to get more</h4>
+          <h4>You have no new orders. Drive more with the tips below:</h4>
+          <ol>
+            <li class = "mt-2">
+              <strong>Product presentation</strong>: Check all of your products are presented in a brilliant light. Got any new <strong>photos</strong>? Any new <strong>stories</strong> you'd like to tell? Send them across to <%= mail_to "support@craftr.co.uk", "support@craftr.co.uk", class: "text-primary" %>. Links:
+              <ul>
+                <% current_distillery.products.each do |product| %>
+                  <li><%= link_to product.name, product_path(product) %></li>
+                <% end %>
+              </ul>
+            </li>
+            <li class = "mt-2">
+              <strong>Recipes</strong>: Got any new signature serves? We can add a recipe to <%= link_to "our collection", recipes_path, class: "text-primary" %> and push it out over Instagram. Contact <%= mail_to "mike@craftr.co.uk", "mike@craftr.co.uk", class: "text-primary" %>
+            </li>
+            <li class = "mt-2">
+              <strong>Link to us as a stockist</strong>: Please make sure your distillery site links to craftr as a stockist. Links help us build our search engine presence.
+            </li>
+            <li class = "mt-2">
+              <strong>Instagram</strong>: Send across any Instagram posts you're particularly proud of, and we will consider sharing them with our following.
+            </li>
+            <li class = "mt-2">
+              <strong>Giveaways</strong>: How about a one-time giveaway? You provide the product, and we'll send followers your way (contestants must follow both Craftr and you to take part). Tag a friend who you'd share this bottle with - that sort of thing.
+            </li>
+            <li class = "mt-2">
+              <strong>Pricing</strong>: Is Craftr competitively priced vs. <%= link_to "Master of Malt", "https://www.masterofmalt.com" %> and <%= link_to "31 Dover", "https://www.31dover.co.uk" %>? If not, it may be helpful to renogotiate!
+            </li>
+          </ol>
         </div>
       <% end %>
 

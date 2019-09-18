@@ -700,6 +700,14 @@ input[type=search] {
   -webkit-appearance: none;
 }
 
+input[type="text"]:not(:disabled):hover {
+  box-shadow: 0 1px 12px rgba(0,0,0,.1);
+}
+
+input[type="text"].with-icon {
+  padding-left: 40px;
+}
+
 .voucher-code-box {
   border: 2px solid $grey;
   padding: 5px;
