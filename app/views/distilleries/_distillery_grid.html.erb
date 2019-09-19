@@ -19,7 +19,7 @@
         <div class = "article-text"><%= simple_format(distillery.people_text) %></div>
       </div>
       <div class = "col-md-6">
-        <%= image_tag distillery.people_image, class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
+        <%= image_tag distillery.people_image_url(:full), class: "d-block img-fluid distillery-image mt-auto align-self-center" %>
       </div>
     </div>
   <% end %>

@@ -10,7 +10,7 @@
 
 <loc>https://www.craftr.co.uk/</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>1.00</priority>
 
@@ -21,7 +21,7 @@
 
 <loc>https://www.craftr.co.uk/users/sign_up</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -32,7 +32,7 @@
 
 <loc>https://www.craftr.co.uk/cart</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -43,7 +43,7 @@
 
 <loc>https://www.craftr.co.uk/products</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -54,7 +54,7 @@
 
 <loc>https://www.craftr.co.uk/categories/gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -65,7 +65,7 @@
 
 <loc>https://www.craftr.co.uk/categories/vodka</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -76,7 +76,7 @@
 
 <loc>https://www.craftr.co.uk/categories/rum</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -87,18 +87,7 @@
 
 <loc>https://www.craftr.co.uk/categories/other</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.80</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/collections/beautifully-bottled</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -109,7 +98,7 @@
 
 <loc>https://www.craftr.co.uk/collections/scottish</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -120,7 +109,7 @@
 
 <loc>https://www.craftr.co.uk/collections/flavoured-gins</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -131,7 +120,18 @@
 
 <loc>https://www.craftr.co.uk/collections/english-gins</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/collections/overproof-gins</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -142,7 +142,7 @@
 
 <loc>https://www.craftr.co.uk/collections</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -153,7 +153,7 @@
 
 <loc>https://www.craftr.co.uk/products/anno-kent-dry-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -164,7 +164,7 @@
 
 <loc>https://www.craftr.co.uk/products/cuckoo-sunshine-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -175,7 +175,7 @@
 
 <loc>https://www.craftr.co.uk/products/dartmouth-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -186,7 +186,7 @@
 
 <loc>https://www.craftr.co.uk/products/hills-and-harbour-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -197,7 +197,7 @@
 
 <loc>https://www.craftr.co.uk/recipes</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -208,7 +208,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/blackcurrant-lemonade</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -219,7 +219,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/oxalis-collins</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -230,7 +230,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/amaterasu</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -241,7 +241,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/the-bees-knees</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -252,7 +252,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/wild-cherry-manhattan</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -263,7 +263,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/rosemullion-breakfast-martini</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -274,7 +274,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/five-farthings-martini</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -285,7 +285,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/the-galloway-forager</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -296,7 +296,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/broken-afternoon-tea</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -307,7 +307,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/peachy-old-fashioned</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -318,7 +318,7 @@
 
 <loc>https://www.craftr.co.uk/articles/instagram-s-best-mixologists-omakasecocktails</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -329,7 +329,7 @@
 
 <loc>https://www.craftr.co.uk/articles/instagram-s-best-mixologists-cocktail-pete</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -340,7 +340,7 @@
 
 <loc>https://www.craftr.co.uk/articles/5-of-the-best-martini-recipes</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -351,7 +351,7 @@
 
 <loc>https://www.craftr.co.uk/articles/instagram-s-best-mixologists-morten-krag</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -362,7 +362,7 @@
 
 <loc>https://www.craftr.co.uk/articles/autumn-cocktails</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -373,7 +373,7 @@
 
 <loc>https://www.craftr.co.uk/articles</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -384,7 +384,7 @@
 
 <loc>https://www.craftr.co.uk/users/sign_in</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -395,7 +395,7 @@
 
 <loc>https://www.craftr.co.uk/privacy-policy</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -406,7 +406,7 @@
 
 <loc>https://www.craftr.co.uk/products/cooper-king-dry-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -417,7 +417,7 @@
 
 <loc>https://www.craftr.co.uk/about</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -428,18 +428,7 @@
 
 <loc>https://www.craftr.co.uk/deliveries-and-shipping</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.80</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/distilleries/crafty-distillery</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -450,18 +439,7 @@
 
 <loc>https://www.craftr.co.uk/distilleries/dartmouth-distillery-co</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.80</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/distilleries/anno-distillers</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -472,7 +450,29 @@
 
 <loc>https://www.craftr.co.uk/distilleries/cooper-king-distillery</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/distilleries/crafty-distillery</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/distilleries/anno-distillers</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -483,7 +483,7 @@
 
 <loc>https://www.craftr.co.uk/products/cooper-king-herb-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -494,7 +494,7 @@
 
 <loc>https://www.craftr.co.uk/distilleries/brindle-distillery</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -505,7 +505,7 @@
 
 <loc>https://www.craftr.co.uk/collections/traditional-gins</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -514,20 +514,9 @@
 
 <url>
 
-<loc>https://www.craftr.co.uk/products/chimes-englis-extra-dry-vermouth</loc>
+<loc>https://www.craftr.co.uk/collections/beautifully-bottled</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.80</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/distilleries/the-surrey-copper-distillery</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -536,20 +525,9 @@
 
 <url>
 
-<loc>https://www.craftr.co.uk/products/rosemullion-gold-rum</loc>
+<loc>https://www.craftr.co.uk/products/intrepid-ram-rum</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.80</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/distilleries/rosemullion-distillery</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -558,9 +536,9 @@
 
 <url>
 
-<loc>https://www.craftr.co.uk/products/smokey-and-citrus-distilled-cocktail</loc>
+<loc>https://www.craftr.co.uk/distilleries/yorkshire-dales-distillery</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -571,7 +549,73 @@
 
 <loc>https://www.craftr.co.uk/products/elderflower-vodka</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/rosemullion-gold-rum</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/distilleries/rosemullion-distillery</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/smokey-and-citrus-distilled-cocktail</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/chimes-englis-extra-dry-vermouth</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/distilleries/the-surrey-copper-distillery</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/smokey-ram</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -582,7 +626,7 @@
 
 <loc>https://www.craftr.co.uk/authors/craftr-team</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -593,7 +637,18 @@
 
 <loc>https://www.craftr.co.uk/distilleries</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.80</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/distilleries/ribble-valley-gin-co</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -604,7 +659,7 @@
 
 <loc>https://www.craftr.co.uk/contact</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -615,7 +670,7 @@
 
 <loc>https://www.craftr.co.uk/returns-and-refunds</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -626,7 +681,7 @@
 
 <loc>https://www.craftr.co.uk/feedbacks/new</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.80</priority>
 
@@ -635,9 +690,20 @@
 
 <url>
 
+<loc>https://www.craftr.co.uk/products/anno-sloe-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
 <loc>https://www.craftr.co.uk/products/granite-north-scottish-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -648,18 +714,7 @@
 
 <loc>https://www.craftr.co.uk/distilleries/granite-north-distillery</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/copperfield-gin-vol-2</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -670,139 +725,7 @@
 
 <loc>https://www.craftr.co.uk/products/rosemullion-summer-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/anno-sloe-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/kinrara-hibiscus-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/distilleries/kinrara</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/rosemullion-dry-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/anno-60-squared-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/colonsay-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/distilleries/wild-thyme-spirits</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/anno-cranberry-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/cuckoo-spiced-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products?page=2</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/anno-b3rry-pink-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/cuckoo-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -813,7 +736,7 @@
 
 <loc>https://www.craftr.co.uk/products/copperfield-gin-vol-1</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -822,20 +745,9 @@
 
 <url>
 
-<loc>https://www.craftr.co.uk/products/kinrara-highland-dry-gin</loc>
+<loc>https://www.craftr.co.uk/products/cuckoo-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.64</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/duck-and-crutch-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -844,9 +756,97 @@
 
 <url>
 
-<loc>https://www.craftr.co.uk/distilleries/duck-and-crutch-distillery</loc>
+<loc>https://www.craftr.co.uk/products/desert-ram-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/little-lane-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/garden-party-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/cuckoo-spiced-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/kinrara-hibiscus-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/distilleries/kinrara</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/purple-ram-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products?page=2</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/anno-b3rry-pink-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -857,7 +857,117 @@
 
 <loc>https://www.craftr.co.uk/products/kinrara-artist-edition</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/duck-and-crutch-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/distilleries/duck-and-crutch-distillery</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/kinrara-highland-dry-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/wild-ram</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/colonsay-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/distilleries/wild-thyme-spirits</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/copperfield-gin-vol-2</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/anno-60-squared-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/anno-cranberry-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
+
+<priority>0.64</priority>
+
+</url>
+
+
+<url>
+
+<loc>https://www.craftr.co.uk/products/rosemullion-dry-gin</loc>
+
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -868,7 +978,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/gimlet</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -879,7 +989,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/chukka-cocktail</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -890,7 +1000,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/the-great-dictator</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -901,7 +1011,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/the-mint-fizz</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -912,7 +1022,7 @@
 
 <loc>https://www.craftr.co.uk/articles/blue-slate-gin-three-ways</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -923,7 +1033,7 @@
 
 <loc>https://www.craftr.co.uk/articles/cocktail-of-the-week-gimlet</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -934,7 +1044,7 @@
 
 <loc>https://www.craftr.co.uk/articles/cocktail-of-the-week-the-bees-knees</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -945,7 +1055,7 @@
 
 <loc>https://www.craftr.co.uk/articles/shrub-cocktails</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -956,7 +1066,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/anna-pavlova</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -967,7 +1077,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/berry-shrub-cocktail</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -978,7 +1088,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/pear-ginger-dark-stormy</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -989,7 +1099,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/bramble</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1000,7 +1110,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/dark-and-stormy</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1011,7 +1121,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/shrub</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1022,7 +1132,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/tequila</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1033,7 +1143,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/autumn</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1044,7 +1154,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/cocktails</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1055,7 +1165,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/summer</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1066,7 +1176,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/british-polo-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1077,7 +1187,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/moody-mixologist</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1088,7 +1198,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/dan-magro</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1099,7 +1209,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/cocktail-of-the-week</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1110,7 +1220,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1121,7 +1231,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/london-cocktail-week</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1132,7 +1242,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/collections/desert-island-drinks</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1143,7 +1253,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/thyme-at-the-bar</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1154,7 +1264,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/peachy-keen</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1165,7 +1275,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/kentucky-bramble</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1176,7 +1286,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/perfect-pear-ing</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1187,7 +1297,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/the-buffalo-formula</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1198,7 +1308,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/cherrybomb</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1209,7 +1319,7 @@
 
 <loc>https://www.craftr.co.uk/authors/dan-magro</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1220,7 +1330,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/tequila-thyme-turmeric-lemonade</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1231,7 +1341,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/julep</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1242,7 +1352,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/sun-sand</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1253,7 +1363,7 @@
 
 <loc>https://www.craftr.co.uk/authors/moody-mixologist</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1264,7 +1374,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/zen-smash</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1275,7 +1385,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/negroni-iced-tea</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1286,7 +1396,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/sazerac</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1297,7 +1407,7 @@
 
 <loc>https://www.craftr.co.uk/recipes/manhattan</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1308,7 +1418,7 @@
 
 <loc>https://www.craftr.co.uk/categories/whisky</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1319,7 +1429,7 @@
 
 <loc>https://www.craftr.co.uk/products/blue-slate-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1330,7 +1440,7 @@
 
 <loc>https://www.craftr.co.uk/products/broken-clock-vodka</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1341,7 +1451,7 @@
 
 <loc>https://www.craftr.co.uk/distilleries/broken-clock-distillery</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1352,7 +1462,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/desert-island-drinks</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1363,7 +1473,7 @@
 
 <loc>https://www.craftr.co.uk/articles/whiskey-sour-day-2018</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1374,7 +1484,7 @@
 
 <loc>https://www.craftr.co.uk/articles/desert-island-drinks-the-moody-mixologist</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1385,7 +1495,7 @@
 
 <loc>https://www.craftr.co.uk/authors/peter-povlsen</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1396,7 +1506,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/5-of-the-best</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1407,7 +1517,7 @@
 
 <loc>https://www.craftr.co.uk/authors/morten-krag</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1418,7 +1528,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/autumn</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1429,7 +1539,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/shrub</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1440,7 +1550,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/cocktails</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1451,7 +1561,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/recipe-articles</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1462,7 +1572,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/recipe-articles-history-of-cocktails</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1473,7 +1583,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/the-moody-mixologist</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1484,7 +1594,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/dan-magro</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1495,7 +1605,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/cocktail-of-the-week</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1506,7 +1616,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/whisky</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1517,7 +1627,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/cocktail</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1528,7 +1638,7 @@
 
 <loc>https://www.craftr.co.uk/articles/collections/london-cocktail-week</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1539,7 +1649,7 @@
 
 <loc>https://www.craftr.co.uk/articles/london-cocktail-week-2018</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1550,7 +1660,7 @@
 
 <loc>https://www.craftr.co.uk/articles/royal-wedding-cocktails</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1561,7 +1671,7 @@
 
 <loc>https://www.craftr.co.uk/articles/desert-island-drinks-dan-magro</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1572,7 +1682,7 @@
 
 <loc>https://www.craftr.co.uk/articles/cocktail-of-the-week-julep</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1583,7 +1693,7 @@
 
 <loc>https://www.craftr.co.uk/articles/introducing-desert-island-drinks</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1594,7 +1704,7 @@
 
 <loc>https://www.craftr.co.uk/articles/the-manhattan</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1605,7 +1715,7 @@
 
 <loc>https://www.craftr.co.uk/users/password/new</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.64</priority>
 
@@ -1616,7 +1726,7 @@
 
 <loc>https://www.craftr.co.uk/products?page=1</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.51</priority>
 
@@ -1627,29 +1737,7 @@
 
 <loc>https://www.craftr.co.uk/distilleries/dinorwig</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.51</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/purple-ram-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.51</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/distilleries/yorkshire-dales-distillery</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.51</priority>
 
@@ -1660,7 +1748,7 @@
 
 <loc>https://www.craftr.co.uk/products/kisty-s-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.51</priority>
 
@@ -1671,7 +1759,7 @@
 
 <loc>https://www.craftr.co.uk/distilleries/arbikie-distillery</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.51</priority>
 
@@ -1682,18 +1770,7 @@
 
 <loc>https://www.craftr.co.uk/products/ultra-smooth-potato-vodka</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.51</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/smokey-ram</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.51</priority>
 
@@ -1704,7 +1781,7 @@
 
 <loc>https://www.craftr.co.uk/products/strawberry-vodka</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.51</priority>
 
@@ -1715,7 +1792,7 @@
 
 <loc>https://www.craftr.co.uk/products/ak-s-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.51</priority>
 
@@ -1726,7 +1803,7 @@
 
 <loc>https://www.craftr.co.uk/products/twelve-keys-gin</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.51</priority>
 
@@ -1737,7 +1814,7 @@
 
 <loc>https://www.craftr.co.uk/distilleries/sartorial-spirits</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.51</priority>
 
@@ -1746,31 +1823,9 @@
 
 <url>
 
-<loc>https://www.craftr.co.uk/products/desert-ram-gin</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.41</priority>
-
-</url>
-
-
-<url>
-
-<loc>https://www.craftr.co.uk/products/wild-ram</loc>
-
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
-
-<priority>0.41</priority>
-
-</url>
-
-
-<url>
-
 <loc>https://www.craftr.co.uk/products/haar-wheat-vodka</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.41</priority>
 
@@ -1781,7 +1836,7 @@
 
 <loc>https://www.craftr.co.uk/products/chilli-vodka</loc>
 
-<lastmod>2019-09-04T10:59:53+00:00</lastmod>
+<lastmod>2019-09-19T17:00:01+00:00</lastmod>
 
 <priority>0.41</priority>
 

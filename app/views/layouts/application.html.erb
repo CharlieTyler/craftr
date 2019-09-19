@@ -46,11 +46,11 @@
               'sku': '<%= si.product.id %>',
               'category': '<%= si.product.category.name %>',
               'price': '<%= si.item_price.to_f / 100 %>',
+              'currency':'GBP',
               'quantity': '<%= si.quantity %>'                   // Quantity.
             });
-
+            ga('ecommerce:send');
           <% end %>
-          ga('ecommerce:send');
         <% end %>
       </script>
     <% end %>
