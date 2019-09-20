@@ -51,6 +51,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th scope="col">When?</th>
             <th scope="col">Product</th>
             <th scope="col">Quantity</th>
             <th scope="col">Postage</th>
@@ -60,7 +61,8 @@
         <tbody>
           <% @most_recent_sold_items.each do |si| %>
             <tr>
-              <th scope="row"><%= si.product.name %></th>
+              <th scope="row"><%= time_ago_in_words(si.created_at) %> ago</th>
+              <td><%= si.product.name %></td>
               <td><%= si.quantity %></td>
               <td><%= si.manual_shipping == true ? "Manual shipping" : "Auto shipping" %></td>
               <td><%= si.shipped == true ? "Shipped" : "Not shipped" %></td>
