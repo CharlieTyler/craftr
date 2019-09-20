@@ -1,48 +1,59 @@
 <div class = "background-lightgrey">
   <div class = "container pt-2">
-    <h3>You searched <%= @keyword.inspect %></h3>
-    <p class = "mb-0">We found <%= [@results[:collections].length > 0 ? pluralize(@results[:collections].length, 'collection') : nil, @results[:products].length > 0 ? pluralize(@results[:products].length, 'product') : nil, @results[:distilleries].length > 0 ? pluralize(@results[:distilleries].length, 'distillery') : nil, @results[:recipes].length > 0 ? pluralize(@results[:recipes].length, 'recipe') : nil, @results[:articles].length > 0 ? pluralize(@results[:articles].length, 'article') : nil].compact.to_sentence %>
-    <div class = "row">
-      <div class = "col-12">
-        <hr class = "lyst-line-grey">
+    <% if @results.map{ |a| a.second.length}.sum == 0 %>
+      <!-- No results page -->
+      <div class = "row">
+        <div class = "col-12">
+          <h3 class = "mt-2">Oh boy! Absolutely no results for <%= @keyword.inspect %></h3>
+          <p class = "mt-2">Perhaps you were looking for some of these for your drinks cabinet?</p>
+        </div>
+        <%= render partial: "products/lister_item", collection: @suggested_products, as: :product, locals: {include_add_to_basket: false } %>
+      </div>
+    <% else %>
+      <h3 class = "mt-2">You searched <%= @keyword.inspect %></h3>
+      <p class = "mb-0">We found <%= [@results[:collections].length > 0 ? pluralize(@results[:collections].length, 'collection') : nil, @results[:products].length > 0 ? pluralize(@results[:products].length, 'product') : nil, @results[:distilleries].length > 0 ? pluralize(@results[:distilleries].length, 'distillery') : nil, @results[:recipes].length > 0 ? pluralize(@results[:recipes].length, 'recipe') : nil, @results[:articles].length > 0 ? pluralize(@results[:articles].length, 'article') : nil].compact.to_sentence %>
+      <div class = "row">
+        <div class = "col-12">
+          <hr class = "lyst-line-grey">
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class = "container">
-    <% unless @results[:collections].blank? %>
-      <h4 class = "mt-1">Collections (<%= @results[:collections].length %>)</h4>
-      <div class = "row pb-5" id = "products">
-        <%= render partial: 'collections/lister_collection', collection: @results[:collections], as: :collection, locals: {owl_carousel: false} %>
-      </div>
-    <% end %>
+    <div class = "container">
+      <% unless @results[:collections].blank? %>
+        <h4 class = "mt-1">Collections (<%= @results[:collections].length %>)</h4>
+        <div class = "row pb-5" id = "products">
+          <%= render partial: 'collections/lister_collection', collection: @results[:collections], as: :collection, locals: { owl_carousel: false } %>
+        </div>
+      <% end %>
 
-    <% unless @results[:products].blank? %>
-      <h4 class = "mt-1">Products (<%= @results[:products].length %>)</h4>
-      <div class = "row pb-5" id = "products">
-        <%= render partial: 'products/lister_item', collection: @results[:products], as: :product, locals: { include_add_to_basket: true } %>
-      </div>
-    <% end %>
+      <% unless @results[:products].blank? %>
+        <h4 class = "mt-1">Products (<%= @results[:products].length %>)</h4>
+        <div class = "row pb-5" id = "products">
+          <%= render partial: 'products/lister_item', collection: @results[:products], as: :product, locals: { include_add_to_basket: true } %>
+        </div>
+      <% end %>
 
-    <% unless @results[:distilleries].blank? %>
-      <h4 class = "mt-1">Distilleries (<%= @results[:distilleries].length %>)</h4>
-      <div class = "row pb-5" id = "products">
-        <%= render partial: 'distilleries/lister_distillery', collection: @results[:distilleries], as: :distillery %>
-      </div>
-    <% end %>
+      <% unless @results[:distilleries].blank? %>
+        <h4 class = "mt-1">Distilleries (<%= @results[:distilleries].length %>)</h4>
+        <div class = "row pb-5" id = "products">
+          <%= render partial: 'distilleries/lister_distillery', collection: @results[:distilleries], as: :distillery %>
+        </div>
+      <% end %>
 
-    <% unless @results[:recipes].blank? %>
-      <h4 class = "mt-1">Recipes (<%= @results[:recipes].length %>)</h4>
-      <div class = "row pb-5" id = "recipes">
-        <%= render partial: 'recipes/lister_recipe', collection: @results[:recipes], as: :recipe %>
-      </div>
-    <% end %>
+      <% unless @results[:recipes].blank? %>
+        <h4 class = "mt-1">Recipes (<%= @results[:recipes].length %>)</h4>
+        <div class = "row pb-5" id = "recipes">
+          <%= render partial: 'recipes/lister_recipe', collection: @results[:recipes], as: :recipe %>
+        </div>
+      <% end %>
 
-    <% unless @results[:articles].blank? %>
-      <h4 class = "mt-1">Articles (<%= @results[:articles].length %>)</h4>
-      <div class = "row pb-5" id = "articles">
-        <%= render partial: 'articles/lister_article', collection: @results[:articles], as: :article %>
-      </div>
+      <% unless @results[:articles].blank? %>
+        <h4 class = "mt-1">Articles (<%= @results[:articles].length %>)</h4>
+        <div class = "row pb-5" id = "articles">
+          <%= render partial: 'articles/lister_article', collection: @results[:articles], as: :article %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-
   def search
     matched_products = Product.where('lower(name) = ?', params[:keyword].downcase)
     if matched_products.length > 0
@@ -11,6 +10,7 @@ class SearchController < ApplicationController
       redirect_to category_path(matched_categories.first)
     end
 
+    @suggested_products = Product.transactional.where(featured: true).sample(4)
     @results = Search.new(params).results
     @keyword = params[:keyword]
     # FOR PAGINATION
@@ -24,6 +24,4 @@ class SearchController < ApplicationController
   end
 
   private
-
-
 end
