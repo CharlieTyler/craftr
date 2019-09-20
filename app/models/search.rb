@@ -15,7 +15,6 @@ class Search
       distilleries: Distillery.transactional.search(@params).all,
       collections: Collection.search(@params).all
     }
-
   end
 
   # def results_combined
