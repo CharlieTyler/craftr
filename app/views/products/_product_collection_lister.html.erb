@@ -11,6 +11,14 @@
           <%= link_to product_path(product) do %>
             <h4 class="mb-2"><%= product.name %></h4>
           <% end %>
+          <% if show_featured %>
+            <div class = "d-inline-block">
+              <h4 class = "mb-0 text-yellow"><i class="fa fa-star" aria-hidden="true"></i></h4>
+            </div>
+            <div class = "d-inline-block display-v-middle">
+              <p class = "mb-0"><strong> Craftr recommends</strong></p>
+            </div>
+          <% end %>
           <p class = "text-muted card-text mb-2">by <%= link_to product.distillery.name, distillery_path(product.distillery) %><span class = "float-right"><%= product.human_readable_price %></span></p>
           <p class = "text-muted card-text mb-0"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= product.distillery.location %></p>
           <p class= "card-text"><%= truncate_html(product.description_short, length: 125) %></p>

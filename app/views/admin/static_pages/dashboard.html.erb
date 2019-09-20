@@ -28,13 +28,13 @@
       <div class = "col-4">
         <div class = "lyst-box px-2 py-2 mx-1 my-1">
           <h6>Sales (30 days)</h6>
-          <p><%= @last_30_days_sales.sum(&:item_price) %></p>
+          <p><%= number_to_currency((@last_30_days_sales.sum(&:item_price).to_f / 100), unit: "£") %></p>
         </div>
       </div>
       <div class = "col-4">
         <div class = "lyst-box px-2 py-2 mx-1 my-1">
-          <h6>Unshipped batches</h6>
-          <p><%= @unshipped_batches.length %></p>
+          <h6>Unshipped batches (manual)</h6>
+          <p><%= @unshipped_batches.length %> (<%= @unshipped_manual_items.length %>)</p>
         </div>
       </div>
       <div class = "col-4">

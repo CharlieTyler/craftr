@@ -24,7 +24,10 @@
         <h1 class = "mt-2"><%= title @collection.full_name %></h1>
         <p><%= @collection.description %></p>
       </div>
-      <%= render partial: "products/product_collection_lister", collection: @products, as: :product %>
+      <% if @featured_products.length > 0 %>
+        <%= render partial: "products/product_collection_lister", collection: @featured_products, as: :product, locals: {show_featured: true} %>
+      <% end %>
+      <%= render partial: "products/product_collection_lister", collection: @non_featured_products, as: :product, locals: {show_featured: false} %>
       <div class = "col-12 my-3 text-center my-5">
         <% if @collection.category.present? %>
           <%= link_to "See all our #{@collection.category.name}s", category_path(@collection.category), class: "btn-lg btn-primary" %>

@@ -34,13 +34,15 @@ task :create_batches_for_each_distillery => :environment do
         if batch_counter > 0
           scan_form = easypost_batch.create_scan_form()
           batch.update_attributes(scanform_created_at: Time.now.in_time_zone('London'), scanform_id: scan_form[:scan_form][:id])
-          puts "Batched"
+          puts "Batched #{batch_counter} items"
         # Otherwise delete it and send back to dashboard - nothing to see here
         else
           batch.delete
           puts "Already been batched"
         end
       end
+    else
+      puts "Nothing here :("
     end
   end  
 end

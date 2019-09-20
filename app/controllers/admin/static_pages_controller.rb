@@ -3,7 +3,8 @@ class Admin::StaticPagesController < AdminController
     @unshipped_batches = Batch.where(shipped: false).order("created_at DESC")
     @unbatched_sold_items_with_postage_label = SoldItem.where(batch_id: nil, shipping_label_created: true).order("created_at DESC")
     @unbatched_sold_items_without_postage_label = SoldItem.where(batch_id: nil, shipping_label_created: false).order("created_at DESC")
-    @most_recent_sold_items = SoldItem.order("created_at DESC").last(30)
+    @unshipped_manual_items = SoldItem.where(manual_shipping: true, shipped: false)
+    @most_recent_sold_items = SoldItem.order("created_at DESC").first(30)
     @transactional_distilleries = Distillery.transactional
     @last_30_days_sales = SoldItem.where("(created_at > ?)", Time.now.in_time_zone('London') - 30.days)
     @transactional_products = Product.transactional
