@@ -1,7 +1,7 @@
 <div class = "background-lightgrey">
   <div class = "container pt-2">
     <h3>You searched <%= @keyword.inspect %></h3>
-    <p class = "mb-0">We found <%= [@results[:products].length > 0 ? pluralize(@results[:products].length, 'product') : nil, @results[:distilleries].length > 0 ? pluralize(@results[:distilleries].length, 'distillery') : nil, @results[:recipes].length > 0 ? pluralize(@results[:recipes].length, 'recipe') : nil, @results[:articles].length > 0 ? pluralize(@results[:articles].length, 'article') : nil].compact.to_sentence %>
+    <p class = "mb-0">We found <%= [@results[:collections].length > 0 ? pluralize(@results[:collections].length, 'collection') : nil, @results[:products].length > 0 ? pluralize(@results[:products].length, 'product') : nil, @results[:distilleries].length > 0 ? pluralize(@results[:distilleries].length, 'distillery') : nil, @results[:recipes].length > 0 ? pluralize(@results[:recipes].length, 'recipe') : nil, @results[:articles].length > 0 ? pluralize(@results[:articles].length, 'article') : nil].compact.to_sentence %>
     <div class = "row">
       <div class = "col-12">
         <hr class = "lyst-line-grey">
@@ -10,6 +10,13 @@
   </div>
 
   <div class = "container">
+    <% unless @results[:collections].blank? %>
+      <h4 class = "mt-1">Collections (<%= @results[:collections].length %>)</h4>
+      <div class = "row pb-5" id = "products">
+        <%= render partial: 'collections/lister_collection', collection: @results[:collections], as: :collection, locals: {owl_carousel: false} %>
+      </div>
+    <% end %>
+
     <% unless @results[:products].blank? %>
       <h4 class = "mt-1">Products (<%= @results[:products].length %>)</h4>
       <div class = "row pb-5" id = "products">

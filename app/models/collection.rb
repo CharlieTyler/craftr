@@ -19,4 +19,14 @@ class Collection < ApplicationRecord
       name
     end
   end
+
+  def self.search(params)
+    search_scope = Collection
+
+    if params[:keyword].present?
+      search_scope = search_scope.where("lower(CONCAT(name,' ', description)) LIKE lower(?)", "%#{params[:keyword]}%")
+    end
+
+    search_scope
+  end
 end

@@ -13,6 +13,7 @@ class Search
       recipes: Recipe.search(@params).all,
       articles: Article.search(@params).all,
       distilleries: Distillery.transactional.search(@params).all,
+      collections: Collection.search(@params).all
     }
 
   end
