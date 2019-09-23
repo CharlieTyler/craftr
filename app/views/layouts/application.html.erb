@@ -2,8 +2,6 @@
 <html>
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- Code taken from https://gist.github.com/esBeee/545653241530f8f2c2e16371bec56f20 -->
-
     <% unless user_signed_in? && current_user.admin %>
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <% if Rails.env.production? %>
@@ -17,40 +15,44 @@
         gtag('js', new Date());
 
         <% if Rails.env.production? %>
-          gtag('config', 'UA-117259081-1');
+          gtag('config', 'UA-117259081-1', {'currency': 'GBP'});
         <% else %>
-          gtag('config', 'UA-148074644-1');
+          gtag('config', 'UA-148074644-1', {'currency': 'GBP'});
         <% end %>
 
         <% if action_name == "confirmation" %>
-          // For google ad conversion tracking
-          gtag('event', 'conversion', {
-              'send_to': 'AW-734967162/2zcmCJrK06YBEPrqut4C',
-              'value': '<%= @confirmed_order.total_paid_amount %>',
-              'currency': 'GBP',
-              'transaction_id': '<%= @confirmed_order.id %>'
-          });
-          ga('require', 'ecommerce');
-          ga('ecommerce:addTransaction', {
-            'id': '<%= @confirmed_order.id %>',
-            'affiliation': 'Craftr', 
-            'revenue':  '<%= @confirmed_order.total_paid_product_amount.to_f / 100 %>',
-            'shipping':'<%= @confirmed_order.paid_shipping_price.to_f / 100 %>',
-            'currency':'GBP'
-          });
-
-          <% @confirmed_order.sold_items.each do |si| %>
-            ga('ecommerce:addItem', {
-              'id': '<%= @confirmed_order.id %>',
-              'name': '<%= si.product.name.titleize %>', 
-              'sku': '<%= si.product.id %>',
-              'category': '<%= si.product.category.name %>',
-              'price': '<%= si.item_price.to_f / 100 %>',
-              'currency':'GBP',
-              'quantity': '<%= si.quantity %>'                   // Quantity.
+          <% if Rails.env.production? %>
+            // For google ad conversion tracking
+            gtag('event', 'conversion', {
+                'send_to': 'AW-734967162/2zcmCJrK06YBEPrqut4C',
+                'value': '<%= @confirmed_order.total_paid_amount %>',
+                'currency': 'GBP',
+                'transaction_id': '<%= @confirmed_order.id %>'
             });
-            ga('ecommerce:send');
           <% end %>
+
+          // For google analytics tracking
+          gtag('event', 'purchase', {
+            "transaction_id": "<%= @confirmed_order.id %>",
+            "affiliation": "Craftr",
+            "value": <%= @confirmed_order.total_paid_product_amount.to_f / 100 %>,
+            "shipping": <%= @confirmed_order.paid_shipping_price.to_f / 100 %>,
+            "items": [
+              <% @confirmed_order.sold_items.each do |si| %>
+                {
+                  "id": "<%= si.product.id %>",
+                  "name": "<%= si.product.name %>",
+                  "brand": "<%= si.product.distillery.name %>",
+                  "category": "<%= si.product.category.name %>",
+                  "quantity": <%= si.quantity %>,
+                  "price": '<%= si.item_price.to_f / 100 %>'
+                }
+                <% if(si != @confirmed_order.sold_items.last) %>
+                  ,
+                <% end %>
+              <% end %>
+            ]
+          });
         <% end %>
       </script>
     <% end %>

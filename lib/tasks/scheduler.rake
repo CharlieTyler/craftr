@@ -18,15 +18,17 @@ task :create_batches_for_each_distillery => :environment do
         si.postages.each do |postage|
           # check if it's been batched on easypost (shouldn't have been)
           shipment = EasyPost::Shipment.retrieve(postage.easypost_shipment_id)
-          if shipment.batch_id.present?
-            # reflect locally if has been batched
-            postage.batch_locally_if_batched_on_easypost
-          else
-            # Add these postages to the batch
-            easypost_batch.add_shipments({shipments: [{id: postage.easypost_shipment_id}]})
-            batch_counter += 1
-            # And reflect locally
-            si.update_attributes(batch_id: batch.id)
+          if shipment.present?
+            if shipment.batch_id.present?
+              # reflect locally if has been batched
+              postage.batch_locally_if_batched_on_easypost
+            else
+              # Add these postages to the batch
+              easypost_batch.add_shipments({shipments: [{id: postage.easypost_shipment_id}]})
+              batch_counter += 1
+              # And reflect locally
+              si.update_attributes(batch_id: batch.id)
+            end
           end
         end
 

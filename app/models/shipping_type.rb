@@ -4,7 +4,7 @@ class ShippingType < ApplicationRecord
   has_many :orders
   
   def human_readable_price
-    if price = 0
+    if price == 0
       "FREE"
     else
       number_to_currency((price.to_f / 100), unit: "£")
