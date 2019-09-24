@@ -59,11 +59,11 @@
         <% end %>
         <tr>
           <td colspan="2">Delivery</td>
-          <td><%= number_to_currency((@order.paid_shipping_price / 100), unit: "£") %></td>
+          <td><%= number_to_currency((@order.paid_shipping_price.to_f / 100), unit: "£") %></td>
         </tr>
         <tr>
           <td colspan="2"><b>Total:</b></td>
-          <td><%= number_to_currency((@order.total_paid_amount / 100), unit: "£") %></td>
+          <td><%= number_to_currency((@order.total_paid_amount.to_f / 100), unit: "£") %></td>
         </tr>
       </table>
 

@@ -94,7 +94,8 @@
                 <div class="card h-100">
                   <div class="card-block">
                     <div class="card-text">
-                      <p><strong><%= "#{si.quantity} x #{si.product.name}" %></strong></p>
+                      <p class = "mb-0"><strong><%= "#{si.quantity} x #{si.product.name}" %></strong></p>
+                      <p>ordered <%= time_ago_in_words(si.created_at) %> ago</p>
                       <p class = "mb-0"><%= si.order.shipping_address.full_name %></p>
                       <p class = "mb-0"><%= si.order.shipping_address.line_1 %></p>
                       <% if si.order.shipping_address.line_2.present? %>

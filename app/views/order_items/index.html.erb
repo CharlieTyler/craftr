@@ -79,7 +79,7 @@
                     <h6 class = "d-inline-block mt-2">Total:</h6>
                     <h6 class = "d-inline-block float-right mt-2">
                       <% if @order.shipping_type.present? %>
-                        <%= number_to_currency(((@order.total_unpaid_amount) / 100), unit: "£") %>
+                        <%= number_to_currency(((@order.total_unpaid_amount).to_f / 100), unit: "£") %>
                       <% else %>
                         <%= number_to_currency(((@order.total_unpaid_amount + @default_shipping_type.price.to_f) / 100), unit: "£") %>
                       <% end %>

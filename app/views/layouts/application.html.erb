@@ -45,7 +45,7 @@
                   "brand": "<%= si.product.distillery.name %>",
                   "category": "<%= si.product.category.name %>",
                   "quantity": <%= si.quantity %>,
-                  "price": '<%= si.item_price.to_f / 100 %>'
+                  "price": <%= si.item_price.to_f / 100 %>
                 }
                 <% if(si != @confirmed_order.sold_items.last) %>
                   ,
@@ -344,27 +344,37 @@
           </div>
         </div>
       </div>
-      <div class = "background-lightgrey">
-        <div class = "container">
+      <div class = "">
+        <div class = "container-fluid">
           <% if notice.present? %>
-            <div class = "row pt-1">
-              <div class="col-12 pb-0 mb-0 alert alert-info alert-dismissible fade show diplay-v-middle" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <p><%= notice.html_safe %></p>
+            <div class = "row">
+              <div class = "hidden col-8 offset-2 col-md-5 offset-md-1 lyst-box px-3 mx-2 my-2 border-top-primary z-index-overlay notice-box">
+                <p class = "my-1"><i class="fa fa-info-circle fa-lg text-primary" aria-hidden="true"></i> &nbsp<%= notice.html_safe %></p>
               </div>
             </div>
+            <script>
+              $(function(){
+                $(".notice-box").addClass("animated slideInRight")
+                setTimeout(function(){
+                  $(".notice-box").addClass("slideOutLeft");
+                }, 5000);
+              });
+            </script>
           <% end %>
           <% if alert.present? %>
-            <div class = "row pt-1">
-              <div class="col-12 pb-0 mb-0 alert alert-warning alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <p class = "mb-0"><%= alert.html_safe %></p>
+            <div class = "row">
+              <div class = "hidden col-8 offset-2 col-md-5 offset-md-1 lyst-box px-3 mx-2 my-2 border-top-primary z-index-overlay alert-box">
+                <p class = "my-1"><i class="fa fa-exclamation-triangle fa-lg text-red" aria-hidden="true"></i> &nbsp<%= alert.html_safe %></p>
               </div>
             </div>
+            <script>
+              $(function(){
+                $(".alert-box").addClass("animated slideInRight")
+                setTimeout(function(){
+                  $(".alert-box").addClass("slideOutLeft");
+                }, 5000);
+              });
+            </script>
           <% end %>
         </div>
       </div>

@@ -17,7 +17,7 @@ class Order < ApplicationRecord
     if paid
       return "#{shipped_sold_items_length} of #{total_paid_quantity} products shipped"
     else
-      return "upaid"
+      return "unpaid"
     end
   end
 

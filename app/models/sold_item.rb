@@ -21,18 +21,26 @@ class SoldItem < ApplicationRecord
   end
 
   def state
-    if batch_id.present?      
+    if manual_shipping == [nil, false]
+      if batch_id.present?      
+        if shipped
+          return "Shipped"
+        elsif batch.scanform_id.present?
+          return "Awaiting shipping"
+        else
+          return "Batch awaiting scanform"
+        end
+      elsif shipping_label_created
+        return "Not yet batched"
+      else
+        return "Awaiting shipping label"
+      end
+    else
       if shipped
         return "Shipped"
-      elsif batch.scanform_id.present?
-        return "Awaiting shipping"
       else
-        return "Batch awaiting scanform"
+        return "Awaiting shipping"
       end
-    elsif shipping_label_created
-      return "Not yet batched"
-    else
-      return "Awaiting shipping label"
     end
   end
 

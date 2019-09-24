@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_cart
   before_action :set_raven_context
   # before_action :set_email_sign_up
+  before_action :set_demo_flash_message
 
   private
   # Its important that the location is NOT stored if:
@@ -12,6 +13,11 @@ class ApplicationController < ActionController::Base
   # - The request is handled by a Devise controller such as Devise::SessionsController as that could cause an 
   #    infinite redirect loop.
   # - The request is an Ajax request as this can lead to very unexpected behaviour.
+
+  def set_demo_flash_message
+    flash[:notice] = "Test notice 1"
+    flash[:alert] = "Test alert 1"
+  end
 
   def storable_location?
     request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 

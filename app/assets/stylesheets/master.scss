@@ -802,3 +802,30 @@ input[type="text"].with-icon {
     min-height: 100%;
     object-fit: cover;
 }
+
+.z-index-overlay {
+  z-index: 1070;
+  position: fixed;
+  display: block;
+}
+
+.notice-box {
+  background: #fff;
+  border-radius: 0px 0px 8px 8px;
+  overflow: hidden;
+  border-top: 5px solid $primary;
+  -webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,.05);
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,.05);
+  padding: 10px 0 10px;
+}
+
+.alert-box {
+  background: #fff;
+  border-radius: 0px 0px 8px 8px;
+  overflow: hidden;
+  border-top: 5px solid $red;
+  -webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,.05);
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,.05);
+  padding: 10px 0 10px;
+}
+
