@@ -3,6 +3,7 @@ class Author < ApplicationRecord
   friendly_id :name, use: :slugged
 
   belongs_to :user, required: false
+  belongs_to :distillery, required: false
 
   has_many :articles, dependent: :destroy
 

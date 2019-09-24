@@ -15,6 +15,9 @@ class Distillery < ApplicationRecord
   has_many :article_distilleries
   has_many :articles, through: :article_distilleries
 
+  has_one :author
+  has_many :recipes, through: :author
+
   #address
   has_one :address
 

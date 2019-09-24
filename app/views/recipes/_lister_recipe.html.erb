@@ -11,7 +11,13 @@
           <%= link_to recipe_path(recipe) do %>
             <h4 class="mb-2"><%= recipe.name %></h4>
           <% end %>
-          <p class = "text-muted card-text">by <%= link_to recipe.author.name, author_path(recipe.author) %></p>
+          <p class = "text-muted card-text">by 
+            <% if recipe.author.distillery.present? %>
+              <%= link_to recipe.author.name, distillery_path(recipe.author.distillery) %>
+            <% else %>
+              <%= link_to recipe.author.name, author_path(recipe.author) %>
+            <% end %>              
+          </p>
           <p class= "hidden-xs-down card-text"><%= truncate_html(recipe.description, length: 100) %></p>
         </div>
       </div>

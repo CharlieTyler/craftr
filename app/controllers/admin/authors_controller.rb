@@ -2,6 +2,7 @@ class Admin::AuthorsController < AdminController
   def new
     @author = Author.new
     @users = User.all
+    @distilleries = Distillery.order("name ASC")
   end
 
   def create
@@ -16,6 +17,7 @@ class Admin::AuthorsController < AdminController
   def edit
     @author = Author.friendly.find(params[:id])
     @users = User.all
+    @distilleries = Distillery.order("name ASC")
   end
 
   def update
@@ -47,6 +49,7 @@ class Admin::AuthorsController < AdminController
                                    :website_link,
                                    :slug,
                                    :user_id,
+                                   :distillery_id,
                                    :bio_image)
   end
 end

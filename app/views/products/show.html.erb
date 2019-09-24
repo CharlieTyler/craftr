@@ -410,19 +410,19 @@
   });
   // Scroll to anchor link - 75 pixels for the atb navbar at top
   $(function() {
-      $('a[href*="#"]:not([href="#"])').click(function() {
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-          if (target.length) {
-            $('html, body').animate({
-              scrollTop: target.offset().top - 75
-            }, 1000);
-            return false;
-          }
+    $('a[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top - 75
+          }, 1000);
+          return false;
         }
-      });
+      }
     });
+  });
   // Show atb navbar when scrolling past product description
   var topofDiv = $("#product-description-box").offset().top; //gets offset of header
   var height = $("#product-description-box").outerHeight(); //gets height of header

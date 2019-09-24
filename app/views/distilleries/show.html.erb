@@ -42,11 +42,16 @@
         <div class = "px-3">
           <h6>📖 About</h6>
           <p class = "article-text"><%= @distillery.summary_text %></p>
-          <% unless @distillery.products.blank? %>
+          <% unless @products.blank? %>
             <div class = "col article-text no-link-highlight px-0 my-2">
               <a class="no-click" href="#products">
-                <%= pluralize(@distillery.products.size, 'products') %>
+                <%= pluralize(@products.size, 'product') %>
               </a>
+              <% if @recipes.size > 0 %>
+                <a class="no-click" href="#recipes">
+                  and <%= pluralize(@recipes.size, 'recipe') %>
+                </a> 
+              <% end %>
             </div>
           <% end %>
           <div class = "row">
@@ -113,17 +118,30 @@
 
 <div class = "background-lightgrey pb-3">
   <div class = "container pt-3" id = "products">
-    <h4>Products from <%= @distillery.name %></h4>
     <div class = "row">
-      <% if @distillery.products.live.length == 0 %>
+      <div class = "col-12">
+        <h4>Products from <%= @distillery.name %></h4>
+      </div>
+      <% if @products.live.length > 0 %>
+        <%= render partial: 'products/lister_item', collection: @products, as: :product, locals: { include_add_to_basket: true } %>
+      <% else %>
         <div class = "col-12">
           <p><%= @distillery.name %> doesn't have any products to sell yet, but are hard at work getting their first one ready!</p>
         </div>
-      <% else %>
-        <%= render partial: 'products/lister_item', collection: @distillery.products.live, as: :product, locals: { include_add_to_basket: true } %>
       <% end %>
     </div>
   </div>
+
+  <% if @recipes.length > 0 %>
+    <div class = "container pt-3" id = "recipes">
+      <div class = "row">
+        <div class = "col-12">
+          <h4 class = "mb-2">Recipes by <%= @distillery.name %></h4>
+        </div>
+        <%= render partial: 'recipes/lister_recipe', collection: @recipes, as: :recipe %>
+      </div>
+    </div>
+  <% end %>
 
   <% if @distillery.latitude.present? && @distillery.longitude.present? %>
     <div class = "container mt-3" id = "map">
@@ -158,7 +176,7 @@
             title: '<%= j distillery.name.html_safe %>'
           });
 
-          windowContent = "<h5><%= j distillery.name.html_safe %></h5><div class=''><%= escape_javascript pluralize(distillery.products.live.length, 'product') %></div><%= escape_javascript link_to 'More about ' + distillery.name.html_safe, distillery_path(distillery), class: 'btn btn-primary my-2' %>";
+          windowContent = "<h5><%= j distillery.name.html_safe %></h5><div class=''><%= escape_javascript pluralize(@products.length, 'product') %></div><%= escape_javascript link_to 'More about ' + distillery.name.html_safe, distillery_path(distillery), class: 'btn btn-primary my-2' %>";
 
           
           <%= 'window' + counter.to_s %> = new google.maps.InfoWindow({
@@ -197,6 +215,24 @@
       $("#further-information-box").toggleClass("hidden");
       $("#further-information-toggle-switch").toggleClass("fa-minus");
       $("#further-information-toggle-switch").toggleClass("fa-chevron-down");
+    });
+  });
+</script>
+
+<script>
+  // Scroll to anchor link
+  $(function() {
+    $('a[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top - 75
+          }, 1000);
+          return false;
+        }
+      }
     });
   });
 </script>
