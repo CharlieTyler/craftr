@@ -14,7 +14,7 @@
                 <div class = "row mt-4">
                   <div class = "col-3 col-md-2">
                     <%= link_to product_path(oi.product) do %>
-                      <%= image_tag oi.product.product_images.first.photo_url(:full).to_s, class: "img-fluid" %>
+                      <%= image_tag oi.product.product_images.rank(:row_order).first.photo_url(:full).to_s, class: "img-fluid" %>
                     <% end %>
                   </div>
                   <div class = "col-9 col-md-10">

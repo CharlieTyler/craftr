@@ -33,8 +33,8 @@
               <td>new</td>
               <td><%= number_to_currency(product.price.to_f / 100, unit: "") %> GBP</td>
               <td><%= product_url(product) %></td>
-              <td><%= product.product_images.first.photo_url %></td>
-              <td><%= product.product_images.length > 1 ? product.product_images.second.photo_url : "" %></td>
+              <td><%= product.product_images.rank(:row_order).first.photo_url %></td>
+              <td><%= product.product_images.length > 1 ? product.product_images.rank(:row_order).second.photo_url : "" %></td>
               <td><%= product.distillery.name %></td>
               <td><%= product.GTIN.present? ? product.GTIN : "" %></td>
               <td>GB::2.00 GBP</td>

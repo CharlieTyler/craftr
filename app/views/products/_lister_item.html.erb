@@ -9,7 +9,7 @@
       <% end %>
       <%= link_to product_path(product) do %>
         <% if product.product_images.present? %>
-          <%= image_tag product.product_images.first.photo_url(:full).to_s, class: "img-fluid" %>
+          <%= image_tag product.product_images.rank(:row_order).first.photo_url(:full).to_s, class: "img-fluid" %>
         <% else %>
           <%= image_tag "booze_placeholder.jpg", class: "img-fluid" %>
         <% end %>

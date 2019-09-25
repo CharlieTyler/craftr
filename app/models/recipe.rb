@@ -64,7 +64,8 @@ class Recipe < ApplicationRecord
 
   def whisk_ingredients_list
     ingredients_list = []
-    ingredients.each { |i| i.classification == "Spirits" ? nil : ingredients_list << i.name }
+    # If it's got a category, which isn't other, don't add it to the list, because we're going to add a sample one to the basket
+    ingredients.each { |i| i.category.present? && i.category_id != 3 ? nil : ingredients_list << i.name }
     "'"+ingredients_list.join("', '")+"'"
   end
 

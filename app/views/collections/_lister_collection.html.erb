@@ -11,7 +11,7 @@
             <% collection.products.sample(4).each do |product| %>
               <% if product.product_images.present? %>
                 <div class = "col-6 px-1 py-1">
-                  <%= image_tag product.product_images.first.photo_url(:preview).to_s, class: "img-fluid" %>
+                  <%= image_tag product.product_images.rank(:row_order).first.photo_url(:preview).to_s, class: "img-fluid" %>
                 </div>
               <% end %>
             <% end %>

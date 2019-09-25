@@ -212,18 +212,4 @@
       // navText : ['<i class="fa fa-3x pb-2 mt-0 pt-0 mb-3 fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-3x mt-0 pt-0 mb-3 pb-2 fa-angle-right" aria-hidden="true"></i>']
     });
   });
-
-  $(function(){
-    var animation_end = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-    owl.on('initialized.owl.carousel changed.owl.carousel', function(e) {
-      owl.find(".js-animate-me").addClass("fadeInLeft")
-      .one(animation_end, function(){ 
-        $(this).removeClass("fadeInLeft");
-      });
-      owl.find(".js-animate-me2").addClass("slideInUp")
-      .one(animation_end, function(){
-        $(this).removeClass("slideInUp");
-      })
-    });
-  });
 </script>

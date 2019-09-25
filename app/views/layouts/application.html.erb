@@ -335,7 +335,7 @@
                   </p>
                   <div class = "row">
                     <%= link_to "I'm afraid I can't do that", "https://www.drinkaware.co.uk/advice/how-to-reduce-your-drinking/", class: "col-12 text-center mt-2 mb-1" %>
-                    <%= link_to  "I am 18+ and accept cookies", age_verification_index_path, class: "btn-lg btn-success text-center col-12 my-1", method: :post, remote: true, data: { disable_with: 'Verifying...'} %>
+                    <%= link_to  "I am 18+ and accept cookies", age_verification_index_path, class: "btn-lg btn-success text-center col-12 my-1 close-age-verification-modal", method: :post, remote: true, data: { disable_with: 'Verifying...'} %>
                   </div>
                 </div>
               </div>
@@ -412,6 +412,12 @@
       <% if session[:age_verified] != true && user_signed_in? == false && controller_name != "registrations" && controller_name != "sessions" %>
         $("#ageVerificationModal").modal('show');
       <% end %>
+      $(function(){
+        $('.close-age-verification-modal').click(function() {
+          $("#ageVerificationModal").modal('hide');
+          console.log("clicked");
+        });
+      });
     </script>
   </body>
 </html>

@@ -31,7 +31,7 @@
               <td><%= product_url(product) %></td>
               <td><%= number_to_currency(product.price.to_f / 100, unit: "£") %></td>
               <td><%= product.is_in_stock ? "in stock" : "out of stock" %></td>
-              <td><%= product.product_images.first.photo_url %></td>
+              <td><%= product.product_images.rank(:row_order).first.photo_url %></td>
               <td>499676</td>
               <td>GB::2.00 GBP</td>
               <td><%= product.distillery.name %></td>
