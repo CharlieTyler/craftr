@@ -69,6 +69,26 @@ class Recipe < ApplicationRecord
     "'"+ingredients_list.join("', '")+"'"
   end
 
+  def product_to_add
+    # Ingredients direcly linked to a product
+    product_ingredients = ingredients.where.not(product_id: nil)
+    # Ingredients with a proper category (i.e. not 'other')
+    category_ingredients = ingredients.where.not(category_id: [nil, 3])
+    # If there's a specifically named product, use that, else pick a product from a specifically named category, else nil
+    if product_ingredients.present?
+      product_ingredients.first.product
+    elsif category_ingredients.present?
+      category = category_ingredients.first.category
+      if category.products.transactional.size > 0
+        category.product.transactional.sample(1).first
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+
   def tags
     tags_array = []
     ingredients.where(category: "spirit").each { |i| tags_array << i.name }

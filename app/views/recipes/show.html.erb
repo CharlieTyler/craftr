@@ -80,7 +80,17 @@
               <%= render partial: 'favourite_button', locals: {recipe: @recipe} %>
             </div> 
           <p><i class="fa fa-info-circle text-muted" aria-hidden="true"></i> Add all the ingredients to your Tesco, Ocado etc. baskets.</p>
-          <div class = "btn-lg btn-success" id="new-shopping-list">Add to shopping list</div>
+          <% if @atb_product.present? %>
+            <div class = "<%= 'col-12 px-0 quick-add-area-product-' + @atb_product.id.to_s %>">
+              <%= simple_form_for @order_item, wrapper: :inline_form, url: quick_add_path, html: { class: 'form-inline col-12 mx-0 px-0' }, remote: true, method: :post do |f| %>
+                <%= f.input :quantity, :as => :hidden, :input_html => { :value => 1 } %>
+                <%= f.input :product_id, :as => :hidden, :input_html => { :value => @atb_product.id } %>
+                <%= f.submit "Add to shopping list", class: "btn-lg btn-success quick-add-button col", id: "new-shopping-list", data: { disable_with: 'Adding...'} %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class = "btn-lg btn-success" id="new-shopping-list">Add to shopping list</div>
+          <% end %>
         </div>
       </div>
     </div>

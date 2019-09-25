@@ -9,6 +9,8 @@ class RecipesController < ApplicationController
     @page_keywords             = @recipe.seo_keywords
     @page_image_src            = @recipe.image_url
     @same_author_recipes       = Recipe.where(author_id: @recipe.author.id).where.not(id: @recipe.id).sample(4)
+    @atb_product               = @recipe.product_to_add
+    @order_item                = OrderItem.new
     # unless @recipe.instagram_hashtag.blank?
     #   @instas   = InstagramApi.tag(@recipe.instagram_hashtag).recent_media
     # end
