@@ -296,7 +296,7 @@
       <div class = "container-fluid background-gradient-blue">
         <div class = "row">
           <div class = "col-12 text-center">
-            <p class = "text-white my-1"><i class="fa fa-truck" aria-hidden="true"></i>&nbsp FREE SHIPPING on all orders</p>
+            <p class = "text-white free-shipping-text my-1"><i class="fa fa-truck" aria-hidden="true"></i>&nbsp FREE SHIPPING on all orders</p>
           </div>
         </div>
       </div>
@@ -417,6 +417,13 @@
           $("#ageVerificationModal").modal('hide');
           console.log("clicked");
         });
+      });
+    </script>
+    <script>
+      $(function(){
+        setTimeout(function(){
+          $(".free-shipping-text").addClass("animated pulse");
+        }, 5000);
       });
     </script>
   </body>
