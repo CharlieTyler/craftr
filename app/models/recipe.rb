@@ -80,7 +80,7 @@ class Recipe < ApplicationRecord
     elsif category_ingredients.present?
       category = category_ingredients.first.category
       if category.products.transactional.size > 0
-        category.product.transactional.sample(1).first
+        category.products.transactional.sample(1).first
       else
         nil
       end
