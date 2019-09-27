@@ -296,11 +296,12 @@ h1, h2, h3, h4, h5, h6 {
 .btn-search:visited,
 .btn-search:focus
 .btn-search.active {
-    border-radius: 0px 5px 5px 0px !important;
-    background-color: darken($green, 5%) !important;
-    border: 2px solid darken($green, 5%) !important;
-    color: white;
-    cursor: pointer;
+  border-radius: 0px 5px 5px 0px !important;
+  border: 3px solid $black !important;
+  color: $black;
+  padding: 0.4rem 1rem !important; 
+  background-color: #fff;
+  cursor: pointer;
 }
 
 .btn-search:hover {
@@ -705,10 +706,10 @@ a, a:hover {
 .pagination span.disabled { padding: 2px 5px 2px 5px; margin: 2px; border: 2px solid #eee; color: #ddd; border-radius: 5px;}
 
 input[type=search] {
-  border: 2px solid $grey;
-  border-radius: 5px 0px 0px 5px !important;
-
-  -webkit-appearance: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 3px solid $black;
 }
 
 input[type="text"]:not(:disabled):hover {

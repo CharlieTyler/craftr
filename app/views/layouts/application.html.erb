@@ -266,7 +266,9 @@
                   <%= form_tag search_path, method: :get, class: "form-inline mt-1 nav-item" do %>
                     <%= text_field_tag :keyword, nil, :placeholder => "Search for products, recipes and articles...", :size => 40, class: "form-control search-box", type: "search" %>
                     <span class="input-group-btn">
-                      <%= submit_tag "Search", class: "btn btn-search my-2 my-sm-0" %>
+                      <%= button_tag(type: 'submit', class: "btn btn-search") do %>
+                        <i class="fa fa-search my-0" aria-hidden="true"></i>
+                      <% end %>
                     </span>
                   <% end %>
                 </div>
