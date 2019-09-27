@@ -74,7 +74,7 @@
         </div>
         <div class = "row hidden-md-up">
           <div class = "col-12 text-center">
-            <p class = "article-text mb-0 mt-2"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Swipe to see more photos</p>
+            <p class = "article-text mb-0 mt-2 swipe-photos-prompt"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Swipe to see more photos</p>
           </div>
         </div>
       </div>
@@ -350,7 +350,8 @@
 <script>
   $(function() {
     //Owl carousel
-    $('.owl-carousel.product-image-carousel').owlCarousel({
+    var owl = $('.owl-carousel.product-image-carousel');
+    owl.owlCarousel({
       loop:true,
       stagePadding: -5,
       nav: true,
@@ -367,18 +368,9 @@
         },
       }
     });
-    // var atbButtonStart = $('#atbButtonStart').offset().top;
-    // var atbButton = function() {
-    //   var scrollTop = $(window).scrollTop();
-    //   if (scrollTop > atbButtonStart) {
-    //     $('#atbButtonRow').removeClass("hidden");
-    //   } else {
-    //     $('#atbButtonRow').addClass("hidden");
-    //   }
-    // };
-    // $(window).scroll(function() {
-    //   atbButton();
-    // });
+    owl.on('changed.owl.carousel', function(event) {
+      $(".swipe-photos-prompt").slideUp();
+    })
   });
 </script>
 <script>
