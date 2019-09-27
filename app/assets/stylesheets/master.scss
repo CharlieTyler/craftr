@@ -344,35 +344,35 @@ h1, h2, h3, h4, h5, h6 {
 /* background colours */
 
 .background-white {
-  background-color: white;
+  background-color: white !important;
 }
 
 .background-primary {
-  background-color: $primary;
+  background-color: $primary !important;
 }
 
 .background-secondary {
-  background-color: $secondary;
+  background-color: $secondary !important;
 }
 
 .background-blue {
-  background-color: $blue;
+  background-color: $blue !important;
 }
 
 .background-charcoal {
-  background-color: $charcoal
+  background-color: $charcoal !important;
 }
 
 .background-lightgrey {
-  background-color: $lightgrey;
+  background-color: $lightgrey !important;
 }
 
 .background-grey {
-  background-color: $grey;
+  background-color: $grey !important;
 }
 
 .background-darkgrey {
-  background-color: $darkgrey;
+  background-color: $darkgrey !important;
 }
 
 .background-translucent-black {
@@ -393,6 +393,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .background-gradient-blue {
   background-image: linear-gradient(to right, #141E30, #243B55);
+}
+
+.border-instagram { 
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 5px;
+  border-image: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) 1;
 }
 
 .ingredient-image {
@@ -827,5 +834,9 @@ input[type="text"].with-icon {
   -webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,.05);
   box-shadow: 0 5px 20px 0 rgba(0,0,0,.05);
   padding: 10px 0 10px;
+}
+
+.max-height-100 {
+  max-height: 50px;
 }
 
