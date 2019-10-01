@@ -5,26 +5,26 @@
 <% end %>
   <div class = "row lyst-box card py-0 mx-1">
     <div class = "col-12">
-      <div class = "row">
-        <div class = "col-5">
-          <div class = "row display-v-middle">
-            <% collection.products.sample(4).each do |product| %>
-              <% if product.product_images.present? %>
-                <div class = "col-6 px-1 py-1">
-                  <%= image_tag product.product_images.rank(:row_order).first.photo_url(:preview).to_s, class: "img-fluid" %>
-                </div>
+      <%= link_to collection_path(collection) do %>
+        <div class = "row">
+          <div class = "col-5">
+            <div class = "row display-v-middle">
+              <% collection.products.sample(4).each do |product| %>
+                <% if product.product_images.present? %>
+                  <div class = "col-6 px-1 py-1">
+                    <%= image_tag product.product_images.rank(:row_order).first.photo_url(:preview).to_s, class: "img-fluid" %>
+                  </div>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
+          </div>
+          <div class = "col-7 pl-1 pr-md-3 py-3">
+            <h6 class="mb-2"><%= collection.full_name %></h6>
+            <p class = "mb-0 text-muted card-text"><%= collection.products.length %> <%= collection.category_id.present? ? "#{collection.category.name.downcase}s" : products %></p>
+            <p class= "mb-0 mt-1 hidden-xs-down card-text"><%= truncate_html(collection.description, length: 100) %></p>
           </div>
         </div>
-        <div class = "col-7 pl-1 pr-md-3 py-3">
-          <%= link_to collection_path(collection) do %>
-            <h6 class="mb-2"><%= collection.full_name %></h6>
-          <% end %>
-          <p class = "mb-0 text-muted card-text"><%= collection.products.length %> <%= collection.category_id.present? ? "#{collection.category.name.downcase}s" : products %></p>
-          <p class= "mb-0 mt-1 hidden-xs-down card-text"><%= truncate_html(collection.description, length: 100) %></p>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
