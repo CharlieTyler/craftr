@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "/privacy-policy" => "static_pages#privacy"
   get "/deliveries-and-shipping" => "static_pages#deliveries"
   get "/returns-and-refunds" => "static_pages#returns"
+  get "/giveaway" => "static_pages#giveaway"
 
   get "/search" => "search#search" 
   resources :age_verification, only: [:create]
@@ -107,7 +108,9 @@ Rails.application.routes.draw do
         put 'mark_as_shipped'
       end
     end
+
     resources :sold_items, only: [:show, :index] do
+      # For marking manual shipped items as shipped
       member do
         patch 'mark_as_shipped'
         put 'mark_as_shipped'

@@ -33,4 +33,8 @@ class StaticPagesController < ApplicationController
   def returns
 
   end
+
+  def giveaway
+
+  end
 end
