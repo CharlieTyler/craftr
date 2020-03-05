@@ -14,16 +14,16 @@ body {
   flex: 1;
 }
 
-#footer {
-  position: relative;
-  width: 100%;
-  min-height: 100px;
-  background-color: $dark-grey;
-  font-family: "Helvetica Neue", Helvetica;
-  padding: 10px 0px;
-}
 
-.drink-aware {
-  max-height: 75px;
-  width: auto;
+/*
+ * Footer
+ */
+.footer {
+  padding: 2.5rem 0;
+  color: #999;
+  background-color: #f9f9f9;
+  border-top: .05rem solid #e5e5e5;
+}
+.footer p:last-child {
+  margin-bottom: 0;
 }
