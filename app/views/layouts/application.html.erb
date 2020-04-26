@@ -407,35 +407,62 @@
       </div>
       <%= yield %>
     </div>
-    <div id="footer" class = "pt-3">
+
+    <footer class="footer">
       <div class="container">
-        <div class = "row">
-          <div class = "col-4 col-md-3">
-            <h5 class = "text-white">Quick links</h5>
-            <ul class = "no-bullet-list pl-0 text-white">
+        <div class="row">
+          <!-- Logo and social -->
+          <div class = "col-12 col-md">
+            <h5>Craftr.</h5>
+            <%= link_to "https://www.instagram.com/craftrspirits" do %>
+              <i data-feather = "instagram"></i>
+            <% end %>
+            <%= link_to "https://www.facebook.com/craftrspirits" do %>
+              <i data-feather = "facebook"></i>
+            <% end %>
+          </div>
+
+          <!-- Info -->
+          <div class="col-12 col-md">
+            <h5>Information</h5>
+            <ul class="list-unstyled text-small">
+              <li><%= link_to 'Articles', articles_path %></li>
               <li><%= link_to 'About', about_path %></li>
+              <li><%= link_to 'Recipes', recipes_path %></li>
+              <li><%= link_to 'Products', products_path %></li>
+            </ul>
+          </div>
+
+          <!-- Customer services -->
+          <div class="col-12 col-md">
+            <h5>Customer Service</h5>
+            <ul class="list-unstyled text-small">
               <li><%= link_to 'Contact us', contact_path %></li>
               <li><%= link_to 'Privacy policy', privacy_policy_path %></li>
               <li><%= link_to 'Deliveries and shipping', deliveries_and_shipping_path %></li>
               <li><%= link_to 'Returns and refunds', returns_and_refunds_path %></li>
+              <li><%= link_to 'Leave Site Feedback', new_feedback_path %></li>
             </ul>
           </div>
-          <div class = "col-4 col-md-3 display-v-middle text-center">
-            <%= link_to "Leave feedback", new_feedback_path, class: "btn btn-primary" %>
-          </div>
-          <div class = "col-4 col-md-3 offset-md-3 display-v-middle">
-            <%= link_to "http://www.drinkaware.co.uk" do %>
-              <%= image_tag "drink_aware_logo.png", class: "img-fluid drink-aware mt-0" %>
-            <% end %>
+
+          <!-- Contact -->
+          <div class="col-12 col-md">
+            <h5>Newsletter</h5>
+            <p>Create an account to receive our latest articles, recipes and product luanches.</p> 
           </div>
         </div>
         <div class = "row">
-          <div class = "col-12 text-center">
-            <p class = "my-2 small">© Craftr Ltd, <%= Date.today.year %></p>
+          <div class = "col-md-6">
+            <p class = "my-2 text-left small">© Craftr Ltd, <%= Date.today.year %></p>
+          </div>
+          <div class = "col-md-6 text-right">
+            <i class="fa fa-2x fa-cc-visa mx-1" aria-hidden="true"></i>
+            <i class="fa fa-2x fa-cc-mastercard mx-1" aria-hidden="true"></i>
+            <i class="fa fa-2x fa-cc-amex mx-1" aria-hidden="true"></i>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
     <script>
       <% if session[:age_verified] != true && user_signed_in? == false && controller_name != "registrations" && controller_name != "sessions" %>
         $("#ageVerificationModal").modal('show');
