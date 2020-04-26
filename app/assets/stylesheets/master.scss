@@ -231,27 +231,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 13px;
 }
 
-[data-cart-items]::before {
-    content: attr(data-cart-items);
-    position: absolute;
-    top: -.5rem;
-    right: -.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 19px;
-    height: 19px;
-    font-size: 11px;
-    font-weight: 500;
-    border-radius: 50%;
-    border: 1px solid #fff;
-    background-color: #ff6f61;
-    color: #fff;
-}
-*, ::after, ::before {
-    box-sizing: border-box;
-}
-
 .border-white {
   border: 2px solid white !important;
 }
@@ -456,7 +435,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* overwrite bootstrap card - must all have !important */
-.card {
+.card, .dropdown-menu {
   background: #fff !important;
   border: none !important;
   border-radius: 8px !important;
@@ -791,14 +770,6 @@ input[type="text"].with-icon {
 
 .border-below-lightgrey {
   border-bottom: 3px solid $lightgrey;
-}
-
-.dropdown-menu {
-  border-radius: 0px !important;
-  border-top: 5px solid $primary !important;
-  border-bottom: 5px solid $lightgrey !important;
-  border-left: 2px solid $lightgrey !important;
-  border-right: 2px solid $lightgrey !important;
 }
 
 .container-fluid {
