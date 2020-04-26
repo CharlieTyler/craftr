@@ -1,3 +1,2 @@
 $("<%= '.atb-area-product-' + @product.id.to_s %>").html("<%= escape_javascript(render partial: 'products/add_to_basket_button', locals: {order_item: OrderItem.new, product: @product, include_go_to_checkout: true, large_button: true, remote: true}) %>");
-$(".js-cart-area").html("<%= escape_javascript(render partial: 'order_items/cart_icon', locals: {order: @order}) %>");
 $(".js-number-of-items").html("<%= @order.total_unpaid_quantity %>");

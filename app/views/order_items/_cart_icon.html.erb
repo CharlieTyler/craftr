@@ -1,12 +1,12 @@
 <li class = "nav-item">  
   <%= link_to cart_path, class: "nav-link" do %>
-    <i class="fa fa-lg fa-shopping-cart" aria-hidden="true"></i>
+    <i data-feather="shopping-cart"></i>
   <% end %>
 </li>
 <% if order.total_unpaid_quantity > 0 %>
   <li class = "nav-item">
     <%= link_to cart_path do %>
-      <p class = "nav-link py-0 my-0">
+      <p class = "nav-link nav-link-cart-text py-0 my-0">
         <span class = "cart-product-count"><%= pluralize(order.total_unpaid_quantity, 'item') %></span>
         <br />
         <span class = "cart-total-price"><%= number_to_currency((order.total_unpaid_product_amount.to_f / 100), unit: "£") %></span>

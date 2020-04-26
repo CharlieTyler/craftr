@@ -4,7 +4,7 @@
       <div class = "col-md-6 offset-md-3 lyst-box my-2 px-3 py-3">
         <h3 class = "my-2">New collection</h3>
         <%= simple_form_for @collection, url: admin_collections_path do |f| %>
-          <%= f.input :name, hint: "Keep it brief - this will is what will appear clickable" %>
+          <%= f.input :name, hint: "Keep it brief - this will is what will appear clickable. If it's a particular category, do not put that in the name, it will automatically merge with the category name" %>
           <%= f.input :description, hint: "SEO friendly stuff is important here" %>
           <%= f.input :image %>
           <%= f.input :category_id, collection: @categories %>

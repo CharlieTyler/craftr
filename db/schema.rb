@@ -367,6 +367,13 @@ ActiveRecord::Schema.define(version: 20190924152718) do
     t.index ["user_id", "product_id"], name: "index_reviews_on_user_id_and_product_id"
   end
 
+  create_table "sales", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "shipping_types", force: :cascade do |t|
     t.string "name"
     t.string "shipping_time"
