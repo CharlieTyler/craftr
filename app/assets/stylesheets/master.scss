@@ -105,9 +105,29 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-menu-text {
   font-size: 12px;
 }
+
+.feather-16{
+    width: 16px;
+    height: 16px;
+}
+
+.feather-24{
+    width: 24px;
+    height: 24px;
+}
+
+.feather-32{
+    width: 32px;
+    height: 32px;
+}
+
 .navbar-toggler {
   outline: 0;
   border: none !important;
+}
+
+.free-shipping-text {
+  letter-spacing: .1em!important;
 }
 
 .navbar-toggler span {
@@ -761,7 +781,7 @@ input[type="text"].with-icon {
 }
 
 .border-right-grey {
-  border-right: 2px solid $charcoal;
+  border-right: 1px solid $grey;
 }
 
 .border-below-black {

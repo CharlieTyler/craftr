@@ -153,23 +153,23 @@
             <div class = "col-4 text-center border-right-grey px-0 py-0 align-middle">
               <% if user_signed_in? %>
                 <%= link_to me_path do %>
-                  <p class = "mb-0"><i data-feather="user"></i></i></p>
+                  <i class = "feather-16" data-feather="user"></i></i>
                 <% end %>
               <% else %>
                 <%= link_to new_user_registration_path do %>
-                  <p class = "mb-0"><i data-feather="user-plus"></i></p>
+                  <i class = "feather-16" data-feather="user-plus"></i>
                 <% end %>
               <% end %>
             </div>
             <div class = "col-4 text-center border-right-grey px-0 align-top">
               <%= link_to cart_path do %>
-                <p class = "mb-0"><i data-feather="shopping-cart"></i>
+                <p class = "mb-0"><i class = "feather-16" data-feather="shopping-cart"></i>
                   <span class = "badge badge-success js-number-of-items mb-1"><%= @order.total_unpaid_quantity %></span></p>
               <% end %>
             </div>
             <div class = "col-4 text-center px-0 align-top">
               <%= link_to "https://www.instagram.com/craftrspirits" do %>
-                <p class = "mb-0"><i data-feather="instagram"></i></p>
+                <p class = "mb-0"><i class = "feather-16" data-feather="instagram"></i></p>
               <% end %>
             </div>
           </div>
@@ -327,7 +327,7 @@
       <div class = "container-fluid background-gradient-blue">
         <div class = "row">
           <div class = "col-12 text-center">
-            <p class = "text-white free-shipping-text my-1"><i class="fa fa-truck" aria-hidden="true"></i>&nbsp Free Delivery on all orders</p>
+            <p class = "text-white free-shipping-text my-3"><i data-feather = "truck" class = "feather-16 pt-1"></i>&nbsp FREE DELIVERY</p>
           </div>
         </div>
       </div>
