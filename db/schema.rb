@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190924152718) do
+ActiveRecord::Schema.define(version: 20210207170709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -399,7 +399,7 @@ ActiveRecord::Schema.define(version: 20190924152718) do
     t.boolean "manual_shipping"
   end
 
-  create_table "taggings", id: :integer, default: nil, force: :cascade do |t|
+  create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
     t.integer "taggable_id"
@@ -418,7 +418,7 @@ ActiveRecord::Schema.define(version: 20190924152718) do
     t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
-  create_table "tags", id: :integer, default: nil, force: :cascade do |t|
+  create_table "tags", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "taggings_count", default: 0
     t.string "slug"
