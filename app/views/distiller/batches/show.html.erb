@@ -18,6 +18,11 @@
     </div>
   </div>
   <div class = "row">
+    <div class = "col-12">
+      <p><%= @scanform_id %></p>
+      <hr/>
+      <p>URL: <%= @test_url %></p>
+    </div>
     <% if @scanform_url.present? %>
       <div class = "col-md-4">
         <%= link_to @scanform_url, :target => "_blank" do %>
@@ -52,7 +57,7 @@
       </div>
       <% si.postages.each_with_index do |sl, index| %>
         <div class = "col-6 col-md-4 mb-3">
-          <%= link_to sl.postage_label_url do %>
+          <%= link_to sl.postage_label_url, :target => "_blank" do %>
             <h6>Shipping label #<%= index + 1 %></h6>
             <p class = "text-muted">For 1 bottle in a Royal Mail Small Parcel</p>
             <div id = "divToPrint">

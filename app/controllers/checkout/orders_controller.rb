@@ -119,7 +119,8 @@ class Checkout::OrdersController < ApplicationController
     session[:confirmed_order_id] = @order.id
     @order.update_attributes(paid: true)
 
-    @order.queue_shipment_creation
+    # Stop order shipment from being created during checkout - moved to when batch is created 
+    # @order.queue_shipment_creation
     session[:order_id] = nil
     redirect_to checkout_confirmation_path
   rescue Stripe::CardError => e

@@ -6,6 +6,9 @@ class Distiller::StaticPagesController < DistillersController
     @unbatched_sold_items_auto_with_postage_labels    = @unbatched_sold_items.where(shipping_label_created: true)
     @unbatched_sold_items_auto_without_postage_labels = @unbatched_sold_items.where(shipping_label_created: false)
     @unshipped_auto_batches                           = current_distillery.batches.where(shipped: false).order("created_at DESC")
+
+    @unshipped_batches                                = current_distillery.batches.where(shipped: false).order("created_at DESC")
+    
     @batch                                            = Batch.new
     @batch.sold_items.build
 

@@ -3,6 +3,35 @@ class Distiller::BatchesController < DistillersController
   before_action :check_batch_belongs_to_distiller, only: [:mark_as_shipped, :show]
 
   def create
+    sold_items = params[:batch][:sold_item_ids].reject(&:empty?)
+    
+    # Create shipment labels in easypost
+    sold_items.each do |sold_item|
+      post_item = SoldItem.find(sold_item)
+      unless post_item.manual_shipping == true
+        post_item.quantity.times do
+          parcel       = EasyPost::Parcel.create(
+                          predefined_package: 'SMALLPARCEL',
+                          weight: post_item.product.weight
+                         )
+          toAddress   = EasyPost::Address.retrieve(post_item.order.shipping_address.easypost_address_id)
+          fromAddress = EasyPost::Address.retrieve(post_item.product.distillery.address.easypost_address_id)
+          shipment    = EasyPost::Shipment.create(
+                          to_address: toAddress,
+                          from_address: fromAddress,
+                          parcel: parcel,
+                          carrier_account_id: "ca_c3a3178260c54bac8e41f01df1340b14",
+                          options: {alcohol: true}
+                         )
+          shipment.buy(
+            rate: shipment.lowest_rate(carrier_accounts = ['RoyalMail'], service = ['RoyalMail2ndClass'])
+          )
+          post_item.postages.create(postage_label_url: shipment.postage_label.label_url, tracking_code: shipment.tracking_code, easypost_shipment_id: shipment.id)
+        end
+        post_item.update_attributes(shipping_label_created: true, shipping_label_created_at: Time.now.in_time_zone('London'))
+      end
+    end
+
     # Create the batch in easypost
     easypost_batch = EasyPost::Batch.create()
 
@@ -59,6 +88,8 @@ class Distiller::BatchesController < DistillersController
   def show
     # Batch found in before action
     @sold_items = @batch.sold_items
+    @scanform_id = @batch.scanform_id
+    @test_url = EasyPost::ScanForm.retrieve(@batch.scanform_id)[:status]
 
     # Scanform retrieved each time as allows time for scanform_url to generate
     scanform = EasyPost::ScanForm.retrieve(@batch.scanform_id)

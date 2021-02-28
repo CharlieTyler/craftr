@@ -81,6 +81,41 @@
             <% end %>
           </div>
         </div>
+
+        <!-- New shipping and batching -->
+        <div class = "col-12 my-3 py-3 px-3 lyst-box">
+          <h1>New section</h1>
+          <hr/>
+          <div class = "row">
+            <div class = "col-12">
+              <!-- Check for any unbatched sold items -->
+              <% if @unbatched_sold_items.length > 0 %>
+                <h4 class = "d-inline-block">You have unbatched items ready to process</h4>
+                <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
+                <div class = "clear"></div>
+                <p class = "text-muted">Select all items that you are ready to post <strong>today</strong> and click "Create batch" to generate all postage labels and scanform.</p>
+                <%= simple_form_for @batch, url: distiller_batches_path do |f| %>
+                  <%= f.association :sold_items, :collection => @unbatched_sold_items, as: :check_boxes, value_method: :id, label: false, label_method: :item_and_order, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
+                  <%= f.submit "Create todays batch", class: "btn btn-success mb-3" %>
+                <% end %>
+              <% end %>
+
+              <hr class = "lyst-line-lightgrey"/>
+
+              <!-- Check for any batched items awaiting shipment where scanform and postage has been created -->
+              <% if @unshipped_batches.length > 0 %>
+                <h4><i class="fa fa-check text-green" aria-hidden="true"></i> You have existing batches, see below.</h4>
+                <p>Your batches have been processed, please print shipping labels and scanform, and mark items as shipped.</p>
+                <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
+                <div class = "clear"></div>
+                <% @unshipped_auto_batches.each_with_index do |batch, index| %>
+                  <hr/>
+                  <%= link_to "Batch created at " + batch.created_at.strftime('%k:%M - %d/%m/%Y') + " - shipping documents", distiller_batch_path(batch), :target => "_blank", class: "" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
 
       <!-- If you've got unshipped manual items, show manual part -->
@@ -116,6 +151,48 @@
                 </div>
               </div>
             <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- If test distillery show more options -->
+      <% if current_distillery.is_test %>
+        <div class = "col-12 lyst-box py-3 px-3 my-4">
+          <h3>Custom test options</h3>
+          <hr/>
+          <div class = "row">
+            <div class = "col-12">
+              
+            </div>
+          </div>
+          <div class = "row">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Stock status</th>
+                  <th scope="col">Change stock status</th>
+                  <th scope="col">Create test order</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @products.each do |product| %>
+                  <tr>
+                    <th scope="row"><%= link_to product.name.titleize, product_path(product) %></th>
+                    <td class = "stock-product-<%= product.id %>"><%= product.is_in_stock ? "✔️ In stock" : "❌ Out of stock" %></td>
+                    <td class = "toggle-product-<%=product.id %>"><%= render partial: 'distiller/products/stock_toggle', locals: {product: product} %></td>
+                    <td>
+                      <form action="/checkout/test_order" method="post">
+                        <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+                        <button class = "btn btn-primary d-inline">
+                          Create test order
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
           </div>
         </div>
       <% end %>
