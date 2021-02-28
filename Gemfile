@@ -104,6 +104,8 @@ gem 'animate-rails'
 
 gem 'stripe'
 
+gem 'stripe_event'
+
 gem 'easypost'
 
 gem 'omniauth-stripe-connect'
