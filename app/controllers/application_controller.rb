@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # Require login details for staging
+  before_action :basic_authorisation
+
   before_action :store_user_location!, if: :storable_location?
   before_action :set_cart
   before_action :set_sentry_context
@@ -127,5 +130,14 @@ class ApplicationController < ActionController::Base
     end
 
     %Q{<iframe class = "embed-responsive-item" title="YouTube video player" src="https://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
+  end
+
+  def basic_authorisation
+    creds = ENV["SITE_CREDENTIALS"]
+    return true unless creds.present?
+    expected_username, expected_password = creds.split(':')
+    authenticate_or_request_with_http_basic do |given_username, given_password|
+      given_username == expected_username && given_password == expected_password
+    end
   end
 end
