@@ -136,6 +136,6 @@ gem 'nokogiri'
 
 gem 'inky-rb', require: 'inky'
 
-gem 'sentry-raven'
+gem 'sentry-ruby'
 
 gem 'premailer-rails'

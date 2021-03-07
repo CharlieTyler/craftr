@@ -24,9 +24,8 @@ module Craftr
     config.exceptions_app = self.routes
 
     # Add Sentry for errors
-    Raven.configure do |config|
+    Sentry.init do |config|
       config.dsn = ENV["SENTRY_DNS"]
-      config.environments = %w[ production ]
     end
   end
 end

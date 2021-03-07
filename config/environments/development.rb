@@ -69,6 +69,6 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.sentry = true
-    Bullet.alert = true
+    Bullet.alert = false
   end
 end

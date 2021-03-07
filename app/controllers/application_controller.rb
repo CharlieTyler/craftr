@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :store_user_location!, if: :storable_location?
   before_action :set_cart
-  before_action :set_raven_context
+  before_action :set_sentry_context
   # before_action :set_email_sign_up
 
   private
@@ -27,11 +27,11 @@ class ApplicationController < ActionController::Base
   #   @email_sign_up = EmailSignUp.new
   # end
 
-  def set_raven_context
+  def set_sentry_context
     if user_signed_in?
-      Raven.user_context(id: current_user.id, email: current_user.email)
+      Sentry.set_user(id: current_user.id, email: current_user.email)
     else
-      Raven.user_context(ip_address: request.ip)
+      Sentry.set_user(ip_address: request.ip)
     end
   end
 
