@@ -1,37 +1,37 @@
-<div class = "col-12 col-md-4 offset-md-0 px-2">
+<div class = "col-12 col-md-4 offset-md-0 my-3 px-2">
   <div class = "row mx-1 lyst-box h-100 display-v-middle">
     <div class = "col-3 text-center">
-      <h1>❤️</h1>
+      <%= image_tag "gin.svg", class: "p-1" %>
     </div>
     <div class = "col-9">
       <div class = "">
-        <p class = "mb-1"><strong><%= link_to "1. Only the best spirits", about_path %></strong></p>
+        <p class = "mb-1"><strong><%= link_to "Only the best spirits", about_path %></strong></p>
         <p class = "mt-0 mb-0">From just <%= @distillery_count %> craft distilleries</p>
       </div>
     </div>
   </div>
 </div>
-<div class = "col-12 col-md-4 offset-md-0 px-2">
+<div class = "col-12 col-md-4 offset-md-0 my-3 px-2">
   <div class = "row mx-1 lyst-box h-100 display-v-middle">
     <div class = "col-3 text-center">
-      <h1>🚀</h1>
+      <%= image_tag "distillery.svg", class: "p-1" %>
     </div>
     <div class = "col-9">
       <div class = "">
-        <p class = "mb-1"><strong><%= link_to "2. Straight from the distillery", about_path %></strong></p>
+        <p class = "mb-1"><strong><%= link_to "Straight from the distillery", about_path %></strong></p>
         <p class = "mt-0 mb-0">Shipped from the maker.</p>
       </div>
     </div>
   </div>
 </div>
-<div class = "col-12 col-md-4 offset-md-0 px-2">
+<div class = "col-12 col-md-4 offset-md-0 my-3 px-2">
   <div class = "row mx-1 lyst-box h-100 display-v-middle">
     <div class = "col-3 text-center">
-      <h1>💰</h1>
+      <%= image_tag "truck.svg", class: "p-1" %>
     </div>
     <div class = "col-9">
       <div class = "">
-        <p class = "mb-1"><strong><%= link_to "3. Free shipping!", deliveries_and_shipping_path %></strong></p>
+        <p class = "mb-1"><strong><%= link_to "Free shipping!", deliveries_and_shipping_path %></strong></p>
         <p class = "mt-0 mb-0">No matter how many bottles</p>
       </div>
     </div>
