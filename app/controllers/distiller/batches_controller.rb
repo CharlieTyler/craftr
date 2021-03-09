@@ -90,8 +90,10 @@ class Distiller::BatchesController < DistillersController
     @sold_items = @batch.sold_items
     @scanform_id = @batch.scanform_id
 
+    current_batch = EasyPost::Batch.retrieve(@batch.easypost_batch_id)
+
     # Scanform retrieved each time as allows time for scanform_url to generate
-    scanform = EasyPost::ScanForm.retrieve(@batch.scanform_id)
+    scanform = EasyPost::ScanForm.retrieve(current_batch.scan_form.id)
     @scanform_url = scanform[:form_url]
   end
 

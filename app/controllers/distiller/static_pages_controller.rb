@@ -30,14 +30,14 @@ class Distiller::StaticPagesController < DistillersController
   def check_if_shipments_already_manifested
     @unbatched_sold_items                             = current_distillery.sold_items.where(manual_shipping: [nil, false], batch_id: nil)
 
-    if @unbatched_sold_items.length > 0
-      # For each sold item, see if the shipments have been manifested
-      @unbatched_sold_items.each do |si|
-        # For each postage, retrieve the shipment and check if there's a batch
-        si.postages.each do |p|
-          p.batch_locally_if_batched_on_easypost
-        end
-      end
-    end
+    # if @unbatched_sold_items.length > 0
+    #   # For each sold item, see if the shipments have been manifested
+    #   @unbatched_sold_items.each do |si|
+    #     # For each postage, retrieve the shipment and check if there's a batch
+    #     si.postages.each do |p|
+    #       p.batch_locally_if_batched_on_easypost
+    #     end
+    #   end
+    # end
   end
 end
