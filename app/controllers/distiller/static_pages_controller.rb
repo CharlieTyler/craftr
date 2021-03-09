@@ -8,8 +8,6 @@ class Distiller::StaticPagesController < DistillersController
     @unshipped_auto_batches                           = current_distillery.batches.where(shipped: false).order("created_at DESC")
 
     @unshipped_batches                                = current_distillery.batches.where(shipped: false).order("created_at DESC")
-
-    @unbatched_sold_items_test                        = current_distillery.sold_items.where(shipped: false)
     
     @batch                                            = Batch.new
     @batch.sold_items.build
@@ -28,7 +26,7 @@ class Distiller::StaticPagesController < DistillersController
   private
 
   def check_if_shipments_already_manifested
-    @unbatched_sold_items                             = current_distillery.sold_items.where(manual_shipping: [nil, false], batch_id: nil)
+    @unbatched_sold_items                             = current_distillery.sold_items.where(manual_shipping: [nil, false], batch_id: nil).order("created_at DESC")
 
     # if @unbatched_sold_items.length > 0
     #   # For each sold item, see if the shipments have been manifested

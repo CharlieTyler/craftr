@@ -48,6 +48,7 @@ class SoldItem < ApplicationRecord
     "#{quantity} * #{product.name.titleize}"
   end
 
+  # Doesn't work for using as label_method for simple_form
   def item_and_order
     " #{product.name.titleize} - Order No. #{order.id} - #{order.created_at.strftime('%d/%m/%Y at %H:%M')}" 
   end 

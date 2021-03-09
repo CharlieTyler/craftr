@@ -62,7 +62,7 @@
         <!-- New shipping and batching -->
         <div class = "col-12 my-3 py-3 px-3 lyst-box">
           <h2>Order Management</h2>
-          <hr/>
+          <hr class = "lyst-line-lightgrey"/>
           <div class = "row">
             <div class = "col-12">
               <!-- Check for any unbatched sold items -->
@@ -71,8 +71,9 @@
                 <p class = "d-inline-block float-right text-primary"><%= link_to "View shipped orders", distiller_sold_items_path %></p>
                 <div class = "clear"></div>
                 <p class = "text-muted">Select all items that you are ready to post <strong>today</strong> and click "Create batch" to generate all postage labels and scanform.</p>
+                <hr class = "lyst-line-lightgrey"/>
                 <%= simple_form_for @batch, url: distiller_batches_path do |f| %>
-                  <%= f.association :sold_items, :collection => @unbatched_sold_items, as: :check_boxes, value_method: :id, label: false, label_method: :created_at, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
+                  <%= f.association :sold_items, :collection => @unbatched_sold_items, as: :check_boxes, value_method: :id, label: false, label_method: lambda { |order| " Order No.#{order.id} - #{order.created_at.strftime('%d/%m/%Y at %H:%M')}" }, item_wrapper_tag: :div, item_wrapper_class: "style_item", :input_html => { :checked => true } %>
                   <%= f.submit "Create todays batch", class: "btn btn-success mb-3" %>
                 <% end %>
               <% end %>
@@ -81,12 +82,12 @@
 
               <!-- Check for any batched items awaiting shipment where scanform and postage has been created -->
               <% if @unshipped_batches.length > 0 %>
-                <h4><i class="fa fa-check text-green" aria-hidden="true"></i> You have existing batches, see below.</h4>
-                <p>Your batches have been processed, please print shipping labels and scanform, and mark items as shipped.</p>
+                <h4 class = "d-inline-block"><i class="fa fa-check text-green" aria-hidden="true"></i> You have existing batches, requiring shipping.</h4>
                 <p class = "d-inline-block float-right text-primary"><%= link_to "View all batches", distiller_batches_path %></p>
                 <div class = "clear"></div>
+                <p class = "text-muted">The batches below have been processed, please print shipping labels and scanform, and mark items as shipped.</p>
                 <% @unshipped_auto_batches.each_with_index do |batch, index| %>
-                  <hr/>
+                  <hr class = "lyst-line-lightgrey"/>
                   <%= link_to "Batch created at " + batch.created_at.strftime('%k:%M - %d/%m/%Y') + " - shipping documents", distiller_batch_path(batch), :target => "_blank", class: "" %>
                 <% end %>
               <% end %>
@@ -139,12 +140,6 @@
             This is not working yet.
           </div>
           <h3>Custom test options</h3>
-          <hr/>
-          <div class = "row">
-            <div class = "col-12">
-              
-            </div>
-          </div>
           <div class = "row">
             <table class="table table-striped">
               <thead>
