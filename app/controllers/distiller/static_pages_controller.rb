@@ -8,6 +8,8 @@ class Distiller::StaticPagesController < DistillersController
     @unshipped_auto_batches                           = current_distillery.batches.where(shipped: false).order("created_at DESC")
 
     @unshipped_batches                                = current_distillery.batches.where(shipped: false).order("created_at DESC")
+
+    @unbatched_sold_items_test                        = current_distillery.sold_items.where(shipped: false)
     
     @batch                                            = Batch.new
     @batch.sold_items.build

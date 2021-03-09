@@ -49,7 +49,7 @@ class SoldItem < ApplicationRecord
   end
 
   def item_and_order
-    " #{product.name.titleize} - Order No. #{order.id} - #{order.created_at.strftime('%d/%m/%Y')}" 
+    " #{product.name.titleize} - Order No. #{order.id} - #{order.created_at.strftime('%d/%m/%Y at %H:%M')}" 
   end 
 
   def queue_shipped_email
