@@ -57,6 +57,7 @@ class Distiller::BatchesController < DistillersController
       end
     end
 
+    # Something here happening too quickly and not picking up the scanform ID
     # If stuff has been added, create the bloody scanform and save it. Send to that path.
     if batch_counter > 0
       scan_form = easypost_batch.create_scan_form()
