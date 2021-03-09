@@ -69,6 +69,7 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.sentry = false
+    # Change to true to get alerts in the browser
     Bullet.alert = false
   end
 end
