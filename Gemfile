@@ -112,7 +112,7 @@ gem 'omniauth-stripe-connect'
 
 gem 'sendgrid-ruby'
 
-gem 'sidekiq'
+gem 'sidekiq', '5.2.7'
 
 gem 'phonelib'
 
