@@ -12,7 +12,7 @@ Hosted on Heroku
 
 ## TO START ON LOCAL SERVER
 
-You need redis running
+You need redis running - redis-server
 Remove any mention of redis from application.yml
 start sidekiq in seperate tab - bundle exec sidekiq
 start server - rails s
@@ -47,3 +47,10 @@ All rights reserved.
 - Send to batch page (which shows all shipping labels)
 - On batch page, able to mark as shipped
 - I think 2, 3, 5 and 6 are pretty much as is. Main change will be unpicking the views in the distiller dashboard. There's an argument to start from scratch there!
+
+- Select orders that require postage and are ready to send
+- What we are actually selecting is the sold item, as an order could contain products from different distilleries. However, we should show the same orders together somehow?
+- Find sold_items 
+- Show order number and what is in the order?
+- Create postage and batch, including scanform
+- View batches - postage labels and scanform

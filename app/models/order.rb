@@ -170,7 +170,10 @@ class Order < ApplicationRecord
                           from_address: fromAddress,
                           parcel: parcel,
                           carrier_account_id: "ca_c3a3178260c54bac8e41f01df1340b14",
-                          options: {alcohol: true}
+                          options: {
+                            alcohol: true,
+                            currency: "GBP"
+                          }
                          )
           shipment.buy(
             rate: shipment.lowest_rate(carrier_accounts = ['RoyalMail'], service = ['RoyalMail2ndClass'])

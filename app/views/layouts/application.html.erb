@@ -92,7 +92,8 @@
     <%= javascript_include_tag 'application' %>
     <script src="https://js.stripe.com/v3/"></script>
     <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
-    <meta name="viewport" content="initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
 
     <!-- Facebook Pixel Code -->
     <% if Rails.env.production? %>
@@ -419,6 +420,9 @@
             <% end %>
             <%= link_to "https://www.facebook.com/craftrspirits" do %>
               <i data-feather = "facebook"></i>
+            <% end %>
+            <%= link_to "https://twitter.com/Craftrspirits" do %>
+              <i data-feather = "twitter"></i>
             <% end %>
           </div>
 

@@ -22,11 +22,5 @@ module Craftr
 
     # Custom error pages - good for SEO - see https://medium.com/la-revanche-des-sites/seo-ruby-on-rails-the-comprehensive-guide-2018-b4101cc51b78
     config.exceptions_app = self.routes
-
-    # Add Sentry for errors
-    Raven.configure do |config|
-      config.dsn = ENV["SENTRY_DNS"]
-      config.environments = %w[ production ]
-    end
   end
 end

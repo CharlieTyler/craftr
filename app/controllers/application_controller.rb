@@ -1,9 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # Require login details for staging
+  before_action :basic_authorisation
+
   before_action :store_user_location!, if: :storable_location?
   before_action :set_cart
-  before_action :set_raven_context
+  before_action :set_sentry_context
   # before_action :set_email_sign_up
 
   private
@@ -27,11 +30,11 @@ class ApplicationController < ActionController::Base
   #   @email_sign_up = EmailSignUp.new
   # end
 
-  def set_raven_context
+  def set_sentry_context
     if user_signed_in?
-      Raven.user_context(id: current_user.id, email: current_user.email)
+      Sentry.set_user(id: current_user.id, email: current_user.email)
     else
-      Raven.user_context(ip_address: request.ip)
+      Sentry.set_user(ip_address: request.ip)
     end
   end
 
@@ -127,5 +130,14 @@ class ApplicationController < ActionController::Base
     end
 
     %Q{<iframe class = "embed-responsive-item" title="YouTube video player" src="https://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
+  end
+
+  def basic_authorisation
+    creds = ENV["SITE_CREDENTIALS"]
+    return true unless creds.present?
+    expected_username, expected_password = creds.split(':')
+    authenticate_or_request_with_http_basic do |given_username, given_password|
+      given_username == expected_username && given_password == expected_password
+    end
   end
 end

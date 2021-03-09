@@ -68,11 +68,6 @@ class Checkout::OrdersController < ApplicationController
   end
 
   def payment
-
-  end
-
-  def charge_payment
-    # STRIPE PAYMENT
     # Amount in cents
     @amount = @order.total_unpaid_amount
 
@@ -89,42 +84,53 @@ class Checkout::OrdersController < ApplicationController
       # Possibly should check if valid at this point, but don't want to reject transaction for some other username format issue etc.
     end
 
-    charge = Stripe::Charge.create(
-      customer: customer.id,
+    # Create a PaymentIntent with amount and currency
+    payment_intent = Stripe::PaymentIntent.create(
+      customer: customer['id'],
       amount: @amount,
-      description: @order.product_summary,
-      currency: 'gbp'
+      currency: 'gbp',
+      metadata: {
+        order_id: @order.id,
+      },
     )
+    @intent = {
+      id: payment_intent.id,
+      clientSecret: payment_intent['client_secret'],
+    }.to_json
+  end
 
-    @order.order_items.each do |oi|
-      transfer = Stripe::Transfer.create({
-        :amount => oi.product.distillery_take * oi.quantity,
-        :currency => "gbp",
-        # Source transaction means payment doesn't go out until funds are processed. Also means trasfer group param not necessary
-        :source_transaction => charge.id,
-        :destination => oi.product.distillery.stripe_id,
-      })
-    end
+  def complete
+    # If charge succesful complete order
 
+    # Split Stripe payment between distileries - moved to webhook
+    # @order.order_items.each do |oi|
+    #   transfer = Stripe::Transfer.create({
+    #     :amount => oi.product.distillery_take * oi.quantity,
+    #     :currency => "gbp",
+    #     # Source transaction means payment doesn't go out until funds are processed. Also means trasfer group param not necessary
+    #     :source_transaction => charge.id,
+    #     :destination => oi.product.distillery.stripe_id,
+    #   })
+    # end
 
-    # BACKEND STUFF
-    @order.denormalise_order
+    # BACKEND STUFF - All moved to webhook response
+    # @order.denormalise_order
     # Uses worker server to send email
-    @order.queue_confirmation_email
-    @order.queue_distiller_emails
-    @order.queue_distiller_reminder_emails
-    @order.queue_please_review_email
-    @order.queue_admin_emails
+    # @order.queue_confirmation_email
+    # @order.queue_distiller_emails
+    # @order.queue_distiller_reminder_emails
+    # @order.queue_please_review_email
+    # @order.queue_admin_emails
 
     session[:confirmed_order_id] = @order.id
-    @order.update_attributes(paid: true)
+    # Moved to webhook
+    # @order.update_attributes(paid: true)
 
-    @order.queue_shipment_creation
+    # Stop order shipment from being created during checkout - moved to when batch is created 
+    # @order.queue_shipment_creation
+
     session[:order_id] = nil
     redirect_to checkout_confirmation_path
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to checkout_payment_path
   end
 
   def confirmation

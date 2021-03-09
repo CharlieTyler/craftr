@@ -64,10 +64,13 @@ Rails.application.routes.draw do
     patch "/update_address" => "orders#update_address"
     put "/update_address" => "orders#update_address"
     get "/payment" => "orders#payment"
-    post "/charge_payment" => "orders#charge_payment"
+    post "/complete" => "orders#complete"
     get "/confirmation" => "orders#confirmation"
+    post "/create-payment-intent" => "orders#create_payment_intent"
   end
   resources :order_items, only: [:create, :destroy]
+
+  mount StripeEvent::Engine, at: '/stripe/webhook'
 
   # All routes to form part of admin portal
   namespace :admin do

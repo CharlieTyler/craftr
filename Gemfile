@@ -105,6 +105,8 @@ gem 'animate-rails'
 
 gem 'stripe'
 
+gem 'stripe_event'
+
 gem 'easypost'
 
 gem 'omniauth-stripe-connect'
@@ -135,6 +137,8 @@ gem 'nokogiri'
 
 gem 'inky-rb', require: 'inky'
 
-gem 'sentry-raven'
+gem "sentry-ruby"
+
+gem 'sentry-ruby'
 
 gem 'premailer-rails'
